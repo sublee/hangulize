@@ -103,6 +103,7 @@ class Vietnamese(Language):
         ('o',          Jungseong(O)),
         ('O',          Jungseong(EO)),
         ('u',          Jungseong(U)),
+        ('U',          Jungseong(EU)),
     )
 
     def normalize(self, string):
