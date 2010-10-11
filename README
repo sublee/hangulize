@@ -30,8 +30,8 @@
       `hangulize` 함수는 첫번째 인자로 변환할 단어를, 두번째 인자로 로캘 코드를
       입력받습니다. 이 함수는 한글 변환 결과를 반환할 것입니다:
 
-        >>> hangulize(u'Italy', 'it')
-        이탈리
+        >>> hangulize(u'Italia', 'it')
+        이탈리아
         >>> hangulize(u'Innocenti', 'it')
         인노첸티
         >>> hangulize(u'Juventus', 'it')
@@ -45,10 +45,11 @@
 
     ~ 만든이
 
-      - Brian Jongseong Park <iceager@gmail.com> - Linguist
+      - Brian Jongseong Park <iceager@gmail.com> - Linguistic Consultant
       - Lee Heung-sub <heung@sublee.kr> - Developer
 
     ~ 라이선스
 
-      협의 중.
+      BSD 라이선스(http://en.wikipedia.org/wiki/BSD_licenses), 자세한 내용은
+      LICENSE 파일을 참고하십시오.
 
