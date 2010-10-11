@@ -24,17 +24,23 @@
 
     ~ 사용법
 
-      >>> from hangulize import hangulize
-      >>> hangulize(u'Italy', 'it')
-      이탈리
-      >>> hangulize(u'Innocenti', 'it')
-      인노첸티
-      >>> hangulize(u'Juventus', 'it')
-      유벤투스
-      >>> hangulize(u'sbozzacchisce', 'it')
-      스보차키셰
+      `hangulize` 함수를 사용해야합니다. 우선 모듈로부터 함수를 불러옵니다:
 
-    ~ 변환 가능한 언어 목록
+        >>> from hangulize import hangulize
+
+      `hangulize` 함수는 첫번째 인자로 변환할 단어를, 두번째 인자로 로캘 코드를
+      입력받습니다. 이 함수는 한글 변환 결과를 반환할 것입니다:
+
+        >>> hangulize(u'Italy', 'it')
+        이탈리
+        >>> hangulize(u'Innocenti', 'it')
+        인노첸티
+        >>> hangulize(u'Juventus', 'it')
+        유벤투스
+        >>> hangulize(u'sbozzacchisce', 'it')
+        스보차키셰
+
+    ~ 변환 가능한 언어들
 
       - 이탈리아어(it)
 
@@ -42,4 +48,8 @@
 
       - Brian Jongseong Park <iceager@gmail.com> - Linguist
       - Lee Heung-sub <heung@sublee.kr> - Developer
+
+    ~ 라이선스
+
+      협의 중.
 
