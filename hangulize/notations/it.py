@@ -17,7 +17,7 @@ class Italian(Notation):
         ('gn',       'n'),
         ('gg',       'g'),
         ('gi{aou}',  'G'),
-        ('g[ei]',    'G'),
+        ('g{ei}',    'G'),
         ('ss',       's'),
         ('sce',      'sJe'),
         ('sci',      'si'),
