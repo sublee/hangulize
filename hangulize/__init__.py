@@ -29,10 +29,14 @@ class Loanword(object):
             elif not val:
                 val = ''
             prev_length = length
+            _ = word
             word = pattern.sub(val, word)
             length = len(word)
             if length > prev_length:
                 phonemes += [None] * (length - prev_length)
+            # verbose
+            # if word != _:
+            #    print word
         return filter(bool, phonemes)
 
     def syllables(self, word):

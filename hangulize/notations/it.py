@@ -73,7 +73,7 @@ class Italian(Notation):
         ('l',        (Jongseong(L),)),
         ('m{@}',     (Choseong(M),)),
         ('m',        (Jongseong(M),)),
-        ('n{@}',     (Choseong(N),)),
+        ('n{@J}',     (Choseong(N),)),
         ('n',        (Jongseong(N),)),
         ('p',        (Choseong(P),)),
         ('r',        (Choseong(L),)),
