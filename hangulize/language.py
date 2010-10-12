@@ -1,5 +1,5 @@
 import re
-from .utils import normalize_roman, complete_syllable
+from .utils import complete_syllable
 from .notation import Notation
 from .phoneme import *
 
@@ -55,18 +55,22 @@ class Language(object):
                 syllable.append(ph)
             yield complete_syllable(syllable)
 
+    def normalize(self, string):
+        return string
+
     def hangulize(self, string):
         def stringify(syllable):
             if isinstance(syllable[0], Impurity):
                 return syllable[0].letter
             else:
                 return join(syllable)
+        string = self.normalize(string)
         hangulized = []
         for word in re.split(r'\s+', string):
-            word = normalize_roman(word)
             syllables = [stringify(syl) for syl in self.syllables(word)]
             if not syllables:
                 raise ValueError('cannot hangulize')
             hangulized.append(reduce(unicode.__add__, syllables))
+        # print ' '.join(hangulized)
         return ' '.join(hangulized)
 
