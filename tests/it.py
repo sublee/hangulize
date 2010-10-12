@@ -104,4 +104,5 @@ class ItalianTestCase(HangulizeTestCase):
         assert u'지로 디탈리아' == self.hangulize(u"Giro d'Italia")
         assert u'페르 라베니레 디탈리아' == \
                self.hangulize(u"per l'avvenire d'Italia")
+        assert u'렉스' == self.hangulize(u'Rex')
 
