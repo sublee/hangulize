@@ -3,7 +3,22 @@
 Hangulize
 ~~~~~~~~~
 
-This module provides Korean Alphabet Transcription.
+Hangulize transcribes a loanword to Hangul(the Korean alphabet).
+
+    >>> print hangulize(u'Italia', 'it')
+    이탈리아
+    >>> print hangulize(u'Juventus', 'it')
+    유벤투스
+    >>> print hangulize(u"Giro d'Italia", 'it')
+    지로 디탈리아
+
+Links
+`````
+
+* `GitHub repository <http://github.com/sublee/hangulize>`_
+* `development version
+  <http://github.com/sublee/hangulize/zipball/master#egg=hangulize-dev>`_
+
 """
 from setuptools import setup
 
