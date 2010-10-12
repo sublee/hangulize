@@ -1,13 +1,14 @@
 # -*- coding: utf-8 -*-
+from ..language import Language
+from ..notation import Notation
 from ..phoneme import *
-from ..notation import *
 
 
-class Italian(Notation):
-    """The notation for Italian."""
+class Italian(Language):
+    """The language for italian."""
 
     vowels = 'a', 'e', 'i', 'o', 'u'
-    rule = [
+    notation = Notation(
         ('^gli$',    phonemes(u'리')),
         ('^glia$',   phonemes(u'글리아')),
         ('^glioma$', phonemes(u'글리오마')),
@@ -94,7 +95,7 @@ class Italian(Notation):
         ('i',        (Jungseong(I),)),
         ('o',        (Jungseong(O),)),
         ('u',        (Jungseong(U),)),
-    ]
+    )
 
 
 it = Italian

@@ -19,6 +19,9 @@ class Jungseong(Phoneme):
 class Jongseong(Phoneme):
     pass
 
+class Impurity(Phoneme):
+    pass
+
 
 def phonemes(word):
     result = []
