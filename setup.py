@@ -7,10 +7,10 @@ Hangulize transcribes a loanword to Hangul(the Korean alphabet).
 
 >>> print hangulize(u'Italia', 'it')
 이탈리아
->>> print hangulize(u'Juventus', 'it')
-유벤투스
 >>> print hangulize(u"Giro d'Italia", 'it')
 지로 디탈리아
+>>> print hangulize(u'オオサカ', 'ja')
+오사카
 
 Links
 `````

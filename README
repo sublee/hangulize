@@ -46,18 +46,15 @@
 
         >>> print hangulize(u'Italia', 'it')
         이탈리아
-        >>> print hangulize(u'Innocenti', 'it')
-        인노첸티
-        >>> print hangulize(u'Juventus', 'it')
-        유벤투스
-        >>> print hangulize(u'sbozzacchisce', 'it')
-        스보차키셰
         >>> print hangulize(u"Giro d'Italia", 'it')
         지로 디탈리아
+        >>> print hangulize(u'オオサカ', 'ja')
+        오사카
 
     ~ 변환 가능한 언어들
 
       - 이탈리아어(it)
+      - 일본어(ja)
 
     ~ 만든이
 
