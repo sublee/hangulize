@@ -21,6 +21,20 @@
 
       Hangulize는 위 아이디어를 실현하는 첫번째 프로젝트입니다.
 
+    ~ 설치
+
+      1. pip 이용
+
+           $ pip install hangulize
+
+      2. easy_install 이용
+
+           $ easy_install hangulize
+
+      3. 저장소 내려받기
+
+           $ git clone git://github.com/sublee/hangulize.git
+
     ~ 사용법
 
       `hangulize` 함수를 사용해야합니다. 우선 모듈로부터 함수를 불러옵니다:
