@@ -2,10 +2,11 @@
 from ..language import Language
 from ..notation import Notation
 from ..phoneme import *
+from ..utils import normalize_roman
 
 
 class Italian(Language):
-    """The language for italian."""
+    """The language for Italian."""
 
     vowels = 'a', 'e', 'i', 'o', 'u'
     notation = Notation(
@@ -74,7 +75,7 @@ class Italian(Language):
         ('l',        (Jongseong(L),)),
         ('m{@}',     (Choseong(M),)),
         ('m',        (Jongseong(M),)),
-        ('n{@J}',     (Choseong(N),)),
+        ('n{@J}',    (Choseong(N),)),
         ('n',        (Jongseong(N),)),
         ('p',        (Choseong(P),)),
         ('r',        (Choseong(L),)),
@@ -96,6 +97,9 @@ class Italian(Language):
         ('o',        (Jungseong(O),)),
         ('u',        (Jungseong(U),)),
     )
+
+    def normalize(self, string):
+        return normalize_roman(string)
 
 
 it = Italian
