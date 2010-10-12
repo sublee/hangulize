@@ -50,6 +50,7 @@
 
     ~ 라이선스
 
-      BSD 라이선스(http://en.wikipedia.org/wiki/BSD_licenses), 자세한 내용은
-      LICENSE 파일을 참고하십시오.
+      Hangulize에는 BSD 라이선스가 적용되어있습니다. 따라서 소스코드를 사용할
+      경우 라이선스 내용을 준수해주십시오. 라이선스 전문은 LICENSE 파일에
+      쓰여있습니다.
 
