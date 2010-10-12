@@ -35,6 +35,7 @@ setup(
     test_suite="test",
     platforms='any',
     packages=['hangulize'],
+    package_data={'hangulize': ['langs/*']},
     classifiers=[
         'Development Status :: 4 - Beta',
         'Environment :: Console',
