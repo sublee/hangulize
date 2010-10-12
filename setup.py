@@ -23,6 +23,11 @@ Links
 from setuptools import setup
 
 
+def run_tests():
+    from tests import suite
+    return suite()
+
+
 setup(
     name='hangulize',
     version='0.0.1',
@@ -32,7 +37,7 @@ setup(
     description='Korean Alphabet Transcription',
     long_description=__doc__,
     zip_safe=False,
-    test_suite="test",
+    test_suite="__main__.run_tests",
     platforms='any',
     packages=['hangulize'],
     package_data={'hangulize': ['langs/*']},
