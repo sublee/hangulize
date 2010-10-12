@@ -2,10 +2,6 @@ import re
 from .phoneme import Impurity
 
 
-SPACE = Impurity(' ')
-SPACE_PATTERN = re.compile(' ')
-
-
 class Notation(object):
 
     def __init__(self, *rule):
@@ -15,7 +11,6 @@ class Notation(object):
         """Yields each notation rules as regex."""
         for pattern, val in self.rule:
             yield self.regexify(pattern, lang), val
-        yield SPACE_PATTERN, (SPACE,)
 
     def regexify(self, pattern, lang=None):
         """Compiles a regular expression from the notation pattern."""

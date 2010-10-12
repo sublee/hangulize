@@ -1,6 +1,6 @@
 import re
 from .utils import normalize_roman, complete_syllable
-from .notation import Notation, SPACE
+from .notation import Notation
 from .phoneme import *
 
 
@@ -22,7 +22,7 @@ class Language(object):
                     start, end = match.span()
                     phonemes[start] = val
                     del phonemes[start + 1:end]
-                val = '#'
+                val = ' '
             elif not val:
                 val = ''
             # _ = word
@@ -43,15 +43,11 @@ class Language(object):
             phonemes = reduce(list.__add__, map(list, phonemes))
             for ph in phonemes:
                 comp = type(ph)
-                new_syllable = ph is SPACE or \
-                               (syllable and components.index(comp) <= \
-                                components.index(type(syllable[-1])))
+                new_syllable = syllable and components.index(comp) <= \
+                               components.index(type(syllable[-1]))
                 if new_syllable:
                     yield complete_syllable(syllable)
                     syllable = []
-                    if ph is SPACE:
-                        yield (ph,)
-                        continue
                 if comp is not Choseong and not syllable:
                     syllable.append(Choseong(NG))
                 if comp is not Jungseong and len(syllable) is 1:
@@ -59,15 +55,18 @@ class Language(object):
                 syllable.append(ph)
             yield complete_syllable(syllable)
 
-    def hangulize(self, word):
+    def hangulize(self, string):
         def stringify(syllable):
             if isinstance(syllable[0], Impurity):
                 return syllable[0].letter
             else:
                 return join(syllable)
-        word = normalize_roman(word)
-        syllables = [stringify(syllable) for syllable in self.syllables(word)]
-        if not syllables:
-            raise ValueError('cannot hangulize')
-        return reduce(unicode.__add__, syllables)
+        hangulized = []
+        for word in re.split(r'\s+', string):
+            word = normalize_roman(word)
+            syllables = [stringify(syl) for syl in self.syllables(word)]
+            if not syllables:
+                raise ValueError('cannot hangulize')
+            hangulized.append(reduce(unicode.__add__, syllables))
+        return ' '.join(hangulized)
 
