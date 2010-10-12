@@ -1,0 +1,134 @@
+# -*- coding: utf-8 -*-
+from ..language import Language
+from ..notation import Notation
+from ..phoneme import *
+from ..utils import normalize_roman
+
+
+class Japanese(Language):
+    """The language for Japanese."""
+
+    vowels = 'a', 'i', 'u', 'e', 'o'
+    notation = Notation(
+        (u'[\u30a1\u30a2]', 'a'),
+        (u'[\u30a3\u30a4]', 'i'),
+        (u'[\u30a5\u30a6]', 'u'),
+        (u'[\u30a7\u30a8]', 'e'),
+        (u'[\u30a9\u30aa]', 'o'),
+        (u'\u30ab',         'ka'),
+        (u'\u30ad',         'ki'),
+        (u'\u30af',         'ku'),
+        (u'\u30b1',         'ke'),
+        (u'\u30b3',         'ko'),
+        (u'\u30ac',         'ga'),
+        (u'\u30ae',         'gi'),
+        (u'\u30b0',         'gu'),
+        (u'\u30b2',         'ge'),
+        (u'\u30b4',         'go'),
+        (u'\u30b5',         'sa'),
+        (u'\u30b7',         'si'),
+        (u'\u30b9',         'su'),
+        (u'\u30bb',         'se'),
+        (u'\u30bd',         'so'),
+        (u'\u30b6',         'za'),
+        (u'\u30b8',         'zi'),
+        (u'\u30ba',         'zu'),
+        (u'\u30bc',         'ze'),
+        (u'\u30be',         'zo'),
+        (u'\u30bf',         'ta'),
+        (u'\u30c1',         'Ci'),
+        (u'\u30c4',         'Cu'),
+        (u'\u30c6',         'te'),
+        (u'\u30c8',         'to'),
+        (u'\u30c0',         'da'),
+        (u'\u30c2',         'zi'),
+        (u'\u30c5',         'zu'),
+        (u'\u30c7',         'de'),
+        (u'\u30c9',         'do'),
+        (u'\u30ca',         'na'),
+        (u'\u30cb',         'ni'),
+        (u'\u30cc',         'nu'),
+        (u'\u30cd',         'ne'),
+        (u'\u30ce',         'no'),
+        (u'\u30cf',         'ha'),
+        (u'\u30d2',         'hi'),
+        (u'\u30d5',         'hu'),
+        (u'\u30d8',         'he'),
+        (u'\u30db',         'ho'),
+        (u'\u30d0',         'ba'),
+        (u'\u30d3',         'bi'),
+        (u'\u30d6',         'bu'),
+        (u'\u30d9',         'be'),
+        (u'\u30dc',         'bo'),
+        (u'\u30d1',         'pa'),
+        (u'\u30d4',         'pi'),
+        (u'\u30d7',         'pu'),
+        (u'\u30da',         'pe'),
+        (u'\u30dd',         'po'),
+        (u'\u30de',         'ma'),
+        (u'\u30df',         'mi'),
+        (u'\u30e0',         'mu'),
+        (u'\u30e1',         'me'),
+        (u'\u30e2',         'mo'),
+        (u'\u30e4',         'ya'),
+        (u'\u30e6',         'yu'),
+        (u'\u30e8',         'yo'),
+        (u'\u30e3',         'ja'),
+        (u'\u30e5',         'ju'),
+        (u'\u30e7',         'jo'),
+        (u'\u30e9',         'la'),
+        (u'\u30ea',         'li'),
+        (u'\u30eb',         'lu'),
+        (u'\u30ec',         'le'),
+        (u'\u30ed',         'lo'),
+        (u'\u30ef',         'wa'),
+        (u'\u30f2',         'o'),
+        (u'\u30f3',         'N'),
+        (u'\u30c3',         'T'),
+        ('^k',              'g'),
+        ('^t',              'd'),
+        ('^C{a}',           'z'),
+        ('{a}a',            None),
+        ('{i}i',            None),
+        ('{uo}u',           None),
+        ('{e}e',            None),
+        ('{o}o',            None),
+        ('k',               (Choseong(K),)),
+        ('g',               (Choseong(G),)),
+        ('s',               (Choseong(S),)),
+        ('z',               (Choseong(J),)),
+        ('t',               (Choseong(T),)),
+        ('C',               (Choseong(C),)),
+        ('d',               (Choseong(D),)),
+        ('n',               (Choseong(N),)),
+        ('h',               (Choseong(H),)),
+        ('b',               (Choseong(B),)),
+        ('p',               (Choseong(P),)),
+        ('m',               (Choseong(M),)),
+        ('l',               (Choseong(L),)),
+        ('ya',              (Jungseong(YA),)),
+        ('yu',              (Jungseong(YU),)),
+        ('yo',              (Jungseong(YO),)),
+        ('ija',             (Jungseong(YA),)),
+        ('iju',             (Jungseong(YU),)),
+        ('ijo',             (Jungseong(YO),)),
+        ('a',               (Jungseong(A),)),
+        ('i',               (Jungseong(I),)),
+        ('u',               (Jungseong(U),)),
+        ('e',               (Jungseong(E),)),
+        ('o',               (Jungseong(O),)),
+        ('N',               (Jongseong(N),)),
+        ('T',               (Jongseong(S),))
+    )
+
+    def normalize(self, string):
+        def hiragana_to_katakana(c):
+            code = ord(c)
+            if code not in xrange(0x3040, 0x309f + 1):
+                return c
+            return unichr(code + 96)
+        return ''.join(map(hiragana_to_katakana, string))
+
+
+ja = Japanese
+
