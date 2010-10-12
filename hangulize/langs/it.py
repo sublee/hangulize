@@ -70,7 +70,7 @@ class Italian(Language):
         ('f',        (Choseong(P),)),
         ('g',        (Choseong(G),)),
         ('G',        (Choseong(J),)),
-        ('k{pstz}',  (Jongseong(G),)),
+        ('{@}k{pstz}', (Jongseong(G),)),
         ('k',        (Choseong(K),)),
         ('^l',       (Choseong(L),)),
         ('l{@}',     (Jongseong(L), Choseong(L))),
