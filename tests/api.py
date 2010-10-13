@@ -8,3 +8,4 @@ class LanguagesTestCase(unittest.TestCase):
         assert isinstance(ja, type(unittest))
         assert isinstance(it, type(unittest))
         assert isinstance(es, type(unittest))
+
