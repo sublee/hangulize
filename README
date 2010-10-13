@@ -44,16 +44,17 @@
       `hangulize` 함수는 첫번째 인자로 변환할 단어를, 두번째 인자로 로캘 코드를
       입력받습니다. 이 함수는 한글 변환 결과를 반환할 것입니다:
 
-        >>> print hangulize(u'Italia', 'it')
-        이탈리아
         >>> print hangulize(u"Giro d'Italia", 'it')
         지로 디탈리아
+        >>> print hangulize(u'Gamiño', 'es')
+        가미뇨
         >>> print hangulize(u'オオサカ', 'ja')
         오사카
 
     ~ 변환 가능한 언어들
 
       - 이탈리아어(it)
+      - 스페인어(es)
       - 일본어(ja)
 
     ~ 만든이
