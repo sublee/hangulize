@@ -24,11 +24,11 @@ class Spanish(Language):
         ('ch{@}',       'C'),
         ('h',           None),
         ('ll',          'Y'),
-        ('n{ckgqx}',    'N'),
         ('c{kqx}',      None),
         ('cc',          'c'),
         ('c{ei}',       's'),
         ('c',           'k'),
+        ('n{jkgqx}',    'N'),
         ('g{ei}',       'j'),
         (u'{gq}ü{aei}', 'W'),
         (u'ü',          'u'),
@@ -112,4 +112,3 @@ class Spanish(Language):
 
 
 es = Spanish
-
