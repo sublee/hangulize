@@ -5,10 +5,10 @@ from .. import *
 class Spanish(Language):
     """For transcribing Spanish."""
 
-    vowels = 'a', 'e', 'i', 'o', 'u', 'ü', 'y'
+    vowels = 'a', 'e', 'i', 'o', 'u', u'ü', 'y'
     notation = Notation(
-        ('ññ',         'ñ'),
-        ('ñ{@}',       'nY'),
+        (u'ññ',        u'ñ'),
+        (u'ñ{@}',      'nY'),
         ('^y{@}',      'Y'),
         ('{@}y{@}',    'Y'),
         ('y',          'i'),
@@ -31,7 +31,7 @@ class Spanish(Language):
         ('c',          'k'),
         ('g{ei}',      'j'),
         ('{gq}ü{aei}', 'W'),
-        ('ü',          'u'),
+        (u'ü',         'u'),
         ('{gq}u{ei}',  None),
         ('{gq}ua',     'Wa'),
         ('q',          'k'),
@@ -104,8 +104,10 @@ class Spanish(Language):
             for c in string:
                 if c not in safe:
                     yield normalize_roman(c)
+                elif c in map:
+                    yield map[c]
                 else:
-                    yield safe[safe.index(c) / 2 * 2]
+                    yield c
         return ''.join(normalize_only_unsafe(string))
 
 
