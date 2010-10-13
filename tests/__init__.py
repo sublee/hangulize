@@ -10,8 +10,10 @@ class HangulizeTestCase(unittest.TestCase):
 def suite():
     from it import ItalianTestCase
     from ja import JapaneseTestCase
+    from es import SpanishTestCase
     suite = unittest.TestSuite()
     suite.addTest(unittest.makeSuite(ItalianTestCase))
     suite.addTest(unittest.makeSuite(JapaneseTestCase))
+    suite.addTest(unittest.makeSuite(SpanishTestCase))
     return suite
 
