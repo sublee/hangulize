@@ -1,12 +1,9 @@
 # -*- coding: utf-8 -*-
-from ..language import Language
-from ..notation import Notation
-from ..phoneme import *
-from ..utils import normalize_roman
+from .. import *
 
 
 class Japanese(Language):
-    """The language for Japanese."""
+    """For transcribing Japanese."""
 
     vowels = 'a', 'i', 'u', 'e', 'o'
     notation = Notation(
