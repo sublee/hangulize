@@ -58,9 +58,10 @@ class Language(object):
     vowels = ()
     notation = None
 
-    def __init__(self):
+    def __init__(self, logger=None):
         if not isinstance(self.notation, Notation):
             raise NotImplementedError("notation has to be defined")
+        self.logger = logger
 
     def get_phonemes(self, word):
         length = len(word)
@@ -74,15 +75,13 @@ class Language(object):
                 val = ' '
             elif not val:
                 val = ''
-            # _ = word
-            prev_length = length
+            prev_word, prev_length = word, length
             word = pattern.sub(val, word)
             length = len(word)
             if length > prev_length:
                 phonemes += [None] * (length - prev_length)
-            # verbose
-            # if word != _:
-            #    print word
+            if self.logger and word != prev_word:
+                self.logger.info("-> '%s'" % word)
         return filter(bool, phonemes)
 
     def syllables(self, word):
@@ -114,13 +113,14 @@ class Language(object):
             else:
                 return join(syllable)
         string = self.normalize(string)
+        if self.logger:
+            self.logger.info("-> '%s'" % string)
         hangulized = []
         for word in re.split(r'\s+', string):
             syllables = [stringify(syl) for syl in self.syllables(word)]
             if not syllables:
-                raise ValueError('cannot hangulize')
+                return ''
             hangulized.append(reduce(unicode.__add__, syllables))
-        # print ' '.join(hangulized)
         return ' '.join(hangulized)
 
 
@@ -153,9 +153,9 @@ def complete_syllable(syllable):
     return tuple((ph.letter for ph in syllable))
 
 
-def hangulize(string, locale='it', lang=None):
+def hangulize(string, locale='it', lang=None, logger=None):
     if not lang:
         module = __import__('%s.langs.%s' % (__name__, locale))
-        lang = getattr(getattr(module.langs, locale), locale)()
+        lang = getattr(getattr(module.langs, locale), locale)(logger=logger)
     return lang.hangulize(string)
 
