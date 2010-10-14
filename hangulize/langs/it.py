@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-from .. import *
+from hangulize import *
 
 
 class Italian(Language):

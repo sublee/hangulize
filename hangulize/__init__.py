@@ -7,7 +7,7 @@ Korean Alphabet Transcription.
 """
 import re
 import unicodedata
-from .hangul import *
+from hangulize.hangul import *
 
 
 class Phoneme(object):

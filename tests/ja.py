@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-from . import HangulizeTestCase
+from tests import HangulizeTestCase
 
 
 class JapaneseTestCase(HangulizeTestCase):
