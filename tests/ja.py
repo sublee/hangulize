@@ -9,7 +9,7 @@ class JapaneseTestCase(HangulizeTestCase):
         from hangulize.langs.ja import Japanese
         self.lang = Japanese()
 
-    def test_1st_sokuon(self):
+    def test_1st(self):
         """제1항: 촉음
         촉음(促音) [ッ(っ)]는 'ㅅ'으로 통일해서 적는다.
         """
@@ -17,7 +17,7 @@ class JapaneseTestCase(HangulizeTestCase):
         assert u'돗토리' == self.hangulize(u'トットリ')
         assert u'욧카이치' == self.hangulize(u'ヨッカイチ')
 
-    def test_2nd_choboin(self):
+    def test_2nd(self):
         """제2항: 장모음
         장모음은 따로 표기하지 않는다.
         """

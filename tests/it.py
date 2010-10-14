@@ -9,7 +9,7 @@ class ItalianTestCase(HangulizeTestCase):
         from hangulize.langs.it import Italian
         self.lang = Italian()
 
-    def test_1st_gl(self):
+    def test_1st(self):
         """제1항: gl
         i 앞에서는 'ㄹㄹ'로 적고, 그 밖의 경우에는 '글ㄹ'로 적는다.
         """
@@ -18,7 +18,7 @@ class ItalianTestCase(HangulizeTestCase):
         assert u'글로리아' == self.hangulize(u'gloria')
         assert u'글로사' == self.hangulize(u'glossa')
 
-    def test_2nd_gn(self):
+    def test_2nd(self):
         """제2항: gn
         뒤따르는 모음과 합쳐 '냐', '녜', '뇨', '뉴', '니'로 적는다.
         """
@@ -28,7 +28,7 @@ class ItalianTestCase(HangulizeTestCase):
         assert u'뉴' == self.hangulize(u'gnu')
         assert u'오니' == self.hangulize(u'ogni')
 
-    def test_3rd_sc(self):
+    def test_3rd(self):
         """제3항: sc
         sce는 '셰'로, sci는 '시'로 적고, 그 밖의 경우에는 '스ㅋ'으로 적는다.
         """
@@ -37,7 +37,7 @@ class ItalianTestCase(HangulizeTestCase):
         assert u'토스카' == self.hangulize(u'Tosca')
         assert u'스쿠도' == self.hangulize(u'scudo')
 
-    def test_4th_overlapped_same_consonant(self):
+    def test_4th(self):
         """제4항
         같은 자음이 겹쳤을 때에는 겹치지 않은 경우와 같이 적는다. 다만, -mm-,
         -nn-의 경우는 'ㅁㅁ', 'ㄴㄴ'으로 적는다.
@@ -51,7 +51,7 @@ class ItalianTestCase(HangulizeTestCase):
         assert u'곰마' == self.hangulize(u'gomma')
         assert u'비스논노' == self.hangulize(u'bisnonno')
 
-    def test_5th_c_and_g(self):
+    def test_5th(self):
         """제5항: c, g
         1. c와 g는 e, i 앞에서 각각 'ㅊ', 'ㅈ'으로 적는다.
         2. c와 g 다음에 ia, io, iu가 올 때에는 각각 '차, 초, 추',
@@ -64,7 +64,7 @@ class ItalianTestCase(HangulizeTestCase):
         assert u'카차' == self.hangulize(u'caccia')
         assert u'미초' == self.hangulize(u'micio')
 
-    def test_6th_qu(self):
+    def test_6th(self):
         """제6항: qu
         qu는 뒤따르는 모음과 합쳐 '콰, 퀘, 퀴' 등으로 적는다. 다만, o 앞에서는
         '쿠'로 적는다.
@@ -74,7 +74,7 @@ class ItalianTestCase(HangulizeTestCase):
         assert u'퀴에토' == self.hangulize(u'quieto')
         assert u'쿠오타' == self.hangulize(u'quota')
 
-    def test_7th_l_and_ll(self):
+    def test_7th(self):
         """제7항: l, ll
         어말 또는 자음 앞의 l, ll은 받침으로 적고, 어중의 l, ll이 모음 앞에
         올 때에는 'ㄹㄹ'로 적는다.
