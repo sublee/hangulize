@@ -50,12 +50,15 @@
         가미뇨
         >>> print hangulize(u'オオサカ', 'ja')
         오사카
+        >>> print hangulize(u'przjyaciół', 'pl')
+        프시야치우
 
     ~ 변환 가능한 언어들
 
       - 이탈리아어(it)
       - 스페인어(es)
       - 일본어(ja)
+      - 폴란드어(pl)
 
     ~ 만든이
 

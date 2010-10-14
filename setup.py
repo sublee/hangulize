@@ -11,6 +11,8 @@ Hangulize transcribes a loanword to Hangul(the Korean alphabet).
 가미뇨
 >>> print hangulize(u'オオサカ', 'ja')
 오사카
+>>> print hangulize(u'przjyaciół', 'pl')
+프시야치우
 
 Links
 `````

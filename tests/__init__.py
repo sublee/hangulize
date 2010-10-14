@@ -12,10 +12,12 @@ def suite():
     from it import ItalianTestCase
     from ja import JapaneseTestCase
     from es import SpanishTestCase
+    from pl import PolishTestCase
     suite = unittest.TestSuite()
     suite.addTest(unittest.makeSuite(LanguagesTestCase))
     suite.addTest(unittest.makeSuite(ItalianTestCase))
     suite.addTest(unittest.makeSuite(JapaneseTestCase))
     suite.addTest(unittest.makeSuite(SpanishTestCase))
+    suite.addTest(unittest.makeSuite(PolishTestCase))
     return suite
 
