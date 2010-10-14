@@ -85,7 +85,7 @@ class Language(object):
         return filter(bool, phonemes)
 
     def syllables(self, word):
-        components, syllable = (Choseong, Jungseong, Jongseong, Impurity), []
+        components, syllable = [Choseong, Jungseong, Jongseong, Impurity], []
         phonemes = list(self.get_phonemes(word))
         if phonemes:
             phonemes = reduce(list.__add__, map(list, phonemes))
