@@ -5,9 +5,13 @@ hangulize
 
 Korean Alphabet Transcription.
 """
+import sys
 import re
 import unicodedata
 from hangulize.hangul import *
+
+
+encoding = sys.stdout.encoding
 
 
 class Phoneme(object):
@@ -16,7 +20,8 @@ class Phoneme(object):
         self.letter = letter
 
     def __repr__(self):
-        return "<%s '%s'>" % (type(self).__name__, self.letter.encode('utf-8'))
+        return "<%s '%s'>" % (type(self).__name__,
+                              self.letter.encode(encoding))
 
 
 class Choseong(Phoneme):
