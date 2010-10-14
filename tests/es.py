@@ -3,7 +3,6 @@ from . import HangulizeTestCase
 
 
 class SpanishTestCase(HangulizeTestCase):
-    """ http://korean.go.kr/09_new/dic/rule/rule_foreign_0206.jsp """
 
     def setUp(self):
         from hangulize.langs.es import Spanish
