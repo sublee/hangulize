@@ -64,7 +64,35 @@ Hangulize는 위 아이디어를 실현하는 첫번째 프로젝트입니다.
 테스트
 ------
 
-국립국어원 사이트에 있는 [외래어 표기법][1]을 토대로
+국립국어원 사이트에 있는 [외래어 표기법][1]을 토대로 작성한 테스트수트를
+작동시킵니다:
+
+    $ python setup.py test
+    제1항: gl ... ok
+    제2항: gn ... ok
+    제3항: sc ... ok
+    제4항 ... ok
+    ...
+
+또는 REPL 모드를 사용할 수 있습니다. REPL 모드에서는 단어의 변화 과정이
+표준출력으로 나타납니다:
+
+    $ python setup.py repl
+    Select Locale: pl
+    ==> łóżko
+    -> 'łóżko'
+    -> 'Xuóżko'
+    -> 'Xuużko'
+    -> 'Xuuszko'
+    -> 'XuusJuko'
+    -> 'XusJuko'
+    -> 'usJuko'
+    -> 'usJu o'
+    -> 'u Ju o'
+    -> 'u   o'
+    -> 'u    '
+    -> '     '
+    우슈코
 
 만든이
 ------
