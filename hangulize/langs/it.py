@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+import re
 from hangulize import *
 
 
@@ -98,7 +99,9 @@ class Italian(Language):
     )
 
     def normalize(self, string):
-        return normalize_roman(string)
+        chars_pattern = self.chars_pattern
+        pattern = "(?<=[%s])'(?=[%s])" % (chars_pattern, chars_pattern)
+        return re.sub(pattern, '', normalize_roman(string))
 
 
 it = Italian
