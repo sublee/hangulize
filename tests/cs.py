@@ -3,7 +3,7 @@ from tests import HangulizeTestCase
 
 
 class CzechTestCase(HangulizeTestCase):
-    """ http://korean.go.kr/09_new/dic/rule/rule_foreign_0205.jsp """
+    """ http://korean.go.kr/09_new/dic/rule/rule_foreign_0209.jsp """
 
     def setUp(self):
         from hangulize.langs.cs import Czech
