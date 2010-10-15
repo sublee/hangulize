@@ -11,7 +11,7 @@ import unicodedata
 from hangulize.hangul import *
 
 
-encoding = sys.stdout.encoding
+encoding = getattr(sys.stdout, 'encoding', 'utf-8')
 
 
 class Phoneme(object):
