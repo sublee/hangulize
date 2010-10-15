@@ -8,14 +8,15 @@ class HangulizeTestCase(unittest.TestCase):
 
 
 def suite():
-    from api import *
+    from internal import *
     from it import ItalianTestCase
     from ja import JapaneseTestCase
     from es import SpanishTestCase
     from pl import PolishTestCase
     from cs import CzechTestCase
     suite = unittest.TestSuite()
-    suite.addTest(unittest.makeSuite(LanguagesTestCase))
+    suite.addTest(unittest.makeSuite(APITestCase))
+    suite.addTest(unittest.makeSuite(AlgorithmTestCase))
     suite.addTest(unittest.makeSuite(ItalianTestCase))
     suite.addTest(unittest.makeSuite(JapaneseTestCase))
     suite.addTest(unittest.makeSuite(SpanishTestCase))
