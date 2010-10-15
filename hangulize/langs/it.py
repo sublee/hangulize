@@ -8,9 +8,9 @@ class Italian(Language):
 
     vowels = 'a', 'e', 'i', 'o', 'u'
     notation = Notation(
-        ('^gli$',      phonemes(u'리')),
-        ('^glia$',     phonemes(u'글리아')),
-        ('^glioma$',   phonemes(u'글리오마')),
+        ('^gli$',      split_phonemes(u'리')),
+        ('^glia$',     split_phonemes(u'글리아')),
+        ('^glioma$',   split_phonemes(u'글리오마')),
         ('^gli{@}',    'li'),
         ('{@}gli',     'li'),
         ('gn{@}',      'nJ'),

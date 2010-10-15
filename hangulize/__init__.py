@@ -15,6 +15,7 @@ encoding = getattr(sys.stdout, 'encoding', 'utf-8')
 
 
 class Phoneme(object):
+    """This abstract class wraps a Hangul letter."""
 
     def __init__(self, letter):
         self.letter = letter
@@ -25,19 +26,39 @@ class Phoneme(object):
 
 
 class Choseong(Phoneme):
+    """A initial consonant in Hangul.
+
+        >>> Choseong(G)
+        <Choseung 'ㄱ'>
+    """
     pass
 
 class Jungseong(Phoneme):
+    """A vowel in Hangul.
+
+        >>> Jungseong(A)
+        <Jungseong 'ㅏ'>
+    """
     pass
 
 class Jongseong(Phoneme):
+    """A final consonant in Hangul.
+
+        >>> Jongseong(G)
+        <Jongseong 'ㄱ'>
+    """
     pass
 
 class Impurity(Phoneme):
+    """An impurity letter will be kept."""
     pass
 
 
 class Notation(object):
+    """Describes loanword orthography.
+
+    :param *rule: the ordered key-value list
+    """
 
     def __init__(self, *rule):
         self.rule = list(rule)
@@ -49,6 +70,7 @@ class Notation(object):
 
     @property
     def chars(self):
+        """The humane characters from the notation keys."""
         chest = []
         for pattern, _ in self.rule:
             pattern = re.sub(r'[\{\}\@\[\]\^\$]', '', pattern)
@@ -68,6 +90,23 @@ class Notation(object):
 
 
 class Language(object):
+    """Wraps a foreign language. The language should have a :class:`Notation`
+    instance.
+
+        >>> class Extraterrestrial(Language):
+        ...     notation = Notation(
+        ...         (u'ㅹ', (Choseong(BB), Jungseong(U), Jongseong(NG))),
+        ...         (u'㉠', (Choseong(G),)),
+        ...         (u'ㅣ', (Jungseong(I),)),
+        ...         (u'ㅋ', (Choseong(K), Jungseong(I), Jongseong(G)))
+        ...     )
+        ...
+        >>> ext = Extraterrestrial()
+        >>> print ext.hangulize(u'ㅹ㉠ㅣㅋㅋㅋ')
+        뿡기킥킥킥
+
+    :param logger: the logger object in the logging module
+    """
 
     vowels = ()
     notation = None
@@ -77,7 +116,19 @@ class Language(object):
             raise NotImplementedError("notation has to be defined")
         self.logger = logger
 
-    def get_phonemes(self, word):
+    @property
+    def chars_pattern(self):
+        """The regex pattern which is matched the valid characters."""
+        return ''.join(re.escape(c) for c in self.notation.chars)
+
+    def split(self, string):
+        """Splits words from the string. Each words have only valid characters.
+        """
+        pattern = '[^%s]+' % self.chars_pattern
+        return re.split(pattern, string)
+
+    def transcribe(self, word):
+        """Returns :class:`Phoneme` instance list from the word."""
         length = len(word)
         phonemes = [None] * length
         for pattern, val in self.notation.items(self):
@@ -96,39 +147,22 @@ class Language(object):
                 phonemes += [None] * (length - prev_length)
             if self.logger and word != prev_word:
                 self.logger.info("-> '%s'" % word)
-        return filter(bool, phonemes)
-
-    @property
-    def chars_pattern(self):
-        return ''.join(re.escape(c) for c in self.notation.chars)
-
-    def split(self, string):
-        pattern = '[^%s]+' % self.chars_pattern
-        return re.split(pattern, string)
-
-    def syllables(self, word):
-        components, syllable = [Choseong, Jungseong, Jongseong, Impurity], []
-        phonemes = list(self.get_phonemes(word))
-        if phonemes:
-            phonemes = reduce(list.__add__, map(list, phonemes))
-            for ph in phonemes:
-                comp = type(ph)
-                new_syllable = syllable and components.index(comp) <= \
-                               components.index(type(syllable[-1]))
-                if new_syllable:
-                    yield complete_syllable(syllable)
-                    syllable = []
-                if comp is not Choseong and not syllable:
-                    syllable.append(Choseong(NG))
-                if comp is not Jungseong and len(syllable) is 1:
-                    syllable.append(Jungseong(EU))
-                syllable.append(ph)
-            yield complete_syllable(syllable)
+        return filter(None, phonemes)
 
     def normalize(self, string):
+        """Before transcribing, normalizes the string. You could specify the
+        different normalization for the language with overriding this method.
+        """
         return string
 
     def hangulize(self, string):
+        """Hangulizes the string.
+
+            >>> from hangulize.langs.ja import Japanese
+            >>> ja = Japanese()
+            >>> ja.hangulize(u'あかちゃん')
+            아카찬
+        """
         def stringify(syllable):
             if isinstance(syllable[0], Impurity):
                 return syllable[0].letter
@@ -139,22 +173,14 @@ class Language(object):
             self.logger.info("-> '%s'" % string)
         hangulized = []
         for word in self.split(string):
-            syllables = [stringify(syl) for syl in self.syllables(word)]
-            if not syllables:
+            phonemes = self.transcribe(word)
+            if not phonemes:
                 continue
-            hangulized.append(reduce(unicode.__add__, syllables))
+            syllables = complete_syllables(reduce(list.__add__,
+                                                  map(list, phonemes)))
+            result = [stringify(syl) for syl in syllables]
+            hangulized.append(''.join(result))
         return ' '.join(hangulized)
-
-
-def phonemes(word):
-    result = []
-    for c in word:
-        c = split(c)
-        result.append(Choseong(c[0]))
-        result.append(Jungseong(c[1]))
-        if c[2] is not Null:
-            result.append(Jongseong(c[2]))
-    return tuple(result)
 
 
 def normalize_roman(string):
@@ -168,14 +194,80 @@ def normalize_roman(string):
 
 
 def complete_syllable(syllable):
-    if len(syllable) is not 3:
-        if len(syllable) is 1:
-            syllable.append(Jungseong(EU))
-        syllable.append(Jongseong(Null))
+    """Inserts the default jungseong or jongseong if it is not exists.
+
+        >>> complete_syllable((Jungseong(YO),))
+        (u'\u315b', u'\u3161', u'')
+        >>> print join(_)
+        요
+    """
+    syllable = list(syllable)
+    components = [type(ph) for ph in syllable]
+    if Choseong not in components:
+        syllable.insert(0, Choseong(NG))
+    if Jungseong not in components:
+        syllable.insert(1, Jungseong(EU))
+    if Jongseong not in components:
+        syllable.insert(2, Jungseong(Null))
     return tuple((ph.letter for ph in syllable))
 
 
+def complete_syllables(phonemes):
+    """Separates each syllables and completes every syllable."""
+    components, syllable = [Choseong, Jungseong, Jongseong, Impurity], []
+    if phonemes:
+        for ph in phonemes:
+            comp = type(ph)
+            new_syllable = syllable and components.index(comp) <= \
+                           components.index(type(syllable[-1]))
+            if new_syllable:
+                yield complete_syllable(syllable)
+                syllable = []
+            syllable.append(ph)
+        yield complete_syllable(syllable)
+
+
+def split_phonemes(word):
+    """Returns the splitted phonemes from the word.
+
+        >>> split_phonemes(u'안녕') #doctest: +NORMALIZE_WHITESPACE
+        (<Choseong 'ㅇ'>, <Jungseong 'ㅏ'>, <Jongseong 'ㄴ'>,
+         <Choseong 'ㄴ'>, <Jungseong 'ㅕ'>, <Jongseong 'ㅇ'>)
+    """
+    result = []
+    for c in word:
+        c = split(c)
+        result.append(Choseong(c[0]))
+        result.append(Jungseong(c[1]))
+        if c[2] is not Null:
+            result.append(Jongseong(c[2]))
+    return tuple(result)
+
+
+def join_phonemes(phonemes):
+    """Returns the word from the splitted phonemes.
+
+        >>> print join_phonemes((Jungseong(A), Jongseong(N),
+        ...                      Choseong(N), Jungseong(YEO), Jongseong(NG)))
+        안녕
+    """
+    syllables = complete_syllables(phonemes)
+    chars = (join(syl) for syl in syllables)
+    return reduce(unicode.__add__, chars)
+
+
 def hangulize(string, locale='it', lang=None, logger=None):
+    """Hangulizes the string with the given locale or lang.
+
+        >>> print hangulize(u'gloria', 'it')
+        글로리아
+
+    :param string: the loanword
+    :param locale: the locale code. if ``lang`` is not given, it is required
+    :param lang: the :class:`Language` instance
+    :param logger: if the logger instance is given, reports result by each
+                   steps
+    """
     if not lang:
         module = __import__('%s.langs.%s' % (__name__, locale))
         lang = getattr(getattr(module.langs, locale), locale)(logger=logger)
