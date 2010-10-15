@@ -56,7 +56,7 @@ class PolishTestCase(HangulizeTestCase):
         """
         assert u'워노' == self.hangulize(u'łono')
         assert u'그워바' == self.hangulize(u'głowa')
-        assert u'프시야치우' == self.hangulize(u'przjyaciół')
+        assert u'프시야치우' == self.hangulize(u'przyjaciół')
 
     def test_5th(self):
         """제5항: l

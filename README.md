@@ -60,7 +60,7 @@ Hangulize는 위 아이디어를 실현하는 첫번째 프로젝트입니다.
     가미뇨
     >>> print hangulize(u'オオサカ', 'ja')
     오사카
-    >>> print hangulize(u'przjyaciół', 'pl')
+    >>> print hangulize(u'przyjaciół', 'pl')
     프시야치우
 
 테스트
