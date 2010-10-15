@@ -47,6 +47,15 @@ class Notation(object):
         for pattern, val in self.rule:
             yield self.regexify(pattern, lang), val
 
+    @property
+    def chars(self):
+        chest = []
+        for pattern, _ in self.rule:
+            pattern = re.sub(r'[\{\}\@\[\]\^\$]', '', pattern)
+            for c in pattern:
+                chest.append(c)
+        return set(chest)
+
     def regexify(self, pattern, lang=None):
         """Compiles a regular expression from the notation pattern."""
         regex = pattern
@@ -89,6 +98,14 @@ class Language(object):
                 self.logger.info("-> '%s'" % word)
         return filter(bool, phonemes)
 
+    @property
+    def chars_pattern(self):
+        return ''.join(re.escape(c) for c in self.notation.chars)
+
+    def split(self, string):
+        pattern = '[^%s]+' % self.chars_pattern
+        return re.split(pattern, string)
+
     def syllables(self, word):
         components, syllable = [Choseong, Jungseong, Jongseong, Impurity], []
         phonemes = list(self.get_phonemes(word))
@@ -121,10 +138,10 @@ class Language(object):
         if self.logger:
             self.logger.info("-> '%s'" % string)
         hangulized = []
-        for word in re.split(r'\s+', string):
+        for word in self.split(string):
             syllables = [stringify(syl) for syl in self.syllables(word)]
             if not syllables:
-                return ''
+                continue
             hangulized.append(reduce(unicode.__add__, syllables))
         return ' '.join(hangulized)
 
