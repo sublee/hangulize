@@ -99,6 +99,9 @@ def generate_testsuite(url, name, locale):
         assertions = []
         for x in examples[i]:
             match = re.match('(?:\(.+\) )?([^ ]+) (.+)', x)
+            if not match:
+                assertions.append('# %s' % x)
+                continue
             assertion = ASSERTION_TEMPLATE.format(want=match.group(2),
                                                   word=match.group(1))
             assertions.append(assertion)
