@@ -85,3 +85,6 @@ class PolishTestCase(HangulizeTestCase):
         assert u'스타차' == self.hangulize(u'stacja')
         assert u'프리제르' == self.hangulize(u'fryzjer')
 
+    def test_etc(self):
+        assert u'프시아치우' == self.hangulize(u'przjyaciół')
+
