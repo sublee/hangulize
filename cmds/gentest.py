@@ -42,13 +42,13 @@ class gen_test(Command):
         pass
 
     def run(self):
-        path = os.path.join('test', '%s.dist.py' % self.locale)
         if not self.url:
             self.url = raw_input('Rules URL(http://korean.go.kr/...): ')
         if not self.name:
             self.name = raw_input('Language Name(ex. Italian): ')
         if not self.locale:
             self.locale = raw_input('Locale Code(ex. it): ')
+        path = os.path.join('test', '%s.dist.py' % self.locale)
         with open(path, 'w') as out:
             print 'generating test suite...',
             print>>out, generate_testsuite(self.url,
