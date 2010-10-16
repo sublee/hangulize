@@ -47,5 +47,5 @@ class HungarianTestCase(HangulizeTestCase):
         자음이 'ㅅ'인 경우에는 '셰'로 적는다.
         """
         assert u'네르' == self.hangulize(u'nyer')
-        #assert u'셰옘' == self.hangulize(u'selyem')
+        assert u'셰옘' == self.hangulize(u'selyem')
 

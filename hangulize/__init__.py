@@ -133,11 +133,12 @@ class Language(object):
         phonemes = [None] * length
         for pattern, val in self.notation.items(self):
             if isinstance(val, tuple):
+                repl = ' '
                 for match in pattern.finditer(word):
                     start, end = match.span()
                     phonemes[start] = val
-                    del phonemes[start + 1:end]
-                val = ' '
+                    repl = ' ' * (end - start)
+                val = repl
             elif not val:
                 val = ''
             prev_word, prev_length = word, length

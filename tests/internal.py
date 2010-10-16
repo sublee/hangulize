@@ -22,3 +22,6 @@ class AlgorithmTestCase(unittest.TestCase):
         assert hangulize(u'jak', 'pl') == hangulize(u'.jak', 'pl')
         assert u'나트 나트 야크 야크' == hangulize(u'nad, nad jak .jak', 'pl')
 
+    def test_wide_letter(self):
+        assert u'과괌' == hangulize(u'guaguam', 'es')
+
