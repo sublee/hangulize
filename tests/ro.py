@@ -16,7 +16,7 @@ class RomanianTestCase(HangulizeTestCase):
         """
         assert u'카프' == self.hangulize(u'cap')
         assert u'큰테크' == self.hangulize(u'Cîntec')
-        #assert u'팍투러' == self.hangulize(u'facturǎ')
+        assert u'팍투러' == self.hangulize(u'factură')
         assert u'셉템브리에' == self.hangulize(u'septembrie')
 
     def test_2nd(self):
