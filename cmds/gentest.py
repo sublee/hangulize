@@ -107,7 +107,7 @@ def generate_testsuite(url, name, locale):
             assertions.append(assertion)
         testname = ordinalth(int(re.search('\d+', rule[0]).group(0)))
         title = re.sub(u'(제\d+항)(?=.)', r'\1: ', rule[0])
-        if len(rule) > 2:
+        if len(rule) > 1:
             rulebody = CODE_SEP + CODE_SEP.join(s for s in rule[1:]) + CODE_SEP
         else:
             rulebody = ''
