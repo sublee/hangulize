@@ -14,6 +14,7 @@ def suite():
     from es import SpanishTestCase
     from pl import PolishTestCase
     from cs import CzechTestCase
+    from sh import SerboCroatianTestCase
     suite = unittest.TestSuite()
     suite.addTest(unittest.makeSuite(APITestCase))
     suite.addTest(unittest.makeSuite(AlgorithmTestCase))
@@ -22,5 +23,6 @@ def suite():
     suite.addTest(unittest.makeSuite(SpanishTestCase))
     suite.addTest(unittest.makeSuite(PolishTestCase))
     suite.addTest(unittest.makeSuite(CzechTestCase))
+    suite.addTest(unittest.makeSuite(SerboCroatianTestCase))
     return suite
 
