@@ -18,7 +18,7 @@ class SerboCroatian(Language):
         ('S$',            'si'),
         ('S',             'sJu'),
         ('^je',           'Je'),
-        ('{@}je',         'Je'),
+        ('{@s}je',        'Je'),
         ('je',            'e'),
         ('{ln}j{@}',      'J'),
         ('{ln}j',         None),
@@ -180,6 +180,4 @@ class SerboCroatian(Language):
                     yield c
         return ''.join(normalize_only_unsafe(string))
 
-
 sh = SerboCroatian
-
