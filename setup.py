@@ -22,7 +22,10 @@ Links
   <http://github.com/sublee/hangulize/zipball/master#egg=hangulize-dev>`_
 
 """
-from setuptools import setup
+try:
+    from setuptools import setup
+except ImportError:
+    from distutils.core import setup
 from cmds import cmdclass
 
 

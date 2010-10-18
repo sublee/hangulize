@@ -3,7 +3,6 @@ import os
 import re
 import urllib
 from distutils.cmd import Command
-from BeautifulSoup import BeautifulSoup
 
 
 TESTCASE_TEMPLATE = u''\
@@ -70,6 +69,7 @@ def ordinalth(n):
 
 
 def generate_testsuite(url, name, locale):
+    from BeautifulSoup import BeautifulSoup
     html = ''.join(urllib.urlopen(url).readlines())
     soup = BeautifulSoup(html)
     def need(tag):
