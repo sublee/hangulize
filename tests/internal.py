@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 import unittest
-from hangulize import hangulize
+from hangulize import *
 
 
 class APITestCase(unittest.TestCase):
@@ -10,6 +10,31 @@ class APITestCase(unittest.TestCase):
         assert isinstance(ja, type(unittest))
         assert isinstance(it, type(unittest))
         assert isinstance(es, type(unittest))
+
+
+class PatternTestCase(unittest.TestCase):
+
+    def test_variable(self):
+        class TestLang(Language):
+            vowels = 'a', 'i', 'u'
+            voiced = 'b', 'd', 'g'
+            voiceless = 'p', 't', 'k'
+            notation = Notation(
+                ('<voiceless>{@}', 'X'),
+                ('X', (Choseong(GG),)),
+                ('p', (Choseong(P),)),
+                ('t', (Choseong(T),)),
+                ('k', (Choseong(K),)),
+                ('b', (Choseong(B),)),
+                ('d', (Choseong(D),)),
+                ('g', (Choseong(G),)),
+                ('a', (Jungseong(A),)),
+                ('i', (Jungseong(I),)),
+                ('u', (Jungseong(U),)),
+            )
+        lang = TestLang()
+        assert u'까끼꾸' == hangulize(u'patiku', lang=lang)
+        assert u'프끼꾸' == hangulize(u'ptiku', lang=lang)
 
 
 class AlgorithmTestCase(unittest.TestCase):

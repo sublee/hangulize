@@ -81,11 +81,15 @@ class Notation(object):
     def regexify(self, pattern, lang=None):
         """Compiles a regular expression from the notation pattern."""
         regex = pattern
-        if lang:
-            vowels = ''.join([re.escape(v) for v in lang.vowels])
-            regex = re.sub('@', vowels, regex)
         regex = re.sub('^{([^}]+?)}', r'(?<=[\1])', regex)
         regex = re.sub('{([^}]+?)}$', r'(?=[\1])', regex)
+        if lang:
+            vowels = ''.join(re.escape(l) for l in lang.vowels)
+            regex = re.sub('@', vowels, regex)
+            def to_variable(match):
+                var = getattr(lang, match.group(1))
+                return '[%s]' % ''.join(re.escape(l) for l in var)
+            regex = re.sub('<([a-zA-Z_][a-zA-Z0-9_]*)>', to_variable, regex)
         return re.compile(regex)
 
 
