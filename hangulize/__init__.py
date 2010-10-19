@@ -60,20 +60,29 @@ class Notation(object):
     :param *rule: the ordered key-value list
     """
 
+    VARIABLE_PATTERN = re.compile('<(?P<name>[a-zA-Z_][a-zA-Z0-9_]*)>')
+
     def __init__(self, *rule):
         self.rule = list(rule)
 
     def items(self, lang=None):
         """Yields each notation rules as regex."""
-        for pattern, val in self.rule:
+        for one in self.rule:
+            pattern = one[0]
+            if len(one) == 2:
+                val = one[1]
+                if isinstance(val, Phoneme):
+                    val = val,
+            else:
+                val = one[1:]
             yield self.regexify(pattern, lang), val
 
     @property
     def chars(self):
         """The humane characters from the notation keys."""
         chest = []
-        for pattern, _ in self.rule:
-            pattern = re.sub(r'[\{\}\@\[\]\^\$]', '', pattern)
+        for one in self.rule:
+            pattern = re.sub(r'[\{\}\@\[\]\^\$]', '', one[0])
             for c in pattern:
                 chest.append(c)
         return set(chest)
@@ -81,16 +90,18 @@ class Notation(object):
     def regexify(self, pattern, lang=None):
         """Compiles a regular expression from the notation pattern."""
         regex = pattern
-        regex = re.sub('^{([^}]+?)}', r'(?<=[\1])', regex)
-        regex = re.sub('{([^}]+?)}$', r'(?=[\1])', regex)
+        regex = re.sub('^{([^}]+?)}', r'(?<=\1)', regex)
+        regex = re.sub('{([^}]+?)}$', r'(?=\1)', regex)
         if lang:
-            vowels = ''.join(re.escape(l) for l in lang.vowels)
-            regex = re.sub('@', vowels, regex)
             def to_variable(match):
-                var = getattr(lang, match.group(1))
-                return '[%s]' % ''.join(re.escape(l) for l in var)
-            regex = re.sub('<([a-zA-Z_][a-zA-Z0-9_]*)>', to_variable, regex)
+                var = getattr(lang, match.group('name'))
+                return '|'.join(re.escape(l) for l in var)
+            regex = re.sub('@', '<vowels>', regex)
+            regex = self.VARIABLE_PATTERN.sub(to_variable, regex)
         return re.compile(regex)
+
+    def _count_variables(self, code):
+        return len(self.VARIABLE_PATTERN.findall(code))
 
 
 class Language(object):
@@ -151,7 +162,7 @@ class Language(object):
             if length > prev_length:
                 phonemes += [None] * (length - prev_length)
             if self.logger and word != prev_word:
-                self.logger.info("-> '%s'" % word)
+                self.logger.info(".. '%s'" % word)
         return filter(None, phonemes)
 
     def normalize(self, string):
@@ -175,7 +186,7 @@ class Language(object):
                 return join(syllable)
         string = self.normalize(string)
         if self.logger:
-            self.logger.info("-> '%s'" % string)
+            self.logger.info(">> '%s'" % string)
         hangulized = []
         for word in self.split(string):
             phonemes = self.transcribe(word)
@@ -185,7 +196,10 @@ class Language(object):
                                                   map(list, phonemes)))
             result = [stringify(syl) for syl in syllables]
             hangulized.append(''.join(result))
-        return ' '.join(hangulized)
+        hangulized = ' '.join(hangulized)
+        if self.logger:
+            self.logger.info('=> %s' % hangulized)
+        return hangulized
 
 
 def normalize_roman(string):

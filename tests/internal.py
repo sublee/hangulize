@@ -15,16 +15,20 @@ class APITestCase(unittest.TestCase):
 class PatternTestCase(unittest.TestCase):
 
     def test_variable(self):
+        import logging
+        logger = logging.getLogger('test')
+        logger.setLevel(logging.INFO)
+        logger.addHandler(logging.StreamHandler())
         class TestLang(Language):
             vowels = 'a', 'i', 'u'
             voiced = 'b', 'd', 'g'
             voiceless = 'p', 't', 'k'
             notation = Notation(
-                ('<voiceless>{@}', 'X'),
-                ('X', (Choseong(GG),)),
-                ('p', (Choseong(P),)),
-                ('t', (Choseong(T),)),
-                ('k', (Choseong(K),)),
+                ('(<voiceless>){@}', 'X'),
+                ('X', Choseong(GG)),
+                ('p', Choseong(P)),
+                ('t', Choseong(T)),
+                ('k', Choseong(K)),
                 ('b', (Choseong(B),)),
                 ('d', (Choseong(D),)),
                 ('g', (Choseong(G),)),
