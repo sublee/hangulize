@@ -14,18 +14,22 @@ class APITestCase(unittest.TestCase):
 
 class PatternTestCase(unittest.TestCase):
 
-    def test_variable(self):
+    def setUp(self):
         import logging
         logger = logging.getLogger('test')
         logger.setLevel(logging.INFO)
         logger.addHandler(logging.StreamHandler())
         class TestLang(Language):
-            vowels = 'a', 'i', 'u'
+            vowels = 'a', 'i', 'u', 'e', 'o'
             voiced = 'b', 'd', 'g'
-            voiceless = 'p', 't', 'k'
+            voiceless = 'ptk'
             notation = Notation(
-                ('(<voiceless>){@}', 'X'),
+                ('zu', Choseong(J), Jungseong(EU)),
+                ('ju', (Choseong(J), Jungseong(YU))),
+                ('(sh|xh|z)', 'S'),
+                ('(<voiceless>|x){@}', 'X'),
                 ('X', Choseong(GG)),
+                ('S', Choseong(SS)),
                 ('p', Choseong(P)),
                 ('t', Choseong(T)),
                 ('k', Choseong(K)),
@@ -36,9 +40,20 @@ class PatternTestCase(unittest.TestCase):
                 ('i', (Jungseong(I),)),
                 ('u', (Jungseong(U),)),
             )
-        lang = TestLang()
-        assert u'까끼꾸' == hangulize(u'patiku', lang=lang)
+        self.lang = TestLang()
+
+    def test_separator(self):
+        lang = self.lang
+        assert u'싸씨쑤' == hangulize(u'shazixhu', lang=lang)
+
+    def test_variable(self):
+        lang = self.lang
+        assert u'꾸까끼꾸' == hangulize(u'xupatiku', lang=lang)
         assert u'프끼꾸' == hangulize(u'ptiku', lang=lang)
+
+    def test_phonemes(self):
+        lang = self.lang
+        assert u'즈쥬' == hangulize(u'zuju', lang=lang)
 
 
 class AlgorithmTestCase(unittest.TestCase):
