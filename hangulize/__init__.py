@@ -161,8 +161,7 @@ class Language(object):
             length = len(word)
             if length > prev_length:
                 phonemes += [None] * (length - prev_length)
-            if self.logger and word != prev_word:
-                self.logger.info(".. '%s'" % word)
+            self._log(".. '%s'" % word, if_=word != prev_word)
         return filter(None, phonemes)
 
     def normalize(self, string):
@@ -185,8 +184,7 @@ class Language(object):
             else:
                 return join(syllable)
         string = self.normalize(string)
-        if self.logger:
-            self.logger.info(">> '%s'" % string)
+        self._log(">> '%s'" % string)
         hangulized = []
         for word in self.split(string):
             phonemes = self.transcribe(word)
@@ -197,9 +195,13 @@ class Language(object):
             result = [stringify(syl) for syl in syllables]
             hangulized.append(''.join(result))
         hangulized = ' '.join(hangulized)
-        if self.logger:
-            self.logger.info('=> %s' % hangulized)
+        self._log('=> %s' % hangulized)
         return hangulized
+
+    def _log(self, msg, if_=True):
+        if if_ and self.logger:
+            self.logger.info(msg)
+        return msg
 
 
 def normalize_roman(string):
