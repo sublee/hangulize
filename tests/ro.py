@@ -60,7 +60,7 @@ class RomanianTestCase(HangulizeTestCase):
         assert u'바커우' == self.hangulize(u'Bacău')
         assert u'엘레나' == self.hangulize(u'Elena')
         assert u'피아니스트' == self.hangulize(u'pianist')
-        #assert u'큼피나' == self.hangulize(u'Cîimpina')
+        assert u'큼피나' == self.hangulize(u'Cîmpina')
         assert u'로므니아' == self.hangulize(u'România')
         assert u'오라데아' == self.hangulize(u'Oradea')
         assert u'누체트' == self.hangulize(u'Nucet')
