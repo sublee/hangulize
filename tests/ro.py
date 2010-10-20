@@ -53,3 +53,7 @@ class RomanianTestCase(HangulizeTestCase):
         assert u'예스테' == self.hangulize(u'este')
         assert u'예라' == self.hangulize(u'era')
 
+    def test_etc(self):
+        assert u'스투르자' == self.hangulize(u'Sturdza')
+        assert u'테오도르' == self.hangulize(u'Theodor')
+
