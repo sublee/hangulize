@@ -90,8 +90,9 @@ class Notation(object):
     def regexify(self, pattern, lang=None):
         """Compiles a regular expression from the notation pattern."""
         regex = pattern
-        regex = re.sub('^{([^}]+?)}', r'(?<=\1)', regex)
-        regex = re.sub('{([^}]+?)}$', r'(?=\1)', regex)
+        # look around
+        regex = re.sub('^(\^?){([^}]+?)}', r'(?<=\1(?:\2))', regex)
+        regex = re.sub('{([^}]+?)}(\$?)$', r'(?=(?:\1)\2)', regex)
         if lang:
             def to_variable(match):
                 var = getattr(lang, match.group('name'))

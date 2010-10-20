@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 import unittest
 from hangulize import *
+from tests import HangulizeTestCase
 
 
 class APITestCase(unittest.TestCase):
@@ -12,7 +13,7 @@ class APITestCase(unittest.TestCase):
         assert isinstance(es, type(unittest))
 
 
-class PatternTestCase(unittest.TestCase):
+class PatternTestCase(HangulizeTestCase):
 
     def setUp(self):
         import logging
@@ -28,6 +29,8 @@ class PatternTestCase(unittest.TestCase):
                 ('ju', (Choseong(J), Jungseong(YU))),
                 ('(sh|xh|z)', 'S'),
                 ('(<voiceless>|x){@}', 'X'),
+                ('^{a}b', Jongseong(P)),
+                ('b{o}$', Choseong(P)),
                 ('X', Choseong(GG)),
                 ('S', Choseong(SS)),
                 ('p', Choseong(P)),
@@ -39,21 +42,30 @@ class PatternTestCase(unittest.TestCase):
                 ('a', (Jungseong(A),)),
                 ('i', (Jungseong(I),)),
                 ('u', (Jungseong(U),)),
+                ('e', (Jungseong(E),)),
+                ('o', (Jungseong(O),)),
             )
         self.lang = TestLang()
 
     def test_separator(self):
-        lang = self.lang
-        assert u'싸씨쑤' == hangulize(u'shazixhu', lang=lang)
+        assert u'싸씨쑤' == self.hangulize(u'shazixhu')
 
     def test_variable(self):
-        lang = self.lang
-        assert u'꾸까끼꾸' == hangulize(u'xupatiku', lang=lang)
-        assert u'프끼꾸' == hangulize(u'ptiku', lang=lang)
+        assert u'꾸까끼꾸' == self.hangulize(u'xupatiku')
+        assert u'프끼꾸' == self.hangulize(u'ptiku')
 
     def test_phonemes(self):
-        lang = self.lang
-        assert u'즈쥬' == hangulize(u'zuju', lang=lang)
+        assert u'즈쥬' == self.hangulize(u'zuju')
+
+    def test_caret_before_curly_bracket(self):
+        assert u'앞바' == self.hangulize(u'abba')
+
+    def test_dollar_after_curly_bracket(self):
+        assert u'브포' == self.hangulize(u'bbo')
+
+    #def test_variable_replacement(self):
+    #    lang = self.lang
+    #    assert u'
 
 
 class AlgorithmTestCase(unittest.TestCase):
