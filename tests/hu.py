@@ -53,7 +53,7 @@ class HungarianTestCase(HangulizeTestCase):
         assert u'버르너' == self.hangulize(u'barna')
         assert u'아르' == self.hangulize(u'ár')
         assert u'샬' == self.hangulize(u'sál')
-        #assert u'푸슈카' == self.hangulize(u'puska')
+        assert u'푸슈커' == self.hangulize(u'puska')
         assert u'어러타시' == self.hangulize(u'aratás')
         assert u'얼시크' == self.hangulize(u'alszik')
         assert u'어스털' == self.hangulize(u'asztal')
