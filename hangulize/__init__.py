@@ -61,6 +61,8 @@ class Notation(object):
     """
 
     VARIABLE_PATTERN = re.compile('<(?P<name>[a-zA-Z_][a-zA-Z0-9_]*)>')
+    LOOKBEHIND_PATTERN = re.compile('^(\^?){([^}]+?)}')
+    LOOKAHEAD_PATTERN = re.compile('{([^}]+?)}(\$?)$')
 
     def __init__(self, *rule):
         self.rule = list(rule)
@@ -78,18 +80,18 @@ class Notation(object):
             else:
                 val = one[1:]
             # when pattern and val has only one variable
-            if lang and self._count_variables(val) is \
-                        self._count_variables(pattern) is 1:
-                def varname(pattern):
-                    return self.VARIABLE_PATTERN.search(pattern).group('name')
-                src = getattr(lang, varname(pattern))
-                dst = getattr(lang, varname(val))
+            svars = list(self._find_actual_variables(pattern))
+            dvars = list(self._find_actual_variables(val))
+            if lang and len(svars) is len(dvars) is 1:
+                src = getattr(lang, svars[0].group('name'))
+                dst = getattr(lang, dvars[0].group('name'))
                 if len(src) is not len(dst):
                     raise SyntaxError('destination variable should have the '
                                       'same length with source variable')
                 for s, d in zip(src, dst):
-                    _pattern = self.VARIABLE_PATTERN.sub(s, pattern)
-                    _val = self.VARIABLE_PATTERN.sub(d, val)
+                    srange, drange = svars[0].span(), dvars[0].span()
+                    _pattern = pattern[:srange[0]] + s + pattern[srange[1]:]
+                    _val = val[:drange[0]] + d + val[drange[1]:]
                     yield self.regexify(_pattern, lang), _val
             else:
                 yield self.regexify(pattern, lang), val
@@ -109,8 +111,8 @@ class Notation(object):
         """Compiles a regular expression from the notation pattern."""
         regex = pattern
         # look around
-        regex = re.sub('^(\^?){([^}]+?)}', r'(?<=\1(?:\2))', regex)
-        regex = re.sub('{([^}]+?)}(\$?)$', r'(?=(?:\1)\2)', regex)
+        regex = self.LOOKBEHIND_PATTERN.sub(r'(?<=\1(?:\2))', regex)
+        regex = self.LOOKAHEAD_PATTERN.sub(r'(?=(?:\1)\2)', regex)
         if lang:
             def to_variable(match):
                 var = getattr(lang, match.group('name'))
@@ -119,11 +121,16 @@ class Notation(object):
             regex = self.VARIABLE_PATTERN.sub(to_variable, regex)
         return re.compile(regex)
 
-    def _count_variables(self, code):
+    def _find_actual_variables(self, code):
+        def dummy(match):
+            return u'\uffff' * (match.end() - match.start())
         try:
-            return len(self.VARIABLE_PATTERN.findall(code))
+            code = self.LOOKBEHIND_PATTERN.sub(dummy, code)
+            code = self.LOOKAHEAD_PATTERN.sub(dummy, code)
+            code = re.sub('@', '<vowels>', code)
+            return self.VARIABLE_PATTERN.finditer(code)
         except TypeError:
-            return 0
+            return ()
 
 
 class Language(object):

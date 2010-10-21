@@ -24,6 +24,8 @@ class PatternTestCase(HangulizeTestCase):
             vowels = 'a', 'i', 'u', 'e', 'o'
             voiced = 'b', 'd', 'g'
             voiceless = 'ptk'
+            longvowels = 'AIUEO'
+            cons = 'bcdfghjklmnpqrstvwxyz'
             notation = Notation(
                 ('zu', Choseong(J), Jungseong(EU)),
                 ('ju', (Choseong(J), Jungseong(YU))),
@@ -32,6 +34,7 @@ class PatternTestCase(HangulizeTestCase):
                 ('^{a}b', Jongseong(P)),
                 ('b{o}$', Choseong(P)),
                 ('{a}(<voiceless>)', '<voiced>e'),
+                ('{<cons>}<vowels>{gh}', '<longvowels>'),
                 ('X', Choseong(GG)),
                 ('S', Choseong(SS)),
                 ('p', Choseong(P)),
@@ -45,6 +48,9 @@ class PatternTestCase(HangulizeTestCase):
                 ('u', (Jungseong(U),)),
                 ('e', (Jungseong(E),)),
                 ('o', (Jungseong(O),)),
+                ('c', (Choseong(C),)),
+                ('O', (Jungseong(O), Jungseong(U))),
+                ('h$', (Jongseong(H))),
             )
         self.lang = TestLang()
 
@@ -68,6 +74,7 @@ class PatternTestCase(HangulizeTestCase):
         assert u'가베' == self.hangulize(u'gap')
         assert u'바게크' == self.hangulize(u'bakk')
         assert u'까데까게' == self.hangulize(u'tatkak')
+        assert u'초우긓' == self.hangulize(u'cogh')
 
 
 class AlgorithmTestCase(unittest.TestCase):
