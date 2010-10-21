@@ -101,6 +101,7 @@ class Italian(Language):
         ('m',             Choseong(M)),
         ('n,',            Jongseong(N)),
         ('n',             Choseong(N)),
+        ('p,',            Jongseong(B)),
         ('p',             Choseong(P)),
         ('r',             Choseong(L)),
         ('s',             Choseong(S)),
