@@ -75,7 +75,21 @@ class Notation(object):
                     val = val,
             else:
                 val = one[1:]
-            yield self.regexify(pattern, lang), val
+            if lang and self._count_variables(val) is \
+                        self._count_variables(pattern) is 1:
+                def varname(pattern):
+                    return self.VARIABLE_PATTERN.search(pattern).group('name')
+                src = getattr(lang, varname(pattern))
+                dst = getattr(lang, varname(val))
+                if len(src) is not len(dst):
+                    raise SyntaxError('destination variable should have the '
+                                      'same length with source variable')
+                for s, d in zip(src, dst):
+                    _pattern = self.VARIABLE_PATTERN.sub(s, pattern)
+                    _val = self.VARIABLE_PATTERN.sub(d, val)
+                    yield self.regexify(_pattern, lang), _val
+            else:
+                yield self.regexify(pattern, lang), val
 
     @property
     def chars(self):
@@ -102,7 +116,10 @@ class Notation(object):
         return re.compile(regex)
 
     def _count_variables(self, code):
-        return len(self.VARIABLE_PATTERN.findall(code))
+        try:
+            return len(self.VARIABLE_PATTERN.findall(code))
+        except TypeError:
+            return 0
 
 
 class Language(object):

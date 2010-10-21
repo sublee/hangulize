@@ -31,6 +31,7 @@ class PatternTestCase(HangulizeTestCase):
                 ('(<voiceless>|x){@}', 'X'),
                 ('^{a}b', Jongseong(P)),
                 ('b{o}$', Choseong(P)),
+                ('{a}(<voiceless>)', '<voiced>e'),
                 ('X', Choseong(GG)),
                 ('S', Choseong(SS)),
                 ('p', Choseong(P)),
@@ -63,9 +64,10 @@ class PatternTestCase(HangulizeTestCase):
     def test_dollar_after_curly_bracket(self):
         assert u'브포' == self.hangulize(u'bbo')
 
-    #def test_variable_replacement(self):
-    #    lang = self.lang
-    #    assert u'
+    def test_variable_replacement(self):
+        assert u'가베' == self.hangulize(u'gap')
+        assert u'바게크' == self.hangulize(u'bakk')
+        assert u'까데까게' == self.hangulize(u'tatkak')
 
 
 class AlgorithmTestCase(unittest.TestCase):
