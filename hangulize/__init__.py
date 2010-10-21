@@ -69,12 +69,15 @@ class Notation(object):
         """Yields each notation rules as regex."""
         for one in self.rule:
             pattern = one[0]
+            # accept *args
             if len(one) == 2:
                 val = one[1]
                 if isinstance(val, Phoneme):
                     val = val,
+            # accept args(a tuple instance)
             else:
                 val = one[1:]
+            # when pattern and val has only one variable
             if lang and self._count_variables(val) is \
                         self._count_variables(pattern) is 1:
                 def varname(pattern):
@@ -96,7 +99,8 @@ class Notation(object):
         """The humane characters from the notation keys."""
         chest = []
         for one in self.rule:
-            pattern = re.sub(r'[\{\}\@\[\]\^\$]', '', one[0])
+            pattern = self.VARIABLE_PATTERN.sub('', one[0])
+            pattern = re.sub(r'[\{\}\@\[\]\^\$]', '', pattern)
             for c in pattern:
                 chest.append(c)
         return set(chest)

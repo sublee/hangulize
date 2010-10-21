@@ -19,9 +19,8 @@ def suite():
     from hu import HungarianTestCase
     from vi import VietnameseTestCase
     suite = unittest.TestSuite()
-    #suite.addTest(unittest.makeSuite(APITestCase))
+    suite.addTest(unittest.makeSuite(APITestCase))
     suite.addTest(unittest.makeSuite(PatternTestCase))
-    return suite
     suite.addTest(unittest.makeSuite(AlgorithmTestCase))
     suite.addTest(unittest.makeSuite(ItalianTestCase))
     suite.addTest(unittest.makeSuite(JapaneseTestCase))
