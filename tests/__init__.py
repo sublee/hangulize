@@ -20,6 +20,7 @@ def suite():
     from vi import VietnameseTestCase
     from sv import SwedishTestCase
     from nl import DutchTestCase
+    from de import GermanTestCase
     suite = unittest.TestSuite()
     suite.addTest(unittest.makeSuite(APITestCase))
     suite.addTest(unittest.makeSuite(PatternTestCase))
@@ -35,5 +36,6 @@ def suite():
     suite.addTest(unittest.makeSuite(VietnameseTestCase))
     suite.addTest(unittest.makeSuite(SwedishTestCase))
     suite.addTest(unittest.makeSuite(DutchTestCase))
+    suite.addTest(unittest.makeSuite(GermanTestCase))
     return suite
 
