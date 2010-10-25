@@ -18,7 +18,7 @@ class GermanTestCase(HangulizeTestCase):
         assert u'호르몬' == self.hangulize(u'Hormon')
         assert u'헤르메스' == self.hangulize(u'Hermes')
         assert u'헤어' == self.hangulize(u'Herr')
-        #assert u'라주어' == self.hangulize(u'Razur') # z가 ㅈ ?
+        assert u'라주어' == self.hangulize(u'Rasur')
         assert u'튀어' == self.hangulize(u'Tür')
         assert u'오어' == self.hangulize(u'Ohr')
         assert u'파터' == self.hangulize(u'Vater')
@@ -71,8 +71,21 @@ class GermanTestCase(HangulizeTestCase):
         assert u'아이넨' == self.hangulize(u'einen')
         assert u'이스트' == self.hangulize(u'ist')
         assert u'비스트' == self.hangulize(u'bist')
-        assert u'부흐' == self.hangulize(u'buch')
+        assert u'부흐' == self.hangulize(u'Buch')
         assert u'이히' == self.hangulize(u'ich')
-        assert u'쾨니겐' == self.hangulize(u'königen')
+        assert u'쾨니겐' == self.hangulize(u'Königen')
         assert u'퓌어' == self.hangulize(u'für')
         assert u'데어' == self.hangulize(u'der')
+
+    def test_7th(self):
+        """준칙: 모음 또는 l 앞의 ng에는 'ㄱ'을 첨가하여 표기한다."""
+        assert u'튀빙겐' == self.hangulize(u'Tübingen')
+        assert u'슈펭글러' == self.hangulize(u'Spengler')
+
+    def test_8th(self):
+        """기타 용례"""
+        assert u'피셔' == self.hangulize(u'Fischer')
+        assert u'리하르트' == self.hangulize(u'Richard')
+        assert u'니클라스' == self.hangulize(u'Niclas')
+        assert u'쿠퍼' == self.hangulize(u'Kupfer')
+        assert u'벨리츠' == self.hangulize(u'Beelitz')
