@@ -107,7 +107,7 @@ Hangulize는 위 아이디어를 실현하는 첫번째 프로젝트입니다.
 ------
 
 - Brian Jongseong Park <<iceager@gmail.com>> - Linguistic Consultant
-- Lee Heung-sub <<heung@sublee.kr>> - Developer
+- Heungsub Lee <<heung@sublee.kr>> - Developer
 
 라이선스
 --------
