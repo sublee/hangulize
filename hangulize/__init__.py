@@ -61,13 +61,15 @@ class Notation(object):
     """
 
     VARIABLE_PATTERN = re.compile('<(?P<name>[a-zA-Z_][a-zA-Z0-9_]*)>')
+    LEFTEDGE_PATTERN = re.compile(r'^\^\^')
+    RIGHTEDGE_PATTERN = re.compile(r'\$\$$')
     LOOKBEHIND_PATTERN = re.compile('^(\^?){([^}]+?)}')
     LOOKAHEAD_PATTERN = re.compile('{([^}]+?)}(\$?)$')
 
     def __init__(self, *rule):
         self.rule = list(rule)
 
-    def items(self, lang=None):
+    def items(self, left_edge=False, right_edge=False, lang=None):
         """Yields each notation rules as regex."""
         for one in self.rule:
             pattern = one[0]
@@ -90,11 +92,15 @@ class Notation(object):
                                       'same length with source variable')
                 for s, d in zip(src, dst):
                     srange, drange = svars[0].span(), dvars[0].span()
-                    _pattern = pattern[:srange[0]] + s + pattern[srange[1]:]
-                    _val = val[:drange[0]] + d + val[drange[1]:]
-                    yield self.regexify(_pattern, lang), _val
+                    p = pattern[:srange[0]] + s + pattern[srange[1]:]
+                    v = val[:drange[0]] + d + val[drange[1]:]
+                    regex = self.regexify(p, left_edge, right_edge, lang)
+                    if regex:
+                        yield regex, v
             else:
-                yield self.regexify(pattern, lang), val
+                regex = self.regexify(pattern, left_edge, right_edge, lang)
+                if regex:
+                    yield regex, val
 
     @property
     def chars(self):
@@ -107,9 +113,22 @@ class Notation(object):
                 chest.append(c)
         return set(chest)
 
-    def regexify(self, pattern, lang=None):
+    def regexify(self, pattern, left_edge=False, right_edge=False, lang=None):
         """Compiles a regular expression from the notation pattern."""
         regex = pattern
+        # edge of string
+        if self.LEFTEDGE_PATTERN.search(regex):
+            if left_edge:
+                regex = self.LEFTEDGE_PATTERN.sub(r'^', regex)
+            else:
+                return
+        if self.RIGHTEDGE_PATTERN.search(regex):
+            if right_edge:
+                regex = self.RIGHTEDGE_PATTERN.sub(r'$', regex)
+            else:
+                return
+        if left_edge:
+            regex = self.LOOKBEHIND_PATTERN.sub(r'(?<=\1(?:\2))', regex)
         # look around
         regex = self.LOOKBEHIND_PATTERN.sub(r'(?<=\1(?:\2))', regex)
         regex = self.LOOKAHEAD_PATTERN.sub(r'(?=(?:\1)\2)', regex)
@@ -171,27 +190,40 @@ class Language(object):
         pattern = '[^%s]+' % self.chars_pattern
         return re.split(pattern, string)
 
-    def transcribe(self, word):
+    def transcribe(self, string):
         """Returns :class:`Phoneme` instance list from the word."""
-        length = len(word)
-        phonemes = [None] * length
-        for pattern, val in self.notation.items(self):
-            if isinstance(val, tuple):
-                repl = ' '
-                for match in pattern.finditer(word):
-                    start, end = match.span()
-                    phonemes[start] = val
-                    repl = ' ' * (end - start)
-                val = repl
-            elif not val:
-                val = ''
-            prev_word, prev_length = word, length
-            word = pattern.sub(val, word)
+        words = self.split(string)
+        last = len(words) - 1
+        notation = self.notation
+        result = []
+        for i, word in enumerate(words):
             length = len(word)
-            if length > prev_length:
-                phonemes += [None] * (length - prev_length)
-            self._log(".. '%s'" % word, if_=word != prev_word)
-        return filter(None, phonemes)
+            phonemes = [None] * length
+            # check edge
+            left_edge = not i
+            right_edge = i == last
+            for pattern, val in notation.items(left_edge, right_edge, self):
+                if isinstance(val, tuple):
+                    repl = ' '
+                    for match in pattern.finditer(word):
+                        start, end = match.span()
+                        phonemes[start] = val
+                        repl = ' ' * (end - start)
+                    val = repl
+                elif not val:
+                    val = ''
+                prev_word, prev_length = word, length
+                word = pattern.sub(val, word)
+                length = len(word)
+                if length > prev_length:
+                    phonemes += [None] * (length - prev_length)
+                self._log(".. '%s' /%s/" % (word, pattern.pattern),
+                          if_=word != prev_word)
+            if phonemes:
+                if result:
+                    result.append((Impurity(' '),))
+                result += phonemes
+        return filter(None, result)
 
     def normalize(self, string):
         """Before transcribing, normalizes the string. You could specify the
@@ -214,16 +246,10 @@ class Language(object):
                 return join(syllable)
         string = self.normalize(string)
         self._log(">> '%s'" % string)
-        hangulized = []
-        for word in self.split(string):
-            phonemes = self.transcribe(word)
-            if not phonemes:
-                continue
-            syllables = complete_syllables(reduce(list.__add__,
-                                                  map(list, phonemes)))
-            result = [stringify(syl) for syl in syllables]
-            hangulized.append(''.join(result))
-        hangulized = ' '.join(hangulized)
+        phonemes = map(list, self.transcribe(string))
+        syllables = complete_syllables(reduce(list.__add__, phonemes))
+        result = [stringify(syl) for syl in syllables]
+        hangulized = ''.join(result)
         self._log('=> %s' % hangulized)
         return hangulized
 
@@ -264,15 +290,20 @@ def complete_syllable(syllable):
 
 def complete_syllables(phonemes):
     """Separates each syllables and completes every syllable."""
-    components, syllable = [Choseong, Jungseong, Jongseong, Impurity], []
+    components, syllable = [Choseong, Jungseong, Jongseong], []
     if phonemes:
         for ph in phonemes:
             comp = type(ph)
-            new_syllable = syllable and components.index(comp) <= \
-                           components.index(type(syllable[-1]))
+            new_syllable = syllable and (comp is Impurity or \
+                                         components.index(comp) <= \
+                                         components.index(type(syllable[-1])))
             if new_syllable:
                 yield complete_syllable(syllable)
                 syllable = []
+                # yield impurity
+                if comp is Impurity:
+                    yield (ph,)
+                    continue
             syllable.append(ph)
         yield complete_syllable(syllable)
 

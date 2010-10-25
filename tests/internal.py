@@ -27,10 +27,16 @@ class PatternTestCase(HangulizeTestCase):
             longvowels = 'AIUEO'
             cons = 'bcdfghjklmnpqrstvwxyz'
             notation = Notation(
+                ('^^l', Choseong(L)),
+                ('^l', Choseong(N)),
+                ('l', Jongseong(L), Choseong(L)),
+                ('q$$', split_phonemes(u'쿸')),
+                ('q$', Jongseong(K)),
                 ('zu', Choseong(J), Jungseong(EU)),
                 ('ju', (Choseong(J), Jungseong(YU))),
                 ('(sh|xh|z)', 'S'),
                 ('(<voiceless>|x){@}', 'X'),
+                ('^^{a}b', Choseong(BB)),
                 ('^{a}b', Jongseong(P)),
                 ('b{o}$', Choseong(P)),
                 ('{a}(<voiceless>)', '<voiced>e'),
@@ -65,7 +71,7 @@ class PatternTestCase(HangulizeTestCase):
         assert u'즈쥬' == self.hangulize(u'zuju')
 
     def test_caret_before_curly_bracket(self):
-        assert u'앞바' == self.hangulize(u'abba')
+        assert u'라 앞바' == self.hangulize(u'la abba')
 
     def test_dollar_after_curly_bracket(self):
         assert u'브포' == self.hangulize(u'bbo')
@@ -75,6 +81,17 @@ class PatternTestCase(HangulizeTestCase):
         assert u'바게크' == self.hangulize(u'bakk')
         assert u'까데까게' == self.hangulize(u'tatkak')
         assert u'초우긓' == self.hangulize(u'cogh')
+
+    def test_start_of_string(self):
+        assert u'랄랄라' == self.hangulize(u'lalala')
+
+    def test_start_of_word(self):
+        assert u'랄라 날랄라' == self.hangulize(u'lala lalala')
+        assert u'아쁘바' == self.hangulize(u'abba')
+
+    def test_end_of_string(self):
+        assert u'바베쿸' == self.hangulize(u'babeq')
+        assert u'바벸 꾸' == self.hangulize(u'babeq ku')
 
 
 class AlgorithmTestCase(unittest.TestCase):
