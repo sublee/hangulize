@@ -31,6 +31,8 @@ class Swedish(Language):
         ('Aterg{e|i}',     'Aterj'),
         ('Overg{e|i}',     'Overj'),
         ('^igen',          'ijen'),
+        ('reger',          'rejer'),
+        ('regist',         'rejist'),
         ('gata$',          'Gata'),
         ('gatan$',         'Gatan'),
         ('giva',           'jiva'),
