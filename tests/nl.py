@@ -259,4 +259,3 @@ class DutchTestCase(HangulizeTestCase):
         assert u'카레' == self.hangulize(u'carré')
         #assert u'카수이스트' == self.hangulize(u'casuïst')
         assert u'드리엔트빈터흐' == self.hangulize(u'drieëntwintig')
-

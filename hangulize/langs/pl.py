@@ -160,4 +160,3 @@ class Polish(Language):
 
 
 pl = Polish
-

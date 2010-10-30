@@ -154,4 +154,3 @@ class CzechTestCase(HangulizeTestCase):
         """
         assert u'베크' == self.hangulize(u'věk')
         assert u'셰스트' == self.hangulize(u'šest')
-

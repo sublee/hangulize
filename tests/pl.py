@@ -189,4 +189,3 @@ class PolishTestCase(HangulizeTestCase):
 
     def test_etc(self):
         assert u'프시아치우' == self.hangulize(u'przjyaciół')
-

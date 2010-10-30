@@ -60,4 +60,3 @@ setup(
     ],
     cmdclass=cmdclass
 )
-

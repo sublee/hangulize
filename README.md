@@ -117,4 +117,3 @@ Hangulize에는 BSD 라이선스가 적용되어있습니다. 따라서 소스�
 쓰여있습니다.
 
  [1]: http://korean.go.kr/09_new/dic/rule/rule_foreign_index.jsp
-

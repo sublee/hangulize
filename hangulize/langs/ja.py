@@ -131,4 +131,3 @@ class Japanese(Language):
 
 
 ja = Japanese
-

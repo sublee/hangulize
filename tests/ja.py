@@ -30,4 +30,3 @@ class JapaneseTestCase(HangulizeTestCase):
         assert u'니혼' == self.hangulize(u'にほん')
         assert u'니혼바시' == self.hangulize(u'にほんばし')
         assert u'아카찬' == self.hangulize(u'あかちゃん')
-

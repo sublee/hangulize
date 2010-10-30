@@ -131,4 +131,3 @@ class HungarianTestCase(HangulizeTestCase):
         """
         assert u'네르' == self.hangulize(u'nyer')
         assert u'셰옘' == self.hangulize(u'selyem')
-

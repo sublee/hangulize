@@ -38,4 +38,3 @@ def suite():
     suite.addTest(unittest.makeSuite(DutchTestCase))
     suite.addTest(unittest.makeSuite(GermanTestCase))
     return suite
-

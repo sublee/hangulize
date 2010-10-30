@@ -129,4 +129,3 @@ class SpanishTestCase(HangulizeTestCase):
         assert u'앙헬레스' == self.hangulize(u'Ángeles')
         assert u'호세 오르테가 이 가세트' == \
                self.hangulize(u'José Ortega y Gasset')
-
