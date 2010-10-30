@@ -247,9 +247,12 @@ class Language(object):
         string = self.normalize(string)
         self._log(">> '%s'" % string)
         phonemes = map(list, self.transcribe(string))
-        syllables = complete_syllables(reduce(list.__add__, phonemes))
-        result = [stringify(syl) for syl in syllables]
-        hangulized = ''.join(result)
+        try:
+            syllables = complete_syllables(reduce(list.__add__, phonemes))
+            result = [stringify(syl) for syl in syllables]
+            hangulized = ''.join(result)
+        except TypeError:
+            hangulized = u''
         self._log('=> %s' % hangulized)
         return hangulized
 
@@ -353,4 +356,3 @@ def hangulize(string, locale='it', lang=None, logger=None):
         module = __import__('%s.langs.%s' % (__name__, locale))
         lang = getattr(getattr(module.langs, locale), locale)(logger=logger)
     return lang.hangulize(string)
-

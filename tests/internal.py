@@ -107,3 +107,9 @@ class AlgorithmTestCase(unittest.TestCase):
     def test_wide_letter(self):
         assert u'과괌' == hangulize(u'guaguam', 'es')
 
+    def test_empty_sequence(self):
+        """아무 규칙에도 매치되지 않아 빈 시퀀스가 반환될 때 다음 에러가 발생:
+
+            TypeError: reduce() of empty sequence with no initial value
+        """
+        assert u'' == hangulize(u'h', 'it')
