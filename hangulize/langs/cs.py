@@ -6,7 +6,7 @@ class Czech(Language):
     """For transcribing Czech."""
 
     vowels = 'aeiouy'
-    vl = 'cCfkpsStT' # voiceless obstruents
+    vl = 'cCfHkpsStT' # voiceless obstruents
     notation = Notation(
         (u'č',         'C'),
         (u'ď',         'D'),
