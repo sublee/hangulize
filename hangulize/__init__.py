@@ -13,6 +13,7 @@ from hangulize.hangul import *
 
 SPACE = '_' # u'\U000f0000'
 SPECIAL = u'\U000f0000'
+BLANK = '(?:%s|%s)' % (SPACE, SPECIAL)
 DONE = u'\U000fffff'
 ENCODING = getattr(sys.stdout, 'encoding', 'utf-8')
 
@@ -122,6 +123,7 @@ class Language(object):
 
     vowels = ()
     notation = None
+    special = '.,;?~'
 
     def __init__(self, logger=None):
         if not isinstance(self.notation, Notation):
@@ -141,11 +143,12 @@ class Language(object):
 
     def transcribe(self, string):
         """Returns :class:`Phoneme` instance list from the word."""
-        string = re.sub(r'^|\s+|$', SPACE, string)
+        string = re.sub(r'\s+', SPACE, string)
+        string = re.sub(r'^|$', SPECIAL, string)
         self._log(".. '%s'" % string)
         phonemes = []
         # escape special characters
-        for esc in ',', '.':
+        for esc in self.special:
             rewrite = Rewrite(re.escape(esc), (Impurity(esc),))
             string = rewrite(string, phonemes)
         string = Rewrite(DONE, SPECIAL)(string, phonemes)
@@ -154,8 +157,8 @@ class Language(object):
             rewrite = Rewrite(*item)
             string = rewrite(string, phonemes, self)
         # insert spaces
-        string = re.sub('^' + SPACE + '+', '', string)
-        string = re.sub(SPACE + '+$', '', string)
+        string = re.sub('^' + BLANK + '+', '', string)
+        string = re.sub(BLANK + '+$', '', string)
         phonemes = phonemes[1:-1]
         Rewrite(SPACE, (Impurity(' '),))(string, phonemes)
         # flatten
@@ -275,18 +278,18 @@ class Rewrite(object):
         return string
 
     def regexify_edge_of_word(self, regex):
-        left_edge = r'(?<=\1(?:%s|%s))' % (SPACE, SPECIAL)
-        right_edge = r'(?=(?:%s|%s)\1)' % (SPACE, SPECIAL)
+        left_edge = r'(?<=\1%s)' % BLANK
+        right_edge = r'(?=%s\1)' % BLANK
         regex = self.LEFT_EDGE_PATTERN.sub(left_edge, regex)
         regex = self.RIGHT_EDGE_PATTERN.sub(right_edge, regex)
         return regex
 
     def regexify_look_around(self, regex):
         def lookbehind(match):
-            edge = re.sub('\^$', SPACE, match.group('edge'))
+            edge = re.sub('\^$', BLANK, match.group('edge'))
             return r'(?<=' + edge + r'(?:' + match.group(2) + '))'
         def lookahead(match):
-            edge = re.sub('^\$', SPACE, match.group('edge'))
+            edge = re.sub('^\$', BLANK, match.group('edge'))
             return r'(?=(?:' + match.group(1) + ')' + edge + ')'
         regex = self.LOOKBEHIND_PATTERN.sub(lookbehind, regex)
         regex = self.LOOKAHEAD_PATTERN.sub(lookahead, regex)
