@@ -69,7 +69,7 @@ class German(Language):
         ('x{<cons>}',     'xi'),
         ('x$',            'xi'),
         ('^U$',           (Jungseong(E),Jungseong(EO))),
-        ('{^(<cons>)}U$', (Jungseong(E),Jungseong(EO))),
+        ('^{<cons>}U$', (Jungseong(E),Jungseong(EO))),
         ('X',             (Choseong(H),)), # achlaut
         ('x',             (Choseong(H),)), # ichlaut
         ('b',             (Choseong(B),)),

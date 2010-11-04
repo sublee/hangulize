@@ -262,16 +262,15 @@ class Rewrite(object):
         string = re.sub(regex, repl, string)
 
         # report changes
-        try:
-            lang._log(".. '%s' ~ %s => %s ~ /%s/" % \
-                      (string, self.pattern, self.val, regex),
-                      if_=prev != string)
-        except UnicodeError:
-            lang._log(".. '%s' ~ %s ~ /%s/" % \
-                      (string, self.pattern, regex),
-                      if_=prev != string)
-        except AttributeError:
-            pass
+        if prev != string:
+            try:
+                lang._log(".. '%s' ~ %s => %s ~ /%s/" % \
+                          (string, self.pattern, self.val, regex))
+            except UnicodeError:
+                lang._log(".. '%s' ~ %s ~ /%s/" % \
+                          (string, self.pattern, regex))
+            except AttributeError:
+                pass
 
         return string
 

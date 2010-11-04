@@ -37,8 +37,8 @@ def suite():
     suite.addTest(unittest.makeSuite(HungarianTestCase))
     suite.addTest(unittest.makeSuite(VietnameseTestCase))
     suite.addTest(unittest.makeSuite(SwedishTestCase))
-    #suite.addTest(unittest.makeSuite(DutchTestCase))
-    #suite.addTest(unittest.makeSuite(GermanTestCase))
-    #suite.addTest(unittest.makeSuite(PortugueseTestCase))
+    suite.addTest(unittest.makeSuite(DutchTestCase))
+    suite.addTest(unittest.makeSuite(GermanTestCase))
+    suite.addTest(unittest.makeSuite(PortugueseTestCase))
     suite.addTest(unittest.makeSuite(BrazilianPortugueseTestCase))
     return suite
