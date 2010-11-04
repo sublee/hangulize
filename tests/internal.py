@@ -100,9 +100,9 @@ class AlgorithmTestCase(unittest.TestCase):
         """이슈5: 문장부호에 맞붙은 글자가 시작 글자 또는 끝 글자로 인식 안 됨
         http://github.com/sublee/hangulize/issues#issue/5
         """
-        assert hangulize(u'nad', 'pl') == hangulize(u'nad,', 'pl')
-        assert hangulize(u'jak', 'pl') == hangulize(u'.jak', 'pl')
-        assert u'나트 나트 야크 야크' == hangulize(u'nad, nad jak .jak', 'pl')
+        assert hangulize(u'nad', 'pl') + ',' == hangulize(u'nad,', 'pl')
+        assert '.' + hangulize(u'jak', 'pl') == hangulize(u'.jak', 'pl')
+        assert u'나트, 나트 야크 .야크' == hangulize(u'nad, nad jak .jak', 'pl')
 
     def test_wide_letter(self):
         assert u'과괌' == hangulize(u'guaguam', 'es')
@@ -113,3 +113,6 @@ class AlgorithmTestCase(unittest.TestCase):
             TypeError: reduce() of empty sequence with no initial value
         """
         assert u'' == hangulize(u'h', 'it')
+
+    def test_special_chars(self):
+        assert u'레이르트,' == hangulize(u'leert,', 'nl')

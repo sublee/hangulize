@@ -11,7 +11,10 @@ import unicodedata
 from hangulize.hangul import *
 
 
-encoding = getattr(sys.stdout, 'encoding', 'utf-8')
+SPACE = '_' # u'\U000f0000'
+SPECIAL = u'\U000f0000'
+DONE = u'\U000fffff'
+ENCODING = getattr(sys.stdout, 'encoding', 'utf-8')
 
 
 class Phoneme(object):
@@ -21,8 +24,8 @@ class Phoneme(object):
         self.letter = letter
 
     def __repr__(self):
-        return "<%s '%s'>" % (type(self).__name__,
-                              self.letter.encode(encoding))
+        name = type(self).__name__
+        return "<%s '%s'>" % (name, self.letter.encode(ENCODING))
 
 
 class Choseong(Phoneme):
@@ -33,6 +36,7 @@ class Choseong(Phoneme):
     """
     pass
 
+
 class Jungseong(Phoneme):
     """A vowel in Hangul.
 
@@ -41,6 +45,7 @@ class Jungseong(Phoneme):
     """
     pass
 
+
 class Jongseong(Phoneme):
     """A final consonant in Hangul.
 
@@ -48,6 +53,7 @@ class Jongseong(Phoneme):
         <Jongseong 'ㄱ'>
     """
     pass
+
 
 class Impurity(Phoneme):
     """An impurity letter will be kept."""
@@ -81,26 +87,7 @@ class Notation(object):
             # accept args(a tuple instance)
             else:
                 val = one[1:]
-            # when pattern and val has only one variable
-            svars = list(self._find_actual_variables(pattern))
-            dvars = list(self._find_actual_variables(val))
-            if lang and len(svars) is len(dvars) is 1:
-                src = getattr(lang, svars[0].group('name'))
-                dst = getattr(lang, dvars[0].group('name'))
-                if len(src) is not len(dst):
-                    raise SyntaxError('destination variable should have the '
-                                      'same length with source variable')
-                for s, d in zip(src, dst):
-                    srange, drange = svars[0].span(), dvars[0].span()
-                    p = pattern[:srange[0]] + s + pattern[srange[1]:]
-                    v = val[:drange[0]] + d + val[drange[1]:]
-                    regex = self.regexify(p, left_edge, right_edge, lang)
-                    if regex:
-                        yield regex, v
-            else:
-                regex = self.regexify(pattern, left_edge, right_edge, lang)
-                if regex:
-                    yield regex, val
+            yield pattern, val
 
     @property
     def chars(self):
@@ -112,44 +99,6 @@ class Notation(object):
             for c in pattern:
                 chest.append(c)
         return set(chest)
-
-    def regexify(self, pattern, left_edge=False, right_edge=False, lang=None):
-        """Compiles a regular expression from the notation pattern."""
-        regex = pattern
-        # edge of string
-        if self.LEFTEDGE_PATTERN.search(regex):
-            if left_edge:
-                regex = self.LEFTEDGE_PATTERN.sub(r'^', regex)
-            else:
-                return
-        if self.RIGHTEDGE_PATTERN.search(regex):
-            if right_edge:
-                regex = self.RIGHTEDGE_PATTERN.sub(r'$', regex)
-            else:
-                return
-        if left_edge:
-            regex = self.LOOKBEHIND_PATTERN.sub(r'(?<=\1(?:\2))', regex)
-        # look around
-        regex = self.LOOKBEHIND_PATTERN.sub(r'(?<=\1(?:\2))', regex)
-        regex = self.LOOKAHEAD_PATTERN.sub(r'(?=(?:\1)\2)', regex)
-        if lang:
-            def to_variable(match):
-                var = getattr(lang, match.group('name'))
-                return '|'.join(re.escape(l) for l in var)
-            regex = re.sub('@', '<vowels>', regex)
-            regex = self.VARIABLE_PATTERN.sub(to_variable, regex)
-        return re.compile(regex)
-
-    def _find_actual_variables(self, code):
-        def dummy(match):
-            return u'\uffff' * (match.end() - match.start())
-        try:
-            code = self.LOOKBEHIND_PATTERN.sub(dummy, code)
-            code = self.LOOKAHEAD_PATTERN.sub(dummy, code)
-            code = re.sub('@', '<vowels>', code)
-            return self.VARIABLE_PATTERN.finditer(code)
-        except TypeError:
-            return ()
 
 
 class Language(object):
@@ -192,38 +141,26 @@ class Language(object):
 
     def transcribe(self, string):
         """Returns :class:`Phoneme` instance list from the word."""
-        words = self.split(string)
-        last = len(words) - 1
-        notation = self.notation
-        result = []
-        for i, word in enumerate(words):
-            length = len(word)
-            phonemes = [None] * length
-            # check edge
-            left_edge = not i
-            right_edge = i == last
-            for pattern, val in notation.items(left_edge, right_edge, self):
-                if isinstance(val, tuple):
-                    repl = ' '
-                    for match in pattern.finditer(word):
-                        start, end = match.span()
-                        phonemes[start] = val
-                        repl = ' ' * (end - start)
-                    val = repl
-                elif not val:
-                    val = ''
-                prev_word, prev_length = word, length
-                word = pattern.sub(val, word)
-                length = len(word)
-                if length > prev_length:
-                    phonemes += [None] * (length - prev_length)
-                self._log(".. '%s' /%s/" % (word, pattern.pattern),
-                          if_=word != prev_word)
-            if phonemes:
-                if result:
-                    result.append((Impurity(' '),))
-                result += phonemes
-        return filter(None, result)
+        string = re.sub(r'^|\s+|$', SPACE, string)
+        self._log(".. '%s'" % string)
+        phonemes = []
+        # escape special characters
+        for esc in ',', '.':
+            rewrite = Rewrite(re.escape(esc), (Impurity(esc),))
+            string = rewrite(string, phonemes)
+        string = Rewrite(DONE, SPECIAL)(string, phonemes)
+        # apply the notation
+        for item in self.notation.items():
+            rewrite = Rewrite(*item)
+            string = rewrite(string, phonemes, self)
+        # insert spaces
+        string = re.sub('^' + SPACE + '+', '', string)
+        string = re.sub(SPACE + '+$', '', string)
+        phonemes = phonemes[1:-1]
+        Rewrite(SPACE, (Impurity(' '),))(string, phonemes)
+        # flatten
+        phonemes = reduce(list.__add__, map(list, filter(None, phonemes)), [])
+        return phonemes
 
     def normalize(self, string):
         """Before transcribing, normalizes the string. You could specify the
@@ -246,9 +183,9 @@ class Language(object):
                 return join(syllable)
         string = self.normalize(string)
         self._log(">> '%s'" % string)
-        phonemes = map(list, self.transcribe(string))
+        phonemes = self.transcribe(string)
         try:
-            syllables = complete_syllables(reduce(list.__add__, phonemes))
+            syllables = complete_syllables(phonemes)
             result = [stringify(syl) for syl in syllables]
             hangulized = ''.join(result)
         except TypeError:
@@ -260,6 +197,120 @@ class Language(object):
         if if_ and self.logger:
             self.logger.info(msg)
         return msg
+
+
+class Rewrite(object):
+
+    VOWELS_PATTERN = re.compile('@')
+    VARIABLE_PATTERN = re.compile('<(?P<name>[a-zA-Z_][a-zA-Z0-9_]*)>')
+    LEFT_EDGE_PATTERN = re.compile(r'^(\^?)\^')
+    RIGHT_EDGE_PATTERN = re.compile(r'\$(\$?)$')
+    LOOKBEHIND_PATTERN = re.compile('^(?P<edge>(?:\^(?:\^)?)?){([^}]+?)}')
+    LOOKAHEAD_PATTERN = re.compile('{([^}]+?)}(?P<edge>(?:\$(?:\$)?)?)$')
+
+    def __init__(self, pattern, val):
+        """Makes a replace function with the given pattern and value."""
+        self.pattern, self.val = pattern, val
+
+    def __call__(self, string, phonemes=None, lang=None):
+        regex = self.pattern
+        repl = self.val
+
+        # allocate needed offsets
+        try:
+            phonemes_len, string_len = len(phonemes), len(string)
+            if phonemes_len < string_len:
+                phonemes += [None] * (string_len - phonemes_len)
+        except TypeError:
+            pass
+
+        if lang:
+            if self.val and not isinstance(self.val, tuple):
+                # variable replacement
+                srcvars = list(self.find_actual_variables(regex))
+                dstvars = list(self.find_actual_variables(self.val))
+                if len(srcvars) == len(dstvars) == 1:
+                    src = getattr(lang, srcvars[0].group('name'))
+                    dst = getattr(lang, dstvars[0].group('name'))
+                    if len(src) != len(dst):
+                        raise ValueError('the destination variable should '
+                                         'have the same length with the '
+                                         'source variable')
+                    dictionary = dict(zip(src, dst))
+                    def repl(match):
+                        let = dictionary[match.group(0)]
+                        return self.VARIABLE_PATTERN.sub(let, self.val)
+            regex = self.regexify_variable(regex, lang)
+
+        # regexify
+        regex = self.regexify_look_around(regex)
+        regex = self.regexify_edge_of_word(regex)
+
+        if phonemes and isinstance(self.val, tuple):
+            # toss phonemes, and check the matched string
+            repl = DONE
+            for match in re.finditer(regex, string):
+                start, end = match.span()
+                phonemes[start] = self.val
+                repl = DONE * (end - start)
+        elif not self.val:
+            # when val is None, the matched string should remove
+            repl = ''
+
+        # replace the string
+        prev = string
+        string = re.sub(regex, repl, string)
+
+        # report changes
+        try:
+            lang._log(".. '%s' ~ %s => %s ~ /%s/" % \
+                      (string, self.pattern, self.val, regex),
+                      if_=prev != string)
+        except UnicodeError:
+            lang._log(".. '%s' ~ %s ~ /%s/" % \
+                      (string, self.pattern, regex),
+                      if_=prev != string)
+        except AttributeError:
+            pass
+
+        return string
+
+    def regexify_edge_of_word(self, regex):
+        left_edge = r'(?<=\1(?:%s|%s))' % (SPACE, SPECIAL)
+        right_edge = r'(?=(?:%s|%s)\1)' % (SPACE, SPECIAL)
+        regex = self.LEFT_EDGE_PATTERN.sub(left_edge, regex)
+        regex = self.RIGHT_EDGE_PATTERN.sub(right_edge, regex)
+        return regex
+
+    def regexify_look_around(self, regex):
+        def lookbehind(match):
+            edge = re.sub('\^$', SPACE, match.group('edge'))
+            return r'(?<=' + edge + r'(?:' + match.group(2) + '))'
+        def lookahead(match):
+            edge = re.sub('^\$', SPACE, match.group('edge'))
+            return r'(?=(?:' + match.group(1) + ')' + edge + ')'
+        regex = self.LOOKBEHIND_PATTERN.sub(lookbehind, regex)
+        regex = self.LOOKAHEAD_PATTERN.sub(lookahead, regex)
+        return regex
+
+    def regexify_variable(self, regex, lang):
+        def to_variable(match):
+            var = getattr(lang, match.group('name'))
+            return '(%s)' % '|'.join(re.escape(x) for x in var)
+        regex = self.VOWELS_PATTERN.sub('<vowels>', regex)
+        regex = self.VARIABLE_PATTERN.sub(to_variable, regex)
+        return regex
+
+    def find_actual_variables(self, pattern):
+        def dummy(match):
+            return u'\uffff' * (match.end() - match.start())
+        try:
+            pattern = self.LOOKBEHIND_PATTERN.sub(dummy, pattern)
+            pattern = self.LOOKAHEAD_PATTERN.sub(dummy, pattern)
+            pattern = self.VOWELS_PATTERN.sub('<>', pattern)
+            return self.VARIABLE_PATTERN.finditer(pattern)
+        except TypeError:
+            return ()
 
 
 def normalize_roman(string):
@@ -297,18 +348,19 @@ def complete_syllables(phonemes):
     if phonemes:
         for ph in phonemes:
             comp = type(ph)
-            new_syllable = syllable and (comp is Impurity or \
-                                         components.index(comp) <= \
-                                         components.index(type(syllable[-1])))
+            new_syllable = comp is Impurity or syllable and \
+                           components.index(comp) <= \
+                           components.index(type(syllable[-1]))
             if new_syllable:
-                yield complete_syllable(syllable)
-                syllable = []
-                # yield impurity
+                if syllable:
+                    yield complete_syllable(syllable)
+                    syllable = []
                 if comp is Impurity:
                     yield (ph,)
                     continue
             syllable.append(ph)
-        yield complete_syllable(syllable)
+        if syllable:
+            yield complete_syllable(syllable)
 
 
 def split_phonemes(word):
