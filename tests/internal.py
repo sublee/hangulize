@@ -41,6 +41,8 @@ class PatternTestCase(HangulizeTestCase):
                 ('b{o}$', Choseong(P)),
                 ('{a}(<voiceless>)', '<voiced>e'),
                 ('{<cons>}<vowels>{gh}', '<longvowels>'),
+                ("d'i", 'di'),
+                ("d_i", 'di'),
                 ('X', Choseong(GG)),
                 ('S', Choseong(SS)),
                 ('p', Choseong(P)),
@@ -92,6 +94,12 @@ class PatternTestCase(HangulizeTestCase):
     def test_end_of_string(self):
         assert u'바베쿸' == self.hangulize(u'babeq')
         assert u'바벸 꾸' == self.hangulize(u'babeq ku')
+
+    def test_special_character(self):
+        assert u'디' == self.hangulize(u"d'i")
+
+    def test_space(self):
+        assert u'디' == self.hangulize(u"d i")
 
 
 class AlgorithmTestCase(unittest.TestCase):
