@@ -9,6 +9,9 @@ class DutchTestCase(HangulizeTestCase):
         from hangulize.langs.nl import Dutch
         self.lang = Dutch()
 
+    def test_etc(self):
+        assert u'타위흐' == self.hangulize(u'tuig')
+
     def test_basic(self):
         """ http://korean.go.kr/09_new/dic/rule/rule_foreign_0118.jsp """
         assert u'보르스트' == self.hangulize(u'Borst')
