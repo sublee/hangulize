@@ -48,7 +48,7 @@ class Dutch(Language):
         ('echt', 'Echt'),
         ('tie$', 'sie'),
         ('ier$', 'i%er'),
-        ('ig$', 'Qg'),
+        ('{<cs>}ig$', 'Qg'),
         ('^over', 'ovQr'),
         ('sch{@}', 'sX'),
         ('sch', 's'),
