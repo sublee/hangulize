@@ -6,7 +6,7 @@ class Vietnamese(Language):
     """For transcribing Vietnamese."""
 
     vowels = 'aAeEioOuUy'
-    notation = Notation(
+    notation = Notation([
         (u'ă',         'A'),
         (u'â',         'O'),
         (u'đ',         'D'),
@@ -104,7 +104,7 @@ class Vietnamese(Language):
         ('O',          Jungseong(EO)),
         ('u',          Jungseong(U)),
         ('U',          Jungseong(EU)),
-    )
+    ])
 
     def normalize(self, string):
         def normalize_only_unsafe(string):

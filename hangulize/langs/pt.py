@@ -9,7 +9,7 @@ class Portuguese(Language):
     cs = u'bcCdfghjklmnpqrRsStvwxz'
     son = u'lmnr' # sonorant
     vl = u'cCfkpqRsSt' # voiceless
-    notation = Notation(
+    notation = Notation([
         (u'ã', 'A~'),
         (u'á', 'A'),
         (u'â', 'A'),
@@ -206,7 +206,7 @@ class Portuguese(Language):
         ('o', Jungseong(O)),
         ('u', Jungseong(U)),
         ('Q', Jungseong(EU)),
-    )
+    ])
 
     def normalize(self, string):
         def normalize_only_unsafe(string):

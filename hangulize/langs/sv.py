@@ -8,7 +8,7 @@ class Swedish(Language):
     vowels = 'a', 'A', 'e', 'E', 'i', 'o', 'O', 'u', 'y'
     vl = 'f', 'h', 'k', 'p', 's', 't'
     """Convention: A = å, E = ä, O = ö"""
-    notation = Notation(
+    notation = Notation([
         (u'å',             'A'),
         (u'ä',             'E'),
         (u'ö',             'O'),
@@ -208,7 +208,7 @@ class Swedish(Language):
         ('u',              Jungseong(U)),
         ('y',              Jungseong(WI)),
         ('O',              Jungseong(OE)),
-    )
+    ])
 
     def normalize(self, string):
         def normalize_only_unsafe(string):

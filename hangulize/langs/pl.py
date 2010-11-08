@@ -7,7 +7,7 @@ class Polish(Language):
 
     vowels = 'aeiouy'
     consonants = 'cfhkpst'
-    notation = Notation(
+    notation = Notation([
         (u'ą{l|ł}',          'o'),
         (u'ą',               'oN'),
         (u'ę{l|ł}',          'e'),
@@ -136,7 +136,7 @@ class Polish(Language):
         ('i',                Jungseong(I)),
         ('o',                Jungseong(O)),
         ('u',                Jungseong(U))
-    )
+    ])
 
     def normalize(self, string):
         def normalize_only_unsafe(string):

@@ -7,7 +7,7 @@ class SerboCroatian(Language):
 
     vowels = 'aeiouy'
     consonants = 'cCfhst'
-    notation = Notation(
+    notation = Notation([
         (u'č',                   'C'),
         (u'ć',                   'C'),
         (u'đ',                   'D'),
@@ -99,7 +99,7 @@ class SerboCroatian(Language):
         ('i',                    Jungseong(I)),
         ('o',                    Jungseong(O)),
         ('u',                    Jungseong(U))
-    )
+    ])
 
     def normalize(self, string):
         def normalize_only_unsafe(string):

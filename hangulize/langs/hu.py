@@ -6,7 +6,7 @@ class Hungarian(Language):
     """For transcribing Hungarian."""
 
     vowels = 'aAeioOuU'
-    notation = Notation(
+    notation = Notation([
         (u'á',                  'A'),
         (u'ö',                  'O'),
         (u'ü',                  'U'),
@@ -116,7 +116,7 @@ class Hungarian(Language):
         ('O',                   Jungseong(OE)),
         ('u',                   Jungseong(U)),
         ('U',                   Jungseong(WI)),
-    )
+    ])
 
     def normalize(self, string):
         def normalize_only_unsafe(string):

@@ -7,7 +7,7 @@ class Romanian(Language):
 
     vowels = 'aAeiIou'
     voiceless = 'CfhkpstT'
-    notation = Notation(
+    notation = Notation([
         (u'ă',                'A'),
         (u'â',                'I'),
         (u'î',                'I'),
@@ -120,7 +120,7 @@ class Romanian(Language):
         ('I',                 Jungseong(EU)),
         ('o',                 Jungseong(O)),
         ('u',                 Jungseong(U))
-    )
+    ])
 
     def normalize(self, string):
         def normalize_only_unsafe(string):

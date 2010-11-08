@@ -6,7 +6,7 @@ class Spanish(Language):
     """For transcribing Spanish."""
 
     vowels = u'aeiouüy'
-    notation = Notation(
+    notation = Notation([
         (u'ññ',            u'ñ'),
         (u'ñ{@}',          'nY'),
         ('^y{@}',          'Y'),
@@ -101,7 +101,7 @@ class Spanish(Language):
         ('i',              Jungseong(I)),
         ('o',              Jungseong(O)),
         ('u',              Jungseong(U)),
-    )
+    ])
 
     def normalize(self, string):
         def normalize_only_unsafe(string):

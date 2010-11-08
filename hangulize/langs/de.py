@@ -7,7 +7,7 @@ class German(Language):
     
     vowels = u'aeiouäöüyAOU'
     cons = u'bcdfghjklmnpqrstvwxzß'
-    notation = Notation(
+    notation = Notation([
         (u'ä',            'A'),
         (u'ö',            'O'),
         (u'ü',            'y'),
@@ -116,7 +116,7 @@ class German(Language):
         ('O',             (Jungseong(OE),)),
         ('y',             (Jungseong(WI),)),
         ('j',             (Jungseong(I),)),
-    )
+    ])
 
     def normalize(self, string):
         def normalize_only_unsafe(string):

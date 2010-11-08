@@ -7,7 +7,7 @@ class Italian(Language):
     """For transcribing Italian."""
 
     vowels = 'aeiou'
-    notation = Notation(
+    notation = Notation([
         ('^gli$',         'li'),
         ('^glia$',        'g.lia'),
         ('^glioma$',      'g.lioma'),
@@ -121,7 +121,7 @@ class Italian(Language):
         ('i',             Jungseong(I)),
         ('o',             Jungseong(O)),
         ('u',             Jungseong(U)),
-    )
+    ])
 
     def normalize(self, string):
         chars_pattern = self.chars_pattern

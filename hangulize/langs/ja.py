@@ -6,7 +6,7 @@ class Japanese(Language):
     """For transcribing Japanese."""
 
     vowels = 'aiueo'
-    notation = Notation(
+    notation = Notation([
         (u'[\u30a1\u30a2]', 'a'),
         (u'[\u30a3\u30a4]', 'i'),
         (u'[\u30a5\u30a6]', 'u'),
@@ -119,7 +119,7 @@ class Japanese(Language):
         ('o',               Jungseong(O)),
         ('N',               Jongseong(N)),
         ('T',               Jongseong(S))
-    )
+    ])
 
     def normalize(self, string):
         def hiragana_to_katakana(c):

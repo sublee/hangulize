@@ -73,12 +73,12 @@ class Notation(object):
     LOOKBEHIND_PATTERN = re.compile('^(\^?){([^}]+?)}')
     LOOKAHEAD_PATTERN = re.compile('{([^}]+?)}(\$?)$')
 
-    def __init__(self, *rule):
-        self.rule = list(rule)
+    def __init__(self, rules):
+        self.rules = rules
 
     def items(self, left_edge=False, right_edge=False, lang=None):
         """Yields each notation rules as regex."""
-        for one in self.rule:
+        for one in self.rules:
             pattern = one[0]
             # accept *args
             if len(one) == 2:
@@ -94,7 +94,7 @@ class Notation(object):
     def chars(self):
         """The humane characters from the notation keys."""
         chest = []
-        for one in self.rule:
+        for one in self.rules:
             pattern = self.VARIABLE_PATTERN.sub('', one[0])
             pattern = re.sub(r'[\{\}\@\[\]\^\$]', '', pattern)
             for c in pattern:

@@ -12,7 +12,7 @@ class Dutch(Language):
          'v', 'w', 'x', 'X', 'z', '%' # consonants
     son = 'l', 'm', 'n', 'N', 'r' # sonorants
     short = 'a', 'e', 'E', 'i', 'o', 'u', 'U' # short vowels
-    notation = Notation(
+    notation = Notation([
         (u'ë', '-e-'),
         (u'é', 'E'),
         (u'ï', '-i-'),
@@ -258,7 +258,7 @@ class Dutch(Language):
         ('U', Jungseong(U)),
         ('Q', Jungseong(EO)),
         ('Y', Jungseong(EU)),
-    )
+    ])
 
     def normalize(self, string):
         def normalize_only_unsafe(string):

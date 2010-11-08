@@ -7,7 +7,7 @@ class Czech(Language):
 
     vowels = 'aeiouy'
     vl = 'cCfHkpsStT' # voiceless obstruents
-    notation = Notation(
+    notation = Notation([
         (u'č',         'C'),
         (u'ď',         'D'),
         (u'ě',         'je'),
@@ -146,7 +146,7 @@ class Czech(Language):
         ('i',          Jungseong(I)),
         ('o',          Jungseong(O)),
         ('u',          Jungseong(U))
-    )
+    ])
 
     def normalize(self, string):
         def normalize_only_unsafe(string):
