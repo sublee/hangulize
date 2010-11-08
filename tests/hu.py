@@ -1,13 +1,12 @@
 # -*- coding: utf-8 -*-
 from tests import HangulizeTestCase
+from hangulize.langs.hu import Hungarian
 
 
 class HungarianTestCase(HangulizeTestCase):
     """ http://korean.go.kr/09_new/dic/rule/rule_foreign_0212.jsp """
 
-    def setUp(self):
-        from hangulize.langs.hu import Hungarian
-        self.lang = Hungarian()
+    lang = Hungarian()
 
     def test_basic(self):
         """ http://korean.go.kr/09_new/dic/rule/rule_foreign_0110.jsp """

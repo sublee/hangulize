@@ -1,13 +1,12 @@
 # -*- coding: utf-8 -*-
 from tests import HangulizeTestCase
+from hangulize.langs.ja import Japanese
 
 
 class JapaneseTestCase(HangulizeTestCase):
     """ http://korean.go.kr/09_new/dic/rule/rule_foreign_0206.jsp """
 
-    def setUp(self):
-        from hangulize.langs.ja import Japanese
-        self.lang = Japanese()
+    lang = Japanese()
 
     def test_1st(self):
         """제1항: 촉음

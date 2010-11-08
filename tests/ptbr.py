@@ -1,13 +1,12 @@
 # -*- coding: utf-8 -*-
 from tests import HangulizeTestCase
+from hangulize.langs.ptbr import BrazilianPortuguese
 
 
 class BrazilianPortugueseTestCase(HangulizeTestCase):
     """ http://korean.go.kr/09_new/dic/rule/rule_foreign_0219.jsp """
 
-    def setUp(self):
-        from hangulize.langs.ptbr import BrazilianPortuguese
-        self.lang = BrazilianPortuguese()
+    lang = BrazilianPortuguese()
 
     def test_3rd(self):
         """제3항

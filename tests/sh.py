@@ -1,13 +1,12 @@
 # -*- coding: utf-8 -*-
 from tests import HangulizeTestCase
+from hangulize.langs.sh import SerboCroatian
 
 
 class SerboCroatianTestCase(HangulizeTestCase):
     """ http://korean.go.kr/09_new/dic/rule/rule_foreign_0210.jsp """
 
-    def setUp(self):
-        from hangulize.langs.sh import SerboCroatian
-        self.lang = SerboCroatian()
+    lang = SerboCroatian()
 
     def test_basic(self):
         """ http://korean.go.kr/09_new/dic/rule/rule_foreign_0108.jsp """

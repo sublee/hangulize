@@ -1,13 +1,12 @@
 # -*- coding: utf-8 -*-
 from tests import HangulizeTestCase
+from hangulize.langs.vi import Vietnamese
 
 
 class VietnameseTestCase(HangulizeTestCase):
     """ http://korean.go.kr/09_new/dic/rule/rule_foreign_0218.jsp """
 
-    def setUp(self):
-        from hangulize.langs.vi import Vietnamese
-        self.lang = Vietnamese()
+    lang = Vietnamese()
     
     def test_1st(self):
         """제1항

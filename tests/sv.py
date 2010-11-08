@@ -1,13 +1,12 @@
 # -*- coding: utf-8 -*-
 from tests import HangulizeTestCase
+from hangulize.langs.sv import Swedish
 
 
 class SwedishTestCase(HangulizeTestCase):
     """ http://korean.go.kr/09_new/dic/rule/rule_foreign_0213.jsp """
 
-    def setUp(self):
-        from hangulize.langs.sv import Swedish
-        self.lang = Swedish()
+    lang = Swedish()
 
     def test_basic(self):
         """ http://korean.go.kr/09_new/dic/rule/rule_foreign_0111.jsp """

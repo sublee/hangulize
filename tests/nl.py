@@ -1,13 +1,12 @@
 # -*- coding: utf-8 -*-
 from tests import HangulizeTestCase
+from hangulize.langs.nl import Dutch
 
 
 class DutchTestCase(HangulizeTestCase):
     """ http://korean.go.kr/09_new/dic/rule/rule_foreign_0220.jsp """
 
-    def setUp(self):
-        from hangulize.langs.nl import Dutch
-        self.lang = Dutch()
+    lang = Dutch()
 
     def test_etc(self):
         assert u'타위흐' == self.hangulize(u'tuig')

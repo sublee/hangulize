@@ -1,13 +1,12 @@
 # -*- coding: utf-8 -*-
 from tests import HangulizeTestCase
+from hangulize.langs.pl import Polish
 
 
 class PolishTestCase(HangulizeTestCase):
     """ http://korean.go.kr/09_new/dic/rule/rule_foreign_0208.jsp """
 
-    def setUp(self):
-        from hangulize.langs.pl import Polish
-        self.lang = Polish()
+    lang = Polish()
 
     def test_basic(self):
         """ http://korean.go.kr/09_new/dic/rule/rule_foreign_0106.jsp """

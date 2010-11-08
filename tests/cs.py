@@ -1,13 +1,12 @@
 # -*- coding: utf-8 -*-
 from tests import HangulizeTestCase
+from hangulize.langs.cs import Czech
 
 
 class CzechTestCase(HangulizeTestCase):
     """ http://korean.go.kr/09_new/dic/rule/rule_foreign_0209.jsp """
 
-    def setUp(self):
-        from hangulize.langs.cs import Czech
-        self.lang = Czech()
+    lang = Czech()
 
     def test_basic(self):
         """ http://korean.go.kr/09_new/dic/rule/rule_foreign_0107.jsp """
