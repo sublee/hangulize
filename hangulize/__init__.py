@@ -123,7 +123,7 @@ class Language(object):
 
     vowels = ()
     notation = None
-    special = '.,;?~'
+    special = '.,;?~"()[]{}'
 
     def __init__(self, logger=None):
         if not isinstance(self.notation, Notation):

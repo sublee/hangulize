@@ -124,6 +124,8 @@ class AlgorithmTestCase(unittest.TestCase):
 
     def test_special_chars(self):
         assert u'레이르트,' == hangulize(u'leert,', 'nl')
+        assert u'(레이르트}' == hangulize(u'(leert}', 'nl')
+        assert u'"레이르트"' == hangulize(u'"leert"', 'nl')
 
     def test_too_many_rules(self):
         class TooComplexLang(Language):
@@ -268,3 +270,4 @@ class AlgorithmTestCase(unittest.TestCase):
                 ('W4', Jungseong(EU)), ('X4', Choseong(GG)),
                 ('Y4', Jungseong(I)),  ('Z4', Choseong(J)),
             ])
+        assert u'아브' == hangulize(u'ab,', lang=TooComplexLang())
