@@ -407,6 +407,14 @@ def hangulize(string, locale='it', lang=None, logger=None):
                    steps
     """
     if not lang:
-        module = __import__('%s.langs.%s' % (__name__, locale))
-        lang = getattr(getattr(module.langs, locale), locale)(logger=logger)
+        try:
+            module = __import__('%s.langs.%s' % (__name__, locale))
+            lang = getattr(getattr(module.langs, locale), locale)(logger)
+        except ImportError:
+            raise LanguageError('%s is not supported' % locale)
     return lang.hangulize(string)
+
+
+class LanguageError(Exception):
+
+    pass
