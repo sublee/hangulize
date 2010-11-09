@@ -270,4 +270,4 @@ class AlgorithmTestCase(unittest.TestCase):
                 ('W4', Jungseong(EU)), ('X4', Choseong(GG)),
                 ('Y4', Jungseong(I)),  ('Z4', Choseong(J)),
             ])
-        assert u'아브' == hangulize(u'ab,', lang=TooComplexLang())
+        assert u'아브' == hangulize(u'ab', lang=TooComplexLang())
