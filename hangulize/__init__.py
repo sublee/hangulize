@@ -12,9 +12,9 @@ from hangulize.hangul import *
 
 
 SPACE = '_' # u'\U000f0000'
-SPECIAL = u'\U000f0000'
-BLANK = '(?:%s|%s)' % (SPACE, SPECIAL)
-DONE = u'\U000fffff'
+SPECIAL = chr(27) #u'\U000f0000'
+BLANK = '(?:%s|%s)' % tuple(map(re.escape, (SPACE, SPECIAL)))
+DONE = chr(0) #u'\U000fffff'
 ENCODING = getattr(sys.stdout, 'encoding', 'utf-8')
 
 
@@ -262,12 +262,15 @@ class Rewrite(object):
 
         # report changes
         if prev != string:
+            readable = string.replace(DONE, '.')
+            readable = re.sub('^' + BLANK + '|' + BLANK + '$', '', readable)
+            readable = re.sub(BLANK, ' ', readable)
             try:
                 lang._log(".. '%s' ~ %s => %s ~ /%s/" % \
-                          (string, self.pattern, self.val, regex.pattern))
+                          (readable, self.pattern, self.val, regex.pattern))
             except UnicodeError:
                 lang._log(".. '%s' ! %s ~ /%s/" % \
-                          (string, self.pattern, regex.pattern))
+                          (readable, self.pattern, regex.pattern))
             except AttributeError:
                 pass
 
