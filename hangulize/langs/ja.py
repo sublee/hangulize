@@ -93,6 +93,7 @@ class Japanese(Language):
         ('{c|z}ija',        'a'),
         ('{c|z}iju',        'u'),
         ('{c|z}ijo',        'o'),
+        ('cu',              (Choseong(SS), Jungseong(EU))),
         ('k',               Choseong(K)),
         ('g',               Choseong(G)),
         ('s',               Choseong(S)),
