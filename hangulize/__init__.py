@@ -216,7 +216,6 @@ class Rewrite(object):
         self.pattern, self.val = pattern, val
 
     def __call__(self, string, phonemes=None, lang=None):
-        regex = self.pattern
         repl = self.val
 
         # allocate needed offsets
@@ -230,7 +229,7 @@ class Rewrite(object):
         if lang:
             if self.val and not isinstance(self.val, tuple):
                 # variable replacement
-                srcvars = list(self.find_actual_variables(regex))
+                srcvars = list(self.find_actual_variables(self.pattern))
                 dstvars = list(self.find_actual_variables(self.val))
                 if len(srcvars) == len(dstvars) == 1:
                     src = getattr(lang, srcvars[0].group('name'))
@@ -243,16 +242,13 @@ class Rewrite(object):
                     def repl(match):
                         let = dictionary[match.group(0)]
                         return self.VARIABLE_PATTERN.sub(let, self.val)
-            regex = self.regexify_variable(regex, lang)
 
-        # regexify
-        regex = self.regexify_look_around(regex)
-        regex = self.regexify_edge_of_word(regex)
+        regex = re.compile(type(self).regexify(self.pattern, lang))
 
         if phonemes and isinstance(self.val, tuple):
             # toss phonemes, and check the matched string
             repl = DONE
-            for match in re.finditer(regex, string):
+            for match in regex.finditer(string):
                 start, end = match.span()
                 phonemes[start] = self.val
                 repl = DONE * (end - start)
@@ -262,45 +258,57 @@ class Rewrite(object):
 
         # replace the string
         prev = string
-        string = re.sub(regex, repl, string)
+        string = regex.sub(repl, string)
 
         # report changes
         if prev != string:
             try:
                 lang._log(".. '%s' ~ %s => %s ~ /%s/" % \
-                          (string, self.pattern, self.val, regex))
+                          (string, self.pattern, self.val, regex.pattern))
             except UnicodeError:
-                lang._log(".. '%s' ~ %s ~ /%s/" % \
-                          (string, self.pattern, regex))
+                lang._log(".. '%s' ! %s ~ /%s/" % \
+                          (string, self.pattern, regex.pattern))
             except AttributeError:
                 pass
 
         return string
 
-    def regexify_edge_of_word(self, regex):
-        left_edge = r'(?<=\1%s)' % BLANK
-        right_edge = r'(?=%s\1)' % BLANK
-        regex = self.LEFT_EDGE_PATTERN.sub(left_edge, regex)
-        regex = self.RIGHT_EDGE_PATTERN.sub(right_edge, regex)
+    @classmethod
+    def regexify(cls, pattern, lang=None):
+        regex = pattern
+        if lang:
+            regex = cls.regexify_variable(regex, lang)
+        regex = cls.regexify_look_around(regex)
+        regex = cls.regexify_edge_of_word(regex)
         return regex
 
-    def regexify_look_around(self, regex):
+    @classmethod
+    def regexify_edge_of_word(cls, regex):
+        left_edge = r'(?<=\1%s)' % BLANK
+        right_edge = r'(?=%s\1)' % BLANK
+        regex = cls.LEFT_EDGE_PATTERN.sub(left_edge, regex)
+        regex = cls.RIGHT_EDGE_PATTERN.sub(right_edge, regex)
+        return regex
+
+    @classmethod
+    def regexify_look_around(cls, regex):
         def lookbehind(match):
             edge = re.sub('\^$', BLANK, match.group('edge'))
             return r'(?<=' + edge + r'(?:' + match.group(2) + '))'
         def lookahead(match):
             edge = re.sub('^\$', BLANK, match.group('edge'))
             return r'(?=(?:' + match.group(1) + ')' + edge + ')'
-        regex = self.LOOKBEHIND_PATTERN.sub(lookbehind, regex)
-        regex = self.LOOKAHEAD_PATTERN.sub(lookahead, regex)
+        regex = cls.LOOKBEHIND_PATTERN.sub(lookbehind, regex)
+        regex = cls.LOOKAHEAD_PATTERN.sub(lookahead, regex)
         return regex
 
-    def regexify_variable(self, regex, lang):
+    @classmethod
+    def regexify_variable(cls, regex, lang):
         def to_variable(match):
             var = getattr(lang, match.group('name'))
             return '(%s)' % '|'.join(re.escape(x) for x in var)
-        regex = self.VOWELS_PATTERN.sub('<vowels>', regex)
-        regex = self.VARIABLE_PATTERN.sub(to_variable, regex)
+        regex = cls.VOWELS_PATTERN.sub('<vowels>', regex)
+        regex = cls.VARIABLE_PATTERN.sub(to_variable, regex)
         return regex
 
     def find_actual_variables(self, pattern):
