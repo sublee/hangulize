@@ -24,6 +24,7 @@ class German(Language):
         ('sch',           'Z'),
         ('{a|o|u}ch',     'X'),
         ('ch',            'x'),
+        ('eig$',          'eik'),
         ('ig$',           'ix'),
         ('{@}g$',         'k'),
         ('{@}h{<cons>}',  None),
