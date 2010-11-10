@@ -148,11 +148,11 @@ class Hungarian(Language):
         def normalize_only_unsafe(string):
             map = {u'Á': u'á',
                    u'Ö': u'ö',
-                   u'?': u'ö',
-                   u'?': u'ö',
+                   u'Ő': u'ö',
+                   u'ő': u'ö',
                    u'Ü': u'ü',
-                   u'?': u'ü',
-                   u'?': u'ü'}
+                   u'Ű': u'ü',
+                   u'ű': u'ü'}
             safe = map.keys() + map.values()
             for c in string:
                 if c not in safe:
