@@ -68,7 +68,7 @@ class HungarianTestCase(HangulizeTestCase):
         assert u'케즈드' == self.hangulize(u'kezd')
         assert u'블루즈' == self.hangulize(u'blúz')
         assert u'자크' == self.hangulize(u'zsák')
-        #assert u'퇴주데' == self.hangulize(u'tőzsde')
+        assert u'퇴주데' == self.hangulize(u'tőzsde')
         assert u'로주' == self.hangulize(u'rozs')
         assert u'어여크' == self.hangulize(u'ajak')
         assert u'페이' == self.hangulize(u'fej')
@@ -85,11 +85,11 @@ class HungarianTestCase(HangulizeTestCase):
         assert u'토르너' == self.hangulize(u'torna')
         assert u'로커' == self.hangulize(u'róka')
         assert u'쇠르' == self.hangulize(u'sör')
-        #assert u'뇌' == self.hangulize(u'nő')
+        assert u'뇌' == self.hangulize(u'nő')
         assert u'분더' == self.hangulize(u'bunda')
         assert u'후시' == self.hangulize(u'hús')
         assert u'퓌슈트' == self.hangulize(u'füst')
-        #assert u'퓌' == self.hangulize(u'fű')
+        assert u'퓌' == self.hangulize(u'fű')
     
     def test_1st(self):
         """제1항: k, p

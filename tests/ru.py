@@ -82,18 +82,18 @@ class RussianTestCase(HangulizeTestCase):
         assert u'자돕스카야' == self.hangulize(u'Жадовская')
         assert u'즈다노프' == self.hangulize(u'Жданов')
         assert u'루시코프' == self.hangulize(u'Лужков')
-        #assert u'케베시' == self.hangulize(u'Кебеж')
+        assert u'케베시' == self.hangulize(u'Кебеж')
         assert u'유리' == self.hangulize(u'Юрий')
         assert u'안드레이' == self.hangulize(u'Андрей')
         assert u'벨리' == self.hangulize(u'Белый')
         assert u'악사코프' == self.hangulize(u'Аксаков')
         assert u'아바칸' == self.hangulize(u'Абакан')
-        #assert u'페트로프' == self.hangulize(u'Петров')
+        assert u'페트로프' == self.hangulize(u'Петров')
         assert u'예브게니' == self.hangulize(u'Евгений')
         assert u'알렉세예프' == self.hangulize(u'Алексеев')
         assert u'예르텔' == self.hangulize(u'Эртель')
         assert u'이바노프' == self.hangulize(u'Иванов')
-        #assert u'이오시프' == self.hangulize(u'Иосиф')
+        assert u'이오시프' == self.hangulize(u'Иосиф')
         assert u'호먀코프' == self.hangulize(u'Хомяков')
         assert u'오카' == self.hangulize(u'Ока')
         assert u'우샤코프' == self.hangulize(u'Ушаков')
@@ -148,7 +148,7 @@ class RussianTestCase(HangulizeTestCase):
         """제4항
         자음 앞의 -ds(дс)-는 ‘츠'로 적는다.
         """
-        #assert u'페트로자보츠크' == self.hangulize(u'Петрозаводск')
+        assert u'페트로자보츠크' == self.hangulize(u'Петрозаводск')
         assert u'베르나츠키' == self.hangulize(u'Вернадский')
 
     def test_5th(self):
