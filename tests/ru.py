@@ -8,8 +8,9 @@ class RussianTestCase(HangulizeTestCase):
 
     lang = Russian()
 
-    def test_etc(self):
+    def test_examples_of_iceager(self):
         assert u'프레미예르' == self.hangulize(u'Премьер')
+        assert u'압크세시야' == self.hangulize(u'Авксесия')
 
     def test_basic(self):
         """ http://korean.go.kr/09_new/dic/rule/rule_foreign_0119.jsp """
