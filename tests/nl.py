@@ -128,7 +128,10 @@ class DutchTestCase(HangulizeTestCase):
 
     def test_1st(self):
         """제1항
-        무성 파열음 p, t, k는 자음 앞이나 어말에 올 경우에는 각각 받침 ‘ㅂ, ㅅ, ㄱ'으로 적는다. 다만, 앞 모음이 이중 모음이거나 장모음(같은 모음을 겹쳐 적는 경우)인 경우와 앞이나 뒤의 자음이 유음이나 비음인 경우에는 ‘프, 트, 크'로 적는다.
+        무성 파열음 p, t, k는 자음 앞이나 어말에 올 경우에는 각각 받침
+        ‘ㅂ, ㅅ, ㄱ'으로 적는다. 다만, 앞 모음이 이중 모음이거나 장모음(같은
+        모음을 겹쳐 적는 경우)인 경우와 앞이나 뒤의 자음이 유음이나 비음인
+        경우에는 ‘프, 트, 크'로 적는다.
         """
         assert u'빗' == self.hangulize(u'Wit')
         assert u'헤닙' == self.hangulize(u'Gennip')
@@ -141,7 +144,10 @@ class DutchTestCase(HangulizeTestCase):
 
     def test_2nd(self):
         """제2항
-        유성 파열음 b, d가 어말에 올 경우에는 각각 ‘프, 트'로 적고, 어중에 올 경우에는 앞이나 뒤의 자음이 유음이나 비음인 경우와 앞 모음이 이중모음이거나 장모음(같은 모음을 겹쳐 적는 경우)인 경우에는 ‘브, 드'로 적는다. 그 외에는 모두 받침 ‘ㅂ, ㅅ'으로 적는다.
+        유성 파열음 b, d가 어말에 올 경우에는 각각 ‘프, 트'로 적고, 어중에 올
+        경우에는 앞이나 뒤의 자음이 유음이나 비음인 경우와 앞 모음이
+        이중모음이거나 장모음(같은 모음을 겹쳐 적는 경우)인 경우에는 ‘브, 드'로
+        적는다. 그 외에는 모두 받침 ‘ㅂ, ㅅ'으로 적는다.
         """
         assert u'브람' == self.hangulize(u'Bram')
         assert u'헨드릭' == self.hangulize(u'Hendrik')
@@ -152,7 +158,8 @@ class DutchTestCase(HangulizeTestCase):
 
     def test_3rd(self):
         """제3항
-        v가 어두에 올 경우에는 ‘ㅍ, 프'로 적고, 그 외에는 모두 ‘ㅂ, 브'로 적는다.
+        v가 어두에 올 경우에는 ‘ㅍ, 프'로 적고, 그 외에는 모두 ‘ㅂ, 브'로
+        적는다.
         """
         assert u'펠트만' == self.hangulize(u'Veltman')
         assert u'프리스' == self.hangulize(u'Vries')
@@ -172,7 +179,7 @@ class DutchTestCase(HangulizeTestCase):
         """제5항
         g, ch는 ‘ㅎ'으로 적되, 차용어의 경우에는 해당 언어의 발음에 따라 적는다.
         """
-        # gulden휠던
+        assert u'휠던' == self.hangulize(u'gulden')
         assert u'하흐' == self.hangulize(u'Haag')
         assert u'호흐' == self.hangulize(u'Hooch')
         assert u'폴허르' == self.hangulize(u'Volcher')
@@ -188,7 +195,8 @@ class DutchTestCase(HangulizeTestCase):
 
     def test_7th(self):
         """제7항
-        어중의 l이 모음 앞에 오거나 모음이 따르지 않는 비음 앞에 올 때에는 ‘?'로 적는다. 다만, 비음 뒤의 l은 모음 앞에 오더라도 ‘ㄹ'로 적는다.
+        어중의 l이 모음 앞에 오거나 모음이 따르지 않는 비음 앞에 올 때에는
+        ‘?'로 적는다. 다만, 비음 뒤의 l은 모음 앞에 오더라도 ‘ㄹ'로 적는다.
         """
         assert u'틸러' == self.hangulize(u'Tiele')
         assert u'잘름' == self.hangulize(u'Zalm')
@@ -215,7 +223,8 @@ class DutchTestCase(HangulizeTestCase):
 
     def test_10th(self):
         """제10항
-        e는 ‘에'로 적는다. 다만, 이음절 이상에서 마지막 음절에 오는 e와 어말의 e는 모두 ‘어'로 적는다.
+        e는 ‘에'로 적는다. 다만, 이음절 이상에서 마지막 음절에 오는 e와 어말의
+        e는 모두 ‘어'로 적는다.
         """
         assert u'데니스' == self.hangulize(u'Dennis')
         assert u'브레다' == self.hangulize(u'Breda')
@@ -226,7 +235,8 @@ class DutchTestCase(HangulizeTestCase):
 
     def test_11st(self):
         """제11항
-        같은 모음이 겹치는 경우에는 겹치지 않은 경우와 같이 적는다. 다만 ee는 ‘에이'로 적는다.
+        같은 모음이 겹치는 경우에는 겹치지 않은 경우와 같이 적는다. 다만 ee는
+        ‘에이'로 적는다.
         """
         assert u'호흐' == self.hangulize(u'Hooch')
         assert u'몬드리안' == self.hangulize(u'Mondriaan')
