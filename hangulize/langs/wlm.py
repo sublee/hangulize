@@ -26,6 +26,8 @@ class MiddleWelsh(Language):
         ('glan', 'glan-'),
         ('^lan', 'lan-'),
         ('glyn', 'glyn-'),
+        ('gwen', 'gwen-'),
+        ('gwyn', 'gwyn-'),
         ('^lyn', 'lyn-'),
         ('llain', 'llain-'),
         ('llan', 'llan-'),
