@@ -26,6 +26,7 @@ def suite():
     from ru import RussianTestCase
     from cy import WelshTestCase
     from wlm import MiddleWelshTestCase
+    from bg import BulgarianTestCase
     suite = unittest.TestSuite()
     suite.addTest(unittest.makeSuite(APITestCase))
     suite.addTest(unittest.makeSuite(PatternTestCase))
@@ -47,4 +48,5 @@ def suite():
     suite.addTest(unittest.makeSuite(RussianTestCase))
     suite.addTest(unittest.makeSuite(WelshTestCase))
     suite.addTest(unittest.makeSuite(MiddleWelshTestCase))
+    suite.addTest(unittest.makeSuite(BulgarianTestCase))
     return suite
