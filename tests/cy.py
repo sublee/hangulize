@@ -41,3 +41,4 @@ class WelshTestCase(HangulizeTestCase):
         assert u'쿰' == self.hangulize(u'cwm')
         assert u'벙 웰리' == self.hangulize(u'fy ngwely')
         assert u'번 하다이' == self.hangulize(u'fy nhadau')
+        assert u'방크 턴돌' == self.hangulize(u"Banc Ty'nddôl")
