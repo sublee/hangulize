@@ -109,6 +109,14 @@ Hangulize는 위 아이디어를 실현하는 첫번째 프로젝트입니다.
     -> '     '
     우슈코
 
+커뮤니티
+--------
+
+Hangulize는 [메일링리스트][]와 IRC
+채널(irc://irc.ozinger.org/hangulize)을 운영하고 있습니다. Hangulize 개발자들이
+주고받는 이야기를 보고싶거나 Hangulize에 제안할 좋은 아이디어가 있다면 이쪽으로
+와주시기 바랍니다.
+
 만든이
 ------
 
@@ -123,3 +131,14 @@ Hangulize에는 BSD 라이선스가 적용되어있습니다. 따라서 소스�
 쓰여있습니다.
 
  [1]: http://korean.go.kr/09_new/dic/rule/rule_foreign_index.jsp
+
+링크
+----
+
+- [웹사이트][]
+- [메일링리스트][]
+- [꽁치][] - Hangulize IRC 봇
+
+ [웹사이트]: http://www.hangulize.org/
+ [메일링리스트]: http://groups.google.com/group/hangulize
+ [꽁치]: https://github.com/kkung/kkongchi
