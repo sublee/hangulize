@@ -6,6 +6,8 @@ class ModernGreek(Language):
     """For transcribing Modern Greek."""
 
     vowels = u'αάεέηήιίϊοόυύϋωώΥ'
+    sv = u'αεηιουω'
+    av = u'άέήίόύώ'
     cs = u'βγδζθκλμνξπρστφχψΙΝΤΧ'
     vl = u'θκξπστφχψΤΧ'
     v = u'βγδζλμνρΙΝ'

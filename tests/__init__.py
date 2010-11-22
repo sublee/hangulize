@@ -27,7 +27,7 @@ def suite():
     from cy import WelshTestCase
     from wlm import MiddleWelshTestCase
     from bg import BulgarianTestCase
-    #from ell import ModernGreekTestCase
+    from ell import ModernGreekTestCase
     from grc import AncientGreekTestCase
     suite = unittest.TestSuite()
     suite.addTest(unittest.makeSuite(APITestCase))
@@ -51,6 +51,6 @@ def suite():
     suite.addTest(unittest.makeSuite(WelshTestCase))
     suite.addTest(unittest.makeSuite(MiddleWelshTestCase))
     suite.addTest(unittest.makeSuite(BulgarianTestCase))
-    #suite.addTest(unittest.makeSuite(ModernGreekTestCase))
+    suite.addTest(unittest.makeSuite(ModernGreekTestCase))
     suite.addTest(unittest.makeSuite(AncientGreekTestCase))
     return suite
