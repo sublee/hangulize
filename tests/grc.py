@@ -22,8 +22,7 @@ class AncientGreekTestCase(HangulizeTestCase):
         assert u'다르다넬리아' == self.hangulize(u'Δαρδανέλλια')
         assert u'데카폴리스' == self.hangulize(u'Δεκάπολις')
         assert u'델포이' == self.hangulize(u'Δελφοί')
-        #assert u'데모스' == self.hangulize(u'Δῆλος')
-        # => 델로스
+        assert u'델로스' == self.hangulize(u'Δῆλος')
         assert u'엘레판티네' == self.hangulize(u'Ἐλεφαντίνη')
         assert u'헬라스' == self.hangulize(u'Ἑλλάς')
         assert u'헬레스폰토스' == self.hangulize(u'Ἑλλήσποντος')
@@ -56,8 +55,7 @@ class AncientGreekTestCase(HangulizeTestCase):
         assert u'아테나' == self.hangulize(u'Ἀθηνᾶ')
         assert u'데메테르' == self.hangulize(u'Δημήτηρ')
         assert u'헤라' == self.hangulize(u'Ἥρα')
-        #assert u'아켈레오스' == self.hangulize(u'Ἀχελῷος')
-        # => 아켈로오스
+        assert u'아켈로오스' == self.hangulize(u'Ἀχελῷος')
         assert u'아케론' == self.hangulize(u'Ἀχέρων')
         assert u'아도니스' == self.hangulize(u'Ἄδωνις')
         assert u'아이올로스' == self.hangulize(u'Αἴολος')
