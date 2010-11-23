@@ -29,6 +29,8 @@ def suite():
     from bg import BulgarianTestCase
     from ell import ModernGreekTestCase
     from grc import AncientGreekTestCase
+    from ka1 import Georgian1TestCase
+    from ka2 import Georgian2TestCase
     suite = unittest.TestSuite()
     suite.addTest(unittest.makeSuite(APITestCase))
     suite.addTest(unittest.makeSuite(PatternTestCase))
@@ -53,4 +55,6 @@ def suite():
     suite.addTest(unittest.makeSuite(BulgarianTestCase))
     suite.addTest(unittest.makeSuite(ModernGreekTestCase))
     suite.addTest(unittest.makeSuite(AncientGreekTestCase))
+    suite.addTest(unittest.makeSuite(Georgian1TestCase))
+    suite.addTest(unittest.makeSuite(Georgian2TestCase))
     return suite

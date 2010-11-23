@@ -36,4 +36,5 @@ class MiddleWelshTestCase(HangulizeTestCase):
         assert u'훼들라이 오도' == self.hangulize(u'Chwedlau Odo')
         assert u'퀼후흐 악 올웬' == self.hangulize(u'Culhwch ac Olwen')
         assert u'마스 바브 마소누이' == self.hangulize(u'Math fab Mathonwy')
-        assert u'푸이흘 펜데비그 더베드' == self.hangulize(u'Pwyll Pendefig Dyfed')
+        assert u'푸이흘 펜데비그 더베드' == \
+               self.hangulize(u'Pwyll Pendefig Dyfed')
