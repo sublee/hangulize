@@ -28,7 +28,8 @@ class ModernGreekTestCase(HangulizeTestCase):
         assert u'알렉산드루폴리' == self.hangulize(u'Αλεξανδρούπολη')
         assert u'알렉시스' == self.hangulize(u'Αλέξης')
         assert u'알리모스' == self.hangulize(u'Άλιμος')
-        assert u'암벨로키피 테살로니키스' == self.hangulize(u'Αμπελόκηποι Θεσσαλονίκης')
+        assert u'암벨로키피 테살로니키스' == \
+               self.hangulize(u'Αμπελόκηποι Θεσσαλονίκης')
         assert u'아나스타시오스' == self.hangulize(u'Αναστάσιος')
         assert u'안드레아스' == self.hangulize(u'Ανδρέας')
         assert u'안티모스' == self.hangulize(u'Άνθιμος')
@@ -298,7 +299,8 @@ class ModernGreekTestCase(HangulizeTestCase):
         assert u'피사리디스' == self.hangulize(u'Πισσαρίδης')
         assert u'플라카' == self.hangulize(u'Πλάκα')
         assert u'플라톤' == self.hangulize(u'Πλάτων')
-        assert u'폴리흐니 테살로니키스' == self.hangulize(u'Πολίχνη Θεσσαλονίκης')
+        assert u'폴리흐니 테살로니키스' == \
+               self.hangulize(u'Πολίχνη Θεσσαλονίκης')
         assert u'폴리보스' == self.hangulize(u'Πόλυβος')
         assert u'폴리니키스' == self.hangulize(u'Πολυνείκης')
         assert u'프리아모스' == self.hangulize(u'Πρίαμος')
