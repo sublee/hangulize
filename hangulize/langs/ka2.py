@@ -3,7 +3,7 @@ from hangulize import *
 
 
 class Georgian2(Language):
-    """For transcribing Georgian, 2nd scheme"""
+    """For transcribing Georgian(narrow transcription)."""
 
     vowels = u'აეიოუ'
     cs = u'ბგდვზთკლმნპჟრსტფქღყშჩცძწჭხჯჰV'
