@@ -90,3 +90,4 @@ class Georgian2TestCase(HangulizeTestCase):
         assert u'즈와리' == self.hangulize(u'ჯვარი')
         assert u'음뜨끄와리' == self.hangulize(u'მტკვარი')
         assert u'자르즈마' == self.hangulize(u'ზარზმა')
+        assert u'아프또' == self.hangulize(u'ავტო')
