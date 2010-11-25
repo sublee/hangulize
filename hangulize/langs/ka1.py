@@ -3,13 +3,16 @@ from hangulize import *
 
 
 class Georgian1(Language):
-    """For transcribing Georgian(broad transcription)."""
+    """For transcribing Georgian (broad transcription).
+    Only the lenis and aspirated series of stops and affricates of Korean are
+    used. The Georgian grapheme ვ is consistently taken to be /v/, except after
+    a vowel and before a voiceless stop or affricate, in which case it is taken
+    to be /f/."""
 
     vowels = u'აეიოუ'
-    cs = u'ბგდვზთკლმნპჟრსტფქღყშჩცძწჭხჯჰ'
-    vl = u'თკპსტფქყშჩცწჭხჰ'
+    cs = u'ბგდვზთკლმნპჟრსტფქღყშჩცძწჭხჯჰჶ'
+    vl = u'თკპტფქყჩცწჭ'
     ob = u'ბგდვზთკპჟსტფქღყშჩცძწჭხჯჰ'
-    so = u'ლმნრ'
     notation = Notation([
         (u'ჱ', u'ეჲ'),
         (u'ჲ', u'ი'),
@@ -17,6 +20,33 @@ class Georgian1(Language):
         (u'ჳ', u'უ'),
         (u'ჴ', u'ხ'),
         (u'ჵ', u'ო'),
+        (u'{@}ვ{<vl>}', u'ჶ'),
+        (u'ვ$', u'ჶ'),
+        (u'ბბ', u'ბ'),
+        (u'გგ', u'გ'),
+        (u'დდ', u'დ'),
+        (u'ვვ', u'ვ'),
+        (u'ზზ', u'ზ'),
+        (u'თთ', u'თ'),
+        (u'კკ', u'კ'),
+        (u'ლლ', u'ლ'),
+        (u'მმ', u'მ,მ'),
+        (u'ნნ', u'ნ,ნ'),
+        (u'პპ', u'პ'),
+        (u'ჟჟ', u'ჟ'),
+        (u'რრ', u'რ'),
+        (u'სს', u'ს'),
+        (u'ტტ', u'ტ'),
+        (u'ფფ', u'ფ'),
+        (u'ქქ', u'ქ'),
+        (u'ღღ', u'ღ'),
+        (u'ყყ', u'ყ'),
+        (u'შშ', u'შ'),
+        (u'ხხ', u'ხ'),
+        (u'ჰჰ', u'ჰ'),
+        (u'დ{ძ|ჯ}', None),
+        (u'თ{ჩ|ც}', None),
+        (u'ტ{წ|ჭ}', None),
         (u'დჟ', u'ჯ'),
         (u'თშ', u'ჩ'),
         (u'ტშ', u'ჭ'),
@@ -36,8 +66,6 @@ class Georgian1(Language):
         (u'ჭ{ვ}', u'ჭუ'),
         (u'ჭ{<cs>}', u'ჭი'),
         (u'ჭ$', u'ძი'),
-        (u'მმ', u'მ,მ'),
-        (u'ნნ', u'ნ,ნ'),
         (u'^ლ', u'ლ;'),
         (u'^ნ', u'ნ;'),
         (u'ლ$', u'ლ,'),
@@ -94,6 +122,7 @@ class Georgian1(Language):
         (u'ხ', Choseong(H)),
         (u'ჯ', Choseong(J)),
         (u'ჰ', Choseong(H)),
+        (u'ჶ', Choseong(P)),
         (u'ჸ', Choseong(NG)),
         (u'შა', Choseong(S), Jungseong(YA)),
         (u'შე', Choseong(S), Jungseong(YE)),
