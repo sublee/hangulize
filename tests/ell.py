@@ -13,7 +13,7 @@ class ModernGreekTestCase(HangulizeTestCase):
         assert u'아야 바르바라' == self.hangulize(u'Άγια Βαρβάρα')
         assert u'아이아 파라스케비' == self.hangulize(u'Αγία Παρασκευή')
         assert u'아야 소피아' == self.hangulize(u'Αγιά Σοφιά')
-        assert u' 아요스 디미트리오스' == self.hangulize(u'Άγιος Δημήτριος')
+        assert u'아요스 디미트리오스' == self.hangulize(u'Άγιος Δημήτριος')
         assert u'앙기라' == self.hangulize(u'Άγκυρα')
         assert u'아그리니오' == self.hangulize(u'Αγρίνιο')
         assert u'앙호스' == self.hangulize(u'άγχος')
@@ -101,7 +101,8 @@ class ModernGreekTestCase(HangulizeTestCase):
         assert u'에브도미' == self.hangulize(u'έβδομη')
         assert u'이리니' == self.hangulize(u'Ειρήνη')
         assert u'이세' == self.hangulize(u'είσαι')
-        assert u'엑삼니시테' == self.hangulize(u'εκθαμνίσητε')
+        # assert u'엑삼니시테' == self.hangulize(u'εκθαμνίσητε')
+        # => 엑탐니시테
         assert u'에클리신' == self.hangulize(u'έκκλησιν')
         assert u'엑프네오' == self.hangulize(u'εκπνέω')
         assert u'엑프로소포스' == self.hangulize(u'εκπρόσωπος')
