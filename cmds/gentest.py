@@ -76,7 +76,8 @@ def generate_testsuite(url, name, locale):
         return tag.name == 'h3' and tag.get('class') in ('big', 'clear') or \
                tag.name == 'h4' and len(tag.attrs) == 0 or \
                tag.name == 'p' and tag.get('class') == 'h3Text' or \
-               tag.name == 'li' and tag.parent.parent.get('class') == 'jamobox'
+               tag.name == 'li' and tag.parent.parent.get('class') in \
+               ('jamobox', 'rulebox01')
     def text(tag):
         return ''.join(e for e in tag.recursiveChildGenerator() \
                          if isinstance(e, unicode))
@@ -120,7 +121,7 @@ def generate_testsuite(url, name, locale):
                                              body=rulebody,
                                              assertions=assertions)
         body.append(method)
-    body = ''.join(body)
+    body = ''.join(body).strip()
 
     return TESTCASE_TEMPLATE.format(name=name, locale=locale,
                                     url=url, body=body)
