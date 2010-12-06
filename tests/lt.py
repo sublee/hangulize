@@ -75,6 +75,7 @@ class LithuanianTestCase(HangulizeTestCase):
         assert u'알리투스' == self.hangulize(u'Alytus')
         assert u'비르자이' == self.hangulize(u'Biržai')
         assert u'두빙갸이' == self.hangulize(u'Dubingiai')
+        assert u'이스루티스' == self.hangulize(u'Įsrutis')
         assert u'카우나스' == self.hangulize(u'Kaunas')
         assert u'케르나베' == self.hangulize(u'Kernavė')
         assert u'클라이페다' == self.hangulize(u'Klaipėda')
