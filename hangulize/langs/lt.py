@@ -26,6 +26,7 @@ class Lithuanian(Language):
         ('y', 'i'),
         ('ie', 'i%e'),
         ('i{@}', 'J'),
+        (u'į', 'i'),
         ('{s|S}je', 'Je'),
         ('{<cs>}je', 'e'),
         ('j{@}', 'J'),
