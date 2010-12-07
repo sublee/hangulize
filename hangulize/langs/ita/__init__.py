@@ -124,9 +124,7 @@ class Italian(Language):
     ])
 
     def normalize(self, string):
-        chars_pattern = self.chars_pattern
-        pattern = "(?<=[%s])'(?=[%s])" % (chars_pattern, chars_pattern)
-        return re.sub(pattern, '', normalize_roman(string))
+        return normalize_roman(string)
 
 
 __lang__ = Italian
