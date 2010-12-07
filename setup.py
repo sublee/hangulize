@@ -21,7 +21,7 @@ Hangulize transcribes a loanword to Hangul(the Korean alphabet).
 Links
 `````
 
-* `Try on a web <http://www.hangulize.org/>`_
+* `Try Online <http://www.hangulize.org/>`_
 * `GitHub repository <http://github.com/sublee/hangulize>`_
 * `development version
   <http://github.com/sublee/hangulize/zipball/master#egg=hangulize-dev>`_
