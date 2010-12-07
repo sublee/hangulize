@@ -102,87 +102,27 @@ class SerboCroatian(Language):
     ])
 
     def normalize(self, string):
-        def normalize_only_unsafe(string):
-            map = {u'А': 'a',
-                   u'а': 'a',
-                   u'Б': 'b',
-                   u'б': 'b',
-                   u'В': 'v',
-                   u'в': 'v',
-                   u'Г': 'g',
-                   u'г': 'g',
-                   u'Д': 'd',
-                   u'д': 'd',
-                   u'Ђ': u'đ',
-                   u'ђ': u'đ',
-                   u'Е': 'e',
-                   u'е': 'e',
-                   u'Ж': u'ž',
-                   u'ж': u'ž',
-                   u'З': 'z',
-                   u'з': 'z',
-                   u'И': 'i',
-                   u'и': 'i',
-                   u'Ј': 'j',
-                   u'ј': 'j',
-                   u'К': 'k',
-                   u'к': 'k',
-                   u'Л': 'l',
-                   u'л': 'l',
-                   u'Љ': 'lj',
-                   u'љ': 'lj',
-                   u'М': 'm',
-                   u'м': 'm',
-                   u'Н': 'n',
-                   u'н': 'n',
-                   u'Њ': 'nj',
-                   u'њ': 'nj',
-                   u'О': 'o',
-                   u'о': 'o',
-                   u'П': 'p',
-                   u'п': 'p',
-                   u'Р': 'r',
-                   u'р': 'r',
-                   u'С': 's',
-                   u'с': 's',
-                   u'Т': 't',
-                   u'т': 't',
-                   u'Ћ': u'ć',
-                   u'ћ': u'ć',
-                   u'У': 'u',
-                   u'у': 'u',
-                   u'Ф': 'f',
-                   u'ф': 'f',
-                   u'Х': 'h',
-                   u'х': 'h',
-                   u'Ц': 'c',
-                   u'ц': 'c',
-                   u'Ч': 'C',
-                   u'ч': 'C',
-                   u'Џ': u'dž',
-                   u'џ': u'dž',
-                   u'Ш': u'š',
-                   u'ш': u'š',
-                   u'Č': u'č',
-                   u'Ć': u'ć',
-                   u'Đ': u'đ',
-                   u'Š': u'š',
-                   u'Ž': u'ž',
-                   u'Ǆ': u'dž', # DŽ digraph
-                   u'ǅ': u'dž', # Dž digraph
-                   u'Ǉ': 'lj', # LJ digraph
-                   u'ǈ': 'lj', # Lj digraph
-                   u'Ǌ': 'nj', # NJ digraph
-                   u'ǋ': 'nj'} # Nj digraph
-            safe = map.keys() + map.values()
-            for c in string:
-                if c not in safe:
-                    yield normalize_roman(c)
-                elif c in map:
-                    yield map[c]
-                else:
-                    yield c
-        return ''.join(normalize_only_unsafe(string))
+        return normalize_roman(string, {
+            u'А': 'a', u'а': 'a', u'Б': 'b', u'б': 'b', u'В': 'v',
+            u'в': 'v', u'Г': 'g', u'г': 'g', u'Д': 'd', u'д': 'd',
+            u'Ђ': u'đ', u'ђ': u'đ', u'Е': 'e', u'е': 'e', u'Ж': u'ž',
+            u'ж': u'ž', u'З': 'z', u'з': 'z', u'И': 'i', u'и': 'i',
+            u'Ј': 'j', u'ј': 'j', u'К': 'k', u'к': 'k', u'Л': 'l',
+            u'л': 'l', u'Љ': 'lj', u'љ': 'lj', u'М': 'm', u'м': 'm',
+            u'Н': 'n', u'н': 'n', u'Њ': 'nj', u'њ': 'nj', u'О': 'o',
+            u'о': 'o', u'П': 'p', u'п': 'p', u'Р': 'r', u'р': 'r',
+            u'С': 's', u'с': 's', u'Т': 't', u'т': 't', u'Ћ': u'ć',
+            u'ћ': u'ć', u'У': 'u', u'у': 'u', u'Ф': 'f', u'ф': 'f',
+            u'Х': 'h', u'х': 'h', u'Ц': 'c', u'ц': 'c', u'Ч': 'C',
+            u'ч': 'C', u'Џ': u'dž', u'џ': u'dž', u'Ш': u'š', u'ш': u'š',
+            u'Č': u'č', u'Ć': u'ć', u'Đ': u'đ', u'Š': u'š', u'Ž': u'ž',
+            u'Ǆ': u'dž', # DŽ digraph
+            u'ǅ': u'dž', # Dž digraph
+            u'Ǉ': 'lj', # LJ digraph
+            u'ǈ': 'lj', # Lj digraph
+            u'Ǌ': 'nj', # NJ digraph
+            u'ǋ': 'nj' # Nj digraph
+        })
 
 
 __lang__ = SerboCroatian

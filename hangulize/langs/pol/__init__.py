@@ -157,24 +157,10 @@ class Polish(Language):
     ])
 
     def normalize(self, string):
-        def normalize_only_unsafe(string):
-            map = {u'Ą': u'ą',
-                   u'Ć': u'ć',
-                   u'Ę': u'ę',
-                   u'Ł': u'ł',
-                   u'Ó': u'ó',
-                   u'Ś': u'ś',
-                   u'Ź': u'ź',
-                   u'Ż': u'ż'}
-            safe = map.keys() + map.values()
-            for c in string:
-                if c not in safe:
-                    yield normalize_roman(c)
-                elif c in map:
-                    yield map[c]
-                else:
-                    yield c
-        return ''.join(normalize_only_unsafe(string))
+        return normalize_roman(string, {
+            u'Ą': u'ą', u'Ć': u'ć', u'Ę': u'ę', u'Ł': u'ł', u'Ó': u'ó',
+            u'Ś': u'ś', u'Ź': u'ź', u'Ż': u'ż'
+        })
 
 
 __lang__ = Polish

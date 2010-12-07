@@ -121,17 +121,8 @@ class German(Language):
     ])
 
     def normalize(self, string):
-        def normalize_only_unsafe(string):
-            map = {u'Ä': u'ä', u'Ö': u'ö', u'Ü': u'ü'}
-            safe = map.keys() + map.values() + [u'ß']
-            for c in string:
-                if c not in safe:
-                    yield normalize_roman(c)
-                elif c in map:
-                    yield map[c]
-                else:
-                    yield c
-        return ''.join(normalize_only_unsafe(string))
+        additional = {u'Ä': u'ä', u'Ö': u'ö', u'Ü': u'ü', u'ß': u'ß'}
+        return normalize_roman(string, additional)
 
 
 __lang__ = German

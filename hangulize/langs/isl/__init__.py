@@ -206,26 +206,10 @@ class Icelandic(Language):
     ])
 
     def normalize(self, string):
-        def normalize_only_unsafe(string):
-            map = {u'Á': u'á',
-                   u'Ð': u'ð',
-                   u'É': u'é',
-                   u'Í': u'í',
-                   u'Ó': u'ó',
-                   u'Ú': u'ú',
-                   u'Ý': u'ý',
-                   u'Þ': u'þ',
-                   u'Æ': u'æ',
-                   u'Ö': u'ö'}
-            safe = map.keys() + map.values()
-            for c in string:
-                if c not in safe:
-                    yield normalize_roman(c)
-                elif c in map:
-                    yield map[c]
-                else:
-                    yield c
-        return ''.join(normalize_only_unsafe(string))
+        return normalize_roman(string, {
+            u'Á': u'á', u'Ð': u'ð', u'É': u'é', u'Í': u'í', u'Ó': u'ó',
+            u'Ú': u'ú', u'Ý': u'ý', u'Þ': u'þ', u'Æ': u'æ', u'Ö': u'ö'
+        })
 
 
 __lang__ = Icelandic

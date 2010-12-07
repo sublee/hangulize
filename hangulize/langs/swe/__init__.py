@@ -211,29 +211,11 @@ class Swedish(Language):
     ])
 
     def normalize(self, string):
-        def normalize_only_unsafe(string):
-            map = {u'Å': u'å',
-                   u'Ǻ': u'å',
-                   u'ǻ': u'å',
-                   u'Ä': u'ä',
-                   u'Ö': u'ö',
-                   u'Æ': u'ä',
-                   u'æ': u'ä',
-                   u'Ø': u'ö',
-                   u'ø': u'ö',
-                   u'Ç': 's',
-                   u'ç': 's',
-                   u'Ü': 'y',
-                   u'ü': 'y'}
-            safe = map.keys() + map.values()
-            for c in string:
-                if c not in safe:
-                    yield normalize_roman(c)
-                elif c in map:
-                    yield map[c]
-                else:
-                    yield c
-        return ''.join(normalize_only_unsafe(string))
+        return normalize_roman(string, {
+            u'Å': u'å', u'Ǻ': u'å', u'ǻ': u'å', u'Ä': u'ä', u'Ö': u'ö',
+            u'Æ': u'ä', u'æ': u'ä', u'Ø': u'ö', u'ø': u'ö', u'Ç': 's',
+            u'ç': 's', u'Ü': 'y', u'ü': 'y'
+        })
 
 
 __lang__ = Swedish

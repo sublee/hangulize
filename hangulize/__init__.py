@@ -7,8 +7,8 @@ Korean Alphabet Transcription.
 """
 import sys
 import re
-import unicodedata
 from hangulize.hangul import *
+from hangulize.normalization import *
 
 
 SPACE = '_' # u'\U000f0000'
@@ -324,26 +324,6 @@ class Rewrite(object):
             return self.VARIABLE_PATTERN.finditer(pattern)
         except TypeError:
             return ()
-
-
-def normalize_roman(string):
-    """Removes diacritics from the string and converts to lowercase.
-
-        >>> normalize_roman(u'E\xe8\xe9') # Eèé
-        u'eee'
-    """
-    return ''.join((c for c in unicodedata.normalize('NFD', string) \
-                      if unicodedata.category(c) != 'Mn')).lower()
-
-
-def normalize_case(string, map):
-    """Removes diacritics from the string and converts to lowercase.
-
-        >>> normalize_roman(u'E\xe8\xe9') # Eèé
-        u'eee'
-    """
-    return ''.join((c for c in unicodedata.normalize('NFD', string) \
-                      if unicodedata.category(c) != 'Mn')).lower()
 
 
 def complete_syllable(syllable):

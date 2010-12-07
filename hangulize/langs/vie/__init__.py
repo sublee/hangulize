@@ -107,72 +107,20 @@ class Vietnamese(Language):
     ])
 
     def normalize(self, string):
-        def normalize_only_unsafe(string):
-            map = {u'Ă': u'ă',
-                   u'Ằ': u'ă',
-                   u'ằ': u'ă',
-                   u'Ẳ': u'ă',
-                   u'ẳ': u'ă',
-                   u'Ẵ': u'ă',
-                   u'ẵ': u'ă',
-                   u'Ắ': u'ă',
-                   u'ắ': u'ă',
-                   u'Ặ': u'ă',
-                   u'ặ': u'ă',
-                   u'Â': u'â',
-                   u'Ầ': u'â',
-                   u'ầ': u'â',
-                   u'Ẩ': u'â',
-                   u'ẩ': u'â',
-                   u'Ẫ': u'â',
-                   u'ẫ': u'â',
-                   u'Ấ': u'â',
-                   u'ấ': u'â',
-                   u'Ậ': u'â',
-                   u'ậ': u'â',
-                   u'Đ': u'đ',
-                   u'Ê': u'ê',
-                   u'Ề': u'ê',
-                   u'ề': u'ê',
-                   u'Ể': u'ê',
-                   u'ể': u'ê',
-                   u'Ễ': u'ê',
-                   u'ễ': u'ê',
-                   u'Ế': u'ê',
-                   u'ế': u'ê',
-                   u'Ệ': u'ê',
-                   u'ệ': u'ê',
-                   u'Ơ': u'ơ',
-                   u'Ờ': u'ơ',
-                   u'ờ': u'ơ',
-                   u'Ở': u'ơ',
-                   u'ở': u'ơ',
-                   u'Ỡ': u'ơ',
-                   u'ỡ': u'ơ',
-                   u'Ớ': u'ơ',
-                   u'ớ': u'ơ',
-                   u'Ợ': u'ơ',
-                   u'ợ': u'ơ',
-                   u'Ư': u'ư',
-                   u'Ừ': u'ư',
-                   u'ừ': u'ư',
-                   u'Ử': u'ư',
-                   u'ử': u'ư',
-                   u'Ữ': u'ư',
-                   u'ữ': u'ư',
-                   u'Ứ': u'ư',
-                   u'ứ': u'ư',
-                   u'Ự': u'ư',
-                   u'ự': u'ư'}
-            safe = map.keys() + map.values()
-            for c in string:
-                if c not in safe:
-                    yield normalize_roman(c)
-                elif c in map:
-                    yield map[c]
-                else:
-                    yield c
-        return ''.join(normalize_only_unsafe(string))
+        return normalize_roman(string, {
+            u'Ă': u'ă', u'Ằ': u'ă', u'ằ': u'ă', u'Ẳ': u'ă', u'ẳ': u'ă',
+            u'Ẵ': u'ă', u'ẵ': u'ă', u'Ắ': u'ă', u'ắ': u'ă', u'Ặ': u'ă',
+            u'ặ': u'ă', u'Â': u'â', u'Ầ': u'â', u'ầ': u'â', u'Ẩ': u'â',
+            u'ẩ': u'â', u'Ẫ': u'â', u'ẫ': u'â', u'Ấ': u'â', u'ấ': u'â',
+            u'Ậ': u'â', u'ậ': u'â', u'Đ': u'đ', u'Ê': u'ê', u'Ề': u'ê',
+            u'ề': u'ê', u'Ể': u'ê', u'ể': u'ê', u'Ễ': u'ê', u'ễ': u'ê',
+            u'Ế': u'ê', u'ế': u'ê', u'Ệ': u'ê', u'ệ': u'ê', u'Ơ': u'ơ',
+            u'Ờ': u'ơ', u'ờ': u'ơ', u'Ở': u'ơ', u'ở': u'ơ', u'Ỡ': u'ơ',
+            u'ỡ': u'ơ', u'Ớ': u'ơ', u'ớ': u'ơ', u'Ợ': u'ơ', u'ợ': u'ơ',
+            u'Ư': u'ư', u'Ừ': u'ư', u'ừ': u'ư', u'Ử': u'ư', u'ử': u'ư',
+            u'Ữ': u'ư', u'ữ': u'ư', u'Ứ': u'ư', u'ứ': u'ư', u'Ự': u'ư',
+            u'ự': u'ư'
+        })
 
 
 __lang__ = Vietnamese

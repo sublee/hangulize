@@ -149,28 +149,11 @@ class Lithuanian(Language):
     ])
 
     def normalize(self, string):
-        def normalize_only_unsafe(string):
-            map = {u'Č': u'č',
-                   u'Į': u'į',
-                   u'Í': u'į',
-                   u'í': u'į',
-                   u'Ì': u'į',
-                   u'ì': u'į',
-                   u'Ĩ': u'į',
-                   u'ĩ': u'į',
-                   u'Ī': u'į',
-                   u'ī': u'į',
-                   u'Š': u'š',
-                   u'Ž': u'ž'}
-            safe = map.keys() + map.values()
-            for c in string:
-                if c not in safe:
-                    yield normalize_roman(c)
-                elif c in map:
-                    yield map[c]
-                else:
-                    yield c
-        return ''.join(normalize_only_unsafe(string))
+        return normalize_roman(string, {
+            u'Č': u'č', u'Į': u'į', u'Í': u'į', u'í': u'į', u'Ì': u'į',
+            u'ì': u'į', u'Ĩ': u'į', u'ĩ': u'į', u'Ī': u'į', u'ī': u'į',
+            u'Š': u'š', u'Ž': u'ž'
+        })
 
 
 __lang__ = Lithuanian

@@ -149,24 +149,10 @@ class Czech(Language):
     ])
 
     def normalize(self, string):
-        def normalize_only_unsafe(string):
-            map = {u'Č': u'č',
-                   u'Ď': u'ď',
-                   u'Ě': u'ě',
-                   u'Ň': u'ň',
-                   u'Ř': u'ř',
-                   u'Š': u'š',
-                   u'Ť': u'ť',
-                   u'Ž': u'ž'}
-            safe = map.keys() + map.values()
-            for c in string:
-                if c not in safe:
-                    yield normalize_roman(c)
-                elif c in map:
-                    yield map[c]
-                else:
-                    yield c
-        return ''.join(normalize_only_unsafe(string))
+        return normalize_roman(string, {
+            u'Č': u'č', u'Ď': u'ď', u'Ě': u'ě', u'Ň': u'ň', u'Ř': u'ř',
+            u'Š': u'š', u'Ť': u'ť', u'Ž': u'ž'
+        })
 
 
 __lang__ = Czech

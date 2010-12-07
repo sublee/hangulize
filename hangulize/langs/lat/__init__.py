@@ -123,20 +123,8 @@ class Latin(Language):
     ])
 
     def normalize(self, string):
-        def normalize_only_unsafe(string):
-            map = {u'Ë': u'ë',
-                   u'Ü': u'ü',
-                   u'Æ': u'æ',
-                   u'Œ': u'œ'}
-            safe = map.keys() + map.values()
-            for c in string:
-                if c not in safe:
-                    yield normalize_roman(c)
-                elif c in map:
-                    yield map[c]
-                else:
-                    yield c
-        return ''.join(normalize_only_unsafe(string))
+        additional = {u'Ë': u'ë', u'Ü': u'ü', u'Æ': u'æ', u'Œ': u'œ'}
+        return normalize_roman(string, additional)
 
 
 __lang__ = Latin

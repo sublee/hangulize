@@ -155,23 +155,10 @@ class Latvian(Language):
     ])
 
     def normalize(self, string):
-        def normalize_only_unsafe(string):
-            map = {u'Č': u'č',
-                   u'Ģ': u'ģ',
-                   u'Ķ': u'ķ',
-                   u'Ļ': u'ļ',
-                   u'Ņ': u'ņ',
-                   u'Š': u'š',
-                   u'Ž': u'ž'}
-            safe = map.keys() + map.values()
-            for c in string:
-                if c not in safe:
-                    yield normalize_roman(c)
-                elif c in map:
-                    yield map[c]
-                else:
-                    yield c
-        return ''.join(normalize_only_unsafe(string))
+        return normalize_roman(string, {
+            u'Č': u'č', u'Ģ': u'ģ', u'Ķ': u'ķ', u'Ļ': u'ļ', u'Ņ': u'ņ',
+            u'Š': u'š', u'Ž': u'ž'
+        })
 
 
 __lang__ = Latvian

@@ -578,31 +578,11 @@ class Dutch(Language):
     ])
 
     def normalize(self, string):
-        def normalize_only_unsafe(string):
-            map = {u'Ç': u'ç',
-                   u'Ë': u'ë',
-                   u'É': u'é',
-                   u'È': u'é',
-                   u'è': u'é',
-                   u'Ê': u'é',
-                   u'ê': u'é',
-                   u'Ï': u'ï',
-                   u'Ḯ': u'ï', 
-                   u'Ḯ': u'ï',
-                   u'Ö': u'ö',
-                   u'Ĳ': u'ij',
-                   u'ĳ': u'ij',
-                   u'Ÿ': u'ij',
-                   u'ÿ': u'ij'}
-            safe = map.keys() + map.values()
-            for c in string:
-                if c not in safe:
-                    yield normalize_roman(c)
-                elif c in map:
-                    yield map[c]
-                else:
-                    yield c
-        return ''.join(normalize_only_unsafe(string))
+        return normalize_roman(string, {
+            u'Ç': u'ç', u'Ë': u'ë', u'É': u'é', u'È': u'é', u'è': u'é',
+            u'Ê': u'é', u'ê': u'é', u'Ï': u'ï', u'Ḯ': u'ï', u'Ḯ': u'ï',
+            u'Ö': u'ö', u'Ĳ': u'ij', u'ĳ': u'ij', u'Ÿ': u'ij', u'ÿ': u'ij'
+        })
 
 
 __lang__ = Dutch

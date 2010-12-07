@@ -104,17 +104,7 @@ class Spanish(Language):
     ])
 
     def normalize(self, string):
-        def normalize_only_unsafe(string):
-            map = {u'Ñ': u'ñ', u'Ǘ': u'ü', u'Ü': u'ü'}
-            safe = map.keys() + map.values()
-            for c in string:
-                if c not in safe:
-                    yield normalize_roman(c)
-                elif c in map:
-                    yield map[c]
-                else:
-                    yield c
-        return ''.join(normalize_only_unsafe(string))
+        return normalize_roman(string, {u'Ñ': u'ñ', u'Ǘ': u'ü', u'Ü': u'ü'})
 
 
 __lang__ = Spanish

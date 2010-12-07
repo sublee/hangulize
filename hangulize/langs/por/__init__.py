@@ -209,26 +209,10 @@ class Portuguese(Language):
     ])
 
     def normalize(self, string):
-        def normalize_only_unsafe(string):
-            map = {u'Ã': u'ã',
-                   u'Á': u'á',
-                   u'Â': u'â',
-                   u'Ç': u'ç',
-                   u'É': u'é',
-                   u'Ê': u'ê',
-                   u'ê': u'é',
-                   u'Õ': u'õ', 
-                   u'Ó': u'ó',
-                   u'Ô': u'ô'}
-            safe = map.keys() + map.values()
-            for c in string:
-                if c not in safe:
-                    yield normalize_roman(c)
-                elif c in map:
-                    yield map[c]
-                else:
-                    yield c
-        return ''.join(normalize_only_unsafe(string))
+        return normalize_roman(string, {
+            u'Ã': u'ã', u'Á': u'á', u'Â': u'â', u'Ç': u'ç', u'É': u'é',
+            u'Ê': u'ê', u'ê': u'é', u'Õ': u'õ', u'Ó': u'ó', u'Ô': u'ô'
+        })
 
 
 __lang__ = Portuguese

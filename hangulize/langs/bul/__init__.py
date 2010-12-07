@@ -150,46 +150,14 @@ class Bulgarian(Language):
     ])
 
     def normalize(self, string):
-        def normalize_only_unsafe(string):
-            map = {u'А': u'а',
-                   u'Б': u'б',
-                   u'В': u'в',
-                   u'Г': u'г',
-                   u'Д': u'д',
-                   u'Е': u'е',
-                   u'Ж': u'ж',
-                   u'З': u'з',
-                   u'И': u'и',
-                   u'Й': u'й',
-                   u'К': u'к',
-                   u'Л': u'л',
-                   u'М': u'м',
-                   u'Н': u'н',
-                   u'О': u'о',
-                   u'П': u'п',
-                   u'Р': u'р',
-                   u'С': u'с',
-                   u'Т': u'т',
-                   u'У': u'у',
-                   u'Ф': u'ф',
-                   u'Х': u'х',
-                   u'Ц': u'ц',
-                   u'Ч': u'ч',
-                   u'Ш': u'ш',
-                   u'Щ': u'щ',
-                   u'Ъ': u'ъ',
-                   u'Ь': u'ь',
-                   u'Ю': u'ю',
-                   u'Я': u'я'}
-            safe = map.keys() + map.values()
-            for c in string:
-                if c not in safe:
-                    yield normalize_roman(c)
-                elif c in map:
-                    yield map[c]
-                else:
-                    yield c
-        return ''.join(normalize_only_unsafe(string))
+        return normalize_roman(string, {
+            u'А': u'а', u'Б': u'б', u'В': u'в', u'Г': u'г', u'Д': u'д',
+            u'Е': u'е', u'Ж': u'ж', u'З': u'з', u'И': u'и', u'Й': u'й',
+            u'К': u'к', u'Л': u'л', u'М': u'м', u'Н': u'н', u'О': u'о',
+            u'П': u'п', u'Р': u'р', u'С': u'с', u'Т': u'т', u'У': u'у',
+            u'Ф': u'ф', u'Х': u'х', u'Ц': u'ц', u'Ч': u'ч', u'Ш': u'ш',
+            u'Щ': u'щ', u'Ъ': u'ъ', u'Ь': u'ь', u'Ю': u'ю', u'Я': u'я'
+        })
 
 
 __lang__ = Bulgarian
