@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 from tests import HangulizeTestCase
-from hangulize.langs.fi import Finnish
+from hangulize.langs.fin import Finnish
 
 
 class FinnishTestCase(HangulizeTestCase):

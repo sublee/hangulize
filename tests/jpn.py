@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 from tests import HangulizeTestCase
-from hangulize.langs.ja import Japanese
+from hangulize.langs.jpn import Japanese
 
 
 class JapaneseTestCase(HangulizeTestCase):

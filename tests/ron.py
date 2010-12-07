@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 from tests import HangulizeTestCase
-from hangulize.langs.ro import Romanian
+from hangulize.langs.ron import Romanian
 
 
 class RomanianTestCase(HangulizeTestCase):

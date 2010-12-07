@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 from tests import HangulizeTestCase
-from hangulize.langs.lt import Lithuanian
+from hangulize.langs.lit import Lithuanian
 
 
 class LithuanianTestCase(HangulizeTestCase):

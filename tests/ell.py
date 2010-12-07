@@ -1,11 +1,11 @@
 # -*- coding: utf-8 -*-
 from tests import HangulizeTestCase
-from hangulize.langs.ell import ModernGreek
+from hangulize.langs.ell import Greek
 
 
-class ModernGreekTestCase(HangulizeTestCase):
+class GreekTestCase(HangulizeTestCase):
 
-    lang = ModernGreek()
+    lang = Greek()
 
     def test_examples_of_iceager(self):
         assert u'아가멤논' == self.hangulize(u'Αγαμέμνων')

@@ -1,11 +1,11 @@
 # -*- coding: utf-8 -*-
 from tests import HangulizeTestCase
-from hangulize.langs.ka2 import Georgian2
+from hangulize.langs.kat.narrow import NarrowGeorgian
 
 
-class Georgian2TestCase(HangulizeTestCase):
+class NarrowGeorgianTestCase(HangulizeTestCase):
 
-    lang = Georgian2()
+    lang = NarrowGeorgian()
 
     def test_examples_of_iceager(self):
         assert u'트빌리시' == self.hangulize(u'თბილისი')

@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 from tests import HangulizeTestCase
-from hangulize.langs.cy import Welsh
+from hangulize.langs.cym import Welsh
 
 
 class WelshTestCase(HangulizeTestCase):

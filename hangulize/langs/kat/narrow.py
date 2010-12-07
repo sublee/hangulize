@@ -2,7 +2,7 @@
 from hangulize import *
 
 
-class Georgian(Language):
+class NarrowGeorgian(Language):
     """For transcribing Georgian (narrow transcription).
     The lenis, fortis, and aspirated series of stops and affricates of Korean
     are all employed. The Georgian grapheme ვ is taken to be /w/ after an
@@ -233,4 +233,4 @@ class Georgian(Language):
         return ''.join(normalize_only_unsafe(string))
 
 
-__lang__ = Georgian
+__lang__ = NarrowGeorgian

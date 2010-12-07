@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 from tests import HangulizeTestCase
-from hangulize.langs.sh import SerboCroatian
+from hangulize.langs.hbs import SerboCroatian
 
 
 class SerboCroatianTestCase(HangulizeTestCase):

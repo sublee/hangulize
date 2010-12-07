@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 from tests import HangulizeTestCase
-from hangulize.langs.hu import Hungarian
+from hangulize.langs.hun import Hungarian
 
 
 class HungarianTestCase(HangulizeTestCase):

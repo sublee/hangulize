@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 from tests import HangulizeTestCase
-from hangulize.langs.vi import Vietnamese
+from hangulize.langs.vie import Vietnamese
 
 
 class VietnameseTestCase(HangulizeTestCase):

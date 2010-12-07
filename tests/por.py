@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 from tests import HangulizeTestCase
-from hangulize.langs.pt import Portuguese
+from hangulize.langs.por import Portuguese
 
 
 class PortugueseTestCase(HangulizeTestCase):

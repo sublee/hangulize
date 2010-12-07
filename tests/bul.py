@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 from tests import HangulizeTestCase
-from hangulize.langs.bg import Bulgarian
+from hangulize.langs.bul import Bulgarian
 
 
 class BulgarianTestCase(HangulizeTestCase):

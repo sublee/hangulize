@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 from tests import HangulizeTestCase
-from hangulize.langs.cs import Czech
+from hangulize.langs.ces import Czech
 
 
 class CzechTestCase(HangulizeTestCase):

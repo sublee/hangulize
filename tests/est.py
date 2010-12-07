@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 from tests import HangulizeTestCase
-from hangulize.langs.et import Estonian
+from hangulize.langs.est import Estonian
 
 
 class EstonianTestCase(HangulizeTestCase):

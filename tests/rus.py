@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 from tests import HangulizeTestCase
-from hangulize.langs.ru import Russian
+from hangulize.langs.rus import Russian
 
 
 class RussianTestCase(HangulizeTestCase):

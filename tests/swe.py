@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 from tests import HangulizeTestCase
-from hangulize.langs.sv import Swedish
+from hangulize.langs.swe import Swedish
 
 
 class SwedishTestCase(HangulizeTestCase):

@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 from tests import HangulizeTestCase
-from hangulize.langs.it import Italian
+from hangulize.langs.ita import Italian
 
 
 class ItalianTestCase(HangulizeTestCase):

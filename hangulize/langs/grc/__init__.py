@@ -2,7 +2,7 @@
 from hangulize import *
 
 
-class Greek(Language):
+class AncientGreek(Language):
     """For transcribing Ancient Greek."""
 
     vowels = u'αάεέηήιίϊοόυύϋωώΥ'
@@ -398,4 +398,4 @@ class Greek(Language):
         return ''.join(normalize_only_unsafe(string))
 
 
-__lang__ = Greek
+__lang__ = AncientGreek

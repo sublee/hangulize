@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 from tests import HangulizeTestCase
-from hangulize.langs.nl import Dutch
+from hangulize.langs.nld import Dutch
 
 
 class DutchTestCase(HangulizeTestCase):
