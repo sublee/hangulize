@@ -2,7 +2,7 @@
 from hangulize import *
 
 
-class ModernGreek(Language):
+class Greek(Language):
     """For transcribing Modern Greek."""
 
     vowels = u'αάεέηήιίϊοόυύϋωώΥ'
@@ -410,4 +410,4 @@ class ModernGreek(Language):
         return ''.join(normalize_only_unsafe(string))
 
 
-ell = ModernGreek
+__lang__ = Greek

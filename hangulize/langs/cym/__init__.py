@@ -225,4 +225,4 @@ class Welsh(Language):
         return ''.join(normalize_only_unsafe(string))
 
 
-cy = Welsh
+__lang__ = Welsh

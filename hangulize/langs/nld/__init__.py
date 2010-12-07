@@ -605,4 +605,4 @@ class Dutch(Language):
         return ''.join(normalize_only_unsafe(string))
 
 
-nl = Dutch
+__lang__ = Dutch

@@ -336,6 +336,16 @@ def normalize_roman(string):
                       if unicodedata.category(c) != 'Mn')).lower()
 
 
+def normalize_case(string, map):
+    """Removes diacritics from the string and converts to lowercase.
+
+        >>> normalize_roman(u'E\xe8\xe9') # Eèé
+        u'eee'
+    """
+    return ''.join((c for c in unicodedata.normalize('NFD', string) \
+                      if unicodedata.category(c) != 'Mn')).lower()
+
+
 def complete_syllable(syllable):
     """Inserts the default jungseong or jongseong if it is not exists.
 
@@ -405,24 +415,32 @@ def join_phonemes(phonemes):
     return reduce(unicode.__add__, chars)
 
 
-def hangulize(string, locale='it', lang=None, logger=None):
-    """Hangulizes the string with the given locale or lang.
+def guess_lang(code, logger=None):
+    submods = code.split('.')
+    module = __import__('%s.langs.%s' % (__name__, code)).langs
+    for submod in submods:
+        module = getattr(module, submod)
+    return module.__lang__(logger)
 
-        >>> print hangulize(u'gloria', 'it')
+
+def hangulize(string, code=None, lang=None, logger=None):
+    """Hangulizes the string with the given language code or lang.
+
+        >>> print hangulize(u'gloria', 'ita')
         글로리아
 
     :param string: the loanword
-    :param locale: the locale code. if ``lang`` is not given, it is required
+    :param code: the language code as ISO 639-3. if ``lang`` is not given,
+                 it is required
     :param lang: the :class:`Language` instance
     :param logger: if the logger instance is given, reports result by each
                    steps
     """
     if not lang:
         try:
-            module = __import__('%s.langs.%s' % (__name__, locale))
-            lang = getattr(getattr(module.langs, locale), locale)(logger)
+            lang = guess_lang(code, logger=logger)
         except ImportError:
-            raise LanguageError('%s is not supported' % locale)
+            raise LanguageError('%s is not supported' % code)
     return lang.hangulize(string)
 
 

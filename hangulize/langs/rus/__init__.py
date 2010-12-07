@@ -194,4 +194,4 @@ class Russian(Language):
         return ''.join(normalize_only_unsafe(string))
 
 
-ru = Russian
+__lang__ = Russian

@@ -173,4 +173,4 @@ class Lithuanian(Language):
         return ''.join(normalize_only_unsafe(string))
 
 
-lt = Lithuanian
+__lang__ = Lithuanian

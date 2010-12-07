@@ -228,4 +228,4 @@ class Icelandic(Language):
         return ''.join(normalize_only_unsafe(string))
 
 
-isl = Icelandic
+__lang__ = Icelandic

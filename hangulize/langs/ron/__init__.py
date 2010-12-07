@@ -146,4 +146,4 @@ class Romanian(Language):
         return ''.join(normalize_only_unsafe(string))
 
 
-ro = Romanian
+__lang__ = Romanian

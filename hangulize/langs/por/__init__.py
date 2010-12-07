@@ -231,4 +231,4 @@ class Portuguese(Language):
         return ''.join(normalize_only_unsafe(string))
 
 
-pt = Portuguese
+__lang__ = Portuguese

@@ -2,7 +2,7 @@
 from hangulize import *
 
 
-class BrazilianPortuguese(Language):
+class Portuguese(Language):
     """For transcribing Brazilian Portuguese."""
 
     vowels = u'aAeEiIoOuUQ'
@@ -230,4 +230,4 @@ class BrazilianPortuguese(Language):
         return ''.join(normalize_only_unsafe(string))
 
 
-ptbr = BrazilianPortuguese
+__lang__ = Portuguese

@@ -134,4 +134,4 @@ class German(Language):
         return ''.join(normalize_only_unsafe(string))
 
 
-de = German
+__lang__ = German

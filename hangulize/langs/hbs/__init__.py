@@ -184,4 +184,5 @@ class SerboCroatian(Language):
                     yield c
         return ''.join(normalize_only_unsafe(string))
 
-sh = SerboCroatian
+
+__lang__ = SerboCroatian

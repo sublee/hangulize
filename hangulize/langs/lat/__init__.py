@@ -139,4 +139,4 @@ class Latin(Language):
         return ''.join(normalize_only_unsafe(string))
 
 
-la = Latin
+__lang__ = Latin

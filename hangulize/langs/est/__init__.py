@@ -164,4 +164,4 @@ class Estonian(Language):
         return ''.join(normalize_only_unsafe(string))
 
 
-et = Estonian
+__lang__ = Estonian

@@ -2,7 +2,7 @@
 from hangulize import *
 
 
-class Georgian1(Language):
+class Georgian(Language):
     """For transcribing Georgian (broad transcription).
     Only the lenis and aspirated series of stops and affricates of Korean are
     used. The Georgian grapheme ვ is consistently taken to be /v/, except after
@@ -227,4 +227,4 @@ class Georgian1(Language):
         return ''.join(normalize_only_unsafe(string))
 
 
-ka1 = Georgian1
+__lang__ = Georgian

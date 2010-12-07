@@ -131,4 +131,4 @@ class Japanese(Language):
         return ''.join(map(hiragana_to_katakana, string))
 
 
-ja = Japanese
+__lang__ = Japanese

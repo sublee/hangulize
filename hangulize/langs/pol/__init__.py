@@ -177,4 +177,4 @@ class Polish(Language):
         return ''.join(normalize_only_unsafe(string))
 
 
-pl = Polish
+__lang__ = Polish

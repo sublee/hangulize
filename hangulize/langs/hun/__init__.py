@@ -164,4 +164,4 @@ class Hungarian(Language):
         return ''.join(normalize_only_unsafe(string))
 
 
-hu = Hungarian
+__lang__ = Hungarian

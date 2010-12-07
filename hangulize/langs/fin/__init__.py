@@ -143,4 +143,4 @@ class Finnish(Language):
         return ''.join(normalize_only_unsafe(string))
 
 
-fi = Finnish
+__lang__ = Finnish

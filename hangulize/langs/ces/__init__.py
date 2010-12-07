@@ -169,4 +169,4 @@ class Czech(Language):
         return ''.join(normalize_only_unsafe(string))
 
 
-cs = Czech
+__lang__ = Czech

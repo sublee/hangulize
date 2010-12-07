@@ -4,15 +4,6 @@ from hangulize import *
 from tests import HangulizeTestCase
 
 
-class APITestCase(unittest.TestCase):
-
-    def test_all_languages(self):
-        from hangulize.langs import *
-        assert isinstance(ja, type(unittest))
-        assert isinstance(it, type(unittest))
-        assert isinstance(es, type(unittest))
-
-
 class PatternTestCase(HangulizeTestCase):
 
     def setUp(self):
@@ -108,24 +99,25 @@ class AlgorithmTestCase(unittest.TestCase):
         """이슈5: 문장부호에 맞붙은 글자가 시작 글자 또는 끝 글자로 인식 안 됨
         http://github.com/sublee/hangulize/issues#issue/5
         """
-        assert hangulize(u'nad', 'pl') + ',' == hangulize(u'nad,', 'pl')
-        assert '.' + hangulize(u'jak', 'pl') == hangulize(u'.jak', 'pl')
-        assert u'나트, 나트 야크 .야크' == hangulize(u'nad, nad jak .jak', 'pl')
+        assert hangulize(u'nad', 'pol') + ',' == hangulize(u'nad,', 'pol')
+        assert '.' + hangulize(u'jak', 'pol') == hangulize(u'.jak', 'pol')
+        assert u'나트, 나트 야크 .야크' == \
+               hangulize(u'nad, nad jak .jak', 'pol')
 
     def test_wide_letter(self):
-        assert u'과괌' == hangulize(u'guaguam', 'es')
+        assert u'과괌' == hangulize(u'guaguam', 'spa')
 
     def test_empty_sequence(self):
         """아무 규칙에도 매치되지 않아 빈 시퀀스가 반환될 때 다음 에러가 발생:
 
             TypeError: reduce() of empty sequence with no initial value
         """
-        assert u'' == hangulize(u'h', 'it')
+        assert u'' == hangulize(u'h', 'ita')
 
     def test_special_chars(self):
-        assert u'레이르트,' == hangulize(u'leert,', 'nl')
-        assert u'(레이르트}' == hangulize(u'(leert}', 'nl')
-        assert u'"레이르트"' == hangulize(u'"leert"', 'nl')
+        assert u'레이르트,' == hangulize(u'leert,', 'nld')
+        assert u'(레이르트}' == hangulize(u'(leert}', 'nld')
+        assert u'"레이르트"' == hangulize(u'"leert"', 'nld')
 
     def test_too_many_rules(self):
         class TooComplexLang(Language):

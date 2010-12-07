@@ -174,4 +174,4 @@ class Latvian(Language):
         return ''.join(normalize_only_unsafe(string))
 
 
-lv = Latvian
+__lang__ = Latvian

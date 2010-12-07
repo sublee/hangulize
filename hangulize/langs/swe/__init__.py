@@ -235,5 +235,5 @@ class Swedish(Language):
                     yield c
         return ''.join(normalize_only_unsafe(string))
 
-sv = Swedish
 
+__lang__ = Swedish

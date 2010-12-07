@@ -175,5 +175,4 @@ class Vietnamese(Language):
         return ''.join(normalize_only_unsafe(string))
 
 
-vi = Vietnamese
-
+__lang__ = Vietnamese

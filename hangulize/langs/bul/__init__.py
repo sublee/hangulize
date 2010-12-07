@@ -192,4 +192,4 @@ class Bulgarian(Language):
         return ''.join(normalize_only_unsafe(string))
 
 
-bg = Bulgarian
+__lang__ = Bulgarian

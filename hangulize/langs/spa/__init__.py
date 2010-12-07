@@ -117,4 +117,4 @@ class Spanish(Language):
         return ''.join(normalize_only_unsafe(string))
 
 
-es = Spanish
+__lang__ = Spanish

@@ -2,7 +2,7 @@
 from hangulize import *
 
 
-class MiddleWelsh(Language):
+class Welsh(Language):
     """For transcribing Middle Welsh."""
 
     vowels = u'aeiîouUwŵyŷQ'
@@ -218,4 +218,4 @@ class MiddleWelsh(Language):
         return ''.join(normalize_only_unsafe(string))
 
 
-wlm = MiddleWelsh
+__lang__ = Welsh

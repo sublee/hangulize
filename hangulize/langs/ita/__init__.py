@@ -129,4 +129,4 @@ class Italian(Language):
         return re.sub(pattern, '', normalize_roman(string))
 
 
-it = Italian
+__lang__ = Italian
