@@ -415,12 +415,35 @@ def join_phonemes(phonemes):
     return reduce(unicode.__add__, chars)
 
 
-def guess_lang(code, logger=None):
+def get_module(code):
+    """Returns a module from the given code."""
     submods = code.split('.')
     module = __import__('%s.langs.%s' % (__name__, code)).langs
     for submod in submods:
         module = getattr(module, submod)
-    return module.__lang__(logger)
+    return module
+
+
+def get_lang(code, logger=None):
+    """Returns a language instance from the given code."""
+    return get_module(code).__lang__(logger)
+
+
+def supported(code):
+    """Checks if hangulize supports the given language.
+
+        >>> supported('ita')
+        True
+        >>> supported('kat.narrow')
+        True
+        >>> supported('kor')
+        False
+    """
+    try:
+        guess_module(code)
+        return True
+    except ImportError:
+        return False
 
 
 def hangulize(string, code=None, lang=None, logger=None):
@@ -438,7 +461,7 @@ def hangulize(string, code=None, lang=None, logger=None):
     """
     if not lang:
         try:
-            lang = guess_lang(code, logger=logger)
+            lang = get_lang(code, logger=logger)
         except ImportError:
             raise LanguageError('%s is not supported' % code)
     return lang.hangulize(string)
