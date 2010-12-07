@@ -5,18 +5,23 @@ Hangulize
 
 Hangulize transcribes a loanword to Hangul(the Korean alphabet).
 
->>> print hangulize(u"Giro d'Italia", 'it')
+>>> print hangulize(u"Giro d'Italia", 'ita')
 지로 디탈리아
->>> print hangulize(u'Gamiño', 'es')
-가미뇨
->>> print hangulize(u'オオサカ', 'ja')
+>>> print hangulize(u'オオサカ', 'jpn')
 오사카
->>> print hangulize(u'przyjaciół', 'pl')
+>>> print hangulize(u'przyjaciół', 'pol')
 프시야치우
+>>> print hangulize(u'Алексеев', 'rus')
+알렉세예프
+>>> print hangulize(u'კახაბერ', 'kat.narrow')
+까하베르
+>>> print hangulize(u'Ἡρακλῆς', 'grc')
+헤라클레스
 
 Links
 `````
 
+* `Try on a web <http://www.hangulize.org/>`_
 * `GitHub repository <http://github.com/sublee/hangulize>`_
 * `development version
   <http://github.com/sublee/hangulize/zipball/master#egg=hangulize-dev>`_

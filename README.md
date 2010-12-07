@@ -73,18 +73,22 @@ Hangulize는 위 아이디어를 실현하는 첫번째 프로젝트입니다.
 
     >>> from hangulize import hangulize
 
-`hangulize` 함수는 첫번째 인자로 변환할 단어를, 두번째 인자로 로캘 코드를
-입력받습니다. 이 함수는 표준 외래어표기법을 따른 한글 변환 결과를 반환할
-것입니다:
+`hangulize` 함수는 첫번째 인자로 변환할 단어를, 두번째 인자로 언어코드(ISO
+639-3)를 입력받습니다. 이 함수는 표준 외래어표기법을 따른 한글 변환 결과를
+반환할 것입니다:
 
-    >>> print hangulize(u"Giro d'Italia", 'it')
+    >>> print hangulize(u"Giro d'Italia", 'ita')
     지로 디탈리아
-    >>> print hangulize(u'Gamiño', 'es')
-    가미뇨
-    >>> print hangulize(u'オオサカ', 'ja')
+    >>> print hangulize(u'オオサカ', 'jpn')
     오사카
-    >>> print hangulize(u'przyjaciół', 'pl')
+    >>> print hangulize(u'przyjaciół', 'pol')
     프시야치우
+    >>> print hangulize(u'Алексеев', 'rus')
+    알렉세예프
+    >>> print hangulize(u'კახაბერ', 'kat.narrow')
+    까하베르
+    >>> print hangulize(u'Ἡρακλῆς', 'grc')
+    헤라클레스
 
 테스트
 ------
@@ -103,7 +107,7 @@ Hangulize는 위 아이디어를 실현하는 첫번째 프로젝트입니다.
 표준출력으로 나타납니다:
 
     $ python setup.py repl
-    Select Locale: pl
+    Select Locale: pol
     ==> łóżko
     -> 'łóżko'
     -> 'Xuóżko'
