@@ -13,16 +13,11 @@ def filename(path):
 
 
 def suite():
-    #from internal import *
     suite = unittest.TestSuite()
-    curdir = os.path.dirname(__file__)
-    mods = (filename(x) for x in os.listdir(curdir) \
+    loader = unittest.TestLoader()
+    mods = (filename(x) for x in os.listdir(os.path.dirname(__file__)) \
                         if x.endswith('.py') and '__init__' not in x)
     for mod in mods:
         mod = getattr(__import__('%s.%s' % (__name__, mod)), mod)
-        for test_case in (x for x in dir(mod) if x.endswith('TestCase')):
-            test_case = getattr(mod, test_case)
-            suite.addTest(unittest.makeSuite(test_case))
-    #suite.addTest(unittest.makeSuite(PatternTestCase))
-    #suite.addTest(unittest.makeSuite(AlgorithmTestCase))
+        suite.addTest(loader.loadTestsFromModule(mod))
     return suite
