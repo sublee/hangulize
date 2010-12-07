@@ -18,10 +18,10 @@ class repl(Command):
         글로리아
     """
 
-    user_options = [('locale=', 'l', 'the locale')]
+    user_options = [('code=', 'l', 'the language code(ISO 639-3)')]
 
     def initialize_options(self):
-        self.locale = None
+        self.code = None
 
     def finalize_options(self):
         pass
@@ -35,13 +35,13 @@ class repl(Command):
         logger.addHandler(logging.StreamHandler())
         encoding = sys.stdout.encoding
         def _repl():
-            locale = self.locale or raw_input('Select Locale: ')
+            code = self.code or raw_input('Choose language: ')
             while True:
                 string = raw_input('==> ')
                 if not string:
                     break
-                yield hangulize(string.decode(encoding),
-                                locale, logger=logger).encode(encoding)
+                yield hangulize(string.decode(encoding), code,
+                                logger=logger).encode(encoding)
         for hangul in _repl():
             print hangul
 

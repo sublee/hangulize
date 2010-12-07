@@ -1,3 +1,4 @@
+import sys
 import os.path
 import unittest
 
@@ -12,11 +13,14 @@ def filename(path):
     return os.path.sep.join(os.path.basename(path).split(os.path.extsep)[:-1])
 
 
-def suite():
+def suite(code=None):
     suite = unittest.TestSuite()
     loader = unittest.TestLoader()
-    mods = (filename(x) for x in os.listdir(os.path.dirname(__file__)) \
-                        if x.endswith('.py') and '__init__' not in x)
+    if code:
+        mods = [code.replace('.', '_')]
+    else:
+        mods = (filename(x) for x in os.listdir(os.path.dirname(__file__)) \
+                            if x.endswith('.py') and '__init__' not in x)
     for mod in mods:
         mod = getattr(__import__('%s.%s' % (__name__, mod)), mod)
         suite.addTest(loader.loadTestsFromModule(mod))

@@ -29,11 +29,6 @@ except ImportError:
 from cmds import cmdclass
 
 
-def run_tests():
-    from tests import suite
-    return suite()
-
-
 setup(
     name='hangulize',
     version='0.0.1',
@@ -43,7 +38,6 @@ setup(
     description='Korean Alphabet Transcription',
     long_description=__doc__,
     zip_safe=False,
-    test_suite="__main__.run_tests",
     platforms='any',
     packages=['hangulize'],
     package_data={'hangulize': ['langs/*']},
