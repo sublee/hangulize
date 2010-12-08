@@ -76,13 +76,12 @@ def get_lang(code, iso639=None, logger=None):
     except KeyError:
         try:
             return make_lang(code, submods, logger)
-        except ImportError:
+        except LanguageError:
             raise InvalidCodeError('%s is invalid ISO 639-%d code' % \
                                    (code, iso639))
     except ImportError:
         if iso639 != 3:
-            raise ImportError('need pycountry module to use ISO 639-%d'
-                              ', but it is not' % iso639)
+            raise ImportError('pycountry is required to use ISO 639-' + iso639)
     return make_lang(code, submods, logger)
 
 
