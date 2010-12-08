@@ -29,19 +29,33 @@ class repl(Command):
     def run(self):
         import sys
         import logging
-        from hangulize import hangulize
+        from hangulize import hangulize, get_lang, LanguageError
         logger = logging.getLogger('Hangulize REPL')
         logger.setLevel(logging.INFO)
         logger.addHandler(logging.StreamHandler())
         encoding = sys.stdout.encoding
         def _repl():
-            code = self.code or raw_input('Choose language: ')
             while True:
-                string = raw_input('==> ')
-                if not string:
+                code = self.code or raw_input(color('Lang: ', 'magenta'))
+                try:
+                    lang = get_lang(code, logger=logger)
+                    logger.info('** ' + color(type(lang).__name__, 'green') + \
+                                ' is selected')
                     break
-                yield hangulize(string.decode(encoding), code,
-                                logger=logger).encode(encoding)
+                except LanguageError as e:
+                    logger.error(color(e, 'red'))
+            while True:
+                string = raw_input(color('==> ', 'cyan'))
+                if not string:
+                    logger.info('** ' + color('end', 'green'))
+                    break
+                yield hangulize(string.decode(encoding), lang=lang)
         for hangul in _repl():
-            print hangul
+            logger.info(color(hangul, 'yellow').encode(encoding))
 
+
+def color(msg, color):
+    colors = dict(BLACK=30, RED=31, GREEN=32, YELLOW=33, BLUE=34,
+                  MAGENTA=35, CYAN=36, WHITE=37)
+    code = colors[color.upper()]
+    return '\033[1;%dm%s\033[0m' % (code, msg)

@@ -11,6 +11,24 @@ from hangulize.processing import *
 from hangulize.normalization import *
 
 
+def hangulize(string, code=None, iso639=None, lang=None, logger=None):
+    """Hangulizes the string with the given language code or lang.
+
+        >>> print hangulize(u'gloria', 'ita')
+        글로리아
+
+    :param string: the loanword
+    :param code: the language code as ISO 639-3. if ``lang`` is not given,
+                 it is required
+    :param lang: the :class:`Language` instance
+    :param logger: if the logger instance is given, reports result by each
+                   steps
+    """
+    if not lang:
+        lang = get_lang(code, iso639=iso639, logger=logger)
+    return lang.hangulize(string)
+
+
 def import_module(code):
     """Imports a module from the given code."""
     submods = code.split('.')
@@ -20,9 +38,37 @@ def import_module(code):
     return module
 
 
-def get_lang(code, logger=None):
+def get_lang(code, iso639=None, logger=None):
     """Returns a language instance from the given code."""
-    return import_module(code).__lang__(logger)
+    if not iso639:
+        if len(code) == 2:
+            iso639 = 1
+        elif len(code) == 3:
+            iso639 = 3
+    try:
+        # fix the warning when importing pycountry
+        import logging
+        if not getattr(logging, 'NullHandler', None):
+            class NullHandler(logging.Handler):
+                def emit(self, record):
+                    pass
+        logging.getLogger('pycountry.db').addHandler(NullHandler())
+        from pycountry import languages
+        attr = ['alpha2', 'bibliography', 'terminology'][iso639 - 1]
+        code = languages.get(**{attr: code}).terminology
+    except TypeError:
+        raise LanguageError('%s is unvalid language code' % code)
+    except KeyError:
+        raise LanguageError('%s is unvalid ISO 639-%d '
+                            'code' % (code, iso639))
+    except ImportError:
+        if iso639 != 3:
+            raise ImportError('need pycountry module to use ISO 639-%d'
+                              ', but it is not' % iso639)
+    try:
+        return import_module(code).__lang__(logger)
+    except ImportError:
+        raise LanguageError('%s is not supported' % code)
 
 
 def supported(code):
@@ -40,24 +86,3 @@ def supported(code):
         return True
     except ImportError:
         return False
-
-
-def hangulize(string, code=None, lang=None, logger=None):
-    """Hangulizes the string with the given language code or lang.
-
-        >>> print hangulize(u'gloria', 'ita')
-        글로리아
-
-    :param string: the loanword
-    :param code: the language code as ISO 639-3. if ``lang`` is not given,
-                 it is required
-    :param lang: the :class:`Language` instance
-    :param logger: if the logger instance is given, reports result by each
-                   steps
-    """
-    if not lang:
-        try:
-            lang = get_lang(code, logger=logger)
-        except ImportError:
-            raise LanguageError('%s is not supported' % code)
-    return lang.hangulize(string)

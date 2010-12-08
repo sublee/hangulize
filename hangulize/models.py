@@ -138,7 +138,6 @@ class Language(object):
         """Returns :class:`Phoneme` instance list from the word."""
         string = re.sub(r'\s+', SPACE, string)
         string = re.sub(r'^|$', SPECIAL, string)
-        self._log(".. '%s'" % string)
         phonemes = []
         # escape special characters
         for esc in self.special:
@@ -260,11 +259,14 @@ class Rewrite(object):
             readable = re.sub('^' + BLANK + '|' + BLANK + '$', '', readable)
             readable = re.sub(BLANK, ' ', readable)
             try:
-                lang._log(".. '%s' ~ %s => %s ~ /%s/" % \
-                          (readable, self.pattern, self.val, regex.pattern))
+                if not self.val:
+                    lang._log(".. '%s'\tremove %s" % (readable, self.pattern))
+                else:
+                    lang._log(".. '%s'\trewrite %s -> %s" % \
+                              (readable, self.pattern, self.val))
             except UnicodeError:
-                lang._log(".. '%s' ! %s ~ /%s/" % \
-                          (readable, self.pattern, regex.pattern))
+                lang._log(".. '%s'\thangulize %s" % \
+                          (readable, self.pattern))
             except AttributeError:
                 pass
 
