@@ -67,7 +67,7 @@ class LatvianTestCase(HangulizeTestCase):
         assert u'유리스 루베니스' == self.hangulize(u'Juris Rubenis')
         assert u'엘자 로젠베르가' == self.hangulize(u'Elza Rozenberga')
         assert u'울랴나 세묘노바' == self.hangulize(u'Uļjana Semjonova')
-        assert u'마리스 스트롬베르크스' == self.hangulize(u'Maris Strombergs')
+        assert u'마리스 슈트롬베르크스' == self.hangulize(u'Māris Štrombergs')
         assert u'페테리스 스투치카' == self.hangulize(u'Pēteris Stučka')
         assert u'빅토르스 슈체르바티흐스' == \
                self.hangulize(u'Viktors Ščerbatihs')
