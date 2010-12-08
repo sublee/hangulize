@@ -322,6 +322,16 @@ class Rewrite(object):
             return ()
 
 
-class LanguageError(Exception):
+class HangulizeError(Exception):
+
+    pass
+
+
+class LanguageError(HangulizeError):
+
+    pass
+
+
+class InvalidCodeError(HangulizeError):
 
     pass

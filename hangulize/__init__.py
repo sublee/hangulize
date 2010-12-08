@@ -54,13 +54,13 @@ def get_lang(code, iso639=None, logger=None):
                     pass
         logging.getLogger('pycountry.db').addHandler(NullHandler())
         from pycountry import languages
-        attr = ['alpha2', 'bibliography', 'terminology'][iso639 - 1]
+        attr = ['alpha2', 'bibliographic', 'terminology'][iso639 - 1]
         code = languages.get(**{attr: code}).terminology
     except TypeError:
-        raise LanguageError('%s is unvalid language code' % code)
+        raise InvalidCodeError('%s is invalid language code' % code)
     except KeyError:
-        raise LanguageError('%s is unvalid ISO 639-%d '
-                            'code' % (code, iso639))
+        raise InvalidCodeError('%s is invalid ISO 639-%d code' % \
+                               (code, iso639))
     except ImportError:
         if iso639 != 3:
             raise ImportError('need pycountry module to use ISO 639-%d'
