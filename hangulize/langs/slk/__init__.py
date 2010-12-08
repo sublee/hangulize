@@ -248,4 +248,4 @@ class Slovak(Language):
         return ''.join(normalize_only_unsafe(string))
 
 
-sk = Slovak
+__lang__ = Slovak

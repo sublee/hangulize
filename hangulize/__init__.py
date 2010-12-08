@@ -40,6 +40,11 @@ def import_module(code):
 
 def get_lang(code, iso639=None, logger=None):
     """Returns a language instance from the given code."""
+    def make_lang(code, logger):
+        try:
+            return import_module(code).__lang__(logger)
+        except ImportError:
+            raise LanguageError('%s is not supported' % code)
     if not iso639:
         if len(code) == 2:
             iso639 = 1
@@ -59,16 +64,16 @@ def get_lang(code, iso639=None, logger=None):
     except TypeError:
         raise InvalidCodeError('%s is invalid language code' % code)
     except KeyError:
-        raise InvalidCodeError('%s is invalid ISO 639-%d code' % \
-                               (code, iso639))
+        try:
+            return make_lang(code, logger)
+        except ImportError:
+            raise InvalidCodeError('%s is invalid ISO 639-%d code' % \
+                                   (code, iso639))
     except ImportError:
         if iso639 != 3:
             raise ImportError('need pycountry module to use ISO 639-%d'
                               ', but it is not' % iso639)
-    try:
-        return import_module(code).__lang__(logger)
-    except ImportError:
-        raise LanguageError('%s is not supported' % code)
+    return make_lang(code, logger)
 
 
 def supported(code):

@@ -184,4 +184,4 @@ class Catalan(Language):
         return ''.join(normalize_only_unsafe(string))
 
 
-ca = Catalan
+__lang__ = Catalan
