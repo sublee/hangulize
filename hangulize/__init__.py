@@ -42,7 +42,7 @@ def get_lang(code, iso639=None, logger=None):
     """Returns a language instance from the given code."""
     def make_lang(code, submods, logger):
         try:
-            code += '.' + '.'.join(submods)
+            code = '.'.join([code] + list(submods))
             return import_module(code).__lang__(logger)
         except ImportError:
             raise LanguageError('%s is not supported' % code)
