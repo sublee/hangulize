@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 from tests import HangulizeTestCase
-from hangulize.langs.ca import Catalan
+from hangulize.langs.cat import Catalan
 
 
 class CatalanTestCase(HangulizeTestCase):
