@@ -5,6 +5,8 @@ from hangulize import *
 class Spanish(Language):
     """For transcribing Spanish."""
 
+    __iso639__ = {1: 'es', 2: 'spa', 3: 'spa'}
+
     vowels = u'aeiouüy'
     notation = Notation([
         (u'ññ',            u'ñ'),

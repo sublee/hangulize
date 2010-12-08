@@ -5,6 +5,8 @@ from hangulize import *
 class SerboCroatian(Language):
     """For transcribing Serbo-Croatian."""
 
+    __iso639__ = {3: 'hbs'}
+
     vowels = 'aeiouy'
     consonants = 'cCfhst'
     notation = Notation([

@@ -5,6 +5,8 @@ from hangulize import *
 class Estonian(Language):
     """For transcribing Estonian."""
 
+    __iso639__ = {1: 'et', 2: 'est', 3: 'est'}
+
     vowels = 'aAeEioOuUy'
     ob = 'bdfgkpstT'
     """Convention: E = õ, A = ä, O = ö, U = ü"""

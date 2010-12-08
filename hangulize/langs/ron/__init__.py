@@ -5,6 +5,8 @@ from hangulize import *
 class Romanian(Language):
     """For transcribing Romanian."""
 
+    __iso639__ = {1: 'ro', 2: 'rum', 3: 'ron'}
+
     vowels = 'aAeiIou'
     voiceless = 'CfhkpstT'
     notation = Notation([

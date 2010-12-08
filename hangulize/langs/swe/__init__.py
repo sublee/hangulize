@@ -5,6 +5,8 @@ from hangulize import *
 class Swedish(Language):
     """For transcribing Swedish."""
 
+    __iso639__ = {1: 'sv', 2: 'swe', 3: 'swe'}
+
     vowels = 'a', 'A', 'e', 'E', 'i', 'o', 'O', 'u', 'y'
     vl = 'f', 'h', 'k', 'p', 's', 't'
     """Convention: A = å, E = ä, O = ö"""

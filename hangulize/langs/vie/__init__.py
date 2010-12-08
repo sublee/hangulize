@@ -5,6 +5,8 @@ from hangulize import *
 class Vietnamese(Language):
     """For transcribing Vietnamese."""
 
+    __iso639__ = {1: 'vi', 2: 'vie', 3: 'vie'}
+
     vowels = 'aAeEioOuUy'
     notation = Notation([
         (u'ă',         'A'),

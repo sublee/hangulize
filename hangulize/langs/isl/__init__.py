@@ -5,6 +5,8 @@ from hangulize import *
 class Icelandic(Language):
     """For transcribing Icelandic."""
 
+    __iso639__ = {1: 'is', 2: 'ice', 3: 'isl'}
+
     vowels = 'aAeEiIoOuUyWXYQ'
     cs = 'bdDfFghHjJklmnNprsStTvZ'
     pl = 'bdgkpt'

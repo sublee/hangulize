@@ -4,6 +4,8 @@ from hangulize import *
 
 class German(Language):
     """For transcribing German."""
+
+    __iso639__ = {1: 'de', 2: 'ger', 3: 'deu'}
     
     vowels = u'aeiouäöüyAOU'
     cons = u'bcdfghjklmnpqrstvwxzß'

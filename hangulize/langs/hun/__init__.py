@@ -5,6 +5,8 @@ from hangulize import *
 class Hungarian(Language):
     """For transcribing Hungarian."""
 
+    __iso639__ = {1: 'hu', 2: 'hun', 3: 'hun'}
+
     vowels = 'aAeioOuU'
     cs = 'bcCdDfghklmnpqrsStvwxzZ'
     vl = 'cCfhkpsSt'

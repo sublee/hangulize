@@ -5,6 +5,8 @@ from hangulize import *
 class Finnish(Language):
     """For transcribing Finnish."""
 
+    __iso639__ = {1: 'fi', 2: 'fin', 3: 'fin'}
+
     vowels = 'aAeioOuy'
     ob = 'bdfgkpstT'
     """Convention: A = ä, O = ö"""

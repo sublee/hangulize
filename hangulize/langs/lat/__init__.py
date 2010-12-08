@@ -5,6 +5,8 @@ from hangulize import *
 class Latin(Language):
     """For transcribing Latin."""
 
+    __iso639__ = {1: 'la', 2: 'lat', 3: 'lat'}
+
     vowels = u'aeëiouüy'
     vl = 'cfpst'
     so = 'lmnr'

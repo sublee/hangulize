@@ -5,6 +5,8 @@ from hangulize import *
 class Greek(Language):
     """For transcribing Modern Greek."""
 
+    __iso639__ = {1: 'el', 2: 'gre', 3: 'ell'}
+
     vowels = u'αάεέηήιίϊοόυύϋωώΥ'
     sv = u'αεηιουω'
     av = u'άέήίόύώ'

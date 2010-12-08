@@ -1,10 +1,11 @@
 # -*- coding: utf-8 -*-
-import re
 from hangulize import *
 
 
 class Dutch(Language):
     """For transcribing Dutch."""
+
+    __iso639__ = {1: 'nl', 2: 'dut', 3: 'nld'}
 
     vowels = 'aeEioOuUyQ'
     cs = 'b', 'B', 'c', 'C', 'd', 'D', 'f', 'F', 'g', 'G', 'h', 'j', 'J', \

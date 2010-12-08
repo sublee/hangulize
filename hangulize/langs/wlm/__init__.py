@@ -5,6 +5,8 @@ from hangulize import *
 class MiddleWelsh(Language):
     """For transcribing Middle Welsh."""
 
+    __iso639__ = {3: 'wlm'}
+
     vowels = u'aeiîouUwŵyŷQ'
     cs = 'bcCdDfFghklLmnNpqrstTvWxz,-Y'
     ob = 'bcCdDfFghkpqstTvWxz'

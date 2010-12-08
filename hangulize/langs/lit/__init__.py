@@ -5,6 +5,8 @@ from hangulize import *
 class Lithuanian(Language):
     """For transcribing Lithuanian."""
 
+    __iso639__ = {1: 'lt', 2: 'lit', 3: 'lit'}
+
     vowels = u'aeiįou'
     cs = 'bcCdDfghHklmnNprsStvXzZ'
     vo = 'bdDghlmnNrvXzZ'

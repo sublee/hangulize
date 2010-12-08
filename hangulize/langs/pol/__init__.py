@@ -5,6 +5,8 @@ from hangulize import *
 class Polish(Language):
     """For transcribing Polish."""
 
+    __iso639__ = {1: 'pl', 2: 'pol', 3: 'pol'}
+
     vowels = 'aeiouy'
     cs = 'bcCdfghjklmnpqrstvwxz'
     vl = 'cCfhkpst'

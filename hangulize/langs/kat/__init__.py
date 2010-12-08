@@ -9,6 +9,8 @@ class Georgian(Language):
     a vowel and before a voiceless stop or affricate, in which case it is taken
     to be /f/."""
 
+    __iso639__ = {1: 'ka', 2: 'geo', 3: 'kat'}
+
     vowels = u'აეიოუ'
     cs = u'ბგდვზთკლმნპჟრსტფქღყშჩცძწჭხჯჰჶ'
     vl = u'თკპტფქყჩცწჭ'

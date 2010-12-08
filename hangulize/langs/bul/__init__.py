@@ -5,6 +5,8 @@ from hangulize import *
 class Bulgarian(Language):
     """For transcribing Bulgarian."""
 
+    __iso639__ = {1: 'bg', 2: 'bul', 3: 'bul'}
+
     vowels = u'аеийоуъьюя'
     cs = u'бвгджзклмнпрстфхцчшщ'
     vl = u'кпстфхцчшщ'

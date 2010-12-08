@@ -5,6 +5,8 @@ from hangulize import *
 class Catalan(Language):
     """For transcribing Catalan."""
 
+    __iso639__ = {1: 'ca', 2: 'cat', 3: 'cat'}
+
     vowels = u'aeiouü'
     cs = 'bcCdDfghklmnNprsStTvwxzZ'
     ob = 'bcCdDfgkpqsStTxzZ'

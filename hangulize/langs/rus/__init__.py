@@ -5,6 +5,8 @@ from hangulize import *
 class Russian(Language):
     """For transcribing Russian."""
 
+    __iso639__ = {1: 'ru', 2: 'rus', 3: 'rus'}
+
     vowels = u'аеёийоуыъьэюя'
     cs = u'бвгджзклмнпрстфхцчшщ'
     vl = u'кпстфхцчшщ'

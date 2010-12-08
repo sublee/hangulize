@@ -1,10 +1,11 @@
 # -*- coding: utf-8 -*-
-import re
 from hangulize import *
 
 
 class Italian(Language):
     """For transcribing Italian."""
+
+    __iso639__ = {1: 'it', 2: 'ita', 3: 'ita'}
 
     vowels = 'aeiou'
     notation = Notation([

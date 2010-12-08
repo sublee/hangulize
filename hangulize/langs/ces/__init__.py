@@ -5,6 +5,8 @@ from hangulize import *
 class Czech(Language):
     """For transcribing Czech."""
 
+    __iso639__ = {1: 'cs', 2: 'cze', 3: 'ces'}
+
     vowels = 'aeiouy'
     vl = 'cCfHkpsStT' # voiceless obstruents
     notation = Notation([

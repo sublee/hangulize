@@ -5,6 +5,8 @@ from hangulize import *
 class AncientGreek(Language):
     """For transcribing Ancient Greek."""
 
+    __iso639__ = {2: 'grc', 3: 'grc'}
+
     vowels = u'αάεέηήιίϊοόυύϋωώΥ'
     sv = u'αεηιουω'
     av = u'άέήίόύώ'

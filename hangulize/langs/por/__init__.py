@@ -5,6 +5,8 @@ from hangulize import *
 class Portuguese(Language):
     """For transcribing Portuguese."""
 
+    __iso639__ = {1: 'pt', 2: 'por', 3: 'por'}
+
     vowels = u'aAeEiIoOuUQ'
     cs = u'bcCdfghjklmnpqrRsStvwxz'
     son = u'lmnr' # sonorant

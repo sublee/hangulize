@@ -6,8 +6,10 @@ class NarrowGeorgian(Language):
     """For transcribing Georgian (narrow transcription).
     The lenis, fortis, and aspirated series of stops and affricates of Korean
     are all employed. The Georgian grapheme ვ is taken to be /w/ after an
-    obstruent and before a vowel, to be /f/ after a vowel and before a voiceless
-    stop or affricate, and to be /v/ in all other cases."""
+    obstruent and before a vowel, to be /f/ after a vowel and before a
+    voiceless stop or affricate, and to be /v/ in all other cases."""
+
+    __iso639__ = {1: 'ka', 2: 'geo', 3: 'kat'}
 
     vowels = u'აეიოუ'
     cs = u'ბგდვზთკლმნპჟრსტფქღყშჩცძწჭხჯჰV'

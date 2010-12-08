@@ -5,6 +5,8 @@ from hangulize import *
 class Japanese(Language):
     """For transcribing Japanese."""
 
+    __iso639__ = {1: 'ja', 2: 'jpn', 3: 'jpn'}
+
     vowels = 'aiueo'
     notation = Notation([
         (u'[\u30a1\u30a2]', 'a'),
