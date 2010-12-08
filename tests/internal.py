@@ -265,40 +265,44 @@ class AlgorithmTestCase(unittest.TestCase):
         assert u'아브' == hangulize(u'ab', lang=TooComplexLang())
 
 
-class LanguageCodeTestCase(unittest.TestCase):
+try:
+    import pycountry
+    class LanguageCodeTestCase(unittest.TestCase):
 
-    table = [('bg', 'bul', 'bul'),
-             ('ca', 'cat', 'cat'),
-             ('cs', 'cze', 'ces'),
-             ('cy', 'wel', 'cym'),
-             ('de', 'ger', 'deu'),
-             ('el', 'gre', 'ell'),
-             ('et', 'est', 'est'),
-             ('fi', 'fin', 'fin'),
-             (None, 'grc', 'grc'),
-             (None, None, 'hbs'),
-             ('hu', 'hun', 'hun'),
-             ('ja', 'jpn', 'jpn')]
+        table = [('bg', 'bul', 'bul'),
+                 ('ca', 'cat', 'cat'),
+                 ('cs', 'cze', 'ces'),
+                 ('cy', 'wel', 'cym'),
+                 ('de', 'ger', 'deu'),
+                 ('el', 'gre', 'ell'),
+                 ('et', 'est', 'est'),
+                 ('fi', 'fin', 'fin'),
+                 (None, 'grc', 'grc'),
+                 (None, None, 'hbs'),
+                 ('hu', 'hun', 'hun'),
+                 ('ja', 'jpn', 'jpn')]
 
-    def test_regard_iso639_1(self):
-        assert type(get_lang('bg', iso639=1)) is type(get_lang('bg'))
-        assert type(get_lang('ja', iso639=1)) is type(get_lang('ja'))
+        def test_regard_iso639_1(self):
+            assert type(get_lang('bg', iso639=1)) is type(get_lang('bg'))
+            assert type(get_lang('ja', iso639=1)) is type(get_lang('ja'))
 
-    def test_iso639_1(self):
-        for iso639_1, iso639_2, iso639_3 in self.table:
-            if not iso639_1:
-                continue
-            assert type(get_lang(iso639_3)) is type(get_lang(iso639_1,
-                                                             iso639=1))
+        def test_iso639_1(self):
+            for iso639_1, iso639_2, iso639_3 in self.table:
+                if not iso639_1:
+                    continue
+                assert type(get_lang(iso639_3)) is type(get_lang(iso639_1,
+                                                                 iso639=1))
 
-    def test_iso639_2(self):
-        for iso639_1, iso639_2, iso639_3 in self.table:
-            if not iso639_2:
-                continue
-            assert type(get_lang(iso639_3)) is type(get_lang(iso639_2,
-                                                             iso639=2))
+        def test_iso639_2(self):
+            for iso639_1, iso639_2, iso639_3 in self.table:
+                if not iso639_2:
+                    continue
+                assert type(get_lang(iso639_3)) is type(get_lang(iso639_2,
+                                                                 iso639=2))
 
-    def test_iso639_3(self):
-        for iso639_1, iso639_2, iso639_3 in self.table:
-            assert type(get_lang(iso639_3)) is type(get_lang(iso639_3,
-                                                             iso639=3))
+        def test_iso639_3(self):
+            for iso639_1, iso639_2, iso639_3 in self.table:
+                assert type(get_lang(iso639_3)) is type(get_lang(iso639_3,
+                                                                 iso639=3))
+except ImportError:
+    pass

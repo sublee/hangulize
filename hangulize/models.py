@@ -194,6 +194,22 @@ class Language(object):
             self.logger.info(msg)
         return msg
 
+    @property
+    def iso639_1(self):
+        return self.__iso639__.get(1)
+
+    @property
+    def iso639_2(self):
+        return self.__iso639__.get(2)
+
+    @property
+    def iso639_3(self):
+        return self.__iso639__.get(3)
+
+    @property
+    def code(self):
+        return re.sub('^hangulize\.langs\.', '', type(self).__module__)
+
 
 class Rewrite(object):
 
