@@ -4,6 +4,30 @@ from hangulize import *
 from tests import HangulizeTestCase
 
 
+class APITestCase(unittest.TestCase):
+
+    def setUp(self):
+        import hangulize.langs
+        self.langs = hangulize.langs.get_list()
+
+    def test_toplevel_langs(self):
+        assert 'ita' in self.langs
+        assert 'jpn' in self.langs
+        assert 'kat' in self.langs
+        assert 'por' in self.langs
+
+    def test_sub_langs(self):
+        assert 'kat.narrow' in self.langs
+        assert 'por.br' in self.langs
+
+    def test_only_langs(self):
+        assert '__init__' not in self.langs
+
+    def test_deprecated_langs(self):
+        assert 'it' not in self.langs
+        assert 'ja' not in self.langs
+
+
 class PatternTestCase(HangulizeTestCase):
 
     def setUp(self):

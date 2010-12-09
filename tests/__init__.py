@@ -20,7 +20,8 @@ def suite(code=None):
         mods = [code.replace('.', '_')]
     else:
         mods = (filename(x) for x in os.listdir(os.path.dirname(__file__)) \
-                            if x.endswith('.py') and '__init__' not in x)
+                            if x.endswith(os.path.extsep + 'py') and \
+                               '__init__' not in x)
     for mod in mods:
         mod = getattr(__import__('%s.%s' % (__name__, mod)), mod)
         suite.addTest(loader.loadTestsFromModule(mod))
