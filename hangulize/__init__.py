@@ -81,7 +81,8 @@ def get_lang(code, iso639=None, logger=None):
                                    (code, iso639))
     except ImportError:
         if iso639 != 3:
-            raise ImportError('pycountry is required to use ISO 639-' + iso639)
+            raise ImportError('pycountry is required '
+                              'to use ISO 639-%d' % iso639)
     return make_lang(code, submods, logger)
 
 
