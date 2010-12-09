@@ -5,7 +5,7 @@ from hangulize import *
 class Esperanto(Language):
     """For transcribing Esperanto."""
 
-    __iso639__ = {1: 'eo', 2: 'art', 3: 'epo'}
+    __iso639__ = {1: 'eo', 2: 'epo', 3: 'epo'}
 
     vowels = 'a', 'e', 'i', 'o', 'u'
     notation = Notation([
