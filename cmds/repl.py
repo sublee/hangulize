@@ -1,5 +1,33 @@
 # -*- coding: utf-8 -*-
 from distutils.cmd import Command
+import re
+import logging
+
+
+class REPLHandler(logging.StreamHandler):
+
+    color_map = {'hangulize': 'cyan', 'rewrite': 'green', 'remove': 'red'}
+
+    def handle(self, record):
+        msg = record.msg
+        # keywords
+        maxlen = max([len(x) for x in self.color_map.keys()])
+        def deco(color_name):
+            def replace(m):
+                pad = ' ' * (maxlen - len(m.group(1)))
+                return color(m.group(1), color_name) + pad
+            return replace
+        for keyword, color_name in self.color_map.items():
+            msg = re.sub(r'(?<=\t)(%s)' % keyword, deco(color_name), msg)
+        # result
+        msg = re.sub(r'(?<=^\=\>)(.*)$', color(r'\1', 'yellow'), msg)
+        # step
+        msg = re.sub(r'^(>>|\.\.)', color(r'\1', 'blue'), msg)
+        msg = re.sub(r'^(=>)', color(r'\1', 'magenta'), msg)
+        # arrow
+        msg = re.sub(r'(->)(?= [^ ]+$)', color(r'\1', 'black'), msg)
+        record.msg = msg
+        return logging.StreamHandler.handle(self, record)
 
 
 class repl(Command):
@@ -28,11 +56,10 @@ class repl(Command):
 
     def run(self):
         import sys
-        import logging
         from hangulize import hangulize, get_lang, LanguageError
         logger = logging.getLogger('Hangulize REPL')
         logger.setLevel(logging.INFO)
-        logger.addHandler(logging.StreamHandler())
+        logger.addHandler(REPLHandler())
         encoding = sys.stdout.encoding
         def _repl():
             while True:
@@ -51,7 +78,7 @@ class repl(Command):
                     break
                 yield hangulize(string.decode(encoding), lang=lang)
         for hangul in _repl():
-            logger.info(color(hangul, 'yellow').encode(encoding))
+            pass
 
 
 def color(msg, color):

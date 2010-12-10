@@ -276,13 +276,15 @@ class Rewrite(object):
             readable = re.sub(BLANK, ' ', readable)
             try:
                 if not self.val:
-                    lang._log(".. '%s'\tremove %s" % (readable, self.pattern))
+                    lang._log(".. '%s'\tremove %s" % \
+                              (readable, self.pattern))
                 else:
                     lang._log(".. '%s'\trewrite %s -> %s" % \
                               (readable, self.pattern, self.val))
             except UnicodeError:
-                lang._log(".. '%s'\thangulize %s" % \
-                          (readable, self.pattern))
+                val = ''.join(x.letter for x in self.val)
+                lang._log(".. '%s'\thangulize %s -> %s" % \
+                          (readable, self.pattern, val))
             except AttributeError:
                 pass
 
