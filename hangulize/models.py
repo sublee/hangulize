@@ -5,8 +5,9 @@ from hangulize.hangul import *
 
 
 SPACE = '_' # u'\U000f0000'
+EDGE = chr(3)
 SPECIAL = chr(27) #u'\U000f0000'
-BLANK = '(?:%s|%s)' % tuple(map(re.escape, (SPACE, SPECIAL)))
+BLANK = '(?:%s|%s|%s)' % tuple(map(re.escape, (SPACE, EDGE, SPECIAL)))
 DONE = chr(0) #u'\U000fffff'
 ENCODING = getattr(sys.stdout, 'encoding', 'utf-8')
 
@@ -137,22 +138,35 @@ class Language(object):
     def transcribe(self, string):
         """Returns :class:`Phoneme` instance list from the word."""
         string = re.sub(r'\s+', SPACE, string)
-        string = re.sub(r'^|$', SPECIAL, string)
+        string = re.sub(r'^|$', EDGE, string)
+        specials = []
         phonemes = []
-        # escape special characters
-        for esc in self.special:
-            rewrite = Rewrite(re.escape(esc), (Impurity(esc),))
-            string = rewrite(string, phonemes)
-        string = Rewrite(DONE, SPECIAL)(string, phonemes)
+
+        # keep special characters
+        def keep(match, rewrite):
+            specials.append(match.group(0))
+            return SPECIAL
+        esc = '(%s)' % '|'.join(re.escape(x) for x in self.special)
+        rewrite = Rewrite(esc, keep)
+        string = rewrite(string, phonemes)
+
         # apply the notation
         for item in self.notation.items():
             rewrite = Rewrite(*item)
             string = rewrite(string, phonemes, self)
+
+        # escape special characters
+        def escape(match, rewrite):
+            return (Impurity(specials.pop(0)),)
+        rewrite = Rewrite(SPECIAL, escape)
+        string = rewrite(string, phonemes)
+
         # insert spaces
         string = re.sub('^' + BLANK + '+', '', string)
         string = re.sub(BLANK + '+$', '', string)
         phonemes = phonemes[1:-1]
         Rewrite(SPACE, (Impurity(' '),))(string, phonemes)
+
         # flatten
         phonemes = reduce(list.__add__, map(list, filter(None, phonemes)), [])
         return phonemes
@@ -225,8 +239,6 @@ class Rewrite(object):
         self.pattern, self.val = pattern, val
 
     def __call__(self, string, phonemes=None, lang=None):
-        repl = self.val
-
         # allocate needed offsets
         try:
             phonemes_len, string_len = len(phonemes), len(string)
@@ -235,56 +247,68 @@ class Rewrite(object):
         except TypeError:
             pass
 
-        if lang:
-            if self.val and not isinstance(self.val, tuple):
-                # variable replacement
-                srcvars = list(self.find_actual_variables(self.pattern))
-                dstvars = list(self.find_actual_variables(self.val))
-                if len(srcvars) == len(dstvars) == 1:
-                    src = getattr(lang, srcvars[0].group('name'))
-                    dst = getattr(lang, dstvars[0].group('name'))
-                    if len(src) != len(dst):
-                        raise ValueError('the destination variable should '
-                                         'have the same length with the '
-                                         'source variable')
-                    dictionary = dict(zip(src, dst))
-                    def repl(match):
-                        let = dictionary[match.group(0)]
-                        return self.VARIABLE_PATTERN.sub(let, self.val)
+        repls = []
+
+        # replacement function
+        def repl(match):
+            val = self.val(match, self) if callable(self.val) else self.val
+            repls.append(val)
+
+            if val:
+                is_tuple = isinstance(val, tuple)
+                if not is_tuple:
+                    if lang:
+                        # variable replacement
+                        srcvars = list(self.find_actual_variables(self.pattern))
+                        dstvars = list(self.find_actual_variables(self.val))
+                        if len(srcvars) == len(dstvars) == 1:
+                            src = getattr(lang, srcvars[0].group('name'))
+                            dst = getattr(lang, dstvars[0].group('name'))
+                            if len(src) != len(dst):
+                                msg = 'the destination variable should ' \
+                                      'have the same length with the ' \
+                                      'source variable'
+                                raise ValueError(msg)
+                            dictionary = dict(zip(src, dst))
+                            let = dictionary[match.group(0)]
+                            val = self.VARIABLE_PATTERN.sub(let, val)
+                    return val
+                elif phonemes and is_tuple:
+                    # toss phonemes, and check the matched string
+                    start, end = match.span()
+                    phonemes[start] = val
+                    return DONE * (end - start)
+            elif not val:
+                # when val is None, the matched string should remove
+                return ''
 
         regex = re.compile(type(self).regexify(self.pattern, lang))
-
-        if phonemes and isinstance(self.val, tuple):
-            # toss phonemes, and check the matched string
-            repl = DONE
-            for match in regex.finditer(string):
-                start, end = match.span()
-                phonemes[start] = self.val
-                repl = DONE * (end - start)
-        elif not self.val:
-            # when val is None, the matched string should remove
-            repl = ''
 
         # replace the string
         prev = string
         string = regex.sub(repl, string)
 
         # report changes
+        def readably(string):
+            string = string.replace(DONE, '.')
+            string = string.replace(SPECIAL, '#')
+            string = re.sub('^' + BLANK + '|' + BLANK + '$', '', string)
+            string = re.sub(BLANK, ' ', string)
+            return string
         if prev != string:
-            readable = string.replace(DONE, '.')
-            readable = re.sub('^' + BLANK + '|' + BLANK + '$', '', readable)
-            readable = re.sub(BLANK, ' ', readable)
+            readable = readably(string)
+            val = repls.pop()
             try:
-                if not self.val:
+                if not val:
                     lang._log(".. '%s'\tremove %s" % \
                               (readable, self.pattern))
+                elif isinstance(val, tuple):
+                    val = ''.join(x.letter for x in val)
+                    lang._log(".. '%s'\thangulize %s -> %s" % \
+                              (readable, self.pattern, val))
                 else:
                     lang._log(".. '%s'\trewrite %s -> %s" % \
-                              (readable, self.pattern, self.val))
-            except UnicodeError:
-                val = ''.join(x.letter for x in self.val)
-                lang._log(".. '%s'\thangulize %s -> %s" % \
-                          (readable, self.pattern, val))
+                              (readable, self.pattern, val))
             except AttributeError:
                 pass
 

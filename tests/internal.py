@@ -142,6 +142,7 @@ class AlgorithmTestCase(unittest.TestCase):
         assert u'레이르트,' == hangulize(u'leert,', 'nld')
         assert u'(레이르트}' == hangulize(u'(leert}', 'nld')
         assert u'"레이르트"' == hangulize(u'"leert"', 'nld')
+        assert u'터르고비슈테,' == hangulize(u'Търговище,', 'bul')
 
     def test_too_many_rules(self):
         class TooComplexLang(Language):
