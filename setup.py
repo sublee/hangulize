@@ -44,8 +44,8 @@ setup(
     long_description=__doc__,
     zip_safe=False,
     platforms='any',
-    packages=['hangulize'],
-    package_data={'hangulize': ['langs/*']},
+    packages=['hangulize', 'hangulize.langs'],
+    package_data={'hangulize.langs': ['*/*']},
     classifiers=[
         'Development Status :: 4 - Beta',
         'Environment :: Console',
