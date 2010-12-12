@@ -282,3 +282,5 @@ class SwedishTestCase(HangulizeTestCase):
         assert u'브롬마' == self.hangulize(u'Bromma')
         assert u'단네모라' == self.hangulize(u'Dannemora')
 
+    def test_people(self):
+        assert u'상타 랑힐드' == self.hangulize(u'Sankta Ragnhild')
