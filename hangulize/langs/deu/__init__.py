@@ -54,13 +54,13 @@ class German(Language):
         ('c{A|e|i|y}',    'C'),
         ('c',             'k'),
         ('C',             'c'),
+        ('tzsch',         'T'),
         ('tz',            'z'),
         ('ng{@|l}',       'Ng'),
         ('ng',            'N'),
         ('ss',            'S'),
         (u'ß',            'S'),
         ('{@}st',         'St'),
-        ('tzsch',         'T'),
         ('ts',            'c'),
         ('s$',            'S'),
         ('s{<cons>}',     'Z'),
@@ -74,7 +74,7 @@ class German(Language):
         ('x{<cons>}',     'xi'),
         ('x$',            'xi'),
         ('^U$',           (Jungseong(E),Jungseong(EO))),
-        ('^{<cons>}U$', (Jungseong(E),Jungseong(EO))),
+        ('^{<cons>}U$',   (Jungseong(E),Jungseong(EO))),
         ('X',             (Choseong(H),)), # achlaut
         ('x',             (Choseong(H),)), # ichlaut
         ('b',             (Choseong(B),)),
