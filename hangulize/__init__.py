@@ -66,7 +66,8 @@ def get_lang(code, iso639=None, logger=None):
             class NullHandler(logging.Handler):
                 def emit(self, record):
                     pass
-        logging.getLogger('pycountry.db').addHandler(NullHandler())
+            logging.NullHandler = NullHandler
+        logging.getLogger('pycountry.db').addHandler(logging.NullHandler())
         from pycountry import languages
         attr = ['alpha2', 'bibliographic', 'terminology'][iso639 - 1]
         code = languages.get(**{attr: code}).terminology

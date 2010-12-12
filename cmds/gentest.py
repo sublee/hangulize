@@ -125,4 +125,3 @@ def generate_testsuite(url, name, locale):
 
     return TESTCASE_TEMPLATE.format(name=name, locale=locale,
                                     url=url, body=body)
-

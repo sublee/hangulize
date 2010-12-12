@@ -291,7 +291,7 @@ class AlgorithmTestCase(unittest.TestCase):
 
 
 try:
-    import pycountry
+    get_lang('it', iso639=1)
     class LanguageCodeTestCase(unittest.TestCase):
 
         table = [('bg', 'bul', 'bul'),
