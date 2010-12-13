@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 import sys
 import re
+import functools
 from hangulize.hangul import *
 
 
@@ -10,6 +11,22 @@ SPECIAL = chr(27) #u'\U000f0000'
 BLANK = '(?:%s|%s|%s)' % tuple(map(re.escape, (SPACE, EDGE, SPECIAL)))
 DONE = chr(0) #u'\U000fffff'
 ENCODING = getattr(sys.stdout, 'encoding', 'utf-8')
+
+
+def cached_property(func, name=None):
+    if name is None:
+        name = func.__name__
+    def get(self):
+        try:
+            return self.__dict__[name]
+        except KeyError:
+            val = func(self)
+            self.__dict__[name] = val
+            return val
+    functools.update_wrapper(get, func)
+    def del_(self):
+        self.__dict__.pop(name, None)
+    return property(get, None, del_)
 
 
 class Phoneme(object):
@@ -70,6 +87,11 @@ class Notation(object):
     def __init__(self, rules):
         self.rules = rules
 
+    def __iter__(self):
+        if not getattr(self, '_rewrites', None):
+            self._rewrites = [Rewrite(*item) for item in self.items()]
+        return iter(self._rewrites)
+
     def items(self, left_edge=False, right_edge=False, lang=None):
         """Yields each notation rules as regex."""
         for one in self.rules:
@@ -119,10 +141,25 @@ class Language(object):
     notation = None
     special = '.,;?~"()[]{}'
 
-    def __init__(self, logger=None):
+    def __init__(self):
         if not isinstance(self.notation, Notation):
             raise NotImplementedError("notation has to be defined")
-        self.logger = logger
+
+    @cached_property
+    def _steal_specials(self):
+        # keep special characters
+        def keep(match, rewrite):
+            self._specials.append(match.group(0))
+            return SPECIAL
+        esc = '(%s)' % '|'.join(re.escape(x) for x in self.special)
+        return Rewrite(esc, keep)
+
+    @cached_property
+    def _recover_specials(self):
+        # escape special characters
+        def escape(match, rewrite):
+            return (Impurity(self._specials.pop(0)),)
+        return Rewrite(SPECIAL, escape)
 
     @property
     def chars_pattern(self):
@@ -135,37 +172,26 @@ class Language(object):
         pattern = '[^%s]+' % self.chars_pattern
         return re.split(pattern, string)
 
-    def transcribe(self, string):
+    def transcribe(self, string, logger=None):
         """Returns :class:`Phoneme` instance list from the word."""
         string = re.sub(r'\s+', SPACE, string)
         string = re.sub(r'^|$', EDGE, string)
-        specials = []
+        self._specials = []
         phonemes = []
 
-        # keep special characters
-        def keep(match, rewrite):
-            specials.append(match.group(0))
-            return SPECIAL
-        esc = '(%s)' % '|'.join(re.escape(x) for x in self.special)
-        rewrite = Rewrite(esc, keep)
-        string = rewrite(string, phonemes)
-
+        # steal special characters
+        string = self._steal_specials(string, phonemes)
         # apply the notation
-        for item in self.notation.items():
-            rewrite = Rewrite(*item)
-            string = rewrite(string, phonemes, self)
-
-        # escape special characters
-        def escape(match, rewrite):
-            return (Impurity(specials.pop(0)),)
-        rewrite = Rewrite(SPECIAL, escape)
-        string = rewrite(string, phonemes)
+        for rewrite in self.notation:
+            string = rewrite(string, phonemes, lang=self, logger=logger)
+        # recover special characters
+        string = self._recover_specials(string, phonemes)
 
         # insert spaces
         string = re.sub('^' + BLANK + '+', '', string)
         string = re.sub(BLANK + '+$', '', string)
         phonemes = phonemes[1:-1]
-        Rewrite(SPACE, (Impurity(' '),))(string, phonemes)
+        _hold_spaces(string, phonemes)
 
         # flatten
         phonemes = reduce(list.__add__, map(list, filter(None, phonemes)), [])
@@ -177,7 +203,7 @@ class Language(object):
         """
         return string
 
-    def hangulize(self, string):
+    def hangulize(self, string, logger=None):
         """Hangulizes the string.
 
             >>> from hangulize.langs.ja import Japanese
@@ -192,21 +218,16 @@ class Language(object):
             else:
                 return join(syllable)
         string = self.normalize(string)
-        self._log(">> '%s'" % string)
-        phonemes = self.transcribe(string)
+        logger and logger.info(">> '%s'" % string)
+        phonemes = self.transcribe(string, logger=logger)
         try:
             syllables = complete_syllables(phonemes)
             result = [stringify(syl) for syl in syllables]
             hangulized = ''.join(result)
         except TypeError:
             hangulized = u''
-        self._log('=> %s' % hangulized)
+        logger and logger.info('=> %s' % hangulized)
         return hangulized
-
-    def _log(self, msg, if_=True):
-        if if_ and self.logger:
-            self.logger.info(msg)
-        return msg
 
     @property
     def iso639_1(self):
@@ -237,8 +258,9 @@ class Rewrite(object):
     def __init__(self, pattern, val):
         """Makes a replace function with the given pattern and value."""
         self.pattern, self.val = pattern, val
+        self.__regexes__ = {}
 
-    def __call__(self, string, phonemes=None, lang=None):
+    def __call__(self, string, phonemes=None, lang=None, logger=None):
         # allocate needed offsets
         try:
             phonemes_len, string_len = len(phonemes), len(string)
@@ -247,7 +269,7 @@ class Rewrite(object):
         except TypeError:
             pass
 
-        repls = []
+        regex = self.compile_pattern(lang)
 
         # replacement function
         def repl(match):
@@ -259,8 +281,9 @@ class Rewrite(object):
                 if not is_tuple:
                     if lang:
                         # variable replacement
-                        srcvars = list(self.find_actual_variables(self.pattern))
-                        dstvars = list(self.find_actual_variables(self.val))
+                        srcvars = self.find_actual_variables(self.pattern)
+                        dstvars = self.find_actual_variables(self.val)
+                        srcvars, dstvars = list(srcvars), list(dstvars)
                         if len(srcvars) == len(dstvars) == 1:
                             src = getattr(lang, srcvars[0].group('name'))
                             dst = getattr(lang, dstvars[0].group('name'))
@@ -282,37 +305,39 @@ class Rewrite(object):
                 # when val is None, the matched string should remove
                 return ''
 
-        regex = re.compile(type(self).regexify(self.pattern, lang))
-
-        # replace the string
+        repls = []
         prev = string
+        # replace the string
         string = regex.sub(repl, string)
 
-        # report changes
-        def readably(string):
-            string = string.replace(DONE, '.')
-            string = string.replace(SPECIAL, '#')
-            string = re.sub('^' + BLANK + '|' + BLANK + '$', '', string)
-            string = re.sub(BLANK, ' ', string)
-            return string
-        if prev != string:
-            readable = readably(string)
-            val = repls.pop()
-            try:
+        if logger:
+            # report changes
+            def readably(string):
+                string = string.replace(DONE, '.')
+                string = string.replace(SPECIAL, '#')
+                string = re.sub('^' + BLANK + '|' + BLANK + '$', '', string)
+                string = re.sub(BLANK, ' ', string)
+                return string
+            if prev != string:
+                readable = readably(string)
+                val = repls.pop()
+                args = (readable, self.pattern)
                 if not val:
-                    lang._log(".. '%s'\tremove %s" % \
-                              (readable, self.pattern))
+                    msg = ".. '%s'\tremove %s" % args
                 elif isinstance(val, tuple):
                     val = ''.join(x.letter for x in val)
-                    lang._log(".. '%s'\thangulize %s -> %s" % \
-                              (readable, self.pattern, val))
+                    msg = ".. '%s'\thangulize %s -> %s" % (args + (val,))
                 else:
-                    lang._log(".. '%s'\trewrite %s -> %s" % \
-                              (readable, self.pattern, val))
-            except AttributeError:
-                pass
+                    msg = ".. '%s'\trewrite %s -> %s" % (args + (val,))
+                logger.info(msg)
 
         return string
+
+    def compile_pattern(self, lang=None):
+        if lang not in self.__regexes__:
+            regex = re.compile(type(self).regexify(self.pattern, lang))
+            self.__regexes__[lang] = regex
+        return self.__regexes__[lang]
 
     @classmethod
     def regexify(cls, pattern, lang=None):
@@ -362,6 +387,9 @@ class Rewrite(object):
             return self.VARIABLE_PATTERN.finditer(pattern)
         except TypeError:
             return ()
+
+
+_hold_spaces = Rewrite(SPACE, (Impurity(' '),))
 
 
 class HangulizeError(Exception):

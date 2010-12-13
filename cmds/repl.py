@@ -66,7 +66,7 @@ class repl(Command):
             while True:
                 code = self.code or raw_input(color('Lang: ', 'magenta'))
                 try:
-                    lang = get_lang(code, logger=logger)
+                    lang = get_lang(code)
                     logger.info('** ' + color(type(lang).__name__, 'green') + \
                                 ' is selected')
                     break
@@ -77,7 +77,7 @@ class repl(Command):
                 if not string:
                     logger.info('** ' + color('end', 'green'))
                     break
-                yield hangulize(string.decode(encoding), lang=lang)
+                yield lang.hangulize(string.decode(encoding), logger=logger)
         for hangul in _repl():
             pass
 

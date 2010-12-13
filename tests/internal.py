@@ -27,6 +27,22 @@ class APITestCase(unittest.TestCase):
         assert 'it' not in self.langs
         assert 'ja' not in self.langs
 
+    def test_logger(self):
+        import logging
+        class TestHandler(logging.StreamHandler):
+            msgs = []
+            def handle(self, record):
+                self.msgs.append(record.msg)
+            @property
+            def result(self):
+                return '\n'.join(self.msgs)
+        logger = logging.getLogger('test')
+        handler = TestHandler()
+        logger.setLevel(logging.INFO)
+        logger.addHandler(handler)
+        hangulize(u'gloria', 'ita', logger=logger)
+        assert ">> 'gloria'" in handler.result
+
 
 class PatternTestCase(HangulizeTestCase):
 

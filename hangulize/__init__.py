@@ -25,8 +25,8 @@ def hangulize(string, code=None, iso639=None, lang=None, logger=None):
                    steps
     """
     if not lang:
-        lang = get_lang(code, iso639=iso639, logger=logger)
-    return lang.hangulize(string)
+        lang = get_lang(code, iso639=iso639)
+    return lang.hangulize(string, logger=logger)
 
 
 def import_module(code):
@@ -38,12 +38,12 @@ def import_module(code):
     return module
 
 
-def get_lang(code, iso639=None, logger=None):
+def get_lang(code, iso639=None):
     """Returns a language instance from the given code."""
-    def make_lang(code, submods, logger):
+    def make_lang(code, submods):
         try:
             code = '.'.join([code] + list(submods))
-            return import_module(code).__lang__(logger)
+            return import_module(code).__lang__()
         except ImportError:
             raise LanguageError('%s is not supported' % code)
     # split module path
@@ -76,7 +76,7 @@ def get_lang(code, iso639=None, logger=None):
         raise InvalidCodeError('%s is invalid language code' % code)
     except KeyError:
         try:
-            return make_lang(code, submods, logger)
+            return make_lang(code, submods)
         except LanguageError:
             raise InvalidCodeError('%s is invalid ISO 639-%d code' % \
                                    (code, iso639))
@@ -84,7 +84,7 @@ def get_lang(code, iso639=None, logger=None):
         if iso639 != 3:
             raise ImportError('pycountry is required '
                               'to use ISO 639-%d' % iso639)
-    return make_lang(code, submods, logger)
+    return make_lang(code, submods)
 
 
 def supported(code):
