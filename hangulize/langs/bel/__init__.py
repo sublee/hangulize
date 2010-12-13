@@ -6,7 +6,7 @@ class Belarusian(Language):
     """For transcribing Belarusian."""
 
     __iso639__ = {1: 'be', 2: 'bel', 3: 'bel'}
-    
+
     vowels = u'аеёійоуыьэюя'
     cs = u'бвгґджзклмнпрстфхцчш'
     vl = u'кпстфхцчш'

@@ -6,7 +6,7 @@ class Macedonian(Language):
     """For transcribing Macedonian."""
 
     __iso639__ = {1: 'mk', 2: 'mac', 3: 'mkd'}
-    
+
     vowels = u'аеиоу'
     cs = u'бвгдѓжзѕклљмнњпрстќфхцчџш'
     vl = u'кпстќфхцчш'
