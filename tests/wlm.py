@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 from tests import HangulizeTestCase
-from hangulize.langs.cym.mid import MiddleWelsh
+from hangulize.langs.wlm import MiddleWelsh
 
 
 class MiddleWelshTestCase(HangulizeTestCase):
