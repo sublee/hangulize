@@ -1,7 +1,7 @@
 import sys
 import os.path
-import unittest
 import time
+import unittest
 
 
 class LazyTestSuite(unittest.TestSuite):
@@ -31,10 +31,10 @@ def suite(code=None):
         mods = (filename(x) for x in os.listdir(os.path.dirname(__file__)) \
                             if x.endswith(os.path.extsep + 'py') and \
                                '__init__' not in x)
-    def add_tests():
+    def tests():
         for mod in mods:
             mod = getattr(__import__('%s.%s' % (__name__, mod)), mod)
             yield loader.loadTestsFromModule(mod)
             del mod
-    suite = LazyTestSuite(add_tests())
+    suite = LazyTestSuite(tests())
     return suite

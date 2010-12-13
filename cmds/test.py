@@ -14,5 +14,6 @@ class test(Command):
 
     def run(self):
         import unittest
-        from tests import suite
-        unittest.TextTestRunner(verbosity=2).run(suite(self.code))
+        import tests
+        suite = tests.suite(self.code)
+        unittest.TextTestRunner(verbosity=2).run(suite)
