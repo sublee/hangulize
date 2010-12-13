@@ -141,6 +141,13 @@ class Language(object):
     notation = None
     special = '.,;?~"()[]{}'
 
+    def __new__(cls):
+        if not getattr(cls, '_instances', None):
+            cls._instances = {}
+        if cls not in cls._instances:
+            cls._instances[cls] = object.__new__(cls)
+        return cls._instances[cls]
+
     def __init__(self):
         if not isinstance(self.notation, Notation):
             raise NotImplementedError("notation has to be defined")

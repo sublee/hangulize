@@ -43,6 +43,10 @@ class APITestCase(unittest.TestCase):
         hangulize(u'gloria', 'ita', logger=logger)
         assert ">> 'gloria'" in handler.result
 
+    def test_singleton(self):
+        from hangulize.langs.ita import Italian
+        assert Italian() is Italian()
+
 
 class PatternTestCase(HangulizeTestCase):
 
