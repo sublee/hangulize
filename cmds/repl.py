@@ -1,7 +1,8 @@
 # -*- coding: utf-8 -*-
-from distutils.cmd import Command
+import platform
 import re
 import logging
+from distutils.cmd import Command
 
 
 class REPLHandler(logging.StreamHandler):
@@ -82,6 +83,8 @@ class repl(Command):
 
 
 def color(msg, color):
+    if platform.win32_ver()[0]:
+        return msg
     colors = dict(BLACK=30, RED=31, GREEN=32, YELLOW=33, BLUE=34,
                   MAGENTA=35, CYAN=36, WHITE=37)
     code = colors[color.upper()]
