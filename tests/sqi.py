@@ -6,78 +6,80 @@ from hangulize.langs.sqi import Albanian
 class AlbanianTestCase(HangulizeTestCase):
 
     lang = Albanian()
-    
+
     def test_people(self):
-        assert u'라미즈 알리아' == self.hangulize(u'Ramiz Alia')
-        assert u'발론 베흐라미' == self.hangulize(u'Valon Behrami')
-        assert u'살리 베리샤' == self.hangulize(u'Sali Berisha')
-        assert u'아그네스 곤자 보야지우' == \
-               self.hangulize(u'Agnes Gonxha Bojaxhiu')
-        assert u'부야르 부코시' == self.hangulize(u'Bujar Bukoshi')
-        assert u'존 부주쿠' == self.hangulize(u'Gjon Buzuku')
-        assert u'제르지 피슈타' == self.hangulize(u'Gjergj Fishta')
-        assert u'로리크 차나' == self.hangulize(u'Lorik Cana')
-        assert u'에치렘 차베이' == self.hangulize(u'Eqrem Çabej')
-        assert u'아딜 차르차니' == self.hangulize(u'Adil Çarçani')
-        assert u'아김 체쿠' == self.hangulize(u'Agim Çeku')
-        assert u'에미나 춘물라이' == self.hangulize(u'Emina Çunmulaj')
-        assert u'레카 두카지니' == self.hangulize(u'Leka Dukagjini')
-        assert u'엘리자 두슈쿠' == self.hangulize(u'Eliza Dushku')
-        assert u'미트하트 프라셔리' == self.hangulize(u'Mit\'hat Frashëri')
-        assert u'시몬 조니' == self.hangulize(u'Simon Gjoni')
-        assert u'루이지 구라쿠치' == self.hangulize(u'Luigj Gurakuqi')
-        assert u'엔베르 호자' == self.hangulize(u'Enver Hoxha')
-        assert u'이스마일 카다레' == self.hangulize(u'Ismail Kadare')
-        assert u'디미터르 카마르다' == self.hangulize(u'Dhimitër Kamarda')
-        assert u'이브라힘 코드라' == self.hangulize(u'Ibrahim Kodra')
-        assert u'야쿠프 크라스니치' == self.hangulize(u'Jakup Krasniqi')
-        assert u'루안 크라스니치' == self.hangulize(u'Luan Krasniqi')
-        assert u'셰프키 쿠치' == self.hangulize(u'Shefki Kuqi')
-        assert u'바실 라치' == self.hangulize(u'Vasil Laçi')
-        assert u'리자 루슈타' == self.hangulize(u'Riza Lushta')
-        assert u'미렐라 마냐니' == self.hangulize(u'Mirela Manjani')
-        assert u'제케 마리나이' == self.hangulize(u'Gjeke Marinaj')
-        assert u'레제프 메이다니' == self.hangulize(u'Rexhep Meidani')
-        assert u'알프레드 모이시우' == self.hangulize(u'Alfred Moisiu')
-        assert u'파토스 나노' == self.hangulize(u'Fatos Nano')
-        assert u'베흐제트 파촐리' == self.hangulize(u'Behxhet Pacolli')
-        assert u'아드리안 파치' == self.hangulize(u'Adrian Paçi')
-        assert u'레제프 초시아' == self.hangulize(u'Rexhep Qosja')
-        assert u'이브라힘 루고바' == self.hangulize(u'Ibrahim Rugova')
-        assert u'파트미르 세이디우' == self.hangulize(u'Fatmir Sejdiu')
-        assert u'클로디아나 샬라' == self.hangulize(u'Klodiana Shala')
-        assert u'아르팀 샤치리' == self.hangulize(u'Artim Shaqiri')
-        assert u'제르단 샤치리' == self.hangulize(u'Xherdan Shaqiri')
-        assert u'제르지 카스트리오트 스칸데르베그' == \
-               self.hangulize(u'Gjergj Kastriot Skanderbeg')
-        assert u'하심 사치' == self.hangulize(u'Hashim Thaçi')
-        assert u'바미르 토피' == self.hangulize(u'Bamir Topi')
-        assert u'파슈코 바사' == self.hangulize(u'Pashko Vasa')
-        
+        self.assert_examples({
+            u'Ramiz Alia': u'라미즈 알리아',
+            u'Valon Behrami': u'발론 베흐라미',
+            u'Sali Berisha': u'살리 베리샤',
+            u'Agnes Gonxha Bojaxhiu': u'아그네스 곤자 보야지우',
+            u'Bujar Bukoshi': u'부야르 부코시',
+            u'Gjon Buzuku': u'존 부주쿠',
+            u'Gjergj Fishta': u'제르지 피슈타',
+            u'Lorik Cana': u'로리크 차나',
+            u'Eqrem Çabej': u'에치렘 차베이',
+            u'Adil Çarçani': u'아딜 차르차니',
+            u'Agim Çeku': u'아김 체쿠',
+            u'Emina Çunmulaj': u'에미나 춘물라이',
+            u'Leka Dukagjini': u'레카 두카지니',
+            u'Eliza Dushku': u'엘리자 두슈쿠',
+            u'Mit\'hat Frashëri': u'미트하트 프라셔리',
+            u'Simon Gjoni': u'시몬 조니',
+            u'Luigj Gurakuqi': u'루이지 구라쿠치',
+            u'Enver Hoxha': u'엔베르 호자',
+            u'Ismail Kadare': u'이스마일 카다레',
+            u'Dhimitër Kamarda': u'디미터르 카마르다',
+            u'Ibrahim Kodra': u'이브라힘 코드라',
+            u'Jakup Krasniqi': u'야쿠프 크라스니치',
+            u'Luan Krasniqi': u'루안 크라스니치',
+            u'Shefki Kuqi': u'셰프키 쿠치',
+            u'Vasil Laçi': u'바실 라치',
+            u'Riza Lushta': u'리자 루슈타',
+            u'Mirela Manjani': u'미렐라 마냐니',
+            u'Gjeke Marinaj': u'제케 마리나이',
+            u'Rexhep Meidani': u'레제프 메이다니',
+            u'Alfred Moisiu': u'알프레드 모이시우',
+            u'Fatos Nano': u'파토스 나노',
+            u'Behxhet Pacolli': u'베흐제트 파촐리',
+            u'Adrian Paçi': u'아드리안 파치',
+            u'Rexhep Qosja': u'레제프 초시아',
+            u'Ibrahim Rugova': u'이브라힘 루고바',
+            u'Fatmir Sejdiu': u'파트미르 세이디우',
+            u'Klodiana Shala': u'클로디아나 샬라',
+            u'Artim Shaqiri': u'아르팀 샤치리',
+            u'Xherdan Shaqiri': u'제르단 샤치리',
+            u'Gjergj Kastriot Skanderbeg': u'제르지 카스트리오트 스칸데르베그',
+            u'Hashim Thaçi': u'하심 사치',
+            u'Bamir Topi': u'바미르 토피',
+            u'Pashko Vasa': u'파슈코 바사',
+        })
+
     def test_places(self):
-        assert u'베라티' == self.hangulize(u'Berati')
-        assert u'부트린티' == self.hangulize(u'Butrinti')
-        assert u'두러시' == self.hangulize(u'Durrësi')
-        assert u'엘바사니' == self.hangulize(u'Elbasani')
-        assert u'피에리' == self.hangulize(u'Fieri')
-        assert u'자코바' == self.hangulize(u'Gjakova')
-        assert u'질라니' == self.hangulize(u'Gjilani')
-        assert u'지로카스트라' == self.hangulize(u'Gjirokastra')
-        assert u'카차니쿠' == self.hangulize(u'Kaçaniku')
-        assert u'카바야' == self.hangulize(u'Kavaja')
-        assert u'코르차' == self.hangulize(u'Korça')
-        assert u'크루야' == self.hangulize(u'Kruja')
-        assert u'레자' == self.hangulize(u'Lezha')
-        assert u'루슈냐' == self.hangulize(u'Lushnja')
-        assert u'미트로비차' == self.hangulize(u'Mitrovica')
-        assert u'페야' == self.hangulize(u'Peja')
-        assert u'포그라데치' == self.hangulize(u'Pogradeci')
-        assert u'프리슈티나' == self.hangulize(u'Prishtina')
-        assert u'프리즈레니' == self.hangulize(u'Prizreni')
-        assert u'사란다' == self.hangulize(u'Saranda')
-        assert u'슈코드라' == self.hangulize(u'Shkodra')
-        assert u'슈쿰비니' == self.hangulize(u'Shkumbini')
-        assert u'슈치퍼리아' == self.hangulize(u'Shqipëria')
-        assert u'티라나' == self.hangulize(u'Tirana')
-        assert u'울피아나' == self.hangulize(u'Ulpiana')
-        assert u'블로라' == self.hangulize(u'Vlora')
+        self.assert_examples({
+            u'Berati': u'베라티',
+            u'Butrinti': u'부트린티',
+            u'Durrësi': u'두러시',
+            u'Elbasani': u'엘바사니',
+            u'Fieri': u'피에리',
+            u'Gjakova': u'자코바',
+            u'Gjilani': u'질라니',
+            u'Gjirokastra': u'지로카스트라',
+            u'Kaçaniku': u'카차니쿠',
+            u'Kavaja': u'카바야',
+            u'Korça': u'코르차',
+            u'Kruja': u'크루야',
+            u'Lezha': u'레자',
+            u'Lushnja': u'루슈냐',
+            u'Mitrovica': u'미트로비차',
+            u'Peja': u'페야',
+            u'Pogradeci': u'포그라데치',
+            u'Prishtina': u'프리슈티나',
+            u'Prizreni': u'프리즈레니',
+            u'Saranda': u'사란다',
+            u'Shkodra': u'슈코드라',
+            u'Shkumbini': u'슈쿰비니',
+            u'Shqipëria': u'슈치퍼리아',
+            u'Tirana': u'티라나',
+            u'Ulpiana': u'울피아나',
+            u'Vlora': u'블로라',
+        })

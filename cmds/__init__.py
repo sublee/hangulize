@@ -1,6 +1,8 @@
-from cmds.test import test
-from cmds.repl import repl
-from cmds.gentest import gen_test
+import cmds.test
+import cmds.repl
+import cmds.gentest
 
 
-cmdclass = dict(test=test, repl=repl, gen_test=gen_test)
+cmdclass = dict(test=cmds.test.test,
+                repl=cmds.repl.repl,
+                gen_test=cmds.gentest.gen_test)

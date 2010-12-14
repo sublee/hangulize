@@ -9,203 +9,227 @@ class RussianTestCase(HangulizeTestCase):
     lang = Russian()
 
     def test_examples_of_iceager(self):
-        assert u'프레미예르' == self.hangulize(u'Премьер')
-        assert u'압크세시야' == self.hangulize(u'Авксесия')
+        self.assert_examples({
+            u'Премьер': u'프레미예르',
+            u'Авксесия': u'압크세시야',
+        })
 
     def test_basic(self):
         """ http://korean.go.kr/09_new/dic/rule/rule_foreign_0119.jsp """
-        assert u'볼로토프' == self.hangulize(u'Болотов')
-        assert u'보브로프' == self.hangulize(u'Бобров')
-        assert u'쿠릅스키' == self.hangulize(u'Курбский')
-        assert u'글레프' == self.hangulize(u'Глеб')
-        assert u'곤차로프' == self.hangulize(u'Гончаров')
-        assert u'마네치카' == self.hangulize(u'Манечка')
-        assert u'야쿠보비치' == self.hangulize(u'Якубович')
-        assert u'드미트리' == self.hangulize(u'Дмитрий')
-        assert u'베네딕토프' == self.hangulize(u'Бенедиктов')
-        assert u'나홋카' == self.hangulize(u'Находка')
-        assert u'보스호트' == self.hangulize(u'Восход')
-        assert u'표도르' == self.hangulize(u'Фёдор')
-        assert u'예프레모프' == self.hangulize(u'Ефремов')
-        assert u'이오시프' == self.hangulize(u'Иосиф')
-        assert u'고골' == self.hangulize(u'Гоголь')
-        assert u'무소륵스키' == self.hangulize(u'Мусоргский')
-        assert u'보그단' == self.hangulize(u'Богдан')
-        assert u'안다르바크' == self.hangulize(u'Андарбаг')
-        assert u'하바롭스크' == self.hangulize(u'Хабаровск')
-        assert u'아흐마토바' == self.hangulize(u'Ахматова')
-        assert u'오이스트라흐' == self.hangulize(u'Ойстрах')
-        assert u'칼미크' == self.hangulize(u'Калмык')
-        assert u'악사코프' == self.hangulize(u'Аксаков')
-        assert u'크바스' == self.hangulize(u'Квас')
-        assert u'블라디보스토크' == self.hangulize(u'Владивосток')
-        assert u'레닌' == self.hangulize(u'Ленин')
-        assert u'니콜라이' == self.hangulize(u'Николай')
-        assert u'크릴로프' == self.hangulize(u'Крылов')
-        assert u'파벨' == self.hangulize(u'Павел')
-        assert u'미하일' == self.hangulize(u'Михаийл')
-        assert u'막심' == self.hangulize(u'Максим')
-        assert u'므첸스크' == self.hangulize(u'Мценск')
-        assert u'나댜' == self.hangulize(u'Надя')
-        assert u'스테판' == self.hangulize(u'Стефан')
-        assert u'표트르' == self.hangulize(u'Пётр')
-        assert u'로스톱치냐' == self.hangulize(u'Ростопчиня')
-        assert u'프스코프' == self.hangulize(u'Псков')
-        assert u'마이코프' == self.hangulize(u'Майкоп')
-        assert u'리빈스크' == self.hangulize(u'Рыбинск')
-        assert u'레르몬토프' == self.hangulize(u'Лермонтов')
-        assert u'아르툠' == self.hangulize(u'Артём')
-        assert u'바실리' == self.hangulize(u'Василий')
-        assert u'스테판' == self.hangulize(u'Стефан')
-        assert u'보리스' == self.hangulize(u'Борис')
-        assert u'셸구노프' == self.hangulize(u'Шелгунов')
-        assert u'시시코프' == self.hangulize(u'Шишков')
-        assert u'셰르바코프' == self.hangulize(u'Щербаков')
-        assert u'시레츠' == self.hangulize(u'Щирец')
-        assert u'보르시' == self.hangulize(u'борщ')
-        assert u'타티야나' == self.hangulize(u'Татьяна')
-        assert u'흐밧코프' == self.hangulize(u'Хватков')
-        assert u'트베리' == self.hangulize(u'Тверь')
-        assert u'부랴트' == self.hangulize(u'Бурят')
-        assert u'가치나' == self.hangulize(u'Гатчина')
-        assert u'튜체프' == self.hangulize(u'Тютчев')
-        assert u'카피차' == self.hangulize(u'Капица')
-        assert u'츠베타예바' == self.hangulize(u'Цветаева')
-        assert u'브랴츠크' == self.hangulize(u'Брятск')
-        assert u'야쿠츠크' == self.hangulize(u'Якутск')
-        assert u'베렙킨' == self.hangulize(u'Веревкин')
-        assert u'도스토옙스키' == self.hangulize(u'Достоевский')
-        assert u'블라디보스토크' == self.hangulize(u'Владивосток')
-        assert u'마르코프' == self.hangulize(u'Марков')
-        assert u'자이체프' == self.hangulize(u'Зайчев')
-        assert u'쿠즈네초프' == self.hangulize(u'Кузнецов')
-        assert u'아그리스' == self.hangulize(u'Агрыз')
-        assert u'자돕스카야' == self.hangulize(u'Жадовская')
-        assert u'즈다노프' == self.hangulize(u'Жданов')
-        assert u'루시코프' == self.hangulize(u'Лужков')
-        assert u'케베시' == self.hangulize(u'Кебеж')
-        assert u'유리' == self.hangulize(u'Юрий')
-        assert u'안드레이' == self.hangulize(u'Андрей')
-        assert u'벨리' == self.hangulize(u'Белый')
-        assert u'악사코프' == self.hangulize(u'Аксаков')
-        assert u'아바칸' == self.hangulize(u'Абакан')
-        assert u'페트로프' == self.hangulize(u'Петров')
-        assert u'예브게니' == self.hangulize(u'Евгений')
-        assert u'알렉세예프' == self.hangulize(u'Алексеев')
-        assert u'예르텔' == self.hangulize(u'Эртель')
-        assert u'이바노프' == self.hangulize(u'Иванов')
-        assert u'이오시프' == self.hangulize(u'Иосиф')
-        assert u'호먀코프' == self.hangulize(u'Хомяков')
-        assert u'오카' == self.hangulize(u'Ока')
-        assert u'우샤코프' == self.hangulize(u'Ушаков')
-        assert u'사라풀' == self.hangulize(u'Сарапул')
-        assert u'살티코프' == self.hangulize(u'Салтыков')
-        assert u'키라' == self.hangulize(u'Кыра')
-        assert u'벨리' == self.hangulize(u'Белый')
-        assert u'야신스키' == self.hangulize(u'Ясинский')
-        assert u'아디게야' == self.hangulize(u'Адыгея')
-        assert u'솔로비요프' == self.hangulize(u'Соловьёв')
-        assert u'아르툠' == self.hangulize(u'Артём')
-        assert u'유리' == self.hangulize(u'Юрий')
-        assert u'유르가' == self.hangulize(u'Юрга')
+        self.assert_examples({
+            u'Болотов': u'볼로토프',
+            u'Бобров': u'보브로프',
+            u'Курбский': u'쿠릅스키',
+            u'Глеб': u'글레프',
+            u'Гончаров': u'곤차로프',
+            u'Манечка': u'마네치카',
+            u'Якубович': u'야쿠보비치',
+            u'Дмитрий': u'드미트리',
+            u'Бенедиктов': u'베네딕토프',
+            u'Находка': u'나홋카',
+            u'Восход': u'보스호트',
+            u'Фёдор': u'표도르',
+            u'Ефремов': u'예프레모프',
+            u'Иосиф': u'이오시프',
+            u'Гоголь': u'고골',
+            u'Мусоргский': u'무소륵스키',
+            u'Богдан': u'보그단',
+            u'Андарбаг': u'안다르바크',
+            u'Хабаровск': u'하바롭스크',
+            u'Ахматова': u'아흐마토바',
+            u'Ойстрах': u'오이스트라흐',
+            u'Калмык': u'칼미크',
+            u'Аксаков': u'악사코프',
+            u'Квас': u'크바스',
+            u'Владивосток': u'블라디보스토크',
+            u'Ленин': u'레닌',
+            u'Николай': u'니콜라이',
+            u'Крылов': u'크릴로프',
+            u'Павел': u'파벨',
+            u'Михаийл': u'미하일',
+            u'Максим': u'막심',
+            u'Мценск': u'므첸스크',
+            u'Надя': u'나댜',
+            u'Стефан': u'스테판',
+            u'Пётр': u'표트르',
+            u'Ростопчиня': u'로스톱치냐',
+            u'Псков': u'프스코프',
+            u'Майкоп': u'마이코프',
+            u'Рыбинск': u'리빈스크',
+            u'Лермонтов': u'레르몬토프',
+            u'Артём': u'아르툠',
+            u'Василий': u'바실리',
+            u'Стефан': u'스테판',
+            u'Борис': u'보리스',
+            u'Шелгунов': u'셸구노프',
+            u'Шишков': u'시시코프',
+            u'Щербаков': u'셰르바코프',
+            u'Щирец': u'시레츠',
+            u'борщ': u'보르시',
+            u'Татьяна': u'타티야나',
+            u'Хватков': u'흐밧코프',
+            u'Тверь': u'트베리',
+            u'Бурят': u'부랴트',
+            u'Гатчина': u'가치나',
+            u'Тютчев': u'튜체프',
+            u'Капица': u'카피차',
+            u'Цветаева': u'츠베타예바',
+            u'Брятск': u'브랴츠크',
+            u'Якутск': u'야쿠츠크',
+            u'Веревкин': u'베렙킨',
+            u'Достоевский': u'도스토옙스키',
+            u'Владивосток': u'블라디보스토크',
+            u'Марков': u'마르코프',
+            u'Зайчев': u'자이체프',
+            u'Кузнецов': u'쿠즈네초프',
+            u'Агрыз': u'아그리스',
+            u'Жадовская': u'자돕스카야',
+            u'Жданов': u'즈다노프',
+            u'Лужков': u'루시코프',
+            u'Кебеж': u'케베시',
+            u'Юрий': u'유리',
+            u'Андрей': u'안드레이',
+            u'Белый': u'벨리',
+            u'Аксаков': u'악사코프',
+            u'Абакан': u'아바칸',
+            u'Петров': u'페트로프',
+            u'Евгений': u'예브게니',
+            u'Алексеев': u'알렉세예프',
+            u'Эртель': u'예르텔',
+            u'Иванов': u'이바노프',
+            u'Иосиф': u'이오시프',
+            u'Хомяков': u'호먀코프',
+            u'Ока': u'오카',
+            u'Ушаков': u'우샤코프',
+            u'Сарапул': u'사라풀',
+            u'Салтыков': u'살티코프',
+            u'Кыра': u'키라',
+            u'Белый': u'벨리',
+            u'Ясинский': u'야신스키',
+            u'Адыгея': u'아디게야',
+            u'Соловьёв': u'솔로비요프',
+            u'Артём': u'아르툠',
+            u'Юрий': u'유리',
+            u'Юрга': u'유르가',
+        })
 
     def test_1st(self):
         """제1항: p(п), t(т), k(к), b(б), d(д), g(г), f(ф), v(в)
         파열음과 마찰음 f(ф)·v(в)는 무성 자음 앞에서는 앞 음절의 받침으로
         적고, 유성 자음 앞에서는 ‘으'를 붙여 적는다.
         """
-        assert u'삿코' == self.hangulize(u'Садко')
-        assert u'아그리스' == self.hangulize(u'Агрыз')
-        assert u'아크바우르' == self.hangulize(u'Акбаур')
-        assert u'로스톱치냐' == self.hangulize(u'Ростопчиня')
-        assert u'아크메이즘' == self.hangulize(u'Акмеизм')
-        assert u'룹촙스크' == self.hangulize(u'Рубцовск')
-        assert u'브랴츠크' == self.hangulize(u'Брятск')
-        assert u'로팟카' == self.hangulize(u'Лопатка')
-        assert u'예프레모프' == self.hangulize(u'Ефремов')
-        assert u'도스토옙스키' == self.hangulize(u'Достоевский')
+        self.assert_examples({
+            u'Садко': u'삿코',
+            u'Агрыз': u'아그리스',
+            u'Акбаур': u'아크바우르',
+            u'Ростопчиня': u'로스톱치냐',
+            u'Акмеизм': u'아크메이즘',
+            u'Рубцовск': u'룹촙스크',
+            u'Брятск': u'브랴츠크',
+            u'Лопатка': u'로팟카',
+            u'Ефремов': u'예프레모프',
+            u'Достоевский': u'도스토옙스키',
+        })
 
     def test_2nd(self):
         """제2항: z(з), zh(ж)
         z(з)와 zh(ж)는 유성 자음 앞에서는 ‘즈'로 적고 무성 자음 앞에서는
         각각 ‘스, 시'로 적는다.
         """
-        assert u'나즈란' == self.hangulize(u'Назрань')
-        #assert u'니즈니타길' == self.hangulize(u'Нижний Тагил')
-        assert u'니즈니 타길' == self.hangulize(u'Нижний Тагил')
-        assert u'오스트로고시스크' == self.hangulize(u'Острогожск')
-        assert u'루시코프' == self.hangulize(u'Лужков')
+        self.assert_examples({
+            u'Назрань': u'나즈란',
+        #    u'Нижний Тагил': u'니즈니타길',
+            u'Нижний Тагил': u'니즈니 타길',
+            u'Острогожск': u'오스트로고시스크',
+            u'Лужков': u'루시코프',
+        })
 
     def test_3rd(self):
         """제3항
         지명의 -grad(град)와 -gorod(город)는 관용을 살려 각각 ‘-그라드',
         ‘-고로드'로 표기한다.
         """
-        assert u'볼고그라드' == self.hangulize(u'Волгоград')
-        assert u'칼리닌그라드' == self.hangulize(u'Калининград')
-        assert u'슬라브고로드' == self.hangulize(u'Славгород')
+        self.assert_examples({
+            u'Волгоград': u'볼고그라드',
+            u'Калининград': u'칼리닌그라드',
+            u'Славгород': u'슬라브고로드',
+        })
 
     def test_4th(self):
         """제4항
         자음 앞의 -ds(дс)-는 ‘츠'로 적는다.
         """
-        assert u'페트로자보츠크' == self.hangulize(u'Петрозаводск')
-        assert u'베르나츠키' == self.hangulize(u'Вернадский')
+        self.assert_examples({
+            u'Петрозаводск': u'페트로자보츠크',
+            u'Вернадский': u'베르나츠키',
+        })
 
     def test_5th(self):
         """제5항
         어말 또는 자음 앞의 l(л)은 받침 ‘ㄹ'로 적고, 어중의 l이 모음 앞에
         올 때에는 ‘ㄹㄹ'로 적는다.
         """
-        assert u'파벨' == self.hangulize(u'Павел')
-        assert u'니콜라예비치' == self.hangulize(u'Николаевич')
-        assert u'제믈랴' == self.hangulize(u'Земля')
-        assert u'치믈랸스크' == self.hangulize(u'Цимлянск')
+        self.assert_examples({
+            u'Павел': u'파벨',
+            u'Николаевич': u'니콜라예비치',
+            u'Земля': u'제믈랴',
+            u'Цимлянск': u'치믈랸스크',
+        })
 
     def test_6th(self):
         """제6항
         l'(ль), m(м)이 어두 자음 앞에 오는 경우에는 각각 ‘리', ‘므'로 적는다.
         """
-        assert u'리보브나' == self.hangulize(u'Льбовна')
-        assert u'므첸스크' == self.hangulize(u'Мценск')
+        self.assert_examples({
+            u'Льбовна': u'리보브나',
+            u'Мценск': u'므첸스크',
+        })
 
     def test_7th(self):
         """제7항
         같은 자음이 겹치는 경우에는 겹치지 않은 경우와 같이 적는다. 다만,
         mm(мм), nn(нн)은 모음 앞에서 ‘ㅁㅁ', ‘ㄴㄴ'으로 적는다.
         """
-        assert u'기피우스' == self.hangulize(u'Гиппиус')
-        assert u'아바쿰' == self.hangulize(u'Аввакум')
-        assert u'오데사' == self.hangulize(u'Одесса')
-        assert u'아콜' == self.hangulize(u'Акколь')
-        assert u'솔로구프' == self.hangulize(u'Соллогуб')
-        assert u'안나' == self.hangulize(u'Анна')
-        assert u'감마' == self.hangulize(u'Гамма')
+        self.assert_examples({
+            u'Гиппиус': u'기피우스',
+            u'Аввакум': u'아바쿰',
+            u'Одесса': u'오데사',
+            u'Акколь': u'아콜',
+            u'Соллогуб': u'솔로구프',
+            u'Анна': u'안나',
+            u'Гамма': u'감마',
+        })
 
     def test_8th(self):
         """제8항
         e(е, э)는 자음 뒤에서는 ‘에'로 적고, 그 외의 경우에는 ‘예'로 적는다.
         """
-        assert u'알렉세이' == self.hangulize(u'Алексей')
-        assert u'예그베키노트' == self.hangulize(u'Егвекинот')
+        self.assert_examples({
+            u'Алексей': u'알렉세이',
+            u'Егвекинот': u'예그베키노트',
+        })
 
     def test_9th(self):
         """제9항: 연음 부호 '(ь)
         연음 부호 '(ь)은 ‘이'로 적는다. 다만 l', m', n'(ль, мь, нь)이 자음
         앞이나 어말에 오는 경우에는 적지 않는다.
         """
-        assert u'리보브나' == self.hangulize(u'Льбовна')
-        assert u'이고리' == self.hangulize(u'Игорь')
-        assert u'일리야' == self.hangulize(u'Илья')
-        assert u'디야코보' == self.hangulize(u'Дьяково')
-        assert u'올가' == self.hangulize(u'Ольга')
-        #assert u'페름' == self.hangulize(u'Пермь')
-        assert u'랴잔' == self.hangulize(u'Рязань')
-        assert u'고골' == self.hangulize(u'Гоголь')
+        self.assert_examples({
+            u'Льбовна': u'리보브나',
+            u'Игорь': u'이고리',
+            u'Илья': u'일리야',
+            u'Дьяково': u'디야코보',
+            u'Ольга': u'올가',
+        #    u'Пермь': u'페름',
+            u'Рязань': u'랴잔',
+            u'Гоголь': u'고골',
+        })
 
     def test_10th(self):
         """제10항
         dz(дз), dzh(дж)는 각각 z, zh와 같이 적는다.
         """
-        assert u'제르진스키' == self.hangulize(u'Дзержинский')
-        assert u'타지키스탄' == self.hangulize(u'Таджикистан')
+        self.assert_examples({
+            u'Дзержинский': u'제르진스키',
+            u'Таджикистан': u'타지키스탄',
+        })

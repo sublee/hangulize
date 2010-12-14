@@ -8,86 +8,88 @@ class NarrowGeorgianTestCase(HangulizeTestCase):
     lang = NarrowGeorgian()
 
     def test_examples_of_iceager(self):
-        assert u'트빌리시' == self.hangulize(u'თბილისი')
-        assert u'쿠타이시' == self.hangulize(u'ქუთაისი')
-        assert u'바투미' == self.hangulize(u'ბათუმი')
-        assert u'루스타비' == self.hangulize(u'რუსთავი')
-        assert u'주그디디' == self.hangulize(u'ზუგდიდი')
-        assert u'고리' == self.hangulize(u'გორი')
-        assert u'포티' == self.hangulize(u'ფოთი')
-        assert u'다비트' == self.hangulize(u'დავით')
-        assert u'기오르기' == self.hangulize(u'გიორგი')
-        assert u'파르나바지' == self.hangulize(u'ფარნავაზი')
-        assert u'미트리다떼' == self.hangulize(u'მითრიდატე')
-        assert u'타마리' == self.hangulize(u'თამარი')
-        assert u'즈위아드' == self.hangulize(u'ზვიად')
-        assert u'감사후르디아' == self.hangulize(u'გამსახურდია')
-        assert u'알레크산드레' == self.hangulize(u'ალექსანდრე')
-        assert u'디미뜨리' == self.hangulize(u'დიმიტრი')
-        assert u'아밀라흐와리' == self.hangulize(u'ამილახვარი')
-        assert u'기오르기' == self.hangulize(u'გიორგი')
-        assert u'사까제' == self.hangulize(u'სააკაძე')
-        assert u'바후슈띠' == self.hangulize(u'ვახუშტი')
-        assert u'주라브' == self.hangulize(u'ზურაბ')
-        assert u'아발리슈윌리' == self.hangulize(u'ავალიშვილი')
-        assert u'레반' == self.hangulize(u'ლევან')
-        assert u'찔라슈윌리' == self.hangulize(u'ჭილაშვილი')
-        assert u'까하베르' == self.hangulize(u'კახაბერ')
-        assert u'까하' == self.hangulize(u'კახა')
-        assert u'깔라제' == self.hangulize(u'კალაძე')
-        assert u'주라브' == self.hangulize(u'ზურაბ')
-        assert u'아즈마이파라슈윌리' == self.hangulize(u'აზმაიფარაშვილი')
-        assert u'꼰스딴띠네' == self.hangulize(u'კონსტანტინე')
-        assert u'감사후르디아' == self.hangulize(u'გამსახურდია')
-        assert u'미헤일' == self.hangulize(u'მიხეილ')
-        assert u'자바히슈윌리' == self.hangulize(u'ჯავახიშვილი')
-        assert u'끼따' == self.hangulize(u'კიტა')
-        assert u'아바시제' == self.hangulize(u'აბაშიძე')
-        assert u'아르놀드' == self.hangulize(u'არნოლდ')
-        assert u'치코바바' == self.hangulize(u'ჩიქობავა')
-        assert u'아나' == self.hangulize(u'ანა')
-        assert u'깔란다제' == self.hangulize(u'კალანდაძე')
-        assert u'이오세브' == self.hangulize(u'იოსებ')
-        assert u'그리샤슈윌리' == self.hangulize(u'გრიშაშვილი')
-        assert u'까하베르' == self.hangulize(u'კახაბერ')
-        assert u'까하' == self.hangulize(u'კახა')
-        assert u'깔라제' == self.hangulize(u'კალაძე')
-        assert u'음타쯔민다' == self.hangulize(u'მთაწმინდა')
-        assert u'메라브' == self.hangulize(u'მერაბ')
-        assert u'꼬스따바' == self.hangulize(u'კოსტავა')
-        assert u'쇼타' == self.hangulize(u'შოთა')
-        assert u'아르벨라제' == self.hangulize(u'არველაძე')
-        assert u'디미뜨리' == self.hangulize(u'დიმიტრი')
-        assert u'아라끼슈윌리' == self.hangulize(u'არაყიშვილი')
-        assert u'엘레네' == self.hangulize(u'ელენე')
-        assert u'아흐블레디아니' == self.hangulize(u'ახვლედიანი')
-        assert u'마끄왈라' == self.hangulize(u'მაყვალა')
-        assert u'카스라슈윌리' == self.hangulize(u'ქასრაშვილი')
-        assert u'뻬뜨레' == self.hangulize(u'პეტრე')
-        assert u'미헤일' == self.hangulize(u'მიხეილ')
-        assert u'사까슈윌리' == self.hangulize(u'სააკაშვილი')
-        assert u'에두아르드' == self.hangulize(u'ედუარდ')
-        assert u'셰바르드나제' == self.hangulize(u'შევარდნაძე')
-        assert u'주라브' == self.hangulize(u'ზურაბ')
-        assert u'주와니아' == self.hangulize(u'ჟვანია')
-        assert u'니꼴로즈' == self.hangulize(u'ნიკოლოზ')
-        assert u'니까' == self.hangulize(u'ნიკა')
-        assert u'길라우리' == self.hangulize(u'გილაური')
-        assert u'그리골' == self.hangulize(u'გრიგოლ')
-        assert u'음갈로블리슈윌' == self.hangulize(u'მგალობლიშვილ')
-        assert u'니노' == self.hangulize(u'ნინო')
-        assert u'부르자나제' == self.hangulize(u'ბურჯანაძე')
-        assert u'타티아' == self.hangulize(u'თათია')
-        assert u'마나가제' == self.hangulize(u'მანაგაძე')
-        assert u'기오르기' == self.hangulize(u'გიორგი')
-        assert u'곤가제' == self.hangulize(u'ღონღაძე')
-        assert u'자자' == self.hangulize(u'ზაზა')
-        assert u'파출리아' == self.hangulize(u'ფაჩულია')
-        assert u'니꼴로즈' == self.hangulize(u'ნიკოლოზ')
-        assert u'바라타슈윌리' == self.hangulize(u'ბარათაშვილი')
-        assert u'라피엘' == self.hangulize(u'რაფიელ')
-        assert u'에리스타비' == self.hangulize(u'ერისთავი')
-        assert u'즈와리' == self.hangulize(u'ჯვარი')
-        assert u'음뜨끄와리' == self.hangulize(u'მტკვარი')
-        assert u'자르즈마' == self.hangulize(u'ზარზმა')
-        assert u'아프또' == self.hangulize(u'ავტო')
+        self.assert_examples({
+            u'თბილისი': u'트빌리시',
+            u'ქუთაისი': u'쿠타이시',
+            u'ბათუმი': u'바투미',
+            u'რუსთავი': u'루스타비',
+            u'ზუგდიდი': u'주그디디',
+            u'გორი': u'고리',
+            u'ფოთი': u'포티',
+            u'დავით': u'다비트',
+            u'გიორგი': u'기오르기',
+            u'ფარნავაზი': u'파르나바지',
+            u'მითრიდატე': u'미트리다떼',
+            u'თამარი': u'타마리',
+            u'ზვიად': u'즈위아드',
+            u'გამსახურდია': u'감사후르디아',
+            u'ალექსანდრე': u'알레크산드레',
+            u'დიმიტრი': u'디미뜨리',
+            u'ამილახვარი': u'아밀라흐와리',
+            u'გიორგი': u'기오르기',
+            u'სააკაძე': u'사까제',
+            u'ვახუშტი': u'바후슈띠',
+            u'ზურაბ': u'주라브',
+            u'ავალიშვილი': u'아발리슈윌리',
+            u'ლევან': u'레반',
+            u'ჭილაშვილი': u'찔라슈윌리',
+            u'კახაბერ': u'까하베르',
+            u'კახა': u'까하',
+            u'კალაძე': u'깔라제',
+            u'ზურაბ': u'주라브',
+            u'აზმაიფარაშვილი': u'아즈마이파라슈윌리',
+            u'კონსტანტინე': u'꼰스딴띠네',
+            u'გამსახურდია': u'감사후르디아',
+            u'მიხეილ': u'미헤일',
+            u'ჯავახიშვილი': u'자바히슈윌리',
+            u'კიტა': u'끼따',
+            u'აბაშიძე': u'아바시제',
+            u'არნოლდ': u'아르놀드',
+            u'ჩიქობავა': u'치코바바',
+            u'ანა': u'아나',
+            u'კალანდაძე': u'깔란다제',
+            u'იოსებ': u'이오세브',
+            u'გრიშაშვილი': u'그리샤슈윌리',
+            u'კახაბერ': u'까하베르',
+            u'კახა': u'까하',
+            u'კალაძე': u'깔라제',
+            u'მთაწმინდა': u'음타쯔민다',
+            u'მერაბ': u'메라브',
+            u'კოსტავა': u'꼬스따바',
+            u'შოთა': u'쇼타',
+            u'არველაძე': u'아르벨라제',
+            u'დიმიტრი': u'디미뜨리',
+            u'არაყიშვილი': u'아라끼슈윌리',
+            u'ელენე': u'엘레네',
+            u'ახვლედიანი': u'아흐블레디아니',
+            u'მაყვალა': u'마끄왈라',
+            u'ქასრაშვილი': u'카스라슈윌리',
+            u'პეტრე': u'뻬뜨레',
+            u'მიხეილ': u'미헤일',
+            u'სააკაშვილი': u'사까슈윌리',
+            u'ედუარდ': u'에두아르드',
+            u'შევარდნაძე': u'셰바르드나제',
+            u'ზურაბ': u'주라브',
+            u'ჟვანია': u'주와니아',
+            u'ნიკოლოზ': u'니꼴로즈',
+            u'ნიკა': u'니까',
+            u'გილაური': u'길라우리',
+            u'გრიგოლ': u'그리골',
+            u'მგალობლიშვილ': u'음갈로블리슈윌',
+            u'ნინო': u'니노',
+            u'ბურჯანაძე': u'부르자나제',
+            u'თათია': u'타티아',
+            u'მანაგაძე': u'마나가제',
+            u'გიორგი': u'기오르기',
+            u'ღონღაძე': u'곤가제',
+            u'ზაზა': u'자자',
+            u'ფაჩულია': u'파출리아',
+            u'ნიკოლოზ': u'니꼴로즈',
+            u'ბარათაშვილი': u'바라타슈윌리',
+            u'რაფიელ': u'라피엘',
+            u'ერისთავი': u'에리스타비',
+            u'ჯვარი': u'즈와리',
+            u'მტკვარი': u'음뜨끄와리',
+            u'ზარზმა': u'자르즈마',
+            u'ავტო': u'아프또',
+        })

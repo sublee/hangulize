@@ -8,85 +8,87 @@ class SlovakTestCase(HangulizeTestCase):
     lang = Slovak()
 
     def test_people(self):
-        assert u'얀 바힐' == self.hangulize(u'Ján Bahýľ')
-        assert u'슈테판 바니치' == self.hangulize(u'Štefan Banič')
-        assert u'안톤 베르놀라크' == self.hangulize(u'Anton Bernolák')
-        assert u'페테르 본드라' == self.hangulize(u'Peter Bondra')
-        assert u'즈데노 하라' == self.hangulize(u'Zdeno Chára')
-        assert u'도미니카 치불코바' == self.hangulize(u'Dominika Cibulková')
-        assert u'얀 차르노구르스키' == self.hangulize(u'Ján Čarnogurský')
-        assert u'슈테판 마르코 닥스네르' == \
-               self.hangulize(u'Štefan Marko Daxner')
-        assert u'파볼 데미트라' == self.hangulize(u'Pavol Demitra')
-        assert u'알렉산데르 둡체크' == self.hangulize(u'Alexander Dubček')
-        assert u'미쿨라시 주린다' == self.hangulize(u'Mikuláš Dzurinda')
-        assert u'마리안 가보리크' == self.hangulize(u'Marián Gáborík')
-        assert u'마레크 함시크' == self.hangulize(u'Marek Hamšík')
-        assert u'다니엘라 한투호바' == self.hangulize(u'Daniela Hantuchová')
-        assert u'안드레이 흘린카' == self.hangulize(u'Andrej Hlinka')
-        assert u'밀란 호자' == self.hangulize(u'Milan Hodža')
-        assert u'마리안 호사' == self.hangulize(u'Marian Hossa')
-        assert u'도미니크 흐르바티' == self.hangulize(u'Dominik Hrbatý')
-        assert u'파볼 후라이트' == self.hangulize(u'Pavol Hurajt')
-        assert u'요제프 밀로슬라우 후르반' == \
-               self.hangulize(u'Jozef Miloslav Hurban')
-        assert u'구스타우 후사크' == self.hangulize(u'Gustáv Husák')
-        assert u'흐비에즈도슬라우' == self.hangulize(u'Hviezdoslav')
-        assert u'디오니스 일코비치' == self.hangulize(u'Dionýz Ilkovič')
-        assert u'엘레나 칼리스카' == self.hangulize(u'Elena Kaliská')
-        assert u'미하엘라 코치아노바' == self.hangulize(u'Michaela Kocianová')
-        assert u'카롤 쿠체라' == self.hangulize(u'Karol Kučera')
-        assert u'아나스타시야 쿠즈미나' == self.hangulize(u'Anastasiya Kuzmina')
-        assert u'미할 마르티칸' == self.hangulize(u'Michal Martikán')
-        assert u'얀코 마투슈카' == self.hangulize(u'Janko Matúška')
-        assert u'블라디미르 메치아르' == self.hangulize(u'Vladimír Mečiar')
-        assert u'마르티나 모라우초바' == self.hangulize(u'Martina Moravcová')
-        assert u'요제프 무르가시' == self.hangulize(u'Jozef Murgaš')
-        assert u'나탈리아 프레코포바' == self.hangulize(u'Natália Prekopová')
-        assert u'요제프 로하체크' == self.hangulize(u'Jozef Roháček')
-        assert u'마그달레나 리바리코바' == \
-               self.hangulize(u'Magdaléna Rybáriková')
-        assert u'주자나 세케로바' == self.hangulize(u'Zuzana Sekerová')
-        assert u'아우렐 스토돌라' == self.hangulize(u'Aurel Stodola')
-        assert u'에우겐 수혼' == self.hangulize(u'Eugen Suchoň')
-        assert u'마르틴 슈크르텔' == self.hangulize(u'Martin Škrtel')
-        assert u'밀란 라스티슬라우 슈테파니크' == \
-               self.hangulize(u'Milan Rastislav Štefánik')
-        assert u'주자나 슈테페체코바' == self.hangulize(u'Zuzana Štefečeková')
-        assert u'페테르 슈탸스트니' == self.hangulize(u'Peter Šťastný')
-        assert u'류도비트 슈투르' == self.hangulize(u'Ľudovít Štúr')
-        assert u'요제프 티소' == self.hangulize(u'Jozef Tiso')
-        assert u'바우리네츠' == self.hangulize(u'Vavrinec')
-        assert u'루돌프 브르바' == self.hangulize(u'Rudolf Vrba')
-        assert u'블라디미르 베이스' == self.hangulize(u'Vladimír Weiss')
-        
+        self.assert_examples({
+            u'Ján Bahýľ': u'얀 바힐',
+            u'Štefan Banič': u'슈테판 바니치',
+            u'Anton Bernolák': u'안톤 베르놀라크',
+            u'Peter Bondra': u'페테르 본드라',
+            u'Zdeno Chára': u'즈데노 하라',
+            u'Dominika Cibulková': u'도미니카 치불코바',
+            u'Ján Čarnogurský': u'얀 차르노구르스키',
+            u'Štefan Marko Daxner': u'슈테판 마르코 닥스네르',
+            u'Pavol Demitra': u'파볼 데미트라',
+            u'Alexander Dubček': u'알렉산데르 둡체크',
+            u'Mikuláš Dzurinda': u'미쿨라시 주린다',
+            u'Marián Gáborík': u'마리안 가보리크',
+            u'Marek Hamšík': u'마레크 함시크',
+            u'Daniela Hantuchová': u'다니엘라 한투호바',
+            u'Andrej Hlinka': u'안드레이 흘린카',
+            u'Milan Hodža': u'밀란 호자',
+            u'Marian Hossa': u'마리안 호사',
+            u'Dominik Hrbatý': u'도미니크 흐르바티',
+            u'Pavol Hurajt': u'파볼 후라이트',
+            u'Jozef Miloslav Hurban': u'요제프 밀로슬라우 후르반',
+            u'Gustáv Husák': u'구스타우 후사크',
+            u'Hviezdoslav': u'흐비에즈도슬라우',
+            u'Dionýz Ilkovič': u'디오니스 일코비치',
+            u'Elena Kaliská': u'엘레나 칼리스카',
+            u'Michaela Kocianová': u'미하엘라 코치아노바',
+            u'Karol Kučera': u'카롤 쿠체라',
+            u'Anastasiya Kuzmina': u'아나스타시야 쿠즈미나',
+            u'Michal Martikán': u'미할 마르티칸',
+            u'Janko Matúška': u'얀코 마투슈카',
+            u'Vladimír Mečiar': u'블라디미르 메치아르',
+            u'Martina Moravcová': u'마르티나 모라우초바',
+            u'Jozef Murgaš': u'요제프 무르가시',
+            u'Natália Prekopová': u'나탈리아 프레코포바',
+            u'Jozef Roháček': u'요제프 로하체크',
+            u'Magdaléna Rybáriková': u'마그달레나 리바리코바',
+            u'Zuzana Sekerová': u'주자나 세케로바',
+            u'Aurel Stodola': u'아우렐 스토돌라',
+            u'Eugen Suchoň': u'에우겐 수혼',
+            u'Martin Škrtel': u'마르틴 슈크르텔',
+            u'Milan Rastislav Štefánik': u'밀란 라스티슬라우 슈테파니크',
+            u'Zuzana Štefečeková': u'주자나 슈테페체코바',
+            u'Peter Šťastný': u'페테르 슈탸스트니',
+            u'Ľudovít Štúr': u'류도비트 슈투르',
+            u'Jozef Tiso': u'요제프 티소',
+            u'Vavrinec': u'바우리네츠',
+            u'Rudolf Vrba': u'루돌프 브르바',
+            u'Vladimír Weiss': u'블라디미르 베이스',
+        })
+
     def test_places(self):
-        assert u'반스카 비스트리차' == self.hangulize(u'Banská Bystrica')
-        assert u'바르데요우' == self.hangulize(u'Bardejov')
-        assert u'브라티슬라바' == self.hangulize(u'Bratislava')
-        assert u'코마르노' == self.hangulize(u'Komárno')
-        assert u'코시체' == self.hangulize(u'Košice')
-        assert u'마닌스카 티에스냐바' == self.hangulize(u'Manínska tiesňava')
-        assert u'마르틴' == self.hangulize(u'Martin')
-        assert u'미할로우체' == self.hangulize(u'Michalovce')
-        assert u'니트라' == self.hangulize(u'Nitra')
-        assert u'포프라트' == self.hangulize(u'Poprad')
-        assert u'포바슈스카' == self.hangulize(u'Považská')
-        assert u'프레쇼우' == self.hangulize(u'Prešov')
-        assert u'로주냐바' == self.hangulize(u'Rožňava')
-        assert u'슬라빈' == self.hangulize(u'Slavín')
-        assert u'스피시' == self.hangulize(u'Spiš')
-        assert u'트렌친' == self.hangulize(u'Trenčín')
-        assert u'트르나바' == self.hangulize(u'Trnava')
-        assert u'바흐' == self.hangulize(u'Váh')
-        assert u'블콜리네츠' == self.hangulize(u'Vlkolínec')
-        assert u'비드리차' == self.hangulize(u'Vydrica')
-        assert u'즈볼렌' == self.hangulize(u'Zvolen')
-        assert u'질리나' == self.hangulize(u'Žilina')
-        assert u'제흐라' == self.hangulize(u'Žehra')
+        self.assert_examples({
+            u'Banská Bystrica': u'반스카 비스트리차',
+            u'Bardejov': u'바르데요우',
+            u'Bratislava': u'브라티슬라바',
+            u'Komárno': u'코마르노',
+            u'Košice': u'코시체',
+            u'Manínska tiesňava': u'마닌스카 티에스냐바',
+            u'Martin': u'마르틴',
+            u'Michalovce': u'미할로우체',
+            u'Nitra': u'니트라',
+            u'Poprad': u'포프라트',
+            u'Považská': u'포바슈스카',
+            u'Prešov': u'프레쇼우',
+            u'Rožňava': u'로주냐바',
+            u'Slavín': u'슬라빈',
+            u'Spiš': u'스피시',
+            u'Trenčín': u'트렌친',
+            u'Trnava': u'트르나바',
+            u'Váh': u'바흐',
+            u'Vlkolínec': u'블콜리네츠',
+            u'Vydrica': u'비드리차',
+            u'Zvolen': u'즈볼렌',
+            u'Žilina': u'질리나',
+            u'Žehra': u'제흐라',
+        })
 
     def test_miscellaneous(self):
-        assert u'데베티' == self.hangulize(u'deväť')
-        assert u'야후오트' == self.hangulize(u'jahôd')
-        assert u'멕첸' == self.hangulize(u'mäkčeň')
-        assert u'페트나스티' == self.hangulize(u'pätnásť')
+        self.assert_examples({
+            u'deväť': u'데베티',
+            u'jahôd': u'야후오트',
+            u'mäkčeň': u'멕첸',
+            u'pätnásť': u'페트나스티',
+        })

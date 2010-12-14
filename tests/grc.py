@@ -8,183 +8,185 @@ class AncientGreekTestCase(HangulizeTestCase):
     lang = AncientGreek()
 
     def test_examples_of_iceager(self):
-        assert u'아이깁토스' == self.hangulize(u'Αἴγυπτος')
-        assert u'아크로폴리스' == self.hangulize(u'Ἀκρόπολις')
-        assert u'알렉산드레이아' == self.hangulize(u'Ἀλεξάνδρεια')
-        assert u'할리카르나소스' == self.hangulize(u'Ἁλικαρνασσός')
-        assert u'암피폴리스' == self.hangulize(u'Ἀμφίπολις')
-        assert u'안티오케이아' == self.hangulize(u'Ἀντιόχεια')
-        assert u'아르고스' == self.hangulize(u'Ἄργος')
-        assert u'아틀란티스' == self.hangulize(u'Ἀτλάντις')
-        assert u'아티케' == self.hangulize(u'Ἀττική')
-        assert u'달마티아' == self.hangulize(u'Δαλματία')
-        assert u'다마스코스' == self.hangulize(u'Δαμασκός')
-        assert u'다르다넬리아' == self.hangulize(u'Δαρδανέλλια')
-        assert u'데카폴리스' == self.hangulize(u'Δεκάπολις')
-        assert u'델포이' == self.hangulize(u'Δελφοί')
-        assert u'델로스' == self.hangulize(u'Δῆλος')
-        assert u'엘레판티네' == self.hangulize(u'Ἐλεφαντίνη')
-        assert u'헬라스' == self.hangulize(u'Ἑλλάς')
-        assert u'헬레스폰토스' == self.hangulize(u'Ἑλλήσποντος')
-        assert u'에우보이아' == self.hangulize(u'Εὔβοια')
-        assert u'자킨토스' == self.hangulize(u'Ζάκυνθος')
-        assert u'테바이' == self.hangulize(u'Θῆβαι')
-        assert u'이타케' == self.hangulize(u'Ἰθάκη')
-        assert u'일리온' == self.hangulize(u'Ἴλιον')
-        assert u'히스파니아' == self.hangulize(u'Ἱσπανία')
-        assert u'이오니아' == self.hangulize(u'Ἰωνία')
-        assert u'올림포스' == self.hangulize(u'Ὄλυμπος')
-        assert u'헤르미오네' == self.hangulize(u'Ἑρμιόνη')
-        assert u'에우로페' == self.hangulize(u'Εὐρώπη')
-        assert u'로도페' == self.hangulize(u'Ῥοδόπη')
-        assert u'로도스' == self.hangulize(u'Ῥόδος')
-        assert u'살라미스' == self.hangulize(u'Σαλαμίς')
-        assert u'사모트라케' == self.hangulize(u'Σαμοθρᾴκη')
-        assert u'텔로스' == self.hangulize(u'Τῆλος')
-        assert u'티탄' == self.hangulize(u'Τιτάν')
-        assert u'티레니아' == self.hangulize(u'Τυῤῥηνία')
-        assert u'프리기아' == self.hangulize(u'Φρυγία')
-        assert u'오케아니아' == self.hangulize(u'Ὠκεανία')
-        assert u'옥소스' == self.hangulize(u'Ὦξος')
-        assert u'오리온' == self.hangulize(u'Ὠρίων')
-        assert u'에우리디케' == self.hangulize(u'Εὐρυδίκη')
-        assert u'아프로디테' == self.hangulize(u'Ἀφροδίτη')
-        assert u'아폴론' == self.hangulize(u'Ἀπόλλων')
-        assert u'아레스' == self.hangulize(u'Ἄρης')
-        assert u'아르테미스' == self.hangulize(u'Ἀρτεμίς')
-        assert u'아테나' == self.hangulize(u'Ἀθηνᾶ')
-        assert u'데메테르' == self.hangulize(u'Δημήτηρ')
-        assert u'헤라' == self.hangulize(u'Ἥρα')
-        assert u'아켈로오스' == self.hangulize(u'Ἀχελῷος')
-        assert u'아케론' == self.hangulize(u'Ἀχέρων')
-        assert u'아도니스' == self.hangulize(u'Ἄδωνις')
-        assert u'아이올로스' == self.hangulize(u'Αἴολος')
-        assert u'아틀라스' == self.hangulize(u'Ἄτλας')
-        assert u'보레아스' == self.hangulize(u'Βορέας')
-        assert u'카오스' == self.hangulize(u'Χάος')
-        assert u'키마이라' == self.hangulize(u'Χίμαιρα')
-        assert u'크로노스' == self.hangulize(u'Χρόνος')
-        assert u'다프네' == self.hangulize(u'Δάφνη')
-        assert u'디오니소스' == self.hangulize(u'Διόνυσος')
-        assert u'도리스' == self.hangulize(u'Δωρίς')
-        assert u'에오스' == self.hangulize(u'Ἠώς')
-        assert u'에리스' == self.hangulize(u'Ἔρις')
-        assert u'에로스' == self.hangulize(u'Ἔρως')
-        assert u'가이아' == self.hangulize(u'Γαῖα')
-        assert u'가니메데스' == self.hangulize(u'Γανυμήδης')
-        assert u'하데스' == self.hangulize(u'ᾍδης')
-        assert u'헤베' == self.hangulize(u'Ἥβη')
-        assert u'헤카테' == self.hangulize(u'Ἑκάτη')
-        assert u'헬레네' == self.hangulize(u'Ἑλένη')
-        assert u'헬리오스' == self.hangulize(u'Ἥλιος')
-        assert u'헤파이스토스' == self.hangulize(u'Ἥφαιστος')
-        assert u'헤라클레스' == self.hangulize(u'Ἡρακλῆς')
-        assert u'헤르메스' == self.hangulize(u'Ἑρμής')
-        assert u'헤스티아' == self.hangulize(u'Ἑστία')
-        assert u'히드라' == self.hangulize(u'Ὕδρα')
-        assert u'히프노스' == self.hangulize(u'Ὕπνος')
-        assert u'이아페토스' == self.hangulize(u'Ίαπετός')
-        assert u'이리스' == self.hangulize(u'Ἶρις')
-        assert u'칼리오페' == self.hangulize(u'Καλλιόπη')
-        assert u'케르베로스' == self.hangulize(u'Κέρβερος')
-        assert u'키벨레' == self.hangulize(u'Κυβέλη')
-        assert u'메두사' == self.hangulize(u'Μέδουσα')
-        assert u'므네메' == self.hangulize(u'Μνήμη')
-        assert u'모르페우스' == self.hangulize(u'Μορφεύς')
-        assert u'네메시스' == self.hangulize(u'Νέμεσις')
-        assert u'네레우스' == self.hangulize(u'Νηρεύς')
-        assert u'니케' == self.hangulize(u'Νίκη')
-        assert u'오리온' == self.hangulize(u'Ὠρίων')
-        assert u'판' == self.hangulize(u'Πάν')
-        assert u'판도라' == self.hangulize(u'Πανδώρα')
-        assert u'페르세포네' == self.hangulize(u'Περσεφόνη')
-        assert u'페르세우스' == self.hangulize(u'Περσεύς')
-        assert u'포이베' == self.hangulize(u'Φοίβη')
-        assert u'포세이돈' == self.hangulize(u'Ποσειδῶν')
-        assert u'프로메테우스' == self.hangulize(u'Προμηθεύς')
-        assert u'프로테우스' == self.hangulize(u'Πρωτεύς')
-        assert u'레아' == self.hangulize(u'Ῥέα')
-        assert u'세멜레' == self.hangulize(u'Σεμέλη')
-        assert u'실레노스' == self.hangulize(u'Σιληνός')
-        assert u'스핑크스' == self.hangulize(u'Σφίγξ')
-        assert u'스틱스' == self.hangulize(u'Στύξ')
-        assert u'타나토스' == self.hangulize(u'Θάνατος')
-        assert u'티폰' == self.hangulize(u'Τυφών')
-        assert u'우라노스' == self.hangulize(u'Οὐρανός')
-        assert u'제피로스' == self.hangulize(u'Ζέφυρος')
-        assert u'제우스' == self.hangulize(u'Ζεύς')
-        assert u'오르페우스' == self.hangulize(u'Ὀρφεύς')
-        assert u'사포' == self.hangulize(u'Σαπφώ')
-        assert u'핀다로스' == self.hangulize(u'Πίνδαρος')
-        assert u'히에론' == self.hangulize(u'Ἱέρων')
-        assert u'페리클레스' == self.hangulize(u'Περικλῆς')
-        assert u'헤로도토스' == self.hangulize(u'Ἡρόδοτος')
-        assert u'플루타르코스' == self.hangulize(u'Πλούταρχος')
-        assert u'아낙사고라스' == self.hangulize(u'Ἀναξαγόρας')
-        assert u'아르키메데스' == self.hangulize(u'Ἀρχιμήδης')
-        assert u'소크라테스' == self.hangulize(u'Σωκράτης')
-        assert u'플라톤' == self.hangulize(u'Πλάτων')
-        assert u'아리스토텔레스' == self.hangulize(u'Ἀριστοτέλης')
-        assert u'알렉산드로스' == self.hangulize(u'Ἀλέξανδρος')
-        assert u'안티고네' == self.hangulize(u'Ἀντιγόνη')
-        assert u'오이디푸스' == self.hangulize(u'Οἰδίπους')
-        assert u'보이오티아' == self.hangulize(u'Βοιωτία')
-        assert u'투키디데스' == self.hangulize(u'Θουκυδίδης')
-        assert u'호메로스' == self.hangulize(u'Ὅμηρος')
-        assert u'아리아드네' == self.hangulize(u'Ἀριάδνη')
-        assert u'일리아스' == self.hangulize(u'Ἰλιάς')
-        assert u'오디세이아' == self.hangulize(u'Ὀδύσσεια')
-        assert u'아킬레우스' == self.hangulize(u'Ἀχιλλεύς')
-        assert u'아가멤논' == self.hangulize(u'Ἀγαμέμνων')
-        assert u'미케네' == self.hangulize(u'Μυκήνη')
-        assert u'테르모필라이' == self.hangulize(u'Θερμοπύλαι')
-        assert u'레오니다스' == self.hangulize(u'Λεωνίδας')
-        assert u'아낙산드리다스' == self.hangulize(u'Ἀναξανδρίδας')
-        assert u'클레오메네스' == self.hangulize(u'Κλεομένης')
-        assert u'오디세우스' == self.hangulize(u'Ὀδυσσεύς')
-        assert u'페넬로페' == self.hangulize(u'Πηνελόπη')
-        assert u'시시포스' == self.hangulize(u'Σίσυφος')
-        assert u'네메아' == self.hangulize(u'Νεμέα')
-        assert u'이아손' == self.hangulize(u'Ἰάσων')
-        assert u'틴다레오스' == self.hangulize(u'Τυνδάρεως')
-        assert u'아이아스' == self.hangulize(u'Αἴας')
-        assert u'헥토르' == self.hangulize(u'Ἕκτωρ')
-        assert u'안드로마케' == self.hangulize(u'Ἀνδρομάχη')
-        assert u'트로이아' == self.hangulize(u'Τροία')
-        assert u'안티고노스' == self.hangulize(u'Ἀντίγονος')
-        assert u'셀레우코스' == self.hangulize(u'Σέλευκος')
-        assert u'프톨레마이오스' == self.hangulize(u'Πτολεμαῖος')
-        assert u'페르가몬' == self.hangulize(u'Πέργαμον')
-        assert u'아탈로스' == self.hangulize(u'Ἄτταλος')
-        assert u'크로이소스' == self.hangulize(u'Κροῖσος')
-        assert u'솔론' == self.hangulize(u'Σόλων')
-        assert u'리쿠르고스' == self.hangulize(u'Λυκοῦργος')
-        assert u'폴리비오스' == self.hangulize(u'Πολύβιος')
-        assert u'미다스' == self.hangulize(u'Μίδας')
-        assert u'키벨레' == self.hangulize(u'Κυβέλη')
-        assert u'스키타이' == self.hangulize(u'Σκύθαι')
-        assert u'아마조네스' == self.hangulize(u'Ἀμαζόνες')
-        assert u'아마존' == self.hangulize(u'Ἀμαζών')
-        assert u'펜테실레이아' == self.hangulize(u'Πενθεσίλεια')
-        assert u'히폴리테' == self.hangulize(u'Ἱππολύτη')
-        assert u'피티아' == self.hangulize(u'Πυθία')
-        assert u'피톤' == self.hangulize(u'Πύθων')
-        assert u'옴팔로스' == self.hangulize(u'όμφαλος')
-        assert u'피타고라스' == self.hangulize(u'Πυθαγόρας')
-        assert u'히포크라테스' == self.hangulize(u'Ἱπποκράτης')
-        assert u'파포스' == self.hangulize(u'Πάππος')
-        assert u'피타고라스' == self.hangulize(u'Πυθαγόρας')
-        assert u'제논' == self.hangulize(u'Ζήνων')
-        assert u'아낙시만드로스' == self.hangulize(u'Ἀναξίμανδρος')
-        assert u'탈레스' == self.hangulize(u'Θαλῆς')
-        assert u'데모크리토스' == self.hangulize(u'Δημόκριτος')
-        assert u'아폴로니오스' == self.hangulize(u'Ἀπολλώνιος')
-        assert u'스트라본' == self.hangulize(u'Στράβων')
-        assert u'에욱테몬' == self.hangulize(u'Εὐκτήμων')
-        assert u'에라토스테네스' == self.hangulize(u'Ἐρατοσθένης')
-        assert u'히파르코스' == self.hangulize(u'Ἵππαρχος')
-        assert u'헤시오도스' == self.hangulize(u'Ἡσίοδος')
-        assert u'아이소포스' == self.hangulize(u'Αἴσωπος')
-        assert u'에우리피데스' == self.hangulize(u'Εὐριπίδης')
-        assert u'크세노폰' == self.hangulize(u'Ξενοφῶν')
-        assert u'테미스토클레스' == self.hangulize(u'Θεμιστοκλῆς')
+        self.assert_examples({
+            u'Αἴγυπτος': u'아이깁토스',
+            u'Ἀκρόπολις': u'아크로폴리스',
+            u'Ἀλεξάνδρεια': u'알렉산드레이아',
+            u'Ἁλικαρνασσός': u'할리카르나소스',
+            u'Ἀμφίπολις': u'암피폴리스',
+            u'Ἀντιόχεια': u'안티오케이아',
+            u'Ἄργος': u'아르고스',
+            u'Ἀτλάντις': u'아틀란티스',
+            u'Ἀττική': u'아티케',
+            u'Δαλματία': u'달마티아',
+            u'Δαμασκός': u'다마스코스',
+            u'Δαρδανέλλια': u'다르다넬리아',
+            u'Δεκάπολις': u'데카폴리스',
+            u'Δελφοί': u'델포이',
+            u'Δῆλος': u'델로스',
+            u'Ἐλεφαντίνη': u'엘레판티네',
+            u'Ἑλλάς': u'헬라스',
+            u'Ἑλλήσποντος': u'헬레스폰토스',
+            u'Εὔβοια': u'에우보이아',
+            u'Ζάκυνθος': u'자킨토스',
+            u'Θῆβαι': u'테바이',
+            u'Ἰθάκη': u'이타케',
+            u'Ἴλιον': u'일리온',
+            u'Ἱσπανία': u'히스파니아',
+            u'Ἰωνία': u'이오니아',
+            u'Ὄλυμπος': u'올림포스',
+            u'Ἑρμιόνη': u'헤르미오네',
+            u'Εὐρώπη': u'에우로페',
+            u'Ῥοδόπη': u'로도페',
+            u'Ῥόδος': u'로도스',
+            u'Σαλαμίς': u'살라미스',
+            u'Σαμοθρᾴκη': u'사모트라케',
+            u'Τῆλος': u'텔로스',
+            u'Τιτάν': u'티탄',
+            u'Τυῤῥηνία': u'티레니아',
+            u'Φρυγία': u'프리기아',
+            u'Ὠκεανία': u'오케아니아',
+            u'Ὦξος': u'옥소스',
+            u'Ὠρίων': u'오리온',
+            u'Εὐρυδίκη': u'에우리디케',
+            u'Ἀφροδίτη': u'아프로디테',
+            u'Ἀπόλλων': u'아폴론',
+            u'Ἄρης': u'아레스',
+            u'Ἀρτεμίς': u'아르테미스',
+            u'Ἀθηνᾶ': u'아테나',
+            u'Δημήτηρ': u'데메테르',
+            u'Ἥρα': u'헤라',
+            u'Ἀχελῷος': u'아켈로오스',
+            u'Ἀχέρων': u'아케론',
+            u'Ἄδωνις': u'아도니스',
+            u'Αἴολος': u'아이올로스',
+            u'Ἄτλας': u'아틀라스',
+            u'Βορέας': u'보레아스',
+            u'Χάος': u'카오스',
+            u'Χίμαιρα': u'키마이라',
+            u'Χρόνος': u'크로노스',
+            u'Δάφνη': u'다프네',
+            u'Διόνυσος': u'디오니소스',
+            u'Δωρίς': u'도리스',
+            u'Ἠώς': u'에오스',
+            u'Ἔρις': u'에리스',
+            u'Ἔρως': u'에로스',
+            u'Γαῖα': u'가이아',
+            u'Γανυμήδης': u'가니메데스',
+            u'ᾍδης': u'하데스',
+            u'Ἥβη': u'헤베',
+            u'Ἑκάτη': u'헤카테',
+            u'Ἑλένη': u'헬레네',
+            u'Ἥλιος': u'헬리오스',
+            u'Ἥφαιστος': u'헤파이스토스',
+            u'Ἡρακλῆς': u'헤라클레스',
+            u'Ἑρμής': u'헤르메스',
+            u'Ἑστία': u'헤스티아',
+            u'Ὕδρα': u'히드라',
+            u'Ὕπνος': u'히프노스',
+            u'Ίαπετός': u'이아페토스',
+            u'Ἶρις': u'이리스',
+            u'Καλλιόπη': u'칼리오페',
+            u'Κέρβερος': u'케르베로스',
+            u'Κυβέλη': u'키벨레',
+            u'Μέδουσα': u'메두사',
+            u'Μνήμη': u'므네메',
+            u'Μορφεύς': u'모르페우스',
+            u'Νέμεσις': u'네메시스',
+            u'Νηρεύς': u'네레우스',
+            u'Νίκη': u'니케',
+            u'Ὠρίων': u'오리온',
+            u'Πάν': u'판',
+            u'Πανδώρα': u'판도라',
+            u'Περσεφόνη': u'페르세포네',
+            u'Περσεύς': u'페르세우스',
+            u'Φοίβη': u'포이베',
+            u'Ποσειδῶν': u'포세이돈',
+            u'Προμηθεύς': u'프로메테우스',
+            u'Πρωτεύς': u'프로테우스',
+            u'Ῥέα': u'레아',
+            u'Σεμέλη': u'세멜레',
+            u'Σιληνός': u'실레노스',
+            u'Σφίγξ': u'스핑크스',
+            u'Στύξ': u'스틱스',
+            u'Θάνατος': u'타나토스',
+            u'Τυφών': u'티폰',
+            u'Οὐρανός': u'우라노스',
+            u'Ζέφυρος': u'제피로스',
+            u'Ζεύς': u'제우스',
+            u'Ὀρφεύς': u'오르페우스',
+            u'Σαπφώ': u'사포',
+            u'Πίνδαρος': u'핀다로스',
+            u'Ἱέρων': u'히에론',
+            u'Περικλῆς': u'페리클레스',
+            u'Ἡρόδοτος': u'헤로도토스',
+            u'Πλούταρχος': u'플루타르코스',
+            u'Ἀναξαγόρας': u'아낙사고라스',
+            u'Ἀρχιμήδης': u'아르키메데스',
+            u'Σωκράτης': u'소크라테스',
+            u'Πλάτων': u'플라톤',
+            u'Ἀριστοτέλης': u'아리스토텔레스',
+            u'Ἀλέξανδρος': u'알렉산드로스',
+            u'Ἀντιγόνη': u'안티고네',
+            u'Οἰδίπους': u'오이디푸스',
+            u'Βοιωτία': u'보이오티아',
+            u'Θουκυδίδης': u'투키디데스',
+            u'Ὅμηρος': u'호메로스',
+            u'Ἀριάδνη': u'아리아드네',
+            u'Ἰλιάς': u'일리아스',
+            u'Ὀδύσσεια': u'오디세이아',
+            u'Ἀχιλλεύς': u'아킬레우스',
+            u'Ἀγαμέμνων': u'아가멤논',
+            u'Μυκήνη': u'미케네',
+            u'Θερμοπύλαι': u'테르모필라이',
+            u'Λεωνίδας': u'레오니다스',
+            u'Ἀναξανδρίδας': u'아낙산드리다스',
+            u'Κλεομένης': u'클레오메네스',
+            u'Ὀδυσσεύς': u'오디세우스',
+            u'Πηνελόπη': u'페넬로페',
+            u'Σίσυφος': u'시시포스',
+            u'Νεμέα': u'네메아',
+            u'Ἰάσων': u'이아손',
+            u'Τυνδάρεως': u'틴다레오스',
+            u'Αἴας': u'아이아스',
+            u'Ἕκτωρ': u'헥토르',
+            u'Ἀνδρομάχη': u'안드로마케',
+            u'Τροία': u'트로이아',
+            u'Ἀντίγονος': u'안티고노스',
+            u'Σέλευκος': u'셀레우코스',
+            u'Πτολεμαῖος': u'프톨레마이오스',
+            u'Πέργαμον': u'페르가몬',
+            u'Ἄτταλος': u'아탈로스',
+            u'Κροῖσος': u'크로이소스',
+            u'Σόλων': u'솔론',
+            u'Λυκοῦργος': u'리쿠르고스',
+            u'Πολύβιος': u'폴리비오스',
+            u'Μίδας': u'미다스',
+            u'Κυβέλη': u'키벨레',
+            u'Σκύθαι': u'스키타이',
+            u'Ἀμαζόνες': u'아마조네스',
+            u'Ἀμαζών': u'아마존',
+            u'Πενθεσίλεια': u'펜테실레이아',
+            u'Ἱππολύτη': u'히폴리테',
+            u'Πυθία': u'피티아',
+            u'Πύθων': u'피톤',
+            u'όμφαλος': u'옴팔로스',
+            u'Πυθαγόρας': u'피타고라스',
+            u'Ἱπποκράτης': u'히포크라테스',
+            u'Πάππος': u'파포스',
+            u'Πυθαγόρας': u'피타고라스',
+            u'Ζήνων': u'제논',
+            u'Ἀναξίμανδρος': u'아낙시만드로스',
+            u'Θαλῆς': u'탈레스',
+            u'Δημόκριτος': u'데모크리토스',
+            u'Ἀπολλώνιος': u'아폴로니오스',
+            u'Στράβων': u'스트라본',
+            u'Εὐκτήμων': u'에욱테몬',
+            u'Ἐρατοσθένης': u'에라토스테네스',
+            u'Ἵππαρχος': u'히파르코스',
+            u'Ἡσίοδος': u'헤시오도스',
+            u'Αἴσωπος': u'아이소포스',
+            u'Εὐριπίδης': u'에우리피데스',
+            u'Ξενοφῶν': u'크세노폰',
+            u'Θεμιστοκλῆς': u'테미스토클레스',
+        })

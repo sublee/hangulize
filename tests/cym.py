@@ -8,37 +8,39 @@ class WelshTestCase(HangulizeTestCase):
     lang = Welsh()
 
     def test_examples_of_iceager(self):
-        assert u'컴리' == self.hangulize(u'Cymru')
-        assert u'컴라이그' == self.hangulize(u'Cymraeg')
-        assert u'카이르나르본' == self.hangulize(u'Caernarfon')
-        assert u'케레디기온' == self.hangulize(u'Ceredigion')
-        assert u'아베러스투이스' == self.hangulize(u'Aberystwyth')
-        assert u'브런마우르' == self.hangulize(u'Brynmawr')
-        assert u'흘란고흘렌' == self.hangulize(u'Llangollen')
-        assert u'흘라네흘리' == self.hangulize(u'Llanelli')
-        assert u'귀네드' == self.hangulize(u'Gwynedd')
-        assert u'어스트라드건라이스' == self.hangulize(u'Ystradgynlais')
-        assert u'타웨' == self.hangulize(u'Tawe')
-        assert u'포위스' == self.hangulize(u'Powys')
-        assert u'메레디스' == self.hangulize(u'Meredith')
-        assert u'글런두르' == self.hangulize(u'Glyndŵr')
-        assert u'흐리스' == self.hangulize(u'Rhys')
-        assert u'이반스' == self.hangulize(u'Ifans')
-        assert u'엠리스' == self.hangulize(u'Emrys')
-        assert u'허웰' == self.hangulize(u'Hywel')
-        assert u'귈림' == self.hangulize(u'Gwilym')
-        assert u'흘리노르' == self.hangulize(u'Llinor')
-        assert u'예이안' == self.hangulize(u'Ieuan')
-        assert u'케리스' == self.hangulize(u'Cerys')
-        assert u'다비드' == self.hangulize(u'Dafydd')
-        assert u'이완' == self.hangulize(u'Iwan')
-        assert u'히우' == self.hangulize(u'Huw')
-        assert u'키아란' == self.hangulize(u'Ciaran')
-        assert u'머바누이' == self.hangulize(u'Myfanwy')
-        assert u'흘러웰린' == self.hangulize(u'Llywelyn')
-        assert u'칼레니그' == self.hangulize(u'Calennig')
-        assert u'크나판' == self.hangulize(u'cnapan')
-        assert u'쿰' == self.hangulize(u'cwm')
-        assert u'벙 웰리' == self.hangulize(u'fy ngwely')
-        assert u'번 하다이' == self.hangulize(u'fy nhadau')
-        assert u'방크 턴돌' == self.hangulize(u"Banc Ty'nddôl")
+        self.assert_examples({
+            u'Cymru': u'컴리',
+            u'Cymraeg': u'컴라이그',
+            u'Caernarfon': u'카이르나르본',
+            u'Ceredigion': u'케레디기온',
+            u'Aberystwyth': u'아베러스투이스',
+            u'Brynmawr': u'브런마우르',
+            u'Llangollen': u'흘란고흘렌',
+            u'Llanelli': u'흘라네흘리',
+            u'Gwynedd': u'귀네드',
+            u'Ystradgynlais': u'어스트라드건라이스',
+            u'Tawe': u'타웨',
+            u'Powys': u'포위스',
+            u'Meredith': u'메레디스',
+            u'Glyndŵr': u'글런두르',
+            u'Rhys': u'흐리스',
+            u'Ifans': u'이반스',
+            u'Emrys': u'엠리스',
+            u'Hywel': u'허웰',
+            u'Gwilym': u'귈림',
+            u'Llinor': u'흘리노르',
+            u'Ieuan': u'예이안',
+            u'Cerys': u'케리스',
+            u'Dafydd': u'다비드',
+            u'Iwan': u'이완',
+            u'Huw': u'히우',
+            u'Ciaran': u'키아란',
+            u'Myfanwy': u'머바누이',
+            u'Llywelyn': u'흘러웰린',
+            u'Calennig': u'칼레니그',
+            u'cnapan': u'크나판',
+            u'cwm': u'쿰',
+            u'fy ngwely': u'벙 웰리',
+            u'fy nhadau': u'번 하다이',
+            u"Banc Ty'nddôl": u'방크 턴돌',
+        })

@@ -60,7 +60,7 @@ class APITestCase(unittest.TestCase):
 
 class PatternTestCase(HangulizeTestCase):
 
-    def setUp(self):
+    def __init__(self, *args, **kwargs):
         import logging
         logger = logging.getLogger('test')
         logger.setLevel(logging.INFO)
@@ -105,46 +105,55 @@ class PatternTestCase(HangulizeTestCase):
                 ('O', (Jungseong(O), Jungseong(U))),
                 ('h$', (Jongseong(H))),
             ])
+        super(PatternTestCase, self).__init__(*args, **kwargs)
         self.lang = TestLang()
 
     def test_separator(self):
-        assert u'싸씨쑤' == self.hangulize(u'shazixhu')
+        self.assert_examples({u'shazixhu': u'싸씨쑤'})
 
     def test_variable(self):
-        assert u'꾸까끼꾸' == self.hangulize(u'xupatiku')
-        assert u'프끼꾸' == self.hangulize(u'ptiku')
+        self.assert_examples({
+            u'xupatiku': u'꾸까끼꾸',
+            u'ptiku': u'프끼꾸'
+        })
 
     def test_phonemes(self):
-        assert u'즈쥬' == self.hangulize(u'zuju')
+        self.assert_examples({u'zuju': u'즈쥬'})
 
     def test_caret_before_curly_bracket(self):
-        assert u'라 앞바' == self.hangulize(u'la abba')
+        self.assert_examples({u'la abba': u'라 앞바'})
 
     def test_dollar_after_curly_bracket(self):
-        assert u'브포' == self.hangulize(u'bbo')
+        self.assert_examples({u'bbo': u'브포'})
 
     def test_variable_replacement(self):
-        assert u'가베' == self.hangulize(u'gap')
-        assert u'바게크' == self.hangulize(u'bakk')
-        assert u'까데까게' == self.hangulize(u'tatkak')
-        assert u'초우긓' == self.hangulize(u'cogh')
+        self.assert_examples({
+            u'gap': u'가베',
+            u'bakk': u'바게크',
+            u'tatkak': u'까데까게',
+            u'cogh': u'초우긓',
+        })
 
     def test_start_of_string(self):
-        assert u'랄랄라' == self.hangulize(u'lalala')
+        self.assert_examples({u'lalala': u'랄랄라'})
 
     def test_start_of_word(self):
-        assert u'랄라 날랄라' == self.hangulize(u'lala lalala')
-        assert u'아쁘바' == self.hangulize(u'abba')
+        self.assert_examples({
+            u'lala lalala': u'랄라 날랄라',
+            u'abba': u'아쁘바'
+        })
 
     def test_end_of_string(self):
-        assert u'바베쿸' == self.hangulize(u'babeq')
-        assert u'바벸 꾸' == self.hangulize(u'babeq ku')
+        self.assert_examples({
+            u'babeq': u'바베쿸',
+            u'babeq ku': u'바벸 꾸'
+        })
 
     def test_special_character(self):
-        assert u'디' == self.hangulize(u"d'i")
+        self.assert_examples({u"d'i": u'디'})
 
     def test_space(self):
-        assert u'디' == self.hangulize(u"d i")
+        self.assert_examples({u'd i': u'디'})
 
 
 class AlgorithmTestCase(unittest.TestCase):
@@ -175,7 +184,7 @@ class AlgorithmTestCase(unittest.TestCase):
         assert u'터르고비슈테,' == hangulize(u'Търговище,', 'bul')
 
     def test_too_many_rules(self):
-        class TooComplexLang(Language):
+        class TooHeavyLang(Language):
             notation = Notation([
                 ('a', Jungseong(A)),  ('b', Choseong(B)),
                 ('c', Choseong(C)),   ('d', Choseong(D)),
@@ -317,7 +326,7 @@ class AlgorithmTestCase(unittest.TestCase):
                 ('W4', Jungseong(EU)), ('X4', Choseong(GG)),
                 ('Y4', Jungseong(I)),  ('Z4', Choseong(J)),
             ])
-        assert u'아브' == hangulize(u'ab', lang=TooComplexLang())
+        assert u'아브' == hangulize(u'ab', lang=TooHeavyLang())
 
 
 try:

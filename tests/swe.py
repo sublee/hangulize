@@ -10,179 +10,185 @@ class SwedishTestCase(HangulizeTestCase):
 
     def test_basic(self):
         """ http://korean.go.kr/09_new/dic/rule/rule_foreign_0111.jsp """
-        assert u'발' == self.hangulize(u'bal')
-        assert u'스납트' == self.hangulize(u'snabbt')
-        assert u'야코브' == self.hangulize(u'Jacob')
-        assert u'칼손' == self.hangulize(u'Carlsson')
-        assert u'셀시우스' == self.hangulize(u'Celsius')
-        assert u'에릭손' == self.hangulize(u'Ericson')
-        assert u'샤름' == self.hangulize(u'charm')
-        assert u'오크' == self.hangulize(u'och')
-        assert u'다그' == self.hangulize(u'dag')
-        assert u'드리카' == self.hangulize(u'dricka')
-        assert u'할름스타드' == self.hangulize(u'Halmstad')
-        assert u'유르고르덴' == self.hangulize(u'Djurgården')
-        assert u'아예' == self.hangulize(u'adjö')
-        assert u'순스발' == self.hangulize(u'Sundsvall')
-        assert u'팔룬' == self.hangulize(u'Falun')
-        assert u'루프트' == self.hangulize(u'luft')
-        assert u'구스타브' == self.hangulize(u'Gustav')
-        assert u'헬곤' == self.hangulize(u'helgon')
-        assert u'예테보리' == self.hangulize(u'Göteborg')
-        assert u'예이예르' == self.hangulize(u'Geijer')
-        assert u'이슬라베드' == self.hangulize(u'Gislaved')
-        assert u'엘리' == self.hangulize(u'älg')
-        assert u'스트린드베리' == self.hangulize(u'Strindberg')
-        assert u'보리' == self.hangulize(u'Borg')
-        # assert u'망누스' == self.hangulize(u'Magnus')
-        # => 망음누스
-        # assert u'랑나르' == self.hangulize(u'Ragnar')
-        # => 랑음나르
-        # assert u'앙네스' == self.hangulize(u'Agnes')
-        # => 앙음네스
-        assert u'획스트' == self.hangulize(u'högst')
-        assert u'그뢴베리' == self.hangulize(u'Grönberg')
-        assert u'예르스타드' == self.hangulize(u'Gjerstad')
-        assert u'예르벨' == self.hangulize(u'Gjörwell')
-        assert u'헬싱보리' == self.hangulize(u'Hälsingborg')
-        assert u'휘라' == self.hangulize(u'hyra')
-        assert u'달' == self.hangulize(u'Dahl')
-        assert u'옐마렌' == self.hangulize(u'Hjälmaren')
-        assert u'얄마르' == self.hangulize(u'Hjalmar')
-        assert u'요르트' == self.hangulize(u'Hjort')
-        assert u'얀손' == self.hangulize(u'Jansson')
-        assert u'옌셰핑' == self.hangulize(u'Jönköping')
-        assert u'요한손' == self.hangulize(u'Johansson')
-        assert u'뵈리아' == self.hangulize(u'börja')
-        assert u'피에릴' == self.hangulize(u'fjäril')
-        assert u'미우크' == self.hangulize(u'mjuk')
-        assert u'미엘' == self.hangulize(u'mjöl')
-        assert u'칼' == self.hangulize(u'Karl')
-        assert u'코크' == self.hangulize(u'Kock')
-        assert u'쿵스홀름' == self.hangulize(u'Kungsholm')
-        assert u'셰르스틴' == self.hangulize(u'Kerstin')
-        assert u'노르셰핑' == self.hangulize(u'Norrköping')
-        assert u'뤼세실' == self.hangulize(u'Lysekil')
-        assert u'옥토베르' == self.hangulize(u'oktober')
-        assert u'프레드리크' == self.hangulize(u'Fredrik')
-        assert u'크니브' == self.hangulize(u'kniv')
-        assert u'바케르' == self.hangulize(u'vacker')
-        assert u'스톡홀름' == self.hangulize(u'Stockholm')
-        assert u'보크' == self.hangulize(u'bock')
-        assert u'셸' == self.hangulize(u'Kjell')
-        assert u'슐라' == self.hangulize(u'Kjula')
-        assert u'린셰핑' == self.hangulize(u'Linköping')
-        assert u'탈라' == self.hangulize(u'tala')
-        assert u'탈' == self.hangulize(u'tal')
-        assert u'유스난' == self.hangulize(u'Ljusnan')
-        assert u'쇠데르텔리에' == self.hangulize(u'Södertälje')
-        assert u'데탈리' == self.hangulize(u'detalj')
-        assert u'말뫼' == self.hangulize(u'Malmö')
-        assert u'삼탈' == self.hangulize(u'samtal')
-        assert u'훔메르' == self.hangulize(u'hummer')
-        assert u'노르셰핑' == self.hangulize(u'Norrköping')
-        assert u'베네른' == self.hangulize(u'Vänern')
-        assert u'란드' == self.hangulize(u'land')
-        assert u'칼스함' == self.hangulize(u'Karlshamn')
-        assert u'볼렝에' == self.hangulize(u'Borlänge')
-        assert u'쿵' == self.hangulize(u'kung')
-        assert u'롱' == self.hangulize(u'lång')
-        assert u'앙카' == self.hangulize(u'anka')
-        assert u'상트' == self.hangulize(u'Sankt')
-        assert u'방크' == self.hangulize(u'bank')
-        assert u'피테오' == self.hangulize(u'Piteå')
-        assert u'크납트' == self.hangulize(u'knappt')
-        assert u'웁살라' == self.hangulize(u'Uppsala')
-        assert u'캄프' == self.hangulize(u'kamp')
-        assert u'말름크비스트' == self.hangulize(u'Malmqvist')
-        assert u'린드크비스트' == self.hangulize(u'Lindqvist')
-        assert u'뢰드' == self.hangulize(u'röd')
-        assert u'빌란데르' == self.hangulize(u'Wilander')
-        assert u'비에르크' == self.hangulize(u'Björk')
-        assert u'엘란데르' == self.hangulize(u'Erlander')
-        assert u'칼그렌' == self.hangulize(u'Karlgren')
-        assert u'얄' == self.hangulize(u'Jarl')
-        assert u'솜마르' == self.hangulize(u'sommar')
-        assert u'스토르비크' == self.hangulize(u'Storvik')
-        assert u'단스' == self.hangulize(u'dans')
-        assert u'샤크' == self.hangulize(u'Schack')
-        assert u'셰인' == self.hangulize(u'Schein')
-        assert u'레반슈' == self.hangulize(u'revansch')
-        assert u'네셰' == self.hangulize(u'Nässjö')
-        assert u'슈크헴' == self.hangulize(u'sjukhem')
-        assert u'셰베리' == self.hangulize(u'Sjöberg')
-        assert u'스코글룬드' == self.hangulize(u'Skoglund')
-        assert u'셸레프테오' == self.hangulize(u'Skellefteå')
-        assert u'셰브데' == self.hangulize(u'Skövde')
-        assert u'솁스홀멘' == self.hangulize(u'Skeppsholmen')
-        assert u'함마르셸드' == self.hangulize(u'Hammarskjöld')
-        assert u'셸데브란드' == self.hangulize(u'Skjöldebrand')
-        assert u'셰르네보리' == self.hangulize(u'Stjärneborg')
-        assert u'옥센셰르나' == self.hangulize(u'Oxenstjerna')
-        assert u'예타' == self.hangulize(u'Göta')
-        assert u'봇쉬르카' == self.hangulize(u'Botkyrka')
-        assert u'트렐레보리' == self.hangulize(u'Trelleborg')
-        assert u'보트' == self.hangulize(u'båt')
-        assert u'루테르' == self.hangulize(u'Luther')
-        assert u'툰베리' == self.hangulize(u'Thunberg')
-        assert u'렉숀' == self.hangulize(u'lektion')
-        assert u'스타숀' == self.hangulize(u'station')
-        assert u'셰크' == self.hangulize(u'tjeck')
-        assert u'쇼코' == self.hangulize(u'Tjåkkå')
-        assert u'셰나' == self.hangulize(u'tjäna')
-        assert u'슈고' == self.hangulize(u'tjugo')
-        assert u'스베리예' == self.hangulize(u'Sverige')
-        assert u'바사' == self.hangulize(u'Wasa')
-        assert u'스베덴보리' == self.hangulize(u'Swedenborg')
-        assert u'에슬뢰브' == self.hangulize(u'Eslöv')
-        assert u'악셀' == self.hangulize(u'Axel')
-        assert u'알렉산데르' == self.hangulize(u'Alexander')
-        assert u'섹스' == self.hangulize(u'sex')
-        assert u'사크리스' == self.hangulize(u'Zachris')
-        assert u'손' == self.hangulize(u'zon')
-        assert u'로렌소' == self.hangulize(u'Lorenzo')
-        assert u'칼릭스' == self.hangulize(u'Kalix')
-        assert u'팔룬' == self.hangulize(u'Falun')
-        assert u'알베스타' == self.hangulize(u'Alvesta')
-        assert u'엔셰핑' == self.hangulize(u'Enköping')
-        assert u'스베알란드' == self.hangulize(u'Svealand')
-        assert u'멜라렌' == self.hangulize(u'Mälaren')
-        assert u'베네른' == self.hangulize(u'Vänern')
-        assert u'트롤헤탄' == self.hangulize(u'Trollhättan')
-        assert u'이드레' == self.hangulize(u'Idre')
-        assert u'키루나' == self.hangulize(u'Kiruna')
-        assert u'오몰' == self.hangulize(u'Åmål')
-        assert u'베스테로스' == self.hangulize(u'Västerås')
-        assert u'스몰란드' == self.hangulize(u'Småland')
-        assert u'보덴' == self.hangulize(u'Boden')
-        assert u'스톡홀름' == self.hangulize(u'Stockholm')
-        assert u'외레브로' == self.hangulize(u'Örebro')
-        assert u'외스테르순드' == self.hangulize(u'Östersund')
-        assert u'비에른' == self.hangulize(u'Björn')
-        assert u'린셰핑' == self.hangulize(u'Linköping')
-        assert u'우메오' == self.hangulize(u'Umeå')
-        assert u'룰레오' == self.hangulize(u'Luleå')
-        assert u'룬드' == self.hangulize(u'Lund')
-        assert u'위스타드' == self.hangulize(u'Ystad')
-        assert u'뉘네스함' == self.hangulize(u'Nynäshamn')
-        assert u'비스뷔' == self.hangulize(u'Visby')
+        self.assert_examples({
+            u'bal': u'발',
+            u'snabbt': u'스납트',
+            u'Jacob': u'야코브',
+            u'Carlsson': u'칼손',
+            u'Celsius': u'셀시우스',
+            u'Ericson': u'에릭손',
+            u'charm': u'샤름',
+            u'och': u'오크',
+            u'dag': u'다그',
+            u'dricka': u'드리카',
+            u'Halmstad': u'할름스타드',
+            u'Djurgården': u'유르고르덴',
+            u'adjö': u'아예',
+            u'Sundsvall': u'순스발',
+            u'Falun': u'팔룬',
+            u'luft': u'루프트',
+            u'Gustav': u'구스타브',
+            u'helgon': u'헬곤',
+            u'Göteborg': u'예테보리',
+            u'Geijer': u'예이예르',
+            u'Gislaved': u'이슬라베드',
+            u'älg': u'엘리',
+            u'Strindberg': u'스트린드베리',
+            u'Borg': u'보리',
+            # u'Magnus': u'망누스',
+            # => 망음누스
+            # u'Ragnar': u'랑나르',
+            # => 랑음나르
+            # u'Agnes': u'앙네스',
+            # => 앙음네스
+            u'högst': u'획스트',
+            u'Grönberg': u'그뢴베리',
+            u'Gjerstad': u'예르스타드',
+            u'Gjörwell': u'예르벨',
+            u'Hälsingborg': u'헬싱보리',
+            u'hyra': u'휘라',
+            u'Dahl': u'달',
+            u'Hjälmaren': u'옐마렌',
+            u'Hjalmar': u'얄마르',
+            u'Hjort': u'요르트',
+            u'Jansson': u'얀손',
+            u'Jönköping': u'옌셰핑',
+            u'Johansson': u'요한손',
+            u'börja': u'뵈리아',
+            u'fjäril': u'피에릴',
+            u'mjuk': u'미우크',
+            u'mjöl': u'미엘',
+            u'Karl': u'칼',
+            u'Kock': u'코크',
+            u'Kungsholm': u'쿵스홀름',
+            u'Kerstin': u'셰르스틴',
+            u'Norrköping': u'노르셰핑',
+            u'Lysekil': u'뤼세실',
+            u'oktober': u'옥토베르',
+            u'Fredrik': u'프레드리크',
+            u'kniv': u'크니브',
+            u'vacker': u'바케르',
+            u'Stockholm': u'스톡홀름',
+            u'bock': u'보크',
+            u'Kjell': u'셸',
+            u'Kjula': u'슐라',
+            u'Linköping': u'린셰핑',
+            u'tala': u'탈라',
+            u'tal': u'탈',
+            u'Ljusnan': u'유스난',
+            u'Södertälje': u'쇠데르텔리에',
+            u'detalj': u'데탈리',
+            u'Malmö': u'말뫼',
+            u'samtal': u'삼탈',
+            u'hummer': u'훔메르',
+            u'Norrköping': u'노르셰핑',
+            u'Vänern': u'베네른',
+            u'land': u'란드',
+            u'Karlshamn': u'칼스함',
+            u'Borlänge': u'볼렝에',
+            u'kung': u'쿵',
+            u'lång': u'롱',
+            u'anka': u'앙카',
+            u'Sankt': u'상트',
+            u'bank': u'방크',
+            u'Piteå': u'피테오',
+            u'knappt': u'크납트',
+            u'Uppsala': u'웁살라',
+            u'kamp': u'캄프',
+            u'Malmqvist': u'말름크비스트',
+            u'Lindqvist': u'린드크비스트',
+            u'röd': u'뢰드',
+            u'Wilander': u'빌란데르',
+            u'Björk': u'비에르크',
+            u'Erlander': u'엘란데르',
+            u'Karlgren': u'칼그렌',
+            u'Jarl': u'얄',
+            u'sommar': u'솜마르',
+            u'Storvik': u'스토르비크',
+            u'dans': u'단스',
+            u'Schack': u'샤크',
+            u'Schein': u'셰인',
+            u'revansch': u'레반슈',
+            u'Nässjö': u'네셰',
+            u'sjukhem': u'슈크헴',
+            u'Sjöberg': u'셰베리',
+            u'Skoglund': u'스코글룬드',
+            u'Skellefteå': u'셸레프테오',
+            u'Skövde': u'셰브데',
+            u'Skeppsholmen': u'솁스홀멘',
+            u'Hammarskjöld': u'함마르셸드',
+            u'Skjöldebrand': u'셸데브란드',
+            u'Stjärneborg': u'셰르네보리',
+            u'Oxenstjerna': u'옥센셰르나',
+            u'Göta': u'예타',
+            u'Botkyrka': u'봇쉬르카',
+            u'Trelleborg': u'트렐레보리',
+            u'båt': u'보트',
+            u'Luther': u'루테르',
+            u'Thunberg': u'툰베리',
+            u'lektion': u'렉숀',
+            u'station': u'스타숀',
+            u'tjeck': u'셰크',
+            u'Tjåkkå': u'쇼코',
+            u'tjäna': u'셰나',
+            u'tjugo': u'슈고',
+            u'Sverige': u'스베리예',
+            u'Wasa': u'바사',
+            u'Swedenborg': u'스베덴보리',
+            u'Eslöv': u'에슬뢰브',
+            u'Axel': u'악셀',
+            u'Alexander': u'알렉산데르',
+            u'sex': u'섹스',
+            u'Zachris': u'사크리스',
+            u'zon': u'손',
+            u'Lorenzo': u'로렌소',
+            u'Kalix': u'칼릭스',
+            u'Falun': u'팔룬',
+            u'Alvesta': u'알베스타',
+            u'Enköping': u'엔셰핑',
+            u'Svealand': u'스베알란드',
+            u'Mälaren': u'멜라렌',
+            u'Vänern': u'베네른',
+            u'Trollhättan': u'트롤헤탄',
+            u'Idre': u'이드레',
+            u'Kiruna': u'키루나',
+            u'Åmål': u'오몰',
+            u'Västerås': u'베스테로스',
+            u'Småland': u'스몰란드',
+            u'Boden': u'보덴',
+            u'Stockholm': u'스톡홀름',
+            u'Örebro': u'외레브로',
+            u'Östersund': u'외스테르순드',
+            u'Björn': u'비에른',
+            u'Linköping': u'린셰핑',
+            u'Umeå': u'우메오',
+            u'Luleå': u'룰레오',
+            u'Lund': u'룬드',
+            u'Ystad': u'위스타드',
+            u'Nynäshamn': u'뉘네스함',
+            u'Visby': u'비스뷔',
+        })
 
     def test_1st(self):
         """제1항
         1. b, g가 무성 자음 앞에 올 때에는 받침 'ㅂ, ㄱ'으로 적는다.
         2. k, ck, p, t는 무성 자음 앞에서 받침 'ㄱ, ㄱ, ㅂ, ㅅ'으로 적는다.
         """
-        assert u'스납트' == self.hangulize(u'snabbt')
-        assert u'획스트' == self.hangulize(u'högst')
-        assert u'옥토베르' == self.hangulize(u'oktober')
-        assert u'스톡홀름' == self.hangulize(u'Stockholm')
-        assert u'웁살라' == self.hangulize(u'Uppsala')
-        assert u'봇쉬르카' == self.hangulize(u'Botkyrka')
+        self.assert_examples({
+            u'snabbt': u'스납트',
+            u'högst': u'획스트',
+            u'oktober': u'옥토베르',
+            u'Stockholm': u'스톡홀름',
+            u'Uppsala': u'웁살라',
+            u'Botkyrka': u'봇쉬르카',
+        })
 
     def test_2nd(self):
         """제2항: c는 'ㅋ'으로 적되, e, i, a, y, o 앞에서는 'ㅅ'으로 적는다."""
-        assert u'캄파' == self.hangulize(u'campa')
-        assert u'셀시우스' == self.hangulize(u'Celsius')
+        self.assert_examples({
+            u'campa': u'캄파',
+            u'Celsius': u'셀시우스',
+        })
 
     def test_3rd(self):
         """제3항: g
@@ -193,74 +199,90 @@ class SwedishTestCase(HangulizeTestCase):
         4. 무성 자음 앞의 g는 받침 'ㄱ'으로 적는다.
         5. 그 밖의 자음 앞과 어말에서는 '그'로 적는다.
         """
-        assert u'구스타브' == self.hangulize(u'Gustav')
-        assert u'예테보리' == self.hangulize(u'Göteborg')
-        assert u'엘리' == self.hangulize(u'älg')
-        assert u'보리' == self.hangulize(u'Borg')
-        # assert u'망누스' == self.hangulize(u'Magnus')
-        # => 망음누스
-        assert u'획스트' == self.hangulize(u'högst')
-        assert u'루드비그' == self.hangulize(u'Ludvig')
-        assert u'그레타' == self.hangulize(u'Greta')
+        self.assert_examples({
+            u'Gustav': u'구스타브',
+            u'Göteborg': u'예테보리',
+            u'älg': u'엘리',
+            u'Borg': u'보리',
+            # u'Magnus': u'망누스',
+            # => 망음누스
+            u'högst': u'획스트',
+            u'Ludvig': u'루드비그',
+            u'Greta': u'그레타',
+        })
 
     def test_4th(self):
         """제4항: j는 자음과 모음 사이에 올 때에 앞의 자음과 합쳐서 적는다."""
-        assert u'피에릴' == self.hangulize(u'fjäril')
-        assert u'미우크' == self.hangulize(u'mjuk')
-        assert u'셰디아' == self.hangulize(u'kedja')
-        assert u'비에른' == self.hangulize(u'Björn')
+        self.assert_examples({
+            u'fjäril': u'피에릴',
+            u'mjuk': u'미우크',
+            u'kedja': u'셰디아',
+            u'Björn': u'비에른',
+        })
 
     def test_5th(self):
         """제5항
         k는 'ㅋ'으로 적되, e, i, a, y, o 앞에서는 '시'로 적고 뒤따르는 모음과
         합쳐 적는다.
         """
-        assert u'쿵스홀름' == self.hangulize(u'Kungsholm')
-        assert u'노르셰핑' == self.hangulize(u'Norrköping')
+        self.assert_examples({
+            u'Kungsholm': u'쿵스홀름',
+            u'Norrköping': u'노르셰핑',
+        })
 
     def test_6th(self):
         """제6항
         어말 또는 자음 앞의 l은 받침 'ㄹ'로 적고, 어중의 l이 모음 앞에 올
         때에는 'ㄹㄹ'로 적는다.
         """
-        assert u'폴크' == self.hangulize(u'folk')
-        assert u'탈' == self.hangulize(u'tal')
-        assert u'탈라' == self.hangulize(u'tala')
+        self.assert_examples({
+            u'folk': u'폴크',
+            u'tal': u'탈',
+            u'tala': u'탈라',
+        })
 
     def test_7th(self):
         """제7항
         어두의 lj는 '이'로 적되 뒤따르는 모음과 합쳐 적고, 어중의 lj는
         'ㄹ리'로 적는다.
         """
-        assert u'유스난' == self.hangulize(u'Ljusnan')
-        assert u'쇠데르텔리에' == self.hangulize(u'Södertälje')
+        self.assert_examples({
+            u'Ljusnan': u'유스난',
+            u'Södertälje': u'쇠데르텔리에',
+        })
 
     def test_8th(self):
         """제8항
         n은 어말에서 m 다음에 올 때 적지 않는다.
         """
-        assert u'칼스함' == self.hangulize(u'Karlshamn')
-        assert u'남' == self.hangulize(u'namn')
+        self.assert_examples({
+            u'Karlshamn': u'칼스함',
+            u'namn': u'남',
+        })
 
     def test_9th(self):
         """제9항
         nk는 자음 t 앞에서는 'ㅇ'으로, 그 밖의 경우에는 'ㅇ크'로 적는다.
         """
-        assert u'앙카' == self.hangulize(u'anka')
-        assert u'상트' == self.hangulize(u'Sankt')
-        assert u'풍트' == self.hangulize(u'punkt')
-        assert u'방크' == self.hangulize(u'bank')
+        self.assert_examples({
+            u'anka': u'앙카',
+            u'Sankt': u'상트',
+            u'punkt': u'풍트',
+            u'bank': u'방크',
+        })
 
     def test_10th(self):
         """제10항
         sk는 '스ㅋ'으로 적되 e, i, a, y, o 앞에서는 '시'로 적고, 뒤따르는
         모음과 합쳐 적는다.
         """
-        assert u'스코글룬드' == self.hangulize(u'Skoglund')
-        assert u'스쿨드라' == self.hangulize(u'skuldra')
-        assert u'스콜' == self.hangulize(u'skål')
-        assert u'셰르드' == self.hangulize(u'skörd')
-        assert u'쉬다' == self.hangulize(u'skydda')
+        self.assert_examples({
+            u'Skoglund': u'스코글룬드',
+            u'skuldra': u'스쿨드라',
+            u'skål': u'스콜',
+            u'skörd': u'셰르드',
+            u'skydda': u'쉬다',
+        })
 
     def test_11st(self):
         """제11항
@@ -268,23 +290,29 @@ class SwedishTestCase(HangulizeTestCase):
         '이' 또는 '시'와 합쳐서 적는다. 다만, jo 앞에 그 밖의 자음이 올 때에는
         j는 앞의 자음과 합쳐 적고, o는 '에'로 적는다.
         """
-        assert u'외레브로' == self.hangulize(u'Örebro')
-        assert u'예타' == self.hangulize(u'Göta')
-        assert u'옌셰핑' == self.hangulize(u'Jönköping')
-        assert u'비에른' == self.hangulize(u'Björn')
-        assert u'비엘링' == self.hangulize(u'Björling')
-        assert u'미엘' == self.hangulize(u'mjöl')
+        self.assert_examples({
+            u'Örebro': u'외레브로',
+            u'Göta': u'예타',
+            u'Jönköping': u'옌셰핑',
+            u'Björn': u'비에른',
+            u'Björling': u'비엘링',
+            u'mjöl': u'미엘',
+        })
 
     def test_12nd(self):
         """제12항
         같은 자음이 겹치는 경우에는 겹치지 않은 경우와 같이 적는다. 단, mm,
         nn은 모음 앞에서 'ㅁㅁ', 'ㄴㄴ'으로 적는다.
         """
-        assert u'카테가트' == self.hangulize(u'Kattegatt')
-        assert u'노르셰핑' == self.hangulize(u'Norrköping')
-        assert u'웁살라' == self.hangulize(u'Uppsala')
-        assert u'브롬마' == self.hangulize(u'Bromma')
-        assert u'단네모라' == self.hangulize(u'Dannemora')
+        self.assert_examples({
+            u'Kattegatt': u'카테가트',
+            u'Norrköping': u'노르셰핑',
+            u'Uppsala': u'웁살라',
+            u'Bromma': u'브롬마',
+            u'Dannemora': u'단네모라',
+        })
 
     def test_people(self):
-        assert u'상타 랑힐드' == self.hangulize(u'Sankta Ragnhild')
+        self.assert_examples({
+            u'Sankta Ragnhild': u'상타 랑힐드',
+        })

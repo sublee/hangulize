@@ -1,7 +1,9 @@
+# -*- coding: utf-8 -*-
 import sys
 import os.path
 import time
 import unittest
+from cmds.repl import color
 
 
 class LazyTestSuite(unittest.TestSuite):
@@ -12,11 +14,34 @@ class LazyTestSuite(unittest.TestSuite):
 
 class HangulizeTestCase(unittest.TestCase):
 
-    def hangulize(self, word):
-        return self.lang.hangulize(word)
-
     def tearDown(self):
         time.sleep(0.1)
+
+    def assert_examples(self, examples):
+        for word, want in examples.items():
+            try:
+                got = self.lang.hangulize(word)
+                assert want == got
+            except self.failureException as e:
+                msg = 'in %s notation, %s should be transcribed to %s, ' \
+                      'but %s was given' % (color(self.lang_name, 'yellow'),
+                                            color(word, 'cyan'),
+                                            color(want, 'green'),
+                                            color(got, 'red'))
+                raise HangulizeAssertionError(msg.encode('utf-8'))
+
+    def __init__(self, *args, **kwargs):
+        self.lang_name = type(self.lang).__name__
+        super(HangulizeTestCase, self).__init__(*args, **kwargs)
+
+    def _exc_info(self):
+        info = sys.exc_info()
+        return info[:2] + (None,)
+
+
+class HangulizeAssertionError(HangulizeTestCase.failureException):
+
+    pass
 
 
 def filename(path):

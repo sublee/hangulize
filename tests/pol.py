@@ -10,114 +10,118 @@ class PolishTestCase(HangulizeTestCase):
 
     def test_basic(self):
         """ http://korean.go.kr/09_new/dic/rule/rule_foreign_0106.jsp """
-        assert u'부라크' == self.hangulize(u'burak')
-        assert u'십코' == self.hangulize(u'szybko')
-        assert u'도브제' == self.hangulize(u'dobrze')
-        assert u'흘레프' == self.hangulize(u'chleb')
-        assert u'첼' == self.hangulize(u'cel')
-        assert u'발리츠키' == self.hangulize(u'Balicki')
-        assert u'노츠' == self.hangulize(u'noc')
-        assert u'다치' == self.hangulize(u'dać')
-        assert u'다흐' == self.hangulize(u'dach')
-        assert u'즈드로비' == self.hangulize(u'zdrowy')
-        assert u'스워트키' == self.hangulize(u'słodki')
-        assert u'포트' == self.hangulize(u'pod')
-        assert u'파솔라' == self.hangulize(u'fasola')
-        assert u'베프슈티크' == self.hangulize(u'befsztyk')
-        assert u'구라' == self.hangulize(u'góra')
-        assert u'그라트' == self.hangulize(u'grad')
-        assert u'타르크' == self.hangulize(u'targ')
-        assert u'헤르바타' == self.hangulize(u'herbata')
-        assert u'흐루비에슈프' == self.hangulize(u'Hrubieszów')
-        assert u'키노' == self.hangulize(u'kino')
-        assert u'닥틸' == self.hangulize(u'daktyl')
-        assert u'크룰' == self.hangulize(u'król')
-        assert u'반크' == self.hangulize(u'bank')
-        assert u'리스' == self.hangulize(u'lis')
-        assert u'콜라노' == self.hangulize(u'kolano')
-        assert u'모틸' == self.hangulize(u'motyl')
-        assert u'모스트' == self.hangulize(u'most')
-        assert u'짐노' == self.hangulize(u'zimno')
-        assert u'삼' == self.hangulize(u'sam')
-        assert u'네르카' == self.hangulize(u'nerka')
-        assert u'도쿠멘트' == self.hangulize(u'dokument')
-        assert u'디반' == self.hangulize(u'dywan')
-        assert u'그단스크' == self.hangulize(u'Gdańsk')
-        assert u'포즈난' == self.hangulize(u'Poznań')
-        assert u'파라' == self.hangulize(u'para')
-        assert u'스웁스크' == self.hangulize(u'Słupsk')
-        assert u'흐워프' == self.hangulize(u'chłop')
-        assert u'로베르' == self.hangulize(u'rower')
-        assert u'가르네크' == self.hangulize(u'garnek')
-        assert u'슈누르' == self.hangulize(u'sznur')
-        assert u'세르체' == self.hangulize(u'serce')
-        assert u'스레브로' == self.hangulize(u'srebro')
-        assert u'파스' == self.hangulize(u'pas')
-        assert u'실레피' == self.hangulize(u'ślepy')
-        assert u'지시' == self.hangulize(u'dziś')
-        assert u'탐' == self.hangulize(u'tam')
-        assert u'마트카' == self.hangulize(u'matka')
-        assert u'부트' == self.hangulize(u'but')
-        assert u'바르샤바' == self.hangulize(u'Warszawa')
-        assert u'피브니차' == self.hangulize(u'piwnica')
-        assert u'크레프' == self.hangulize(u'krew')
-        assert u'자메크' == self.hangulize(u'zamek')
-        assert u'즈브로드니아' == self.hangulize(u'zbrodnia')
-        assert u'비부스' == self.hangulize(u'wywóz')
-        assert u'그보지지크' == self.hangulize(u'gwoździk')
-        assert u'비엥시' == self.hangulize(u'więź')
-        assert u'지토' == self.hangulize(u'żyto')
-        assert u'루주니' == self.hangulize(u'różny')
-        assert u'위슈카' == self.hangulize(u'łyżka')
-        assert u'스트라시' == self.hangulize(u'straż')
-        assert u'호리' == self.hangulize(u'chory')
-        assert u'쿠흐니아' == self.hangulize(u'kuchnia')
-        assert u'다흐' == self.hangulize(u'dach')
-        assert u'지우라' == self.hangulize(u'dziura')
-        assert u'즈본' == self.hangulize(u'dzwon')
-        assert u'모시옹츠' == self.hangulize(u'mosiądz')
-        assert u'니에치비에치' == self.hangulize(u'niedźwiedź')
-        assert u'제보' == self.hangulize(u'drzewo')
-        assert u'워치' == self.hangulize(u'łodż')
-        assert u'치스티' == self.hangulize(u'czysty')
-        assert u'베치카' == self.hangulize(u'beczka')
-        assert u'클루치' == self.hangulize(u'klucz')
-        assert u'샤리' == self.hangulize(u'szary')
-        assert u'무슈타르다' == self.hangulize(u'musztarda')
-        assert u'카펠루시' == self.hangulize(u'kapelusz')
-        assert u'제카' == self.hangulize(u'rzeka')
-        assert u'프셰미실' == self.hangulize(u'Przemyśl')
-        assert u'코우니에시' == self.hangulize(u'kołnierz')
-        assert u'야스니' == self.hangulize(u'jasny')
-        assert u'크라이' == self.hangulize(u'kraj')
-        assert u'워노' == self.hangulize(u'łono')
-        assert u'그워바' == self.hangulize(u'głowa')
-        assert u'부우카' == self.hangulize(u'bułka')
-        assert u'카나우' == self.hangulize(u'kanał')
-        assert u'트라바' == self.hangulize(u'trawa')
-        assert u'트롱바' == self.hangulize(u'trąba')
-        assert u'몽카' == self.hangulize(u'mąka')
-        assert u'콩트' == self.hangulize(u'kąt')
-        assert u'통' == self.hangulize(u'tą')
-        assert u'제로' == self.hangulize(u'zero')
-        assert u'켕파' == self.hangulize(u'kępa')
-        assert u'벵고시' == self.hangulize(u'węgorz')
-        assert u'쳉스토호바' == self.hangulize(u'Częstochowa')
-        assert u'프로셰' == self.hangulize(u'proszę')
-        assert u'지마' == self.hangulize(u'zima')
-        assert u'우도' == self.hangulize(u'udo')
-        assert u'프루바' == self.hangulize(u'próba')
-        assert u'쿨라' == self.hangulize(u'kula')
-        assert u'닥틸' == self.hangulize(u'daktyl')
+        self.assert_examples({
+            u'burak': u'부라크',
+            u'szybko': u'십코',
+            u'dobrze': u'도브제',
+            u'chleb': u'흘레프',
+            u'cel': u'첼',
+            u'Balicki': u'발리츠키',
+            u'noc': u'노츠',
+            u'dać': u'다치',
+            u'dach': u'다흐',
+            u'zdrowy': u'즈드로비',
+            u'słodki': u'스워트키',
+            u'pod': u'포트',
+            u'fasola': u'파솔라',
+            u'befsztyk': u'베프슈티크',
+            u'góra': u'구라',
+            u'grad': u'그라트',
+            u'targ': u'타르크',
+            u'herbata': u'헤르바타',
+            u'Hrubieszów': u'흐루비에슈프',
+            u'kino': u'키노',
+            u'daktyl': u'닥틸',
+            u'król': u'크룰',
+            u'bank': u'반크',
+            u'lis': u'리스',
+            u'kolano': u'콜라노',
+            u'motyl': u'모틸',
+            u'most': u'모스트',
+            u'zimno': u'짐노',
+            u'sam': u'삼',
+            u'nerka': u'네르카',
+            u'dokument': u'도쿠멘트',
+            u'dywan': u'디반',
+            u'Gdańsk': u'그단스크',
+            u'Poznań': u'포즈난',
+            u'para': u'파라',
+            u'Słupsk': u'스웁스크',
+            u'chłop': u'흐워프',
+            u'rower': u'로베르',
+            u'garnek': u'가르네크',
+            u'sznur': u'슈누르',
+            u'serce': u'세르체',
+            u'srebro': u'스레브로',
+            u'pas': u'파스',
+            u'ślepy': u'실레피',
+            u'dziś': u'지시',
+            u'tam': u'탐',
+            u'matka': u'마트카',
+            u'but': u'부트',
+            u'Warszawa': u'바르샤바',
+            u'piwnica': u'피브니차',
+            u'krew': u'크레프',
+            u'zamek': u'자메크',
+            u'zbrodnia': u'즈브로드니아',
+            u'wywóz': u'비부스',
+            u'gwoździk': u'그보지지크',
+            u'więź': u'비엥시',
+            u'żyto': u'지토',
+            u'różny': u'루주니',
+            u'łyżka': u'위슈카',
+            u'straż': u'스트라시',
+            u'chory': u'호리',
+            u'kuchnia': u'쿠흐니아',
+            u'dach': u'다흐',
+            u'dziura': u'지우라',
+            u'dzwon': u'즈본',
+            u'mosiądz': u'모시옹츠',
+            u'niedźwiedź': u'니에치비에치',
+            u'drzewo': u'제보',
+            u'łodż': u'워치',
+            u'czysty': u'치스티',
+            u'beczka': u'베치카',
+            u'klucz': u'클루치',
+            u'szary': u'샤리',
+            u'musztarda': u'무슈타르다',
+            u'kapelusz': u'카펠루시',
+            u'rzeka': u'제카',
+            u'Przemyśl': u'프셰미실',
+            u'kołnierz': u'코우니에시',
+            u'jasny': u'야스니',
+            u'kraj': u'크라이',
+            u'łono': u'워노',
+            u'głowa': u'그워바',
+            u'bułka': u'부우카',
+            u'kanał': u'카나우',
+            u'trawa': u'트라바',
+            u'trąba': u'트롱바',
+            u'mąka': u'몽카',
+            u'kąt': u'콩트',
+            u'tą': u'통',
+            u'zero': u'제로',
+            u'kępa': u'켕파',
+            u'węgorz': u'벵고시',
+            u'Częstochowa': u'쳉스토호바',
+            u'proszę': u'프로셰',
+            u'zima': u'지마',
+            u'udo': u'우도',
+            u'próba': u'프루바',
+            u'kula': u'쿨라',
+            u'daktyl': u'닥틸',
+        })
 
     def test_1st(self):
         """제1항: k, p
         어말과 유성 자음 앞에서는 '으'를 붙여 적고, 무성 자음 앞에서는
         받침으로 적는다.
         """
-        assert u'자메크' == self.hangulize(u'zamek')
-        assert u'모크리' == self.hangulize(u'mokry')
-        assert u'스웁스크' == self.hangulize(u'Słupsk')
+        self.assert_examples({
+            u'zamek': u'자메크',
+            u'mokry': u'모크리',
+            u'Słupsk': u'스웁스크',
+        })
 
     def test_2nd(self):
         """제2항: b, d, g
@@ -125,10 +129,12 @@ class PolishTestCase(HangulizeTestCase):
         2. 유성 자음 앞에서는 '브', '드', '그'로 적는다.
         3. 무성 자음 앞에서 b, g는 받침으로 적고, d는 '트'로 적는다.
         """
-        assert u'오트' == self.hangulize(u'od')
-        assert u'즈브로드니아' == self.hangulize(u'zbrodnia')
-        assert u'그랍스키' == self.hangulize(u'Grabski')
-        assert u'오트피스' == self.hangulize(u'odpis')
+        self.assert_examples({
+            u'od': u'오트',
+            u'zbrodnia': u'즈브로드니아',
+            u'Grabski': u'그랍스키',
+            u'odpis': u'오트피스',
+        })
 
     def test_3rd(self):
         """제3항: w, z, ź, dz, ż, rz, sz
@@ -139,15 +145,17 @@ class PolishTestCase(HangulizeTestCase):
            자음 앞에 올 때에는 '슈', 어말에 올 때에는 '시'로 적는다.
         3. sz는 자음 앞에서는 '슈', 어말에서는 '시'로 적는다.
         """
-        assert u'자바프카' == self.hangulize(u'zabawka')
-        assert u'오브라스' == self.hangulize(u'obraz')
-        assert u'제슈프' == self.hangulize(u'Rzeszów')
-        assert u'프셰미실' == self.hangulize(u'Przemyśl')
-        assert u'그주모트' == self.hangulize(u'grzmot')
-        assert u'우슈코' == self.hangulize(u'łóżko')
-        assert u'펭헤시' == self.hangulize(u'pęcherz')
-        assert u'코슈트' == self.hangulize(u'koszt')
-        assert u'코시' == self.hangulize(u'kosz')
+        self.assert_examples({
+            u'zabawka': u'자바프카',
+            u'obraz': u'오브라스',
+            u'Rzeszów': u'제슈프',
+            u'Przemyśl': u'프셰미실',
+            u'grzmot': u'그주모트',
+            u'łóżko': u'우슈코',
+            u'pęcherz': u'펭헤시',
+            u'koszt': u'코슈트',
+            u'kosz': u'코시',
+        })
 
     def test_4th(self):
         """제4항: ł
@@ -155,36 +163,48 @@ class PolishTestCase(HangulizeTestCase):
            다만, 자음 뒤에 올 때에는 두 음절로 갈라 적는다.
         2. oł는 '우'로 적는다.
         """
-        assert u'워노' == self.hangulize(u'łono')
-        assert u'그워바' == self.hangulize(u'głowa')
-        assert u'프시야치우' == self.hangulize(u'przyjaciół')
+        self.assert_examples({
+            u'łono': u'워노',
+            u'głowa': u'그워바',
+            u'przyjaciół': u'프시야치우',
+        })
 
     def test_5th(self):
         """제5항: l
         어중의 l이 모음 앞에 올 때에는 'ㄹㄹ'로 적는다.
         """
-        assert u'올레이' == self.hangulize(u'olej')
+        self.assert_examples({
+            u'olej': u'올레이',
+        })
 
     def test_6th(self):
         """제6항: m
         어두의 m이 l, r 앞에 올 때에는 '으'를 붙여 적는다.
         """
-        assert u'믈레코' == self.hangulize(u'mleko')
-        assert u'므루프카' == self.hangulize(u'mrówka')
+        self.assert_examples({
+            u'mleko': u'믈레코',
+            u'mrówka': u'므루프카',
+        })
 
     def test_7th(self):
         """제7항: ę
         ę은 '엥'으로 적는다. 다만, 어말의 ę는 '에'로 적는다.
         """
-        assert u'렝카' == self.hangulize(u'ręka')
-        assert u'프로셰' == self.hangulize(u'proszę')
+        self.assert_examples({
+            u'ręka': u'렝카',
+            u'proszę': u'프로셰',
+        })
 
     def test_8th(self):
         """제8항
         'ㅈ', 'ㅊ'으로 표기되는 자음(c, z) 뒤의 이중 모음은 단모음으로 적는다.
         """
-        assert u'스타차' == self.hangulize(u'stacja')
-        assert u'프리제르' == self.hangulize(u'fryzjer')
+        self.assert_examples({
+            u'stacja': u'스타차',
+            u'fryzjer': u'프리제르',
+        })
 
     def test_etc(self):
-        assert u'프시아치우' == self.hangulize(u'przjyaciół')
+        self.assert_examples({
+            u'przjyaciół': u'프시아치우',
+        })

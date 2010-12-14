@@ -8,33 +8,34 @@ class MiddleWelshTestCase(HangulizeTestCase):
     lang = MiddleWelsh()
 
     def test_examples_of_iceager(self):
-        assert u'마비노기온' == self.hangulize(u'Mabinogion')
-        assert u'퀼후흐' == self.hangulize(u'Culhwch')
-        assert u'올웬' == self.hangulize(u'Olwen')
-        assert u'탈리에신' == self.hangulize(u'Taliesin')
-        assert u'페레뒤르' == self.hangulize(u'Peredur')
-        assert u'게라인트' == self.hangulize(u'Geraint')
-        assert u'흐로나부이' == self.hangulize(u'Rhonabwy')
-        assert u'흐리아논' == self.hangulize(u'Rhiannon')
-        assert u'아눈' == self.hangulize(u'Annwn')
-        assert u'프러데리' == self.hangulize(u'Pryderi')
-        assert u'브란웬' == self.hangulize(u'Brânwen')
-        assert u'흘리르' == self.hangulize(u'Llŷr')
-        assert u'과울' == self.hangulize(u'Gwawl')
-        assert u'벨리 마우르' == self.hangulize(u'Beli Mawr')
-        assert u'고바논' == self.hangulize(u'Gofannon')
-        assert u'귀네드' == self.hangulize(u'Gwynedd')
-        assert u'아리안흐로드' == self.hangulize(u'Arianrhod')
-        assert u'마나위단' == self.hangulize(u'Manawydan')
-        assert u'궨후이바르' == self.hangulize(u'Gwenhwyfar')
-        assert u'아네이린' == self.hangulize(u'Aneirin')
-        assert u'머르딘' == self.hangulize(u'Myrddin')
-        assert u'흘러와르흐' == self.hangulize(u'Llywarch')
-        assert u'카드 고데이' == self.hangulize(u'Cad Godeu')
-        assert u'흘레이 흘라우 거페스' == self.hangulize(u'Lleu Llaw Gyffes')
-        assert u'텅에드' == self.hangulize(u'tynged')
-        assert u'훼들라이 오도' == self.hangulize(u'Chwedlau Odo')
-        assert u'퀼후흐 악 올웬' == self.hangulize(u'Culhwch ac Olwen')
-        assert u'마스 바브 마소누이' == self.hangulize(u'Math fab Mathonwy')
-        assert u'푸이흘 펜데비그 더베드' == \
-               self.hangulize(u'Pwyll Pendefig Dyfed')
+        self.assert_examples({
+            u'Mabinogion': u'마비노기온',
+            u'Culhwch': u'퀼후흐',
+            u'Olwen': u'올웬',
+            u'Taliesin': u'탈리에신',
+            u'Peredur': u'페레뒤르',
+            u'Geraint': u'게라인트',
+            u'Rhonabwy': u'흐로나부이',
+            u'Rhiannon': u'흐리아논',
+            u'Annwn': u'아눈',
+            u'Pryderi': u'프러데리',
+            u'Brânwen': u'브란웬',
+            u'Llŷr': u'흘리르',
+            u'Gwawl': u'과울',
+            u'Beli Mawr': u'벨리 마우르',
+            u'Gofannon': u'고바논',
+            u'Gwynedd': u'귀네드',
+            u'Arianrhod': u'아리안흐로드',
+            u'Manawydan': u'마나위단',
+            u'Gwenhwyfar': u'궨후이바르',
+            u'Aneirin': u'아네이린',
+            u'Myrddin': u'머르딘',
+            u'Llywarch': u'흘러와르흐',
+            u'Cad Godeu': u'카드 고데이',
+            u'Lleu Llaw Gyffes': u'흘레이 흘라우 거페스',
+            u'tynged': u'텅에드',
+            u'Chwedlau Odo': u'훼들라이 오도',
+            u'Culhwch ac Olwen': u'퀼후흐 악 올웬',
+            u'Math fab Mathonwy': u'마스 바브 마소누이',
+            u'Pwyll Pendefig Dyfed': u'푸이흘 펜데비그 더베드',
+        })

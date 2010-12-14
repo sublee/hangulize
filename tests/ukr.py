@@ -8,114 +8,115 @@ class UkrainianTestCase(HangulizeTestCase):
     lang = Ukrainian()
 
     def test_people(self):
-        assert u'올렉산드르 알리예우' == self.hangulize(u'Олександр Алієв')
-        assert u'스테판 반데라' == self.hangulize(u'Степан Бандера')
-        assert u'옥사나 바율' == self.hangulize(u'Оксана Баюл')
-        assert u'카테리나 빌로쿠르' == self.hangulize(u'Катерина Білокур')
-        assert u'올레흐 블로힌' == self.hangulize(u'Олег Блохін')
-        assert u'알료나 본다렌코' == self.hangulize(u'Альона Бондаренко')
-        assert u'카테리나 본다렌코' == self.hangulize(u'Катерина Бондаренко')
-        assert u'세르히 부브카' == self.hangulize(u'Сергій Бубка')
-        assert u'볼로디미르 베르나즈키' == \
-               self.hangulize(u'Володимир Вернадський')
-        assert u'볼로디미르 모노마흐' == self.hangulize(u'Володимир Мономах')
-        assert u'안드리 보로닌' == self.hangulize(u'Андрій Воронін')
-        assert u'다닐로 할리츠키' == self.hangulize(u'Данило Галицький')
-        assert u'올렉산드르 도우젠코' == self.hangulize(u'Олександр Довженко')
-        assert u'미하일로 흐루셰우스키' == \
-               self.hangulize(u'Михайло Грушевський')
-        assert u'비탈리 클리치코' == self.hangulize(u'Віталій Кличко')
-        assert u'볼로디미르 클리치코' == self.hangulize(u'Володимир Кличко')
-        assert u'야나 클로치코바' == self.hangulize(u'Яна Клочкова')
-        assert u'이반 코제두브' == self.hangulize(u'Іван Кожедуб')
-        assert u'세르히 코롤료우' == self.hangulize(u'Сергій Корольов')
-        assert u'레오니드 크라우추크' == self.hangulize(u'Леонід Кравчук')
-        assert u'밀라 쿠니스' == self.hangulize(u'Міла Куніс')
-        assert u'올하 쿠릴렌코' == self.hangulize(u'Ольга Куриленко')
-        assert u'레오니드 쿠치마' == self.hangulize(u'Леонід Кучма')
-        assert u'막시밀리안 레우친' == self.hangulize(u'Максиміліан Левчин')
-        assert u'미콜라 리센코' == self.hangulize(u'Микола Лисенко')
-        assert u'발레리 로바노우스키' == self.hangulize(u'Валерій Лобановський')
-        assert u'레우코 루키야넨코' == self.hangulize(u'Левко Лук\'яненко')
-        assert u'이반 마제파' == self.hangulize(u'Іван Мазепа')
-        assert u'안드리 메드베데우' == self.hangulize(u'Андрій Медведєв')
-        assert u'아르템 밀레우스키' == self.hangulize(u'Артем Мілевський')
-        assert u'므스티슬라우 볼로디미로비치' == \
-               self.hangulize(u'Мстислав Володимирович')
-        assert u'야로슬라우 무드리' == self.hangulize(u'Ярослав Мудрий')
-        assert u'필리프 오를리크' == self.hangulize(u'Пилип Орлик')
-        assert u'바딤 페렐만' == self.hangulize(u'Вадим Перельман')
-        assert u'시몬 페틀류라' == self.hangulize(u'Симон Петлюра')
-        assert u'빅토르 핀추크' == self.hangulize(u'Віктор Пінчук')
-        assert u'세르히 레브로우' == self.hangulize(u'Сергій Ребров')
-        assert u'클리멘트 레디코' == self.hangulize(u'Климент Редько')
-        assert u'로만 므스티슬라비치' == self.hangulize(u'Роман Мстиславич')
-        assert u'흐리호리 스코보로다' == self.hangulize(u'Григорій Сковорода')
-        assert u'요시프 슬리피' == self.hangulize(u'Йосип Сліпий')
-        assert u'바실 스투스' == self.hangulize(u'Василь Стус')
-        assert u'보리스 타라슈크' == self.hangulize(u'Борис Тарасюк')
-        assert u'올레나 텔리하' == self.hangulize(u'Олена Теліга')
-        assert u'율리야 티모셴코' == self.hangulize(u'Юлія Тимошенко')
-        assert u'아나톨리 티모슈크' == self.hangulize(u'Анатолій Тимощук')
-        assert u'세르히 티힙코' == self.hangulize(u'Сергій Тігіпко')
-        assert u'레샤 우크라인카' == self.hangulize(u'Леся Українка')
-        assert u'이반 프란코' == self.hangulize(u'Іван Франко')
-        assert u'보흐단 흐멜니츠키' == self.hangulize(u'Богдан Хмельницький')
-        assert u'뱌체슬라우 초르노빌' == self.hangulize(u'Вячеслав Чорновіл')
-        assert u'안드리 셰우첸코' == self.hangulize(u'Андрій Шевченко')
-        assert u'타라스 셰우첸코' == self.hangulize(u'Тарас Шевченко')
-        assert u'안드레이 솁티츠키' == self.hangulize(u'Андрей Шептицький')
-        assert u'로만 슈헤비치' == self.hangulize(u'Роман Шухевич')
-        assert u'빅토르 유셴코' == self.hangulize(u'Віктор Ющенко')
-        assert u'빅토르 야누코비치' == self.hangulize(u'Віктор Янукович')
+        self.assert_examples({
+            u'Олександр Алієв': u'올렉산드르 알리예우',
+            u'Степан Бандера': u'스테판 반데라',
+            u'Оксана Баюл': u'옥사나 바율',
+            u'Катерина Білокур': u'카테리나 빌로쿠르',
+            u'Олег Блохін': u'올레흐 블로힌',
+            u'Альона Бондаренко': u'알료나 본다렌코',
+            u'Катерина Бондаренко': u'카테리나 본다렌코',
+            u'Сергій Бубка': u'세르히 부브카',
+            u'Володимир Вернадський': u'볼로디미르 베르나즈키',
+            u'Володимир Мономах': u'볼로디미르 모노마흐',
+            u'Андрій Воронін': u'안드리 보로닌',
+            u'Данило Галицький': u'다닐로 할리츠키',
+            u'Олександр Довженко': u'올렉산드르 도우젠코',
+            u'Михайло Грушевський': u'미하일로 흐루셰우스키',
+            u'Віталій Кличко': u'비탈리 클리치코',
+            u'Володимир Кличко': u'볼로디미르 클리치코',
+            u'Яна Клочкова': u'야나 클로치코바',
+            u'Іван Кожедуб': u'이반 코제두브',
+            u'Сергій Корольов': u'세르히 코롤료우',
+            u'Леонід Кравчук': u'레오니드 크라우추크',
+            u'Міла Куніс': u'밀라 쿠니스',
+            u'Ольга Куриленко': u'올하 쿠릴렌코',
+            u'Леонід Кучма': u'레오니드 쿠치마',
+            u'Максиміліан Левчин': u'막시밀리안 레우친',
+            u'Микола Лисенко': u'미콜라 리센코',
+            u'Валерій Лобановський': u'발레리 로바노우스키',
+            u'Левко Лук\'яненко': u'레우코 루키야넨코',
+            u'Іван Мазепа': u'이반 마제파',
+            u'Андрій Медведєв': u'안드리 메드베데우',
+            u'Артем Мілевський': u'아르템 밀레우스키',
+            u'Мстислав Володимирович': u'므스티슬라우 볼로디미로비치',
+            u'Ярослав Мудрий': u'야로슬라우 무드리',
+            u'Пилип Орлик': u'필리프 오를리크',
+            u'Вадим Перельман': u'바딤 페렐만',
+            u'Симон Петлюра': u'시몬 페틀류라',
+            u'Віктор Пінчук': u'빅토르 핀추크',
+            u'Сергій Ребров': u'세르히 레브로우',
+            u'Климент Редько': u'클리멘트 레디코',
+            u'Роман Мстиславич': u'로만 므스티슬라비치',
+            u'Григорій Сковорода': u'흐리호리 스코보로다',
+            u'Йосип Сліпий': u'요시프 슬리피',
+            u'Василь Стус': u'바실 스투스',
+            u'Борис Тарасюк': u'보리스 타라슈크',
+            u'Олена Теліга': u'올레나 텔리하',
+            u'Юлія Тимошенко': u'율리야 티모셴코',
+            u'Анатолій Тимощук': u'아나톨리 티모슈크',
+            u'Сергій Тігіпко': u'세르히 티힙코',
+            u'Леся Українка': u'레샤 우크라인카',
+            u'Іван Франко': u'이반 프란코',
+            u'Богдан Хмельницький': u'보흐단 흐멜니츠키',
+            u'Вячеслав Чорновіл': u'뱌체슬라우 초르노빌',
+            u'Андрій Шевченко': u'안드리 셰우첸코',
+            u'Тарас Шевченко': u'타라스 셰우첸코',
+            u'Андрей Шептицький': u'안드레이 솁티츠키',
+            u'Роман Шухевич': u'로만 슈헤비치',
+            u'Віктор Ющенко': u'빅토르 유셴코',
+            u'Віктор Янукович': u'빅토르 야누코비치',
+        })
 
     def test_places(self):
-        assert u'아나니우' == self.hangulize(u'Ананьїв')
-        assert u'아스카니야노바' == self.hangulize(u'Асканія-Нова')
-        assert u'빌라 체르크바' == self.hangulize(u'Біла Церква')
-        assert u'빈니차' == self.hangulize(u'Вінниця')
-        assert u'호를리우카' == self.hangulize(u'Горлівка')
-        assert u'드니프로제르진스크' == self.hangulize(u'Дніпродзержинськ')
-        assert u'드니프로페트로우스크' == self.hangulize(u'Дніпропетровськ')
-        assert u'도네츠크' == self.hangulize(u'Донецьк')
-        assert u'예우파토리야' == self.hangulize(u'Євпаторія')
-        assert u'예나키예베' == self.hangulize(u'Єнакієве')
-        assert u'지토미르' == self.hangulize(u'Житомир')
-        assert u'자포리자' == self.hangulize(u'Запоріжжя')
-        assert u'이바노프란키우스크' == self.hangulize(u'Івано-Франківськ')
-        assert u'카미야네츠포딜스키' == \
-               self.hangulize(u'Кам\'янець-Подільський')
-        assert u'키예보페체르스카 라우라' == \
-               self.hangulize(u'Києво-Печерська лавра')
-        assert u'키이우' == self.hangulize(u'Київ')
-        assert u'키로보흐라드' == self.hangulize(u'Кіровоград')
-        assert u'크레멘추크' == self.hangulize(u'Кременчук')
-        assert u'크리비 리흐' == self.hangulize(u'Кривий ріг')
-        assert u'루한스크' == self.hangulize(u'Луганськ')
-        assert u'루츠크' == self.hangulize(u'Луцьк')
-        assert u'리비우' == self.hangulize(u'Львів')
-        assert u'마키이우카' == self.hangulize(u'Макіївка')
-        assert u'마리우폴' == self.hangulize(u'Маріуполь')
-        assert u'미콜라이우' == self.hangulize(u'Миколаїв')
-        assert u'오데사' == self.hangulize(u'Одеса')
-        assert u'폴타바' == self.hangulize(u'Полтава')
-        assert u'리우네' == self.hangulize(u'Рівне')
-        assert u'세베로도네츠크' == self.hangulize(u'Сєверодонецьк')
-        assert u'슬로비얀스크' == self.hangulize(u'Слов\'янськ')
-        assert u'수미' == self.hangulize(u'Суми')
-        assert u'테르노필' == self.hangulize(u'Тернопіль')
-        assert u'우주호로드' == self.hangulize(u'Ужгород')
-        assert u'하르키우' == self.hangulize(u'Харків')
-        assert u'헤르손' == self.hangulize(u'Херсон')
-        assert u'체르카시' == self.hangulize(u'Черкаси')
-        assert u'체르니우치' == self.hangulize(u'Чернівці')
-        assert u'체르니히우' == self.hangulize(u'Чернігів')
+        self.assert_examples({
+            u'Ананьїв': u'아나니우',
+            u'Асканія-Нова': u'아스카니야노바',
+            u'Біла Церква': u'빌라 체르크바',
+            u'Вінниця': u'빈니차',
+            u'Горлівка': u'호를리우카',
+            u'Дніпродзержинськ': u'드니프로제르진스크',
+            u'Дніпропетровськ': u'드니프로페트로우스크',
+            u'Донецьк': u'도네츠크',
+            u'Євпаторія': u'예우파토리야',
+            u'Єнакієве': u'예나키예베',
+            u'Житомир': u'지토미르',
+            u'Запоріжжя': u'자포리자',
+            u'Івано-Франківськ': u'이바노프란키우스크',
+            u'Кам\'янець-Подільський': u'카미야네츠포딜스키',
+            u'Києво-Печерська лавра': u'키예보페체르스카 라우라',
+            u'Київ': u'키이우',
+            u'Кіровоград': u'키로보흐라드',
+            u'Кременчук': u'크레멘추크',
+            u'Кривий ріг': u'크리비 리흐',
+            u'Луганськ': u'루한스크',
+            u'Луцьк': u'루츠크',
+            u'Львів': u'리비우',
+            u'Макіївка': u'마키이우카',
+            u'Маріуполь': u'마리우폴',
+            u'Миколаїв': u'미콜라이우',
+            u'Одеса': u'오데사',
+            u'Полтава': u'폴타바',
+            u'Рівне': u'리우네',
+            u'Сєверодонецьк': u'세베로도네츠크',
+            u'Слов\'янськ': u'슬로비얀스크',
+            u'Суми': u'수미',
+            u'Тернопіль': u'테르노필',
+            u'Ужгород': u'우주호로드',
+            u'Харків': u'하르키우',
+            u'Херсон': u'헤르손',
+            u'Черкаси': u'체르카시',
+            u'Чернівці': u'체르니우치',
+            u'Чернігів': u'체르니히우',
+        })
 
     def test_miscellaneous(self):
-        assert u'반두라' == self.hangulize(u'бандура')
-        assert u'헤티만' == self.hangulize(u'гетьман')
-        assert u'홀로도모르' == self.hangulize(u'Голодомор')
-        assert u'호파크' == self.hangulize(u'гопак')
-        assert u'코브자르' == self.hangulize(u'кобзар')
-        assert u'코자크' == self.hangulize(u'козак')
-        assert u'피산카' == self.hangulize(u'писанка')
+        self.assert_examples({
+            u'бандура': u'반두라',
+            u'гетьман': u'헤티만',
+            u'Голодомор': u'홀로도모르',
+            u'гопак': u'호파크',
+            u'кобзар': u'코브자르',
+            u'козак': u'코자크',
+            u'писанка': u'피산카',
+        })
