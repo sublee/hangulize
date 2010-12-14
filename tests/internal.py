@@ -44,8 +44,18 @@ class APITestCase(unittest.TestCase):
         assert ">> 'gloria'" in handler.result
 
     def test_singleton(self):
+        from hangulize import get_lang
         from hangulize.langs.ita import Italian
+        from hangulize.langs.jpn import Japanese
         assert Italian() is Italian()
+        assert get_lang('ita') is Italian()
+        assert get_lang('ita') is get_lang('ita')
+        assert Japanese() is Japanese()
+        assert get_lang('jpn') is Japanese()
+        assert get_lang('jpn') is get_lang('jpn')
+        assert Italian() is not Japanese()
+        assert get_lang('ita') is not Japanese()
+        assert get_lang('ita') is not get_lang('jpn')
 
 
 class PatternTestCase(HangulizeTestCase):
