@@ -31,7 +31,10 @@ class HangulizeTestCase(unittest.TestCase):
                 raise HangulizeAssertionError(msg.encode('utf-8'))
 
     def __init__(self, *args, **kwargs):
-        self.lang_name = type(self.lang).__name__
+        try:
+            self.lang_name = type(self.lang).__name__
+        except AttributeError:
+            pass
         super(HangulizeTestCase, self).__init__(*args, **kwargs)
 
     def _exc_info(self):

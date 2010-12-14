@@ -61,10 +61,6 @@ class APITestCase(unittest.TestCase):
 class PatternTestCase(HangulizeTestCase):
 
     def __init__(self, *args, **kwargs):
-        import logging
-        logger = logging.getLogger('test')
-        logger.setLevel(logging.INFO)
-        logger.addHandler(logging.StreamHandler())
         class TestLang(Language):
             vowels = 'a', 'i', 'u', 'e', 'o'
             voiced = 'b', 'd', 'g'
