@@ -25,17 +25,23 @@ class HangulizeTestCase(unittest.TestCase):
         if getattr(cls, '_capture_examples', False):
             cls._captured_examples = examples
             return
+        errors = []
         for word, want in examples.items():
             try:
                 got = self.lang.hangulize(word)
                 assert want == got
             except self.failureException:
-                msg = 'in %s notation, %s should be transcribed to %s, ' \
-                      'but %s was given' % (color(self.lang_name, 'yellow'),
-                                            color(word, 'cyan'),
-                                            color(want, 'green'),
-                                            color(got, 'red'))
-                raise HangulizeAssertionError(msg.encode('utf-8'))
+                errors.append((word, want, got))
+        if errors:
+            def form(error):
+                return " * '%s' should be '%s', but '%s' was given" % (
+                    color(error[0], 'cyan'),
+                    color(error[1], 'green'),
+                    color(error[2], 'red')
+                )
+            errors = map(form, errors)
+            msg = color(self.lang_name, 'yellow') + '\n' + '\n'.join(errors)
+            raise HangulizeAssertionError(msg.encode('utf-8'))
 
     @classmethod
     def get_examples(cls, method_name=None):
