@@ -72,10 +72,10 @@ def filename(path):
     return os.path.sep.join(os.path.basename(path).split(os.path.extsep)[:-1])
 
 
-def suite(code=None):
+def suite(lang=None):
     loader = unittest.TestLoader()
-    if code:
-        mods = [code.replace('.', '_')]
+    if lang:
+        mods = [lang.replace('.', '_')]
     else:
         mods = (filename(x) for x in os.listdir(os.path.dirname(__file__)) \
                             if x.endswith(os.path.extsep + 'py') and \

@@ -3,11 +3,11 @@ from distutils.cmd import Command
 
 class test(Command):
 
-    user_options = [('code=', 'l', 'the specified language code(ISO 639-3) '
+    user_options = [('lang=', 'l', 'the specified language code(ISO 639-3) '
                                    'for test')]
 
     def initialize_options(self):
-        self.code = None
+        self.lang = None
 
     def finalize_options(self):
         pass
@@ -15,5 +15,5 @@ class test(Command):
     def run(self):
         import unittest
         import tests
-        suite = tests.suite(self.code)
+        suite = tests.suite(self.lang)
         unittest.TextTestRunner(verbosity=2).run(suite)

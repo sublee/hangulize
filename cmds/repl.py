@@ -47,31 +47,32 @@ class repl(Command):
         글로리아
     """
 
-    user_options = [('code=', 'l', 'the language code(ISO 639-3)')]
+    user_options = [('lang=', 'l', 'the language code(ISO 639-3)')]
 
     def initialize_options(self):
-        self.code = None
+        self.lang = None
 
     def finalize_options(self):
         pass
 
     def run(self):
         import sys
-        from hangulize import hangulize, get_lang, LanguageError
+        from hangulize import hangulize, get_lang, HangulizeError
         logger = logging.getLogger('Hangulize REPL')
         logger.setLevel(logging.INFO)
         logger.addHandler(REPLHandler())
         encoding = sys.stdout.encoding
         def _repl():
             while True:
-                code = self.code or raw_input(color('Lang: ', 'magenta'))
+                lang = self.lang or raw_input(color('Lang: ', 'magenta'))
                 try:
-                    lang = get_lang(code)
+                    lang = get_lang(lang)
                     logger.info('** ' + color(type(lang).__name__, 'green') + \
                                 ' is selected')
                     break
-                except LanguageError as e:
+                except HangulizeError as e:
                     logger.error(color(e, 'red'))
+                    self.lang = None
             while True:
                 string = raw_input(color('==> ', 'cyan'))
                 if not string:
