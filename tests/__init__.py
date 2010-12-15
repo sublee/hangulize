@@ -24,7 +24,6 @@ class HangulizeTestCase(unittest.TestCase):
         cls = type(self)
         if getattr(cls, '_capture_examples', False):
             cls._captured_examples = examples
-            del cls._capture_examples
             return
         for word, want in examples.items():
             try:
@@ -39,11 +38,17 @@ class HangulizeTestCase(unittest.TestCase):
                 raise HangulizeAssertionError(msg.encode('utf-8'))
 
     @classmethod
-    def get_examples(cls, method_name):
+    def get_examples(cls, method_name=None):
         cls._capture_examples = True
-        getattr(cls, method_name)(cls())
+        self = cls()
+        if method_name:
+            method_names = [method_name]
+        else:
+            method_names = [x for x in dir(cls) if x.startswith('test')]
+        for method_name in method_names:
+            getattr(cls, method_name)(self)
         examples = cls._captured_examples
-        del cls._captured_examples
+        del cls._capture_examples, cls._captured_examples
         return examples
 
     def __init__(self, *args, **kwargs):
