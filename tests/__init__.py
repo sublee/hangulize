@@ -3,7 +3,7 @@ import sys
 import os.path
 import time
 import unittest
-from cmds.repl import color
+from cmds.helper import color
 
 
 class LazyTestSuite(unittest.TestSuite):
@@ -30,7 +30,7 @@ class HangulizeTestCase(unittest.TestCase):
             try:
                 got = self.lang.hangulize(word)
                 assert want == got
-            except self.failureException as e:
+            except self.failureException:
                 msg = 'in %s notation, %s should be transcribed to %s, ' \
                       'but %s was given' % (color(self.lang_name, 'yellow'),
                                             color(word, 'cyan'),

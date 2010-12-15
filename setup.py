@@ -57,5 +57,5 @@ setup(
         'Topic :: Software Development :: Libraries :: Python Modules',
         'Topic :: Text Processing :: Linguistic'
     ],
-    cmdclass=cmdclass
+    cmdclass=cmdclass()
 )
