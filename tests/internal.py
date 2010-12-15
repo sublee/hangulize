@@ -325,6 +325,26 @@ class AlgorithmTestCase(unittest.TestCase):
         assert u'아브' == hangulize(u'ab', lang=TooHeavyLang())
 
 
+class TestCaseTestCase(unittest.TestCase):
+
+    def test_capture_examples(self):
+        return
+        import hangulize.langs
+        langs = hangulize.langs.get_list()
+        for i in xrange(len(langs)):
+            lang = langs.pop(0)
+            test = lang.replace('.', '_')
+            test = getattr(__import__('tests.%s' % test), test)
+            try:
+                test_case = getattr(test, [x for x in dir(test) \
+                                             if x.endswith('TestCase')][0])
+                test_method = [x for x in dir(test_case) \
+                               if x.startswith('test')][0]
+            except IndexError:
+                continue
+            assert isinstance(test_case.get_examples(test_method), dict)
+
+
 try:
     get_lang('it', iso639=1)
     class LanguageCodeTestCase(unittest.TestCase):

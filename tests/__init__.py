@@ -17,7 +17,15 @@ class HangulizeTestCase(unittest.TestCase):
     def tearDown(self):
         time.sleep(0.1)
 
+    def runTest(self):
+        pass
+
     def assert_examples(self, examples):
+        cls = type(self)
+        if getattr(cls, '_capture_examples', False):
+            cls._captured_examples = examples
+            del cls._capture_examples
+            return
         for word, want in examples.items():
             try:
                 got = self.lang.hangulize(word)
@@ -30,12 +38,20 @@ class HangulizeTestCase(unittest.TestCase):
                                             color(got, 'red'))
                 raise HangulizeAssertionError(msg.encode('utf-8'))
 
+    @classmethod
+    def get_examples(cls, method_name):
+        cls._capture_examples = True
+        getattr(cls, method_name)(cls())
+        examples = cls._captured_examples
+        del cls._captured_examples
+        return examples
+
     def __init__(self, *args, **kwargs):
+        super(HangulizeTestCase, self).__init__(*args, **kwargs)
         try:
             self.lang_name = type(self.lang).__name__
         except AttributeError:
             pass
-        super(HangulizeTestCase, self).__init__(*args, **kwargs)
 
     def _exc_info(self):
         info = sys.exc_info()
