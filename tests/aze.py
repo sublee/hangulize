@@ -1,6 +1,4 @@
 # -*- coding: utf-8 -*-
-import tests
-print tests
 from tests import HangulizeTestCase
 from hangulize.langs.aze import Azerbaijani
 
