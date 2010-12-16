@@ -41,6 +41,7 @@ class TurkishTestCase(HangulizeTestCase):
             u'İlhan Mansız': u'일한 만스즈',
             u'Nakkaş Osman': u'나카슈 오스만',
             u'Orhan Pamuk': u'오르한 파무크',
+            u'Ajda Pekkan': u'아주다 페칸',
             u'Osman Hamdi Bey': u'오스만 함디 베이',
             u'Pir Sultan Abdal': u'피르 술탄 아브달',
             u'Rüştü Reçber': u'뤼슈튀 레치베르',
