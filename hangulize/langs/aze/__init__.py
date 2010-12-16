@@ -82,7 +82,7 @@ class Azerbaijani(Language):
         ('^l', 'l;'),
         ('^m', 'm;'),
         ('^n', 'n;'),
-        ('n{g|k}', 'N'),
+        ('n{G|q}', 'N'),
         ('l$', 'l,'),
         ('m$', 'm,'),
         ('n$', 'n,'),
