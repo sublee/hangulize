@@ -93,7 +93,7 @@ class Turkish(Language):
         ('f', Choseong(P)),
         ('g', Choseong(G)),
         ('h', Choseong(H)),
-        ('j', Jongseong(J)),
+        ('j', Choseong(J)),
         ('k,', Jongseong(G)),
         ('k', Choseong(K)),
         ('^l', Choseong(L)),
