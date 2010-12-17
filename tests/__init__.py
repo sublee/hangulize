@@ -22,8 +22,9 @@ class HangulizeTestCase(unittest.TestCase):
 
     def assert_examples(self, examples):
         cls = type(self)
-        if getattr(cls, '_capture_examples', False):
-            cls._captured_examples = examples
+        # store examples
+        if getattr(cls, '_store_examples', False):
+            cls._stored_examples.update(examples)
             return
         errors = []
         for word, want in examples.items():
@@ -45,7 +46,8 @@ class HangulizeTestCase(unittest.TestCase):
 
     @classmethod
     def get_examples(cls, method_name=None):
-        cls._capture_examples = True
+        cls._store_examples = True
+        cls._stored_examples = {}
         self = cls()
         if method_name:
             method_names = [method_name]
@@ -53,8 +55,8 @@ class HangulizeTestCase(unittest.TestCase):
             method_names = [x for x in dir(cls) if x.startswith('test')]
         for method_name in method_names:
             getattr(cls, method_name)(self)
-        examples = cls._captured_examples
-        del cls._capture_examples, cls._captured_examples
+        examples = cls._stored_examples
+        del cls._store_examples, cls._stored_examples
         return examples
 
     def __init__(self, *args, **kwargs):
