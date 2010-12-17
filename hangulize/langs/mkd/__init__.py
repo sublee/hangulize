@@ -12,6 +12,8 @@ class Macedonian(Language):
     vl = u'кпстќфхцчш'
     notation = Notation([
         (u'град', u'град-'),
+        (u'ѓураѓ', u'џураџ'),
+        (u'срѓан', u'срџан'),
         (u'бб', u'б'),
         (u'вв', u'в'),
         (u'вф', u'ф'),
