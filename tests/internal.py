@@ -60,49 +60,50 @@ class APITestCase(unittest.TestCase):
 
 class PatternTestCase(HangulizeTestCase):
 
-    def __init__(self, *args, **kwargs):
-        class TestLang(Language):
-            vowels = 'a', 'i', 'u', 'e', 'o'
-            voiced = 'b', 'd', 'g'
-            voiceless = 'ptk'
-            longvowels = 'AIUEO'
-            cons = 'bcdfghjklmnpqrstvwxyz'
-            notation = Notation([
-                ('^^l', Choseong(L)),
-                ('^l', Choseong(N)),
-                ('l', Jongseong(L), Choseong(L)),
-                ('q$$', split_phonemes(u'쿸')),
-                ('q$', Jongseong(K)),
-                ('zu', Choseong(J), Jungseong(EU)),
-                ('ju', (Choseong(J), Jungseong(YU))),
-                ('(sh|xh|z)', 'S'),
-                ('(<voiceless>|x){@}', 'X'),
-                ('^^{a}b', Choseong(BB)),
-                ('^{a}b', Jongseong(P)),
-                ('b{o}$', Choseong(P)),
-                ('{a}(<voiceless>)', '<voiced>e'),
-                ('{<cons>}<vowels>{gh}', '<longvowels>'),
-                ("d'i", 'di'),
-                ("d_i", 'di'),
-                ('X', Choseong(GG)),
-                ('S', Choseong(SS)),
-                ('p', Choseong(P)),
-                ('t', Choseong(T)),
-                ('k', Choseong(K)),
-                ('b', (Choseong(B),)),
-                ('d', (Choseong(D),)),
-                ('g', (Choseong(G),)),
-                ('a', (Jungseong(A),)),
-                ('i', (Jungseong(I),)),
-                ('u', (Jungseong(U),)),
-                ('e', (Jungseong(E),)),
-                ('o', (Jungseong(O),)),
-                ('c', (Choseong(C),)),
-                ('O', (Jungseong(O), Jungseong(U))),
-                ('h$', (Jongseong(H))),
-            ])
-        super(PatternTestCase, self).__init__(*args, **kwargs)
-        self.lang = TestLang()
+    class TestLang(Language):
+        vowels = 'a', 'i', 'u', 'e', 'o'
+        voiced = 'b', 'd', 'g'
+        voiceless = 'ptk'
+        longvowels = 'AIUEO'
+        cons = 'bcdfghjklmnpqrstvwxyz'
+        notation = Notation([
+            ('^^l', Choseong(L)),
+            ('^l', Choseong(N)),
+            ('l', Jongseong(L), Choseong(L)),
+            ('q$$', split_phonemes(u'쿸')),
+            ('q$', Jongseong(K)),
+            ('zu', Choseong(J), Jungseong(EU)),
+            ('ju', (Choseong(J), Jungseong(YU))),
+            ('y(o)', Jungseong(YO)),
+            ('y{a}', Jungseong(YA)),
+            ('y[a]', Jungseong(I)),
+            ('(sh|xh|z)', 'S'),
+            ('(<voiceless>|x){@}', 'X'),
+            ('^^{a}b', Choseong(BB)),
+            ('^{a}b', Jongseong(P)),
+            ('b{o}$', Choseong(P)),
+            ('{a}(<voiceless>)', '<voiced>e'),
+            ('{<cons>}<vowels>{gh}', '<longvowels>'),
+            ("d'i", 'di'),
+            ("d_i", 'di'),
+            ('X', Choseong(GG)),
+            ('S', Choseong(SS)),
+            ('p', Choseong(P)),
+            ('t', Choseong(T)),
+            ('k', Choseong(K)),
+            ('b', (Choseong(B),)),
+            ('d', (Choseong(D),)),
+            ('g', (Choseong(G),)),
+            ('a', (Jungseong(A),)),
+            ('i', (Jungseong(I),)),
+            ('u', (Jungseong(U),)),
+            ('e', (Jungseong(E),)),
+            ('o', (Jungseong(O),)),
+            ('c', (Choseong(C),)),
+            ('O', (Jungseong(O), Jungseong(U))),
+            ('h$', (Jongseong(H))),
+        ])
+    lang = TestLang()
 
     def test_separator(self):
         self.assert_examples({u'shazixhu': u'싸씨쑤'})
@@ -150,6 +151,13 @@ class PatternTestCase(HangulizeTestCase):
 
     def test_space(self):
         self.assert_examples({u'd i': u'디'})
+
+    def test_negative_lookaround(self):
+        self.assert_examples({
+            u'ya': u'야아',
+            u'yo': u'요',
+            u'yu': u'이우'
+        })
 
 
 class AlgorithmTestCase(unittest.TestCase):

@@ -9,11 +9,11 @@ class Japanese(Language):
 
     vowels = 'aiueo'
     notation = Notation([
-        (u'[\u30a1\u30a2]', 'a'),
-        (u'[\u30a3\u30a4]', 'i'),
-        (u'[\u30a5\u30a6]', 'u'),
-        (u'[\u30a7\u30a8]', 'e'),
-        (u'[\u30a9\u30aa]', 'o'),
+        (u'(\u30a1|\u30a2)', 'a'),
+        (u'(\u30a3|\u30a4)', 'i'),
+        (u'(\u30a5|\u30a6)', 'u'),
+        (u'(\u30a7|\u30a8)', 'e'),
+        (u'(\u30a9|\u30aa)', 'o'),
         (u'\u30ab',         'ka'),
         (u'\u30ad',         'ki'),
         (u'\u30af',         'ku'),

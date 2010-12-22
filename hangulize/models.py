@@ -78,12 +78,6 @@ class Notation(object):
     :param *rule: the ordered key-value list
     """
 
-    VARIABLE_PATTERN = re.compile('<(?P<name>[a-zA-Z_][a-zA-Z0-9_]*)>')
-    LEFTEDGE_PATTERN = re.compile(r'^\^\^')
-    RIGHTEDGE_PATTERN = re.compile(r'\$\$$')
-    LOOKBEHIND_PATTERN = re.compile('^(\^?){([^}]+?)}')
-    LOOKAHEAD_PATTERN = re.compile('{([^}]+?)}(\$?)$')
-
     def __init__(self, rules):
         self.rules = rules
 
@@ -111,7 +105,7 @@ class Notation(object):
         """The humane characters from the notation keys."""
         chest = []
         for one in self.rules:
-            pattern = self.VARIABLE_PATTERN.sub('', one[0])
+            pattern = Rewrite.VARIABLE_PATTERN.sub('', one[0])
             pattern = re.sub(r'[\{\}\@\[\]\^\$]', '', pattern)
             for c in pattern:
                 chest.append(c)
@@ -261,6 +255,12 @@ class Rewrite(object):
     RIGHT_EDGE_PATTERN = re.compile(r'\$(\$?)$')
     LOOKBEHIND_PATTERN = re.compile('^(?P<edge>(?:\^(?:\^)?)?){([^}]+?)}')
     LOOKAHEAD_PATTERN = re.compile('{([^}]+?)}(?P<edge>(?:\$(?:\$)?)?)$')
+    def NEGATIVE(regex):
+        pattern = regex.pattern.replace('{', '\[').replace('}', '\]')
+        return re.compile(pattern)
+    NEGATIVE_LOOKBEHIND_PATTERN = NEGATIVE(LOOKBEHIND_PATTERN)
+    NEGATIVE_LOOKAHEAD_PATTERN = NEGATIVE(LOOKAHEAD_PATTERN)
+    del NEGATIVE
 
     def __init__(self, pattern, val):
         """Makes a replace function with the given pattern and value."""
@@ -351,7 +351,8 @@ class Rewrite(object):
         regex = pattern
         if lang:
             regex = cls.regexify_variable(regex, lang)
-        regex = cls.regexify_look_around(regex)
+        regex = cls.regexify_lookaround(regex)
+        regex = cls.regexify_negative_lookaround(regex)
         regex = cls.regexify_edge_of_word(regex)
         return regex
 
@@ -363,17 +364,29 @@ class Rewrite(object):
         regex = cls.RIGHT_EDGE_PATTERN.sub(right_edge, regex)
         return regex
 
-    @classmethod
-    def regexify_look_around(cls, regex):
-        def lookbehind(match):
-            edge = re.sub('\^$', BLANK, match.group('edge'))
-            return r'(?<=' + edge + r'(?:' + match.group(2) + '))'
-        def lookahead(match):
-            edge = re.sub('^\$', BLANK, match.group('edge'))
-            return r'(?=(?:' + match.group(1) + ')' + edge + ')'
-        regex = cls.LOOKBEHIND_PATTERN.sub(lookbehind, regex)
-        regex = cls.LOOKAHEAD_PATTERN.sub(lookahead, regex)
-        return regex
+    def make_lookaround(behind_pattern, ahead_pattern,
+                        behind_prefix, ahead_prefix):
+        @classmethod
+        def meth(cls, regex):
+            def lookbehind(match):
+                edge = re.sub('\^$', BLANK, match.group('edge'))
+                return '(?' + behind_prefix + edge + \
+                       '(?:' + match.group(2) + '))'
+            def lookahead(match):
+                edge = re.sub('^\$', BLANK, match.group('edge'))
+                return '(?' + ahead_prefix + \
+                       '(?:' + match.group(1) + ')' + edge + ')'
+            regex = behind_pattern.sub(lookbehind, regex)
+            regex = ahead_pattern.sub(lookahead, regex)
+            return regex
+        return meth
+    regexify_lookaround = make_lookaround(LOOKBEHIND_PATTERN,
+                                          LOOKAHEAD_PATTERN,
+                                          '<=', '=')
+    regexify_negative_lookaround = make_lookaround(NEGATIVE_LOOKBEHIND_PATTERN,
+                                                   NEGATIVE_LOOKAHEAD_PATTERN,
+                                                   '<!', '!')
+    del make_lookaround
 
     @classmethod
     def regexify_variable(cls, regex, lang):

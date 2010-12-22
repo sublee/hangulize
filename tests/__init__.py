@@ -64,7 +64,7 @@ class HangulizeTestCase(unittest.TestCase):
         try:
             self.lang_name = type(self.lang).__name__
         except AttributeError:
-            pass
+            self.lang_name = 'AnonymouseLanguage'
 
     def _exc_info(self):
         info = sys.exc_info()
