@@ -15,7 +15,7 @@ Hangulize는 자동으로 외래어를 한글로 변환해주는 Python 모듈�
 >
 > (전문: <http://iceager.egloos.com/2610028>)
 
-Hangulize는 위 아이디어를 실현하는 첫번째 프로젝트입니다.
+Hangulize는 위 아이디어를 실현하는 프로젝트입니다.
 
 변환 가능한 언어들
 ------------------
@@ -162,7 +162,9 @@ Hangulize에는 BSD 라이선스가 적용되어있습니다. 따라서 소스�
 - [웹사이트][]
 - [메일링리스트][]
 - [꽁치][] - Hangulize IRC 봇
+- [읽어봐!][] - 또 다른 외래서 전사 프로그램
 
  [웹사이트]: http://www.hangulize.org/
  [메일링리스트]: http://groups.google.com/group/hangulize
  [꽁치]: https://github.com/kkung/kkongchi
+ [읽어봐!]: http://socoop.net/ilgoba
