@@ -10,6 +10,7 @@ class Catalan(Language):
     vowels = u'aeiouü'
     cs = 'bcCdDfghklmnNprsStTvwxzZ'
     ob = 'bcCdDfgkpqsStTxzZ'
+    vo = 'bdDglmnNrvwzZ'
     vl = 'cCfkpqsStTx'
     notation = Notation([
         ('felix$', 'felics'),
@@ -18,6 +19,7 @@ class Catalan(Language):
         ('^aux{@}', 'augz'),
         ('^ex{@}', 'egz'),
         ('{@}s{@}', 'z'),
+        ('[s]s{<vo>}', 'z'),
         (u'ç', 's'),
         ('c{e|i}', 's'),
         ('g{e|i}', 'j'),
@@ -36,8 +38,7 @@ class Catalan(Language):
         ('{@}ux', 'uS'),
         ('ll', 'L'),
         ('ny{@}', 'nY'),
-        ('^y{@}', 'Y'),
-        ('{@}y{@}', 'Y'),
+        ('[<cs>]y{@}', 'Y'),
         ('y', 'i'),
         ('dj', 'D'),
         ('tj', 'D'),
@@ -45,17 +46,11 @@ class Catalan(Language):
         ('dz', 'Z'),
         ('tz', 'Z'),
         ('{@}ds{@}', 't,s'),
-        ('ds', 'T'),
         ('{@}ts{@}', 't,s'),
-        ('ts', 'T'),
-        ('{l|n}d{@|l|r}', ',d'),
-        ('{l|n}d', None),
-        ('{l|n}t{@|l|r}', ',t'),
-        ('{l|n}t', None),
-        ('mb{@|l|r}', 'm,b'),
-        ('mb', 'm,'),
-        ('mp{@|l|r}', 'm,p'),
-        ('mp', 'm,'),
+        ('{l|n}d[@|l|r]', None),
+        ('{l|n}t[@|l|r]', None),
+        ('mb[@|l|r]', 'm'),
+        ('mp[@|l|r]', 'm'),
         ('nc{@|l|r}', 'N,c'),
         ('nc', 'N,'),
         ('ng{@|l|r}', 'N,g'),
@@ -64,6 +59,8 @@ class Catalan(Language):
         ('L', 'l'),
         ('rds', 'rs'),
         ('rts', 'rs'),
+        ('ds', 'T'),
+        ('ts', 'T'),
         ('{@}x', 'cs'),
         ('x', 'S'),
         ('w', 'v'),
