@@ -70,7 +70,7 @@ class repl(Command):
                     logger.info('** ' + color(type(lang).__name__, 'green') + \
                                 ' is selected')
                     break
-                except HangulizeError as e:
+                except HangulizeError, e:
                     logger.error(color(e, 'red'))
                     self.lang = None
             while True:

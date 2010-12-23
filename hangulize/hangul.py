@@ -159,7 +159,7 @@ def ishangul(u):
 
 def join(codes):
     """ Join function which makes hangul syllable from jamos """
-    if len(codes) is not 3:
+    if len(codes) != 3:
         raise UnicodeHangulError("needs 3-element tuple")
     if not codes[0] or not codes[1]: # single jamo
         return codes[0] or codes[1]
