@@ -14,9 +14,6 @@ class LazyTestSuite(unittest.TestSuite):
 
 class HangulizeTestCase(unittest.TestCase):
 
-    def tearDown(self):
-        time.sleep(0.1)
-
     def runTest(self):
         pass
 
