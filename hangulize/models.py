@@ -364,7 +364,7 @@ class Rewrite(object):
         regex = cls.RIGHT_EDGE_PATTERN.sub(right_edge, regex)
         return regex
 
-    def make_lookaround(behind_pattern, ahead_pattern,
+    def _make_lookaround(behind_pattern, ahead_pattern,
                         behind_prefix, ahead_prefix):
         @classmethod
         def meth(cls, regex):
@@ -380,13 +380,16 @@ class Rewrite(object):
             regex = ahead_pattern.sub(lookahead, regex)
             return regex
         return meth
-    regexify_lookaround = make_lookaround(LOOKBEHIND_PATTERN,
-                                          LOOKAHEAD_PATTERN,
-                                          '<=', '=')
-    regexify_negative_lookaround = make_lookaround(NEGATIVE_LOOKBEHIND_PATTERN,
-                                                   NEGATIVE_LOOKAHEAD_PATTERN,
-                                                   '<!', '!')
-    del make_lookaround
+
+    _positive = _make_lookaround(LOOKBEHIND_PATTERN,
+                                 LOOKAHEAD_PATTERN,
+                                 '<=', '=')
+    _negative = _make_lookaround(NEGATIVE_LOOKBEHIND_PATTERN,
+                                 NEGATIVE_LOOKAHEAD_PATTERN,
+                                 '<!', '!')
+    regexify_lookaround = _positive
+    regexify_negative_lookaround = _negative
+    del _make_lookaround, _positive, _negative
 
     @classmethod
     def regexify_variable(cls, regex, lang):
