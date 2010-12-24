@@ -324,7 +324,9 @@ class Rewrite(object):
                 string = string.replace(DONE, '.')
                 string = string.replace(SPECIAL, '#')
                 string = re.sub('^' + BLANK + '|' + BLANK + '$', '', string)
+                string = re.sub(ZWSP, '\r', string)
                 string = re.sub(BLANK, ' ', string)
+                string = re.sub('\r', ZWSP, string)
                 return string
             if prev != string:
                 readable = readably(string)
