@@ -17,16 +17,21 @@ class HangulizeTestCase(unittest.TestCase):
     def runTest(self):
         pass
 
-    def assert_examples(self, examples):
+    def assert_examples(self, examples, lang=None, logger=None):
         cls = type(self)
         # store examples
         if getattr(cls, '_store_examples', False):
             cls._stored_examples.update(examples)
             return
         errors = []
+        lang = lang or self.lang
+        try:
+            lang_name = type(lang).__name__
+        except AttributeError:
+            lang_name = 'AnonymouseLanguage'
         for word, want in examples.items():
             try:
-                got = self.lang.hangulize(word)
+                got = lang.hangulize(word, logger=logger)
                 assert want == got
             except self.failureException:
                 errors.append((word, want, got))
@@ -38,7 +43,7 @@ class HangulizeTestCase(unittest.TestCase):
                     color(error[2], 'red')
                 )
             errors = map(form, errors)
-            msg = color(self.lang_name, 'yellow') + '\n' + '\n'.join(errors)
+            msg = color(lang_name, 'yellow') + '\n' + '\n'.join(errors)
             raise HangulizeAssertionError(msg.encode('utf-8'))
 
     @classmethod
@@ -55,13 +60,6 @@ class HangulizeTestCase(unittest.TestCase):
         examples = cls._stored_examples
         del cls._store_examples, cls._stored_examples
         return examples
-
-    def __init__(self, *args, **kwargs):
-        super(HangulizeTestCase, self).__init__(*args, **kwargs)
-        try:
-            self.lang_name = type(self.lang).__name__
-        except AttributeError:
-            self.lang_name = 'AnonymouseLanguage'
 
     def _exc_info(self):
         info = sys.exc_info()
