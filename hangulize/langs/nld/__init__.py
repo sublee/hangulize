@@ -14,6 +14,12 @@ class Dutch(Language):
     son = 'l', 'm', 'n', 'N', 'r' # sonorants
     short = 'a', 'e', 'E', 'i', 'o', 'u', 'U' # short vowels
     notation = Notation([
+        ('_aan_', '#aan#'),
+        ('^aan_', 'aan#'),
+        ('^de_', 'de#'),
+        ('^den_', 'den#'),
+        ('^der_', 'der#'),
+        ('^van_', 'van#'),
         (u'curaçao', 'curaso'),
         ('curacao', 'curaso'),
         (u'française', 'frangsEzY'),
@@ -38,6 +44,7 @@ class Dutch(Language):
         (u'{@}ö', '%o'),
         (u'ö{@}', 'o%'),
         (u'ö', 'eu'),
+        ('^\'t_', 'Qt,#'),
         ('^\'t', 'Qt,'),
         ('^{<cs>}ig', 'igg'),
         ('^{(<cs>)(<cs>)}ig', 'igg'),
@@ -329,6 +336,7 @@ class Dutch(Language):
         ('toilet', 'toealEt'),
         ('tref', 'trEf'),
         ('trek', 'trEk'),
+        ('van#Gogh', 'wan#Gogh'),
         ('vel{d|t}', 'vEl'),
         ('vincent', 'wincEnt'),
         ('vlek', 'vlEk'),
