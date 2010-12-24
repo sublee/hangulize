@@ -305,3 +305,21 @@ class DutchTestCase(HangulizeTestCase):
         #    u'casuïst': u'카수이스트',
             u'drieëntwintig': u'드리엔트빈터흐',
         })
+
+    def test_people(self):
+        self.assert_examples({
+            u'Naomi van As': u'나오미 판아스',
+            u'Marco van Basten': u'마르코 판바스턴',
+            u'Vincent van Gogh': u'빈센트 반고흐',
+            u'Rem Koolhaas': u'렘 콜하스',
+            u'Teun de Nooijer': u'퇸 더노이여르',
+            u'Johannes Diderik van der Waals': u'요하네스 디데릭 판데르발스',
+        })
+
+    def test_places(self):
+        self.assert_examples({
+            u'Alphen aan den Rijn': u'알펀안덴레인',
+            u'Amsterdam': u'암스테르담',
+            u'Den Bosch': u'덴보스',
+            u'Den Haag': u'덴하흐',
+        })
