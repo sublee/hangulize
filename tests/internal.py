@@ -67,6 +67,7 @@ class PatternTestCase(HangulizeTestCase):
         longvowels = 'AIUEO'
         cons = 'bcdfghjklmnpqrstvwxyz'
         notation = Notation([
+            ('van_gogh', split_phonemes(u'반 고흐')),
             ('^^l', Choseong(L)),
             ('^l', Choseong(N)),
             ('l', Jongseong(L), Choseong(L)),
@@ -103,6 +104,8 @@ class PatternTestCase(HangulizeTestCase):
             ('O', (Jungseong(O), Jungseong(U))),
             ('h$', (Jongseong(H))),
         ])
+        def normalize(self, string):
+            return normalize_roman(string)
     lang = TestLang()
 
     def test_separator(self):
@@ -150,7 +153,10 @@ class PatternTestCase(HangulizeTestCase):
         self.assert_examples({u"d'i": u'디'})
 
     def test_space(self):
-        self.assert_examples({u'd i': u'디'})
+        self.assert_examples({
+            u'd i': u'디',
+            u'van Gogh': u'반 고흐'
+        })
 
     def test_negative_lookaround(self):
         self.assert_examples({

@@ -52,11 +52,14 @@ def split_phonemes(word):
     """
     result = []
     for c in word:
-        c = split(c)
-        result.append(Choseong(c[0]))
-        result.append(Jungseong(c[1]))
-        if c[2] is not Null:
-            result.append(Jongseong(c[2]))
+        try:
+            c = split(c)
+            result.append(Choseong(c[0]))
+            result.append(Jungseong(c[1]))
+            if c[2] is not Null:
+                result.append(Jongseong(c[2]))
+        except UnicodeHangulError:
+            result.append(Impurity(c))
     return tuple(result)
 
 
