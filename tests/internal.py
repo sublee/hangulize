@@ -168,6 +168,21 @@ class PatternTestCase(HangulizeTestCase):
             u'titatutote': u'끼까추초체'
         })
 
+    def test_zero_width_space(self):
+        class AmoLang(Language):
+            notation = Notation([
+                ('-', '#'),
+                ('m$', Jongseong(M)),
+                ('m', Choseong(M)),
+                ('a', Jungseong(A)),
+                ('o', Jungseong(O)),
+            ])
+        self.assert_examples({
+            u'am-o': u'암오',
+            u'amo': u'아모',
+            u'am o': u'암 오'
+        }, lang=AmoLang())
+
 
 class AlgorithmTestCase(unittest.TestCase):
 

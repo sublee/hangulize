@@ -5,11 +5,12 @@ import functools
 from hangulize.hangul import *
 
 
-SPACE = '_' # u'\U000f0000'
+SPACE = '_'
+ZWSP = '#' # zero-width space
 EDGE = chr(3)
-SPECIAL = chr(27) #u'\U000f0000'
-BLANK = '(?:%s|%s|%s)' % tuple(map(re.escape, (SPACE, EDGE, SPECIAL)))
-DONE = chr(0) #u'\U000fffff'
+SPECIAL = chr(27)
+BLANK = '(?:%s)' % '|'.join(map(re.escape, (SPACE, ZWSP, EDGE, SPECIAL)))
+DONE = chr(0)
 ENCODING = getattr(sys.stdout, 'encoding', 'utf-8')
 
 
