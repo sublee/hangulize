@@ -77,7 +77,7 @@ class PatternTestCase(HangulizeTestCase):
             ('ju', (Choseong(J), Jungseong(YU))),
             ('y(o)', Jungseong(YO)),
             ('y{a}', Jungseong(YA)),
-            ('y[a]', Jungseong(I)),
+            ('y{~a}', Jungseong(I)),
             ('(sh|xh|z)', 'S'),
             ('(<voiceless>|x){@}', 'X'),
             ('^^{a}b', Choseong(BB)),

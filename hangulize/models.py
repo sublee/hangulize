@@ -256,7 +256,7 @@ class Rewrite(object):
     LOOKBEHIND_PATTERN = re.compile('^(?P<edge>(?:\^(?:\^)?)?){([^}]+?)}')
     LOOKAHEAD_PATTERN = re.compile('{([^}]+?)}(?P<edge>(?:\$(?:\$)?)?)$')
     def NEGATIVE(regex):
-        pattern = regex.pattern.replace('{', '\[').replace('}', '\]')
+        pattern = regex.pattern.replace('{', '{~')
         return re.compile(pattern)
     NEGATIVE_LOOKBEHIND_PATTERN = NEGATIVE(LOOKBEHIND_PATTERN)
     NEGATIVE_LOOKAHEAD_PATTERN = NEGATIVE(LOOKAHEAD_PATTERN)
@@ -351,8 +351,8 @@ class Rewrite(object):
         regex = pattern
         if lang:
             regex = cls.regexify_variable(regex, lang)
-        regex = cls.regexify_lookaround(regex)
         regex = cls.regexify_negative_lookaround(regex)
+        regex = cls.regexify_lookaround(regex)
         regex = cls.regexify_edge_of_word(regex)
         return regex
 
