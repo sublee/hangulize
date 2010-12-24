@@ -58,9 +58,7 @@ class repl(Command):
     def run(self):
         import sys
         from hangulize import hangulize, get_lang, HangulizeError
-        logger = logging.getLogger('Hangulize REPL')
-        logger.setLevel(logging.INFO)
-        logger.addHandler(REPLHandler())
+        logger = make_logger()
         encoding = sys.stdout.encoding
         def _repl():
             while True:
@@ -81,3 +79,10 @@ class repl(Command):
                 yield lang.hangulize(string.decode(encoding), logger=logger)
         for hangul in _repl():
             pass
+
+
+def make_logger(name='Hangulize REPL'):
+    logger = logging.getLogger(name)
+    logger.setLevel(logging.INFO)
+    logger.addHandler(REPLHandler())
+    return logger
