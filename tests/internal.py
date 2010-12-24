@@ -78,6 +78,7 @@ class PatternTestCase(HangulizeTestCase):
             ('y(o)', Jungseong(YO)),
             ('y{a}', Jungseong(YA)),
             ('y{~a}', Jungseong(I)),
+            ('t{~a|i}', Choseong(C)),
             ('(sh|xh|z)', 'S'),
             ('(<voiceless>|x){@}', 'X'),
             ('^^{a}b', Choseong(BB)),
@@ -106,6 +107,7 @@ class PatternTestCase(HangulizeTestCase):
         ])
         def normalize(self, string):
             return normalize_roman(string)
+
     lang = TestLang()
 
     def test_separator(self):
@@ -130,7 +132,7 @@ class PatternTestCase(HangulizeTestCase):
         self.assert_examples({
             u'gap': u'가베',
             u'bakk': u'바게크',
-            u'tatkak': u'까데까게',
+            u'tatkak': u'까츠까게',
             u'cogh': u'초우긓',
         })
 
@@ -162,7 +164,8 @@ class PatternTestCase(HangulizeTestCase):
         self.assert_examples({
             u'ya': u'야아',
             u'yo': u'요',
-            u'yu': u'이우'
+            u'yu': u'이우',
+            u'titatutote': u'끼까추초체'
         })
 
 
