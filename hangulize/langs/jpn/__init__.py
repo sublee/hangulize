@@ -7,6 +7,7 @@ class Japanese(Language):
 
     __iso639__ = {1: 'ja', 2: 'jpn', 3: 'jpn'}
 
+    special = Language.special + 'aiueokgsztcdnhbpmyjlwNT'
     vowels = 'aiueo'
     notation = Notation([
         (u'(\u30a1|\u30a2)', 'a'),
