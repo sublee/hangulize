@@ -7,8 +7,8 @@ class Japanese(Language):
 
     __iso639__ = {1: 'ja', 2: 'jpn', 3: 'jpn'}
 
-    special = Language.special + 'aiueokgsztcdnhbpmyjlwNT'
-    vowels = 'aiueo'
+    roman = ((chr(x) + chr(x).upper()) for x in xrange(ord('a'), ord('z') + 1))
+    special = Language.special + ''.join(roman)
     notation = Notation([
         (u'ア|ァ',    'a'),
         (u'イ|ィ',    'i'),
