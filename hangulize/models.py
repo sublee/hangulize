@@ -282,13 +282,8 @@ class Rewrite(object):
 
     def __call__(self, string, phonemes=None, lang=None, logger=None):
         # allocate needed offsets
-        try:
-            len_diff = len(string) - len(phonemes)
-            if len_diff > 0:
-                phonemes += [None] * len_diff
-                #print phonemes
-        except TypeError:
-            pass
+        if not phonemes and isinstance(phonemes, list):
+            phonemes += [None] * len(string)
 
         regex = self.compile_pattern(lang)
 
@@ -317,24 +312,25 @@ class Rewrite(object):
                             dictionary = dict(zip(src, dst))
                             let = dictionary[match.group(0)]
                             val = self.VARIABLE_PATTERN.sub(let, val)
-                    len_diff = len(val) - len(match.group(0))
-                    if len_diff > 0:
-                        for x in xrange(len_diff):
+                    if phonemes:
+                        for x in xrange(len(val) - len(match.group(0))):
                             phonemes.insert(start, None)
                     return val
                 elif phonemes and is_tuple:
                     # toss phonemes, and check the matched string
                     phonemes[start] = val
                     return DONE * (end - start)
-            elif not val:
+            else:
                 # when val is None, the matched string should remove
-                del phonemes[start:end]
+                if phonemes:
+                    del phonemes[start:end]
                 return ''
 
+        if logger:
+            prev = string
         repls = []
-        prev = string
+
         # replace the string
-        _ = phonemes + []
         string = regex.sub(repl, string)
 
         if logger:
@@ -360,10 +356,6 @@ class Rewrite(object):
                     msg = ".. '%s'\trewrite %s -> %s" % (args + (val,))
                 logger.info(msg)
                 #print phonemes
-        elif prev != string:
-            #print '!!', self.val
-            #print '!!', phonemes
-            pass
 
         return string
 
