@@ -12,6 +12,7 @@ SPECIAL = chr(27)
 BLANK = '(?:%s)' % '|'.join(map(re.escape, (SPACE, ZWSP, EDGE, SPECIAL)))
 DONE = chr(0)
 ENCODING = getattr(sys.stdout, 'encoding', 'utf-8')
+EMPTY_TUPLE = ()
 
 
 def cached_property(func, name=None):
@@ -142,7 +143,7 @@ class Language(object):
     :param logger: the logger object in the logging module
     """
 
-    vowels = ()
+    vowels = EMPTY_TUPLE
     notation = None
     special = '.,;?~"()[]{}'
 
@@ -298,8 +299,9 @@ class Rewrite(object):
                 if not is_tuple:
                     if lang:
                         # variable replacement
-                        srcvars = self.find_actual_variables(self.pattern)
-                        dstvars = self.find_actual_variables(self.val)
+                        cls = type(self)
+                        srcvars = cls.find_actual_variables(self.pattern)
+                        dstvars = cls.find_actual_variables(self.val)
                         srcvars, dstvars = list(srcvars), list(dstvars)
                         if len(srcvars) == len(dstvars) == 1:
                             src = getattr(lang, srcvars[0].group('name'))
@@ -419,16 +421,19 @@ class Rewrite(object):
         regex = cls.VARIABLE_PATTERN.sub(to_variable, regex)
         return regex
 
-    def find_actual_variables(self, pattern):
-        def dummy(match):
-            return u'\uffff' * (match.end() - match.start())
+    @classmethod
+    def find_actual_variables(cls, pattern):
+        # pass when there's no any variable patterns
+        if not cls.VOWELS_PATTERN.search(pattern) and \
+           not cls.VARIABLE_PATTERN.search(pattern):
+            return EMPTY_TUPLE
         try:
-            pattern = self.LOOKBEHIND_PATTERN.sub(dummy, pattern)
-            pattern = self.LOOKAHEAD_PATTERN.sub(dummy, pattern)
-            pattern = self.VOWELS_PATTERN.sub('<>', pattern)
-            return self.VARIABLE_PATTERN.finditer(pattern)
+            pattern = cls.LOOKBEHIND_PATTERN.sub(DONE, pattern)
+            pattern = cls.LOOKAHEAD_PATTERN.sub(DONE, pattern)
+            pattern = cls.VOWELS_PATTERN.sub('<>', pattern)
+            return cls.VARIABLE_PATTERN.finditer(pattern)
         except TypeError:
-            return ()
+            return EMPTY_TUPLE
 
 
 _remove_zwsp = Rewrite(ZWSP, (Impurity(''),))
