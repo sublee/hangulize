@@ -22,6 +22,13 @@ import unittest
 import tests
 suite = tests.suite(%r)
 unittest.TextTestRunner(verbosity=1).run(suite)
+try:
+    from guppy import hpy
+    print '============= memory usage ============='
+    print hpy().heap()
+    print '----------------------------------------'
+except ImportError:
+    pass
 ''' \
         '' % self.lang
         run_profile(code)
