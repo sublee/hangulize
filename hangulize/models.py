@@ -5,7 +5,7 @@ import functools
 from hangulize.hangul import *
 
 
-SPACE = '_'
+SPACE = ' '
 ZWSP = '#' # zero-width space
 EDGE = chr(3)
 SPECIAL = chr(27)
@@ -82,6 +82,16 @@ class Notation(object):
     def __init__(self, rules):
         self.rules = rules
 
+    def __add__(self, rules):
+        if isinstance(rules, Notation):
+            rules = rules.rules
+        return Notation(self.rules + rules)
+
+    def __radd__(self, lrules):
+        if isinstance(lrules, Notation):
+            lrules = lrules.rules
+        return Notation(lrules + self.rules)
+
     def __iter__(self):
         if not getattr(self, '_rewrites', None):
             self._rewrites = [Rewrite(*item) for item in self.items()]
@@ -149,8 +159,8 @@ class Language(object):
 
     @cached_property
     def _steal_specials(self):
-        # keep special characters
         def keep(match, rewrite):
+            """keep special characters."""
             self._specials.append(match.group(0))
             return SPECIAL
         esc = '(%s)' % '|'.join(re.escape(x) for x in self.special)
@@ -158,8 +168,8 @@ class Language(object):
 
     @cached_property
     def _recover_specials(self):
-        # escape special characters
         def escape(match, rewrite):
+            """escape special characters."""
             return (Impurity(self._specials.pop(0)),)
         return Rewrite(SPECIAL, escape)
 
@@ -189,11 +199,13 @@ class Language(object):
         # recover special characters
         string = self._recover_specials(string, phonemes)
 
-        # insert spaces
-        string = re.sub('^' + BLANK + '+', '', string)
-        string = re.sub(BLANK + '+$', '', string)
+        # post processing
+        string = re.sub('^' + BLANK, '', string)
+        string = re.sub(BLANK + '$', '', string)
         phonemes = phonemes[1:-1]
-        _hold_spaces(string, phonemes)
+        string = _hold_spaces(string, phonemes)
+        string = _remove_zwsp(string, phonemes)
+        #string = _pass_unmatched(string, phonemes)
 
         # flatten
         phonemes = reduce(list.__add__, map(list, filter(None, phonemes)), [])
@@ -271,9 +283,10 @@ class Rewrite(object):
     def __call__(self, string, phonemes=None, lang=None, logger=None):
         # allocate needed offsets
         try:
-            phonemes_len, string_len = len(phonemes), len(string)
-            if phonemes_len < string_len:
-                phonemes += [None] * (string_len - phonemes_len)
+            len_diff = len(string) - len(phonemes)
+            if len_diff > 0:
+                phonemes += [None] * len_diff
+                #print phonemes
         except TypeError:
             pass
 
@@ -283,6 +296,7 @@ class Rewrite(object):
         def repl(match):
             val = self.val(match, self) if callable(self.val) else self.val
             repls.append(val)
+            start, end = match.span()
 
             if val:
                 is_tuple = isinstance(val, tuple)
@@ -303,19 +317,24 @@ class Rewrite(object):
                             dictionary = dict(zip(src, dst))
                             let = dictionary[match.group(0)]
                             val = self.VARIABLE_PATTERN.sub(let, val)
+                    len_diff = len(val) - len(match.group(0))
+                    if len_diff > 0:
+                        for x in xrange(len_diff):
+                            phonemes.insert(start, None)
                     return val
                 elif phonemes and is_tuple:
                     # toss phonemes, and check the matched string
-                    start, end = match.span()
                     phonemes[start] = val
                     return DONE * (end - start)
             elif not val:
                 # when val is None, the matched string should remove
+                del phonemes[start:end]
                 return ''
 
         repls = []
         prev = string
         # replace the string
+        _ = phonemes + []
         string = regex.sub(repl, string)
 
         if logger:
@@ -340,6 +359,11 @@ class Rewrite(object):
                 else:
                     msg = ".. '%s'\trewrite %s -> %s" % (args + (val,))
                 logger.info(msg)
+                #print phonemes
+        elif prev != string:
+            #print '!!', self.val
+            #print '!!', phonemes
+            pass
 
         return string
 
@@ -415,7 +439,11 @@ class Rewrite(object):
             return ()
 
 
+_remove_zwsp = Rewrite(ZWSP, (Impurity(''),))
 _hold_spaces = Rewrite(SPACE, (Impurity(' '),))
+_pass_unmatched = Rewrite('[^' + DONE + ']+',
+                          lambda m, r: (Impurity(m.group(0)),))
+
 
 
 class HangulizeError(Exception):

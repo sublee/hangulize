@@ -67,7 +67,7 @@ class PatternTestCase(HangulizeTestCase):
         longvowels = 'AIUEO'
         cons = 'bcdfghjklmnpqrstvwxyz'
         notation = Notation([
-            ('van_gogh', split_phonemes(u'반 고흐')),
+            ('van gogh', split_phonemes(u'반 고흐')),
             ('^^l', Choseong(L)),
             ('^l', Choseong(N)),
             ('l', Jongseong(L), Choseong(L)),
@@ -87,7 +87,7 @@ class PatternTestCase(HangulizeTestCase):
             ('{a}(<voiceless>)', '<voiced>e'),
             ('{<cons>}<vowels>{gh}', '<longvowels>'),
             ("d'i", 'di'),
-            ("d_i", 'di'),
+            ("d i", 'di'),
             ('X', Choseong(GG)),
             ('S', Choseong(SS)),
             ('p', Choseong(P)),

@@ -11,7 +11,7 @@ class EstonianTestCase(HangulizeTestCase):
         self.assert_examples({
             u'Andrus Ansip': u'안드루스 안시프',
             u'Jakob Hurt': u'야코브 후르트',
-            u'Maarja-Liis Ilus ': u'마리아리스 일루스',
+            u'Maarja-Liis Ilus': u'마리아리스 일루스',
             u'Ernst Jaakson': u'에른스트 약손',
             u'Carl Robert Jakobson': u'카를 로베르트 야콥손',
             u'Siim Kallas': u'심 칼라스',

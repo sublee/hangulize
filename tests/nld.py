@@ -426,7 +426,7 @@ class DutchTestCase(HangulizeTestCase):
             u'Joris Mathijsen': u'요리스 마테이선',
             u'Simon van der Meer': u'시몬 판데르메이르',
             u'Willem Mengelberg': u'빌럼 멩엘베르흐',
-            u'Paul Menkveld ': u'파울 멩크벨트',
+            u'Paul Menkveld': u'파울 멩크벨트',
             u'Gabriël Metsu': u'가브리엘 메취',
             u'Rinus Michels': u'리뉘스 미헐스',
             u'Piet Mondriaan': u'핏 몬드리안',

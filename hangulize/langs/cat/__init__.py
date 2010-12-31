@@ -167,19 +167,7 @@ class Catalan(Language):
     ])
 
     def normalize(self, string):
-        def normalize_only_unsafe(string):
-            map = {u'Ç': u'ç',
-                   u'Ü': u'ü',
-                   u'•': u'·'}
-            safe = map.keys() + map.values()
-            for c in string:
-                if c not in safe:
-                    yield normalize_roman(c)
-                elif c in map:
-                    yield map[c]
-                else:
-                    yield c
-        return ''.join(normalize_only_unsafe(string))
+        return normalize_roman(string, {u'Ç': u'ç', u'Ü': u'ü', u'•': u'·'})
 
 
 __lang__ = Catalan
