@@ -206,7 +206,7 @@ class Language(object):
         phonemes = phonemes[1:-1]
         string = _hold_spaces(string, phonemes)
         string = _remove_zwsp(string, phonemes)
-        #string = _pass_unmatched(string, phonemes)
+        string = _pass_unmatched(string, phonemes)
 
         # flatten
         phonemes = reduce(list.__add__, map(list, filter(None, phonemes)), [])

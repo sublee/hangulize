@@ -216,6 +216,11 @@ class AlgorithmTestCase(HangulizeTestCase):
             u'Търговище,': u'터르고비슈테,',
         }, 'bul')
 
+    def test_mixed_with_hangul(self):
+        self.assert_examples({
+            u'とうめい 고속도로': u'도메이 고속도로'
+        }, 'jpn')
+
     def test_too_many_rules(self):
         class TooHeavyLang(Language):
             notation = Notation([
