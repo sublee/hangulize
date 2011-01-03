@@ -6,7 +6,7 @@ from hangulize.hangul import *
 
 
 SPACE = ' '
-ZWSP = '#' # zero-width space
+ZWSP = '/' # zero-width space
 EDGE = chr(3)
 SPECIAL = chr(27)
 BLANK = '(?:%s)' % '|'.join(map(re.escape, (SPACE, ZWSP, EDGE, SPECIAL)))

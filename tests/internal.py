@@ -171,7 +171,7 @@ class PatternTestCase(HangulizeTestCase):
     def test_zero_width_space(self):
         class AmoLang(Language):
             notation = Notation([
-                ('-', '#'),
+                ('-', '/'),
                 ('m$', Jongseong(M)),
                 ('m', Choseong(M)),
                 ('a', Jungseong(A)),
