@@ -184,7 +184,7 @@ class PatternTestCase(HangulizeTestCase):
         }, lang=AmoLang())
 
 
-class AlgorithmTestCase(unittest.TestCase):
+class AlgorithmTestCase(HangulizeTestCase):
 
     def test_phunctuation(self):
         """이슈5: 문장부호에 맞붙은 글자가 시작 글자 또는 끝 글자로 인식 안 됨
@@ -192,24 +192,29 @@ class AlgorithmTestCase(unittest.TestCase):
         """
         assert hangulize(u'nad', 'pol') + ',' == hangulize(u'nad,', 'pol')
         assert '.' + hangulize(u'jak', 'pol') == hangulize(u'.jak', 'pol')
-        assert u'나트, 나트 야크 .야크' == \
-               hangulize(u'nad, nad jak .jak', 'pol')
+        self.assert_examples({
+            u'nad, nad jak .jak': u'나트, 나트 야크 .야크',
+        }, 'pol')
 
     def test_wide_letter(self):
-        assert u'과괌' == hangulize(u'guaguam', 'spa')
+        self.assert_examples({u'guaguam': u'과괌'}, 'spa')
 
     def test_empty_sequence(self):
         """아무 규칙에도 매치되지 않아 빈 시퀀스가 반환될 때 다음 에러가 발생:
 
             TypeError: reduce() of empty sequence with no initial value
         """
-        assert u'' == hangulize(u'h', 'ita')
+        self.assert_examples({u'h': u''}, 'ita')
 
     def test_special_chars(self):
-        assert u'레이르트,' == hangulize(u'leert,', 'nld')
-        assert u'(레이르트}' == hangulize(u'(leert}', 'nld')
-        assert u'"레이르트"' == hangulize(u'"leert"', 'nld')
-        assert u'터르고비슈테,' == hangulize(u'Търговище,', 'bul')
+        self.assert_examples({
+            u'leert,': u'레이르트,',
+            u'(leert}': u'(레이르트}',
+            u'"leert"': u'"레이르트"',
+        }, 'nld')
+        self.assert_examples({
+            u'Търговище,': u'터르고비슈테,',
+        }, 'bul')
 
     def test_too_many_rules(self):
         class TooHeavyLang(Language):
@@ -354,7 +359,7 @@ class AlgorithmTestCase(unittest.TestCase):
                 ('W4', Jungseong(EU)), ('X4', Choseong(GG)),
                 ('Y4', Jungseong(I)),  ('Z4', Choseong(J)),
             ])
-        assert u'아브' == hangulize(u'ab', lang=TooHeavyLang())
+        self.assert_examples({u'ab': u'아브'}, TooHeavyLang())
 
 
 class TestCaseTestCase(unittest.TestCase):

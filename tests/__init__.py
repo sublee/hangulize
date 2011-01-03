@@ -3,6 +3,7 @@ import sys
 import os.path
 import time
 import unittest
+import hangulize
 from cmds.helper import color
 
 
@@ -25,6 +26,8 @@ class HangulizeTestCase(unittest.TestCase):
             return
         errors = []
         lang = lang or self.lang
+        if isinstance(lang, basestring):
+            lang = hangulize.get_lang(lang)
         try:
             lang_name = type(lang).__name__
         except AttributeError:
