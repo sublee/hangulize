@@ -6,6 +6,7 @@ class Turkish(Language):
     """For transcribing Turkish."""
 
     __iso639__ = {1: 'tr', 2: 'tur', 3: 'tur'}
+    __tmp__ = ',;G'
 
     vowels = 'aeIioOuU'
     cs = 'bcCdfgGhjklmnNprsStvz'

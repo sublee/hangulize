@@ -6,6 +6,7 @@ class Slovene(Language):
     """For transcribing Slovene."""
 
     __iso639__ = {1: 'sl', 2: 'slv', 3: 'slv'}
+    __tmp__ = ',;'
 
     vowels = 'aeioOuU'
     vl = 'cCfkpsSt' # voiceless obstruents

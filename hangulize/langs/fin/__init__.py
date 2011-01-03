@@ -6,11 +6,12 @@ class Finnish(Language):
     """For transcribing Finnish."""
 
     __iso639__ = {1: 'fi', 2: 'fin', 3: 'fin'}
+    __tmp__ = ',;%'
 
     vowels = 'aAeioOuy'
     ob = 'bdfgkpstT'
-    """Convention: A = ä, O = ö"""
     notation = Notation([
+        # Convention: A = ä, O = ö
         (u'å', 'o'),
         (u'ä', 'A'),
         (u'ö', 'O'),
@@ -93,6 +94,7 @@ class Finnish(Language):
         ('k', Choseong(K)),
         ('^l', Choseong(L)),
         ('{,|-}l', Choseong(L)),
+        ('-', None),
         ('l,', Jongseong(L)),
         ('l', Jongseong(L), Choseong(L)),
         ('m,', Jongseong(M)),

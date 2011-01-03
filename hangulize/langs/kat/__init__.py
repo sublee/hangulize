@@ -10,6 +10,7 @@ class Georgian(Language):
     to be /f/."""
 
     __iso639__ = {1: 'ka', 2: 'geo', 3: 'kat'}
+    __tmp__ = ',;'
 
     vowels = u'აეიოუ'
     cs = u'ბგდვზთკლმნპჟრსტფქღყშჩცძწჭხჯჰჶ'

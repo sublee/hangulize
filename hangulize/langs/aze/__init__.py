@@ -6,11 +6,13 @@ class Azerbaijani(Language):
     """For transcribing Azerbaijani."""
 
     __iso639__ = {1: 'az', 2: 'aze', 3: 'aze'}
+    __tmp__ = ',;'
 
     vowels = 'aAeIioOuU'
     cs = 'bcCdfgGhjklmnNpqrsStvxz'
     vl = 'CfhkKpsStx'
     notation = Notation([
+        ('-', '/'),
         (u'ə', 'A'),
         (u'ç', 'C'),
         (u'ğ', 'G'),

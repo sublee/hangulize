@@ -6,6 +6,7 @@ class Albanian(Language):
     """For transcribing Albanian."""
 
     __iso639__ = {1: 'sq', 2: 'alb', 3: 'sqi'}
+    __tmp__ = ',;'
 
     vowels = 'aeEiouy'
     vl = 'cCfkpqsStT'
@@ -114,6 +115,7 @@ class Albanian(Language):
         ('o', Jungseong(O)),
         ('u', Jungseong(U)),
         ('y', Jungseong(WI)),
+        ('\'', None),
     ])
 
     def normalize(self, string):

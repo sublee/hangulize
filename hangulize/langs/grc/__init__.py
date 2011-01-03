@@ -6,6 +6,7 @@ class AncientGreek(Language):
     """For transcribing Ancient Greek."""
 
     __iso639__ = {2: 'grc', 3: 'grc'}
+    __tmp__ = ',;'
 
     vowels = u'αάεέηήιίϊοόυύϋωώΥ'
     sv = u'αεηιουω'
@@ -160,7 +161,7 @@ class AncientGreek(Language):
         (u'ε', Jungseong(E)),
         (u'ι', Jungseong(I)),
         (u'ο', Jungseong(O)),
-        (u'Υ', Jungseong(U))
+        (u'Υ', Jungseong(U)),
     ])
 
     def normalize(self, string):

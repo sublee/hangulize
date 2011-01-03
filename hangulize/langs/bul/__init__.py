@@ -6,6 +6,7 @@ class Bulgarian(Language):
     """For transcribing Bulgarian."""
 
     __iso639__ = {1: 'bg', 2: 'bul', 3: 'bul'}
+    __tmp__ = ',;'
 
     vowels = u'аеийоуъьюя'
     cs = u'бвгджзклмнпрстфхцчшщ'
@@ -109,7 +110,7 @@ class Bulgarian(Language):
         (u',м,', u'м,'),
         (u',н,', u'н,'),
         (u'л{м;|н;}', u'л,'),
-        (u';', None),
+        (u';|-', None),
         (u'б', Choseong(B)),
         (u'в', Choseong(B)),
         (u'г', Choseong(G)),

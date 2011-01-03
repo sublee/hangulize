@@ -6,6 +6,7 @@ class Vietnamese(Language):
     """For transcribing Vietnamese."""
 
     __iso639__ = {1: 'vi', 2: 'vie', 3: 'vie'}
+    __tmp__ = 'X'
 
     vowels = 'aAeEioOuUy'
     notation = Notation([

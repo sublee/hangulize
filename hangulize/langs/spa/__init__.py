@@ -6,6 +6,7 @@ class Spanish(Language):
     """For transcribing Spanish."""
 
     __iso639__ = {1: 'es', 2: 'spa', 3: 'spa'}
+    __tmp__ = 'X'
 
     vowels = u'aeiouüy'
     notation = Notation([

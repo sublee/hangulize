@@ -6,6 +6,7 @@ class Belarusian(Language):
     """For transcribing Belarusian."""
 
     __iso639__ = {1: 'be', 2: 'bel', 3: 'bel'}
+    __tmp__ = ',;'
 
     vowels = u'аеёійоуыьэюя'
     cs = u'бвгґджзклмнпрстфхцчш'
@@ -120,7 +121,7 @@ class Belarusian(Language):
         (u',м,', u'м,'),
         (u',н,', u'н,'),
         (u'л{м;|н;}', u'л,'),
-        (u';', None),
+        (u';|-', None),
         (u'б', Choseong(B)),
         (u'в', Choseong(B)),
         (u'г', Choseong(H)),

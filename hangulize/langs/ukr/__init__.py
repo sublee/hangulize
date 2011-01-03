@@ -6,11 +6,13 @@ class Ukrainian(Language):
     """For transcribing Ukrainian."""
 
     __iso639__ = {1: 'uk', 2: 'ukr', 3: 'ukr'}
+    __tmp__ = ',;'
 
     vowels = u'аеєиіїйоOуьюя'
     cs = u'бвгґджзклмнпрстфхцчшщ'
     vl = u'кпстфхцчшщ'
     notation = Notation([
+        ('-', '/'),
         (u'{ж|з|ц|ч|ш|щ}ь{@}', None),
         (u'ьа', u'я'),
         (u'йа', u'я'),
@@ -147,7 +149,7 @@ class Ukrainian(Language):
         (u'у', Jungseong(U)),
         (u'ь', Jungseong(I)),
         (u'ю', Jungseong(YU)),
-        (u'я', Jungseong(YA))
+        (u'я', Jungseong(YA)),
     ])
 
     def normalize(self, string):

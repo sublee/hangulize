@@ -6,6 +6,7 @@ class Russian(Language):
     """For transcribing Russian."""
 
     __iso639__ = {1: 'ru', 2: 'rus', 3: 'rus'}
+    __tmp__ = ',;'
 
     vowels = u'аеёийоуыъьэюя'
     cs = u'бвгджзклмнпрстфхцчшщ'
@@ -107,7 +108,7 @@ class Russian(Language):
         (u',м,', u'м,'),
         (u',н,', u'н,'),
         (u'л{м;|н;}', u'л,'),
-        (u';', None),
+        (u';|-', None),
         (u'б', Choseong(B)),
         (u'в', Choseong(B)),
         (u'г', Choseong(G)),
@@ -147,7 +148,7 @@ class Russian(Language):
         (u'ь', Jungseong(I)),
         (u'э', Jungseong(E)),
         (u'ю', Jungseong(YU)),
-        (u'я', Jungseong(YA))
+        (u'я', Jungseong(YA)),
     ])
 
     def normalize(self, string):

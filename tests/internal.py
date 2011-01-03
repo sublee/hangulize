@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 import unittest
 from hangulize import *
+from cmds import repl
 from tests import HangulizeTestCase
 
 
@@ -216,10 +217,33 @@ class AlgorithmTestCase(HangulizeTestCase):
             u'Търговище,': u'터르고비슈테,',
         }, 'bul')
 
+    def test_tmp_chars(self):
+        averroes = hangulize(u'Averroës', 'lat')
+        self.assert_examples({
+            u'%Averroës': '%' + averroes,
+            u'%Averroës%': '%' + averroes + '%',
+            u'Averroës%': averroes + '%',
+        }, 'lat')
+
     def test_mixed_with_hangul(self):
         self.assert_examples({
             u'とうめい 고속도로': u'도메이 고속도로'
         }, 'jpn')
+
+    def test_remove_char(self):
+        #logger = repl.make_logger()
+        class TestLang(Language):
+            notation = Notation([
+                ('k', Choseong(K)), ('i', Jungseong(I)),
+                ('a', None), 
+            ])
+        self.assert_examples({
+            u'kaaai': u'키',
+            u'aakaaaia': u'키',
+            u'kiaakaaaiakiaaaaaaa': u'키키키',
+            u'aaaiaaakkiaakaaaiakiaaaiaaakaaaa': u'이크키키키이크',
+            u'aiakakaiakaiakaiaiaka': u'이크키키키이크',
+        }, TestLang())#, logger=logger)
 
     def test_too_many_rules(self):
         class TooHeavyLang(Language):

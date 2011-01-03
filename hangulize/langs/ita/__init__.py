@@ -6,9 +6,11 @@ class Italian(Language):
     """For transcribing Italian."""
 
     __iso639__ = {1: 'it', 2: 'ita', 3: 'ita'}
+    __tmp__ = ",;"
 
     vowels = 'aeiou'
     notation = Notation([
+        ('\'',            None),
         ('^gli$',         'li'),
         ('^glia$',        'g.lia'),
         ('^glioma$',      'g.lioma'),

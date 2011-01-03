@@ -143,9 +143,11 @@ class Language(object):
     :param logger: the logger object in the logging module
     """
 
+    __tmp__ = ''
+    __special__ = '.,;?~"()[]{}'
+
     vowels = EMPTY_TUPLE
     notation = None
-    special = '.,;?~"()[]{}'
 
     def __new__(cls):
         if not getattr(cls, '_instances', None):
@@ -164,7 +166,8 @@ class Language(object):
             """keep special characters."""
             self._specials.append(match.group(0))
             return SPECIAL
-        esc = '(%s)' % '|'.join(re.escape(x) for x in self.special)
+        esc = '(%s)' % '|'.join(re.escape(x) \
+                                for x in self.__special__ + self.__tmp__)
         return Rewrite(esc, keep)
 
     @cached_property
@@ -173,6 +176,11 @@ class Language(object):
             """escape special characters."""
             return (Impurity(self._specials.pop(0)),)
         return Rewrite(SPECIAL, escape)
+
+    @cached_property
+    def _remove_tmp(self):
+        tmp = '(%s)' % '|'.join(re.escape(x) for x in self.__tmp__)
+        return Rewrite(tmp, None)
 
     @property
     def chars_pattern(self):
@@ -197,6 +205,8 @@ class Language(object):
         # apply the notation
         for rewrite in self.notation:
             string = rewrite(string, phonemes, lang=self, logger=logger)
+        # remove temporary characters
+        string = self._remove_tmp(string, phonemes)
         # recover special characters
         string = self._recover_specials(string, phonemes)
 
@@ -289,6 +299,8 @@ class Rewrite(object):
         regex = self.compile_pattern(lang)
 
         # replacement function
+        if phonemes:
+            deletions = []
         def repl(match):
             val = self.val(match, self) if callable(self.val) else self.val
             repls.append(val)
@@ -325,7 +337,7 @@ class Rewrite(object):
             else:
                 # when val is None, the matched string should remove
                 if phonemes:
-                    del phonemes[start:end]
+                    deletions.append((start, end))
                 return ''
 
         if logger:
@@ -334,6 +346,11 @@ class Rewrite(object):
 
         # replace the string
         string = regex.sub(repl, string)
+
+        # remove kept deletions
+        if phonemes:
+            for start, end in reversed(deletions):
+                del phonemes[start:end]
 
         if logger:
             # report changes
