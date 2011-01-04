@@ -20,5 +20,11 @@ def normalize_roman(string, additional=None):
                     yield c
         return ''.join(gen())
     else:
-        return ''.join((c for c in unicodedata.normalize('NFD', string) \
-                          if unicodedata.category(c) != 'Mn')).lower()
+        chars = []
+        for c in string:
+            if unicodedata.category(c) == 'Lo':
+                chars.append(c)
+            else:
+                nor = unicodedata.normalize('NFD', c)
+                chars.extend(x for x in nor if unicodedata.category(x) != 'Mn')
+        return ''.join(chars).lower()
