@@ -8,7 +8,7 @@ from hangulize.hangul import *
 SPACE = ' '
 ZWSP = '/' # zero-width space
 EDGE = chr(3)
-SPECIAL = chr(27)
+SPECIAL = chr(6)
 BLANK = '(?:%s)' % '|'.join(map(re.escape, (SPACE, ZWSP, EDGE, SPECIAL)))
 DONE = chr(0)
 ENCODING = getattr(sys.stdout, 'encoding', 'utf-8')
@@ -337,18 +337,9 @@ class Rewrite(object):
 
         if logger:
             # report changes
-            def readably(string):
-                string = string.replace(DONE, '.')
-                string = string.replace(SPECIAL, '#')
-                string = re.sub('^' + BLANK + '|' + BLANK + '$', '', string)
-                string = re.sub(ZWSP, '\r', string)
-                string = re.sub(BLANK, ' ', string)
-                string = re.sub('\r', ZWSP, string)
-                return string
             if prev != string:
-                readable = readably(string)
                 val = repls.pop()
-                args = (readable, self.pattern)
+                args = (string, self.pattern)
                 if not val:
                     msg = ".. '%s'\tremove %s" % args
                 elif isinstance(val, tuple):
@@ -387,8 +378,8 @@ class Rewrite(object):
 
     def _make_lookaround(behind_pattern, ahead_pattern,
                         behind_prefix, ahead_prefix):
-        @classmethod
-        def meth(cls, regex):
+        @staticmethod
+        def meth(regex):
             def lookbehind(match):
                 edge = re.sub('\^$', BLANK, match.group('edge'))
                 return '(?' + behind_prefix + edge + \

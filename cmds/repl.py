@@ -3,14 +3,26 @@ import re
 import logging
 from distutils.cmd import Command
 from cmds.helper import color
+from hangulize import hangulize, get_lang, HangulizeError, \
+                      DONE, SPECIAL, BLANK, ZWSP
 
 
 class REPLHandler(logging.StreamHandler):
 
     color_map = {'hangulize': 'cyan', 'rewrite': 'green', 'remove': 'red'}
 
+    @staticmethod
+    def readably(string):
+        string = string.replace(DONE, '.')
+        string = string.replace(SPECIAL, '#')
+        string = re.sub('^' + BLANK + '|' + BLANK + '$', '', string)
+        string = re.sub(ZWSP, '\r', string)
+        string = re.sub(BLANK, ' ', string)
+        string = re.sub('\r', ZWSP, string)
+        return string
+
     def handle(self, record):
-        msg = record.msg
+        msg = self.readably(record.msg)
         # keywords
         maxlen = max([len(x) for x in self.color_map.keys()])
         def deco(color_name):
@@ -57,7 +69,6 @@ class repl(Command):
 
     def run(self):
         import sys
-        from hangulize import hangulize, get_lang, HangulizeError
         logger = make_logger()
         encoding = sys.stdout.encoding
         def _repl():
