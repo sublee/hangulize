@@ -161,10 +161,12 @@ Hangulize에는 BSD 라이선스가 적용되어있습니다. 따라서 소스�
 
 - [웹사이트][]
 - [메일링리스트][]
+- [iOS 용 Hangulize][]
 - [꽁치][] - Hangulize IRC 봇
 - [읽어봐!][] - 또 다른 외래서 전사 프로그램
 
  [웹사이트]: http://www.hangulize.org/
  [메일링리스트]: http://groups.google.com/group/hangulize
+ [iOS 용 Hangulize]: https://github.com/youknowone/hangulize-ios
  [꽁치]: https://github.com/kkung/kkongchi
  [읽어봐!]: http://socoop.net/ilgoba
