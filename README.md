@@ -145,7 +145,7 @@ Hangulize는 [메일링리스트][]와 IRC
 ------
 
 - Brian Jongseong Park <<iceager@gmail.com>> - Linguistic Consultant
-- Heungsub Lee <<heung@sublee.kr>> - Developer
+- Heungsub Lee <<h@subl.ee>> - Developer
 
 라이선스
 --------

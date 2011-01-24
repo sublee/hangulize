@@ -39,7 +39,7 @@ setup(
     version='0.0.1',
     license='BSD',
     author='Heungsub Lee',
-    author_email='heung@sublee.kr',
+    author_email='h@subl.ee',
     description='Korean Alphabet Transcription',
     long_description=__doc__,
     zip_safe=False,
