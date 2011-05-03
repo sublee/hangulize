@@ -6,6 +6,7 @@ class Lithuanian(Language):
     """For transcribing Lithuanian."""
 
     __iso639__ = {1: 'lt', 2: 'lit', 3: 'lit'}
+    __tmp__ = ',;%'
 
     vowels = u'aeiįou'
     cs = 'bcCdDfghHklmnNprsStvXzZ'
@@ -115,6 +116,7 @@ class Lithuanian(Language):
         (',n,', 'n,'),
         ('l{m;|n;}', 'l,'),
         (';', None),
+        ('-', None),
         ('b', Choseong(B)),
         ('c', Choseong(C)),
         ('d', Choseong(D)),

@@ -6,6 +6,7 @@ class Catalan(Language):
     """For transcribing Catalan."""
 
     __iso639__ = {1: 'ca', 2: 'cat', 3: 'cat'}
+    __tmp__ = ',;'
 
     vowels = u'aeiouü'
     cs = 'bcCdDfghklmnNprsStTvwxzZ'

@@ -6,11 +6,13 @@ class Estonian(Language):
     """For transcribing Estonian."""
 
     __iso639__ = {1: 'et', 2: 'est', 3: 'est'}
+    __tmp__ = ',;%'
 
     vowels = 'aAeEioOuUy'
     ob = 'bdfgkpstT'
-    """Convention: E = õ, A = ä, O = ö, U = ü"""
     notation = Notation([
+        # Convention: E = õ, A = ä, O = ö, U = ü
+        ('-', '/'),
         (u'õ', 'E'),
         (u'ä', 'A'),
         (u'ö', 'O'),

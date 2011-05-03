@@ -6,6 +6,7 @@ class Slovak(Language):
     """For transcribing Slovak."""
 
     __iso639__ = {1: 'sk', 2: 'slo', 3: 'slk'}
+    __tmp__ = ',;'
 
     vowels = 'aAPeEiIoOWuUyY'
     cs = 'bcCdDfghjklLmnNpqQrRsStTvwxzZ'

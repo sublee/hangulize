@@ -6,6 +6,7 @@ class BrazilianPortuguese(Language):
     """For transcribing Brazilian Portuguese."""
 
     __iso639__ = {1: 'pt', 2: 'por', 3: 'por'}
+    __tmp__ = ',;~'
 
     vowels = u'aAeEiIoOuUQ'
     cs = u'bcCdfghjklmnpqrRsStvwxz'
@@ -207,6 +208,7 @@ class BrazilianPortuguese(Language):
         ('o', Jungseong(O)),
         ('u', Jungseong(U)),
         ('Q', Jungseong(EU)),
+        ('h', None),
     ])
 
     def normalize(self, string):

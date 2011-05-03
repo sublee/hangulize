@@ -1,14 +1,14 @@
 # -*- coding: utf-8 -*-
 import unittest
 from hangulize import *
+from cmds import repl
 from tests import HangulizeTestCase
 
 
 class APITestCase(unittest.TestCase):
 
-    def setUp(self):
-        import hangulize.langs
-        self.langs = hangulize.langs.get_list()
+    import hangulize.langs
+    langs = hangulize.langs.get_list()
 
     def test_toplevel_langs(self):
         assert 'ita' in self.langs
@@ -56,6 +56,17 @@ class APITestCase(unittest.TestCase):
         assert Italian() is not Japanese()
         assert get_lang('ita') is not Japanese()
         assert get_lang('ita') is not get_lang('jpn')
+
+    def test_normalize(self):
+        from hangulize.normalization import normalize_roman
+        assert u'abc' == normalize_roman(u'AbC')
+        assert u'a/a' == normalize_roman(u'Ä/ä')
+        assert u'o/o' == normalize_roman(u'Ö/ö')
+        assert u'u/u' == normalize_roman(u'Ü/ü')
+        assert u'한글' == normalize_roman(u'한글')
+        assert u'a한글o' == normalize_roman(u'Ä한글Ö')
+        assert u'a한u글o' == normalize_roman(u'Ä한ü글Ö')
+        assert u'123aehtw' == normalize_roman(u'123ǞËḧT̈Ẅ')
 
 
 class PatternTestCase(HangulizeTestCase):
@@ -215,6 +226,40 @@ class AlgorithmTestCase(HangulizeTestCase):
         self.assert_examples({
             u'Търговище,': u'터르고비슈테,',
         }, 'bul')
+
+    def test_tmp_chars(self):
+        averroes = hangulize(u'Averroës', 'lat')
+        self.assert_examples({
+            u'%Averroës': '%' + averroes,
+            u'%Averroës%': '%' + averroes + '%',
+            u'Averroës%': averroes + '%',
+        }, 'lat')
+
+    def test_mixed_with_hangul(self):
+        self.assert_examples({
+            u'とうめい 고속도로': u'도메이 고속도로',
+            u'からふと 섬': u'가라후토 섬',
+            u'とさ 만': u'도사 만',
+            u'This is 삼천えん': u'This is 삼천엔',
+        }, 'jpn')
+        self.assert_examples({
+            u'한gloria리랑': u'한글로리아리랑',
+        }, 'ita')
+
+    def test_remove_char(self):
+        #logger = repl.make_logger()
+        class TestLang(Language):
+            notation = Notation([
+                ('k', Choseong(K)), ('i', Jungseong(I)),
+                ('a', None), 
+            ])
+        self.assert_examples({
+            u'kaaai': u'키',
+            u'aakaaaia': u'키',
+            u'kiaakaaaiakiaaaaaaa': u'키키키',
+            u'aaaiaaakkiaakaaaiakiaaaiaaakaaaa': u'이크키키키이크',
+            u'aiakakaiakaiakaiaiaka': u'이크키키키이크',
+        }, TestLang())#, logger=logger)
 
     def test_too_many_rules(self):
         class TooHeavyLang(Language):

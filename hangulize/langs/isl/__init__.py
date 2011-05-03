@@ -6,6 +6,7 @@ class Icelandic(Language):
     """For transcribing Icelandic."""
 
     __iso639__ = {1: 'is', 2: 'ice', 3: 'isl'}
+    __tmp__ = ',;%'
 
     vowels = 'aAeEiIoOuUyWXYQ'
     cs = 'bdDfFghHjJklmnNprsStTvZ'
@@ -165,6 +166,7 @@ class Icelandic(Language):
         (',N,', 'N,'),
         ('l{m;|n;}', 'l,'),
         (';', None),
+        ('-', None),
         ('b', Choseong(B)),
         ('d', Choseong(D)),
         ('D', Choseong(D)),

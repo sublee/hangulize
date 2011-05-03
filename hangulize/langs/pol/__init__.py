@@ -6,6 +6,7 @@ class Polish(Language):
     """For transcribing Polish."""
 
     __iso639__ = {1: 'pl', 2: 'pol', 3: 'pol'}
+    __tmp__ = '%,;'
 
     vowels = 'aeiouy'
     cs = 'bcCdfghjklmnpqrstvwxz'
@@ -155,7 +156,7 @@ class Polish(Language):
         ('e',             Jungseong(E)),
         ('i',             Jungseong(I)),
         ('o',             Jungseong(O)),
-        ('u',             Jungseong(U))
+        ('u',             Jungseong(U)),
     ])
 
     def normalize(self, string):

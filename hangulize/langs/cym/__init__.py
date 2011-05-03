@@ -6,6 +6,7 @@ class Welsh(Language):
     """For transcribing Welsh."""
 
     __iso639__ = {1: 'cy', 2: 'wel', 3: 'cym'}
+    __tmp__ = ',;'
 
     vowels = u'aeiîouUwŵyŷQ'
     cs = 'bcCdDfFghklLmnNpqrstTvWxz,-Y'
@@ -210,7 +211,8 @@ class Welsh(Language):
         ('o', Jungseong(O)),
         ('U', Jungseong(U)),
         ('Q', Jungseong(EO)),
-        ('Y', Jungseong(EU))
+        ('Y', Jungseong(EU)),
+        ('-|\'', None),
     ])
 
     def normalize(self, string):

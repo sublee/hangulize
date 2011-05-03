@@ -10,6 +10,7 @@ class NarrowGeorgian(Language):
     voiceless stop or affricate, and to be /v/ in all other cases."""
 
     __iso639__ = {1: 'ka', 2: 'geo', 3: 'kat'}
+    __tmp__ = ',;'
 
     vowels = u'აეიოუ'
     cs = u'ბგდვზთკლმნპჟრსტფქღყშჩცძწჭხჯჰV'

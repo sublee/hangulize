@@ -6,11 +6,13 @@ class Esperanto(Language):
     """For transcribing Esperanto."""
 
     __iso639__ = {1: 'eo', 2: 'epo', 3: 'epo'}
+    __tmp__ = ',;'
 
     vowels = 'aeiou'
     ob = 'bcCdfgGhHJkpsStvz'
 
     notation = Notation([
+        ('-',           '/'),
         ('cx',          u'ĉ'),
         ('gx',          u'ĝ'),
         ('hx',          u'ĥ'),

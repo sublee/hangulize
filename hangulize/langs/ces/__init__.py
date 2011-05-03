@@ -6,6 +6,7 @@ class Czech(Language):
     """For transcribing Czech."""
 
     __iso639__ = {1: 'cs', 2: 'cze', 3: 'ces'}
+    __tmp__ = ',;'
 
     vowels = 'aeiouy'
     vl = 'cCfHkpsStT' # voiceless obstruents

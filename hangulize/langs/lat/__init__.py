@@ -6,6 +6,7 @@ class Latin(Language):
     """For transcribing Latin."""
 
     __iso639__ = {1: 'la', 2: 'lat', 3: 'lat'}
+    __tmp__ = ',;%'
 
     vowels = u'aeëiouüy'
     vl = 'cfpst'

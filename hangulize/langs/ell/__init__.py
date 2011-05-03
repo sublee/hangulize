@@ -6,6 +6,7 @@ class Greek(Language):
     """For transcribing Modern Greek."""
 
     __iso639__ = {1: 'el', 2: 'gre', 3: 'ell'}
+    __tmp__ = '-,;'
 
     vowels = u'αάεέηήιίϊοόυύϋωώΥ'
     sv = u'αεηιουω'
@@ -172,7 +173,7 @@ class Greek(Language):
         (u'ι', Jungseong(I)),
         (u'ο', Jungseong(O)),
         (u'Υ', Jungseong(U)),
-        (u'Ψ', Choseong(NG))
+        (u'Ψ', Choseong(NG)),
     ])
 
     def normalize(self, string):

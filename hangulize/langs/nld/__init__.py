@@ -6,6 +6,7 @@ class Dutch(Language):
     """For transcribing Dutch."""
 
     __iso639__ = {1: 'nl', 2: 'dut', 3: 'nld'}
+    __tmp__ = '%,;&'
 
     vowels = 'aeEioOuUyQ'
     cs = 'b', 'B', 'c', 'C', 'd', 'D', 'f', 'F', 'g', 'G', 'h', 'j', 'J', \

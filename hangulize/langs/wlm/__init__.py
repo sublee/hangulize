@@ -6,6 +6,7 @@ class MiddleWelsh(Language):
     """For transcribing Middle Welsh."""
 
     __iso639__ = {3: 'wlm'}
+    __tmp__ = ',;'
 
     vowels = u'aeiîouUwŵyŷQ'
     cs = 'bcCdDfFghklLmnNpqrstTvWxz,-Y'
@@ -203,7 +204,7 @@ class MiddleWelsh(Language):
         ('u', Jungseong(WI)),
         ('U', Jungseong(U)),
         ('Q', Jungseong(EO)),
-        ('Y', Jungseong(EU))
+        ('Y', Jungseong(EU)),
     ])
 
     def normalize(self, string):

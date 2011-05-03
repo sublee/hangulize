@@ -6,9 +6,9 @@ class Japanese(Language):
     """For transcribing Japanese."""
 
     __iso639__ = {1: 'ja', 2: 'jpn', 3: 'jpn'}
+    __tmp__ = ''.join((chr(x) + chr(x).upper()) \
+                      for x in xrange(ord('a'), ord('z') + 1))
 
-    roman = ((chr(x) + chr(x).upper()) for x in xrange(ord('a'), ord('z') + 1))
-    special = Language.special + ''.join(roman)
     notation = Notation([
         (u'ア|ァ',    'a'),
         (u'イ|ィ',    'i'),
