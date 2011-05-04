@@ -2,3 +2,6 @@
 build
 dist
 *.egg-info
+docs/Makefile
+docs/_build
+docs/_themes
