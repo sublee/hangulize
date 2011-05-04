@@ -12,15 +12,15 @@ from hangulize.normalization import *
 
 
 def hangulize(string, code=None, iso639=None, lang=None, logger=None):
-    """Hangulizes the string with the given language code or lang.
+    """Transcribes a loanword to Hangul.
 
         >>> print hangulize(u'gloria', 'ita')
         글로리아
 
-    :param string: the loanword
-    :param code: the language code as ISO 639-3. if ``lang`` is not given,
+    :param string: an loan word
+    :param code: a language code as ISO 639-3. if ``lang`` is not given,
                  it is required
-    :param lang: the :class:`Language` instance
+    :param lang: a :class:`Language` instance
     :param logger: if the logger instance is given, reports result by each
                    steps
     """
