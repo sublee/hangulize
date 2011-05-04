@@ -19,15 +19,8 @@ API
 Developers
 ----------
 
-Founders
-~~~~~~~~
-
 - `Brian Jongseong Park <http://iceager.egloos.com/>`_ - Linguistic Consultant
 - `Heungsub Lee <http://subl.ee/>`_ - Software Developer
-
-Contributors
-~~~~~~~~~~~~
-
 - Jeong YunWon
 
 License
