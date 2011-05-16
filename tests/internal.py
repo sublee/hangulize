@@ -68,6 +68,10 @@ class APITestCase(unittest.TestCase):
         assert u'a한u글o' == normalize_roman(u'Ä한ü글Ö')
         assert u'123aehtw' == normalize_roman(u'123ǞËḧT̈Ẅ')
 
+    def test_str(self):
+        from hangulize import hangulize
+        hangulize('Hello', 'ita')
+
 
 class PatternTestCase(HangulizeTestCase):
 

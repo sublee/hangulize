@@ -242,6 +242,8 @@ class Language(object):
                 return syllable[0].letter
             else:
                 return join(syllable)
+        if not isinstance(string, unicode):
+            string = string.decode()
         string = self.normalize(string)
         logger and logger.info(">> '%s'" % string)
         phonemes = self.transcribe(string, logger=logger)
