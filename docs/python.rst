@@ -19,6 +19,10 @@ We can also get a development version from `the GitHub repository
 
 .. sourcecode:: console
 
+   $ pip install git+git://github.com/sublee/hangulize.git#egg=hangulize
+
+.. sourcecode:: console
+
    $ git clone git://github.com/sublee/hangulize.git
    $ cd hangulize
    $ python setup.py install
