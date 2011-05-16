@@ -64,17 +64,21 @@ Hangulize는 위 아이디어를 실현하는 프로젝트입니다.
 
 1. pip 이용:
 
-       $ pip install hangulize
+    $ pip install hangulize
 
 1. easy_install 이용:
 
-       $ easy_install hangulize
+    $ easy_install hangulize
 
-1. 저장소 내려받기:
+1. pip로 개발버전 받기:
 
-       $ git clone git://github.com/sublee/hangulize.git
-       $ cd hangulize
-       $ python setup.py install
+    $ pip install git+git://github.com/sublee/hangulize.git#egg=hangulize
+
+1. 저장소 내려받아 설치하기:
+
+    $ git clone git://github.com/sublee/hangulize.git
+    $ cd hangulize
+    $ python setup.py install
 
 사용법
 ------
