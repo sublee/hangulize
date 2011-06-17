@@ -39,7 +39,7 @@ except ImportError:
 
 setup(
     name='hangulize',
-    version='0.0.3',
+    version='0.0.4',
     license='BSD',
     author='Heungsub Lee',
     author_email='h@subl.ee',
