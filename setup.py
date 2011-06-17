@@ -31,7 +31,10 @@ try:
     from setuptools import setup
 except ImportError:
     from distutils.core import setup
-from cmds import cmdclass
+try:
+    from cmds import cmdclass
+except ImportError:
+    cmdclass = lambda: {}
 
 
 setup(
