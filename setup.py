@@ -28,18 +28,15 @@ Links
 
 """
 try:
-    from setuptools import setup
+    from setuptools import setup, find_packages
 except ImportError:
     from distutils.core import setup
-try:
-    from cmds import cmdclass
-except ImportError:
-    cmdclass = lambda: {}
+from cmds import cmdclass
 
 
 setup(
     name='hangulize',
-    version='0.0.4',
+    version='0.0.5',
     license='BSD',
     author='Heungsub Lee',
     author_email='h@subl.ee',
@@ -47,8 +44,9 @@ setup(
     long_description=__doc__,
     zip_safe=False,
     platforms='any',
-    packages=['hangulize', 'hangulize.langs'],
-    package_data={'hangulize.langs': ['*/*']},
+    packages=find_packages(),
+    package_dir={'hangulize': 'hangulize'},
+    py_modules=['cmds'],
     classifiers=[
         'Development Status :: 4 - Beta',
         'Environment :: Console',
