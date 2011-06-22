@@ -5,7 +5,7 @@
 Hangulize is an application which automatically transcribes a non-Korean word
 into Hangul, the Korean alphabet. We can try on the
 `web <http://www.hangulize.org>`_ or your
-`iPhone <http://itunes.apple.com/sn/app/hangulize/id418530537>`_.
+`iPhone <http://itunes.apple.com/us/app/hangulize/id418530537>`_.
 
 API
 ---
