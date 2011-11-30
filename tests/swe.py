@@ -35,12 +35,9 @@ class SwedishTestCase(HangulizeTestCase):
             u'älg': u'엘리',
             u'Strindberg': u'스트린드베리',
             u'Borg': u'보리',
-            # u'Magnus': u'망누스',
-            # => 망음누스
-            # u'Ragnar': u'랑나르',
-            # => 랑음나르
-            # u'Agnes': u'앙네스',
-            # => 앙음네스
+            u'Magnus': u'망누스',
+            u'Ragnar': u'랑나르',
+            u'Agnes': u'앙네스',
             u'högst': u'획스트',
             u'Grönberg': u'그뢴베리',
             u'Gjerstad': u'예르스타드',
@@ -204,8 +201,7 @@ class SwedishTestCase(HangulizeTestCase):
             u'Göteborg': u'예테보리',
             u'älg': u'엘리',
             u'Borg': u'보리',
-            # u'Magnus': u'망누스',
-            # => 망음누스
+            u'Magnus': u'망누스',
             u'högst': u'획스트',
             u'Ludvig': u'루드비그',
             u'Greta': u'그레타',
