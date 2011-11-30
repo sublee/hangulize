@@ -25,6 +25,7 @@ class Polish(Language):
         ('rz',            u'ż'),
         (u'dź',           u'ć'),
         (u'ć',            'cj'),
+        ('^th',           't'),
         ('hh',            'h'),
         ('ch',            'h'),
         (u'ź{<vl>}',      'sj'),
