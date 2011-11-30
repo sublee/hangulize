@@ -12,6 +12,7 @@ class Polish(Language):
     cs = 'bcCdfghjklmnpqrstvwxz'
     vl = 'cCfhkpst'
     notation = Notation([
+        (u'wałęsa',       u'wałensa'),
         (u'ą{l|ł}',       'o'),
         (u'ą',            'oN'),
         (u'ę{l|ł}',       'e'),
