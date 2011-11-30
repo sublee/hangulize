@@ -19,7 +19,7 @@ class TurkishTestCase(HangulizeTestCase):
             u'Battani': u'바타니',
             u'Hüseyin Çağlayan': u'휘세인 찰라얀',
             u'Süleyman Çelebi': u'쉴레이만 첼레비',
-            u'Rauf Denktaş': u'라우프 덴크타슈',
+            u'Rauf Denktaş': u'라우프 뎅크타슈',
             u'Bülent Ecevit': u'뷜렌트 에제비트',
             u'Ahmet Mithat Efendi': u'아흐메트 미타트 에펜디',
             u'Yunus Emre': u'유누스 엠레',
