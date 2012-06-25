@@ -2,7 +2,6 @@
 import sys
 import os
 import os.path
-import time
 import unittest
 import hangulize
 from cmds.helper import color
