@@ -117,6 +117,12 @@ Hangulize는 위 아이디어를 실현하는 프로젝트입니다.
     제4항 ... ok
     ...
 
+이때 `HANGULIZE_TEST_LANG` 환경 변수를 설정할 경우, 해당 언어의 테스트만
+할 수도 있습니다:
+
+    $ HANGULIZE_TEST_LANG=jpn python setup.py test
+    ...
+
 또는 REPL 모드를 사용할 수 있습니다. REPL 모드에서는 단어의 변화 과정이
 표준출력으로 나타납니다:
 
