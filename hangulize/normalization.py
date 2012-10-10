@@ -1,11 +1,18 @@
 # -*- coding: utf-8 -*-
+"""
+    hangulize.normalization
+    ~~~~~~~~~~~~~~~~~~~~~~~
+
+    :copyright: (c) 2011-2012 by Heungsub Lee
+    :license: BSD, see LICENSE for more details.
+"""
 import unicodedata
 
 
 def normalize_roman(string, additional=None):
     """Removes diacritics from the string and converts to lowercase.
 
-        >>> normalize_roman(u'E\xe8\xe9') # Eèé
+        >>> normalize_roman(u'Eèé')
         u'eee'
     """
     if additional:

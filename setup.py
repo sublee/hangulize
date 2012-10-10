@@ -27,19 +27,20 @@ Links
   <http://github.com/sublee/hangulize/zipball/master#egg=hangulize-dev>`_
 
 """
-try:
-    from setuptools import setup, find_packages
-except ImportError:
-    from distutils.core import setup
+from setuptools import setup, find_packages
+
+import hangulize
+
 from cmds import cmdclass
 
 
 setup(
-    name='hangulize',
-    version='0.0.5',
-    license='BSD',
-    author='Heungsub Lee',
-    author_email='h@subl.ee',
+    name=hangulize.__name__,
+    version=hangulize.__version__,
+    license=hangulize.__license__,
+    author=hangulize.__author__,
+    author_email=hangulize.__author_email__,
+    url=hangulize.__url__,
     description='Korean Alphabet Transcription',
     long_description=__doc__,
     zip_safe=False,

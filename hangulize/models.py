@@ -1,7 +1,15 @@
 # -*- coding: utf-8 -*-
-import sys
-import re
+"""
+    hangulize.models
+    ~~~~~~~~~~~~~~~~
+
+    :copyright: (c) 2011-2012 by Heungsub Lee
+    :license: BSD, see LICENSE for more details.
+"""
 import functools
+import re
+import sys
+
 from hangulize.hangul import *
 
 
@@ -48,6 +56,7 @@ class Choseong(Phoneme):
         >>> Choseong(G)
         <Choseung 'ㄱ'>
     """
+
     pass
 
 
@@ -57,6 +66,7 @@ class Jungseong(Phoneme):
         >>> Jungseong(A)
         <Jungseong 'ㅏ'>
     """
+
     pass
 
 
@@ -66,18 +76,20 @@ class Jongseong(Phoneme):
         >>> Jongseong(G)
         <Jongseong 'ㄱ'>
     """
+
     pass
 
 
 class Impurity(Phoneme):
     """An impurity letter will be kept."""
+
     pass
 
 
 class Notation(object):
     """Describes loanword orthography.
 
-    :param *rule: the ordered key-value list
+    :param rules: the rewrite rules as an ordered key-value list
     """
 
     def __init__(self, rules):
@@ -129,18 +141,18 @@ class Language(object):
     instance.
 
         >>> class Extraterrestrial(Language):
-        ...     notation = Notation(
+        ...     notation = Notation([
         ...         (u'ㅹ', (Choseong(BB), Jungseong(U), Jongseong(NG))),
         ...         (u'㉠', (Choseong(G),)),
         ...         (u'ㅣ', (Jungseong(I),)),
         ...         (u'ㅋ', (Choseong(K), Jungseong(I), Jongseong(G)))
-        ...     )
+        ...     ])
         ...
         >>> ext = Extraterrestrial()
         >>> print ext.hangulize(u'ㅹ㉠ㅣㅋㅋㅋ')
         뿡기킥킥킥
 
-    :param logger: the logger object in the logging module
+    :param logger: a logger
     """
 
     __tmp__ = ''
@@ -452,17 +464,6 @@ _pass_unmatched = Rewrite('[^' + DONE + ']+',
                           lambda m, r: (Impurity(m.group(0)),))
 
 
-
-class HangulizeError(Exception):
-
-    pass
-
-
-class LanguageError(HangulizeError):
-
-    pass
-
-
-class InvalidCodeError(HangulizeError):
-
-    pass
+HangulizeError = Exception
+LanguageError = ValueError
+InvalidCodeError = ValueError

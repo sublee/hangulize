@@ -1,14 +1,27 @@
 # -*- coding: utf-8 -*-
 """
-hangulize
-~~~~~~~~~
+    hangulize
+    ~~~~~~~~~
 
-Korean Alphabet Transcription.
+    Korean Alphabet Transcription.
+
+    :copyright: (c) 2011-2012 by Heungsub Lee
+    :license: BSD, see LICENSE for more details.
 """
-import sys
 import re
-from hangulize.processing import *
+import sys
+
+from hangulize.models import *
 from hangulize.normalization import *
+from hangulize.processing import *
+
+
+__copyright__ = 'Copyright 2011-2012 by Heungsub Lee'
+__version__ = '0.0.6'
+__license__ = 'BSD'
+__author__ = 'Heungsub Lee'
+__author_email__ = 'h''@''subl.ee'
+__url__ = 'http://hangulize.org/'
 
 
 def hangulize(string, code=None, iso639=None, lang=None, logger=None):
@@ -29,23 +42,16 @@ def hangulize(string, code=None, iso639=None, lang=None, logger=None):
     return lang.hangulize(string, logger=logger)
 
 
-def import_module(code):
-    """Imports a module from the given code."""
-    submods = code.split('.')
-    module = __import__('%s.langs.%s' % (__name__, code)).langs
-    for submod in submods:
-        module = getattr(module, submod)
-    return module
-
-
 def get_lang(code, iso639=None):
     """Returns a language instance from the given code."""
+    if not code or len(code) < 2 or len(code) > 3:
+        raise ValueError('%r is an invalid language code' % code)
     def make_lang(code, submods):
         try:
             code = '.'.join([code] + list(submods))
-            return import_module(code).__lang__()
+            return import_lang_module(code).__lang__()
         except ImportError:
-            raise LanguageError('%s is not supported' % code)
+            raise ValueError('Hangulize does not support %s' % code)
     # split module path
     if '.' in code:
         code = code.split('.')
@@ -54,7 +60,7 @@ def get_lang(code, iso639=None):
     else:
         submods = ()
     # guess if ISO 639-1 or 639-3
-    if not iso639:
+    if iso639 is None:
         if len(code) == 2:
             iso639 = 1
         elif len(code) == 3:
@@ -62,43 +68,59 @@ def get_lang(code, iso639=None):
     try:
         # fix the warning when importing pycountry
         import logging
+        from pycountry import languages
         if not getattr(logging, 'NullHandler', None):
             class NullHandler(logging.Handler):
                 def emit(self, record):
                     pass
             logging.NullHandler = NullHandler
         logging.getLogger('pycountry.db').addHandler(logging.NullHandler())
-        from pycountry import languages
         attr = ['alpha2', 'bibliographic', 'terminology'][iso639 - 1]
         code = languages.get(**{attr: code}).terminology
     except TypeError:
         # out of 2~3 characters
-        raise InvalidCodeError('%s is invalid language code' % code)
+        raise ValueError('%r is an invalid language code' % code)
     except KeyError:
         try:
             return make_lang(code, submods)
-        except LanguageError:
-            raise InvalidCodeError('%s is invalid ISO 639-%d code' % \
-                                   (code, iso639))
+        except ValueError:
+            raise ValueError('%r is an invalid ISO 639-%d code' % \
+                             (code, iso639))
     except ImportError:
         if iso639 != 3:
-            raise ImportError('pycountry is required '
-                              'to use ISO 639-%d' % iso639)
+            raise ImportError('ISO 639-%d requires pycountry' % iso639)
     return make_lang(code, submods)
 
 
-def supported(code):
+def import_lang_module(code):
+    """Imports a module from the given code."""
+    submods = code.split('.')
+    module = __import__('%s.langs.%s' % (__name__, code)).langs
+    for submod in submods:
+        module = getattr(module, submod)
+    return module
+
+
+def supports(code):
     """Checks if hangulize supports the given language.
 
-        >>> supported('ita')
+        >>> supports('ita')
         True
-        >>> supported('kat.narrow')
+        >>> supports('kat.narrow')
         True
-        >>> supported('kor')
+        >>> supports('kor')
         False
     """
     try:
-        import_module(code)
+        import_lang_module(code)
         return True
     except ImportError:
         return False
+
+
+def supported(code):
+    """Deprecated with 0.0.6. Use :func:`hangulize.supports` instead."""
+    import warnings
+    warnings.warn('supported() has been deprecated, use supports() instead',
+                  DeprecationWarning)
+    return supports(code)

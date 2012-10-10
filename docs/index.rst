@@ -3,7 +3,7 @@
 ===========================================
 
 Hangulize is an application which automatically transcribes a non-Korean word
-into Hangul, the Korean alphabet. We can try on the
+into Hangul, the Korean alphabet. You can try on the
 `web <http://www.hangulize.org>`_ or your
 `iPhone <http://itunes.apple.com/us/app/hangulize/id418530537>`_.
 

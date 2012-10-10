@@ -1,4 +1,11 @@
 # -*- coding: utf-8 -*-
+"""
+    hangulize.processing
+    ~~~~~~~~~~~~~~~~~~~~
+
+    :copyright: (c) 2011-2012 by Heungsub Lee
+    :license: BSD, see LICENSE for more details.
+"""
 from hangulize.hangul import *
 from hangulize.models import *
 
@@ -7,8 +14,8 @@ def complete_syllable(syllable):
     """Inserts the default jungseong or jongseong if it is not exists.
 
         >>> complete_syllable((Jungseong(YO),))
-        (u'\u315b', u'\u3161', u'')
-        >>> print join(_)
+        (u'ㅇ', u'ㅛ', u'')
+        >>> print hangulize.hangul.join(_)
         요
     """
     syllable = list(syllable)

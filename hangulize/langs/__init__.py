@@ -1,13 +1,25 @@
+# -*- coding: utf-8 -*-
+"""
+    hangulize.langs
+    ~~~~~~~~~~~~~~~
+
+    The languages that Hangulize supports.
+
+    :copyright: (c) 2011-2012 by Heungsub Lee
+    :license: BSD, see LICENSE for more details.
+"""
 import os
-import os.path as p
 import re
 
 
-def get_list():
+p = os.path
+
+
+def list_langs():
     """Returns the supported language code list."""
     ext = p.extsep + 'py'
     init = '__init__' + ext
-    def _get_list(prefix='', path=None):
+    def _list_langs(prefix='', path=None):
         path = path or p.dirname(__file__)
         # helpers
         name = lambda x: prefix + re.sub(re.escape(ext) + '$', '', x)
@@ -23,7 +35,17 @@ def get_list():
         for lang in langs:
             _path = p.join(path, lang)
             if p.isdir(_path):
-                langs += _get_list(prefix=lang + '.', path=_path)
+                langs += _list_langs(prefix=lang + '.', path=_path)
         langs.sort()
         return langs
-    return _get_list()
+    return _list_langs()
+
+
+def get_list():
+    """Deprecated with 0.0.6. Use :func:`hangulize.langs.list_langs`
+    instead.
+    """
+    import warnings
+    warnings.warn('get_list() has been deprecated, use list_langs() instead',
+                  DeprecationWarning)
+    return list_langs()

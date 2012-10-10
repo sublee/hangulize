@@ -3,8 +3,7 @@ import re
 import logging
 from distutils.cmd import Command
 from cmds.helper import color
-from hangulize import hangulize, get_lang, HangulizeError, \
-                      DONE, SPECIAL, BLANK, ZWSP
+from hangulize import hangulize, get_lang, DONE, SPECIAL, BLANK, ZWSP
 
 
 class REPLHandler(logging.StreamHandler):
@@ -79,13 +78,13 @@ class repl(Command):
                     logger.info('** ' + color(type(lang).__name__, 'green') + \
                                 ' is selected')
                     break
-                except HangulizeError, e:
+                except Exception, e:
                     logger.error(color(e, 'red'))
                     self.lang = None
             while True:
                 string = raw_input(color('==> ', 'cyan'))
                 if not string:
-                    logger.info('** ' + color('end', 'green'))
+                    logger.info('** ' + color('End', 'green'))
                     break
                 yield lang.hangulize(string.decode(encoding), logger=logger)
         for hangul in _repl():

@@ -1,9 +1,11 @@
 # -*- coding: utf-8 -*-
+import os
 import sys
-import os.path
 import time
 import unittest
+
 import hangulize
+
 from cmds.helper import color
 
 

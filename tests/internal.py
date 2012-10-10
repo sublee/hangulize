@@ -8,7 +8,7 @@ from tests import HangulizeTestCase
 class APITestCase(unittest.TestCase):
 
     import hangulize.langs
-    langs = hangulize.langs.get_list()
+    langs = hangulize.langs.list_langs()
 
     def test_toplevel_langs(self):
         assert 'ita' in self.langs
@@ -71,6 +71,13 @@ class APITestCase(unittest.TestCase):
     def test_str(self):
         from hangulize import hangulize
         hangulize('Hello', 'ita')
+
+    def test_supports(self):
+        from hangulize import supports
+        assert supports('lat')
+        assert supports('lit')
+        assert supports('ell')
+        assert not supports('nex')
 
 
 class PatternTestCase(HangulizeTestCase):
@@ -416,7 +423,7 @@ class TestCaseTestCase(unittest.TestCase):
     def test_capture_examples(self):
         return
         import hangulize.langs
-        langs = hangulize.langs.get_list()
+        langs = hangulize.langs.list_langs()
         for i in xrange(len(langs)):
             lang = langs.pop(0)
             test = lang.replace('.', '_')
