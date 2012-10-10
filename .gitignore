@@ -5,3 +5,5 @@ dist
 docs/Makefile
 docs/_build
 docs/_themes
+.*swp
+.tox

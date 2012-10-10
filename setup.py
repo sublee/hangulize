@@ -48,6 +48,7 @@ setup(
     packages=find_packages(),
     package_dir={'hangulize': 'hangulize'},
     py_modules=['cmds'],
+    test_suite='tests.suite_for_setup',
     classifiers=[
         'Development Status :: 4 - Beta',
         'Environment :: Console',

@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 import os
 import sys
-import time
 import unittest
 
 import hangulize
@@ -95,3 +94,6 @@ def suite(lang=None):
             del mod
     suite = LazyTestSuite(tests())
     return suite
+
+
+suite_for_setup = suite(os.environ.get('HANGULIZE_TEST_LANG'))
