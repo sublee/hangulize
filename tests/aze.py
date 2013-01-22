@@ -77,3 +77,8 @@ class AzerbaijaniTestCase(HangulizeTestCase):
             u'Yevlax': u'예블라흐',
             u'Zaqatala': u'자가탈라',
         })
+
+    def test_others(self):
+        self.assert_examples({
+            u'jurnal': u'주르날',
+        })
