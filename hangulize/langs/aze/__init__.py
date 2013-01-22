@@ -120,6 +120,7 @@ class Azerbaijani(Language):
         ('g', Choseong(G)),
         ('G', Choseong(G)),
         ('h', Choseong(H)),
+        ('j', Choseong(J)),
         ('k,', Jongseong(G)),
         ('k', Choseong(K)),
         ('^l', Choseong(L)),
