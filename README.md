@@ -1,9 +1,7 @@
 Hangulize - 외래어 자동 한글 변환 모듈
 ======================================
 
-Hangulize는 자동으로 외래어를 한글로 변환해주는 Python 모듈입니다. 만든이 중
-한 명인 Brian이 자신의 블로그에 작성한 다음 문단으로부터 프로젝트가
-시작되었습니다.
+[![Build Status](https://secure.travis-ci.org/sublee/hangulize.png?branch=master)](http://travis-ci.org/sublee/hangulize)
 
 > 외국어의 한글 표기 체계가 제대로 서려면 일반인이 외국어를 한글로
 > 표기하고 싶을 때 바로바로 쉽게 용례를 찾을 수 있어야 한다. 정기적으로
@@ -13,11 +11,13 @@ Hangulize는 자동으로 외래어를 한글로 변환해주는 Python 모듈�
 > 각 언어의 표기 규칙에 따라 권장 표기를 표시해야 한다. 프로그래머들과
 > 언어학자들이 손잡고 연구한다면 이게 공상으로만 그치지 않을 것이다.
 >
-> (전문: <http://iceager.egloos.com/2610028>)
+> by Brian Jongseong Park (<http://iceager.egloos.com/2610028>)
 
-Hangulize는 위 아이디어를 실현하는 프로젝트입니다.
+Hangulize는 외래어를 한글로 자동 변환해주는 Python 모듈입니다.
 
-[![Build Status](https://secure.travis-ci.org/sublee/hangulize.png?branch=master)](http://travis-ci.org/sublee/hangulize)
+    >>> from hangulize import hangulize
+    >>> print hangulize('Guido van Rossum', 'nld')
+    히도 판로쉼
 
 변환 가능한 언어들
 ------------------
@@ -148,10 +148,8 @@ Hangulize는 위 아이디어를 실현하는 프로젝트입니다.
 커뮤니티
 --------
 
-Hangulize는 [메일링리스트][]와 IRC
-채널(irc://irc.ozinger.org/hangulize)을 운영하고 있습니다. Hangulize 개발자들이
-주고받는 이야기를 보고싶거나 Hangulize에 제안할 좋은 아이디어가 있다면 이쪽으로
-와주시기 바랍니다.
+[메일링리스트][]를 운영하고 있습니다. Hangulize 개발자들이 주고받는 이야기를
+보고싶거나 Hangulize에 제안할 좋은 아이디어가 있다면 이쪽으로 오시기 바랍니다.
 
 만든이
 ------
@@ -163,8 +161,8 @@ Hangulize는 [메일링리스트][]와 IRC
 --------
 
 Hangulize에는 BSD 라이선스가 적용되어있습니다. 따라서 소스코드를 사용할
-경우 라이선스 내용을 준수해주십시오. 라이선스 전문은 `LICENSE` 파일에
-쓰여있습니다.
+경우 라이선스 내용을 준수해주십시오. 라이선스 전문은 `LICENSE` 파일에서
+확인하실 수 있습니다.
 
  [1]: http://korean.go.kr/09_new/dic/rule/rule_foreign_index.jsp
 
