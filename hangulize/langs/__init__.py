@@ -5,7 +5,7 @@
 
     The languages that Hangulize supports.
 
-    :copyright: (c) 2011-2012 by Heungsub Lee
+    :copyright: (c) 2010-2013 by Heungsub Lee
     :license: BSD, see LICENSE for more details.
 """
 import os

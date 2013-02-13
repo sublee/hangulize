@@ -5,7 +5,7 @@
 
     Korean Alphabet Transcription.
 
-    :copyright: (c) 2011-2012 by Heungsub Lee
+    :copyright: (c) 2010-2013 by Heungsub Lee
     :license: BSD, see LICENSE for more details.
 """
 import re
@@ -16,11 +16,11 @@ from hangulize.normalization import *
 from hangulize.processing import *
 
 
-__copyright__ = 'Copyright 2011-2012 by Heungsub Lee'
+__copyright__ = 'Copyright 2010-2013 by Heungsub Lee'
 __version__ = '0.0.6'
 __license__ = 'BSD'
 __author__ = 'Heungsub Lee'
-__author_email__ = 'h''@''subl.ee'
+__author_email__ = re.sub('((sub).)(.*)', r'\2@\1.\3', 'sublee')
 __url__ = 'http://hangulize.org/'
 
 
