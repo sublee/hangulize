@@ -205,6 +205,11 @@ class PatternTestCase(HangulizeTestCase):
             u'am o': u'암 오'
         }, lang=AmoLang())
 
+    def test_group_reference(self):
+        class GrpRefLang(Language):
+            notation = Notation([('(ab)c', r'\1')])
+        self.assert_examples({'abc': 'ab'}, lang=GrpRefLang())
+
 
 class AlgorithmTestCase(HangulizeTestCase):
 

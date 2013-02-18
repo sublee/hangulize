@@ -340,6 +340,10 @@ class Rewrite(object):
                             dictionary = dict(zip(src, dst))
                             let = dictionary[match.group(0)]
                             val = self.VARIABLE_PATTERN.sub(let, val)
+                        # group reference
+                        val = re.sub(r'\\(\d+)',
+                                     lambda m: match.group(int(m.group(1))),
+                                     val)
                     if phonemes:
                         for x in xrange(len(val) - len(match.group(0))):
                             phonemes.insert(start, None)
