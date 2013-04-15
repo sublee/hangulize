@@ -57,6 +57,10 @@ class APITestCase(unittest.TestCase):
         assert get_lang('ita') is not Japanese()
         assert get_lang('ita') is not get_lang('jpn')
 
+    def test_sub_lang(self):
+        from hangulize import get_lang
+        assert get_lang('kat.narrow')
+
     def test_normalize(self):
         from hangulize.normalization import normalize_roman
         assert u'abc' == normalize_roman(u'AbC')

@@ -17,7 +17,7 @@ from hangulize.processing import *
 
 
 __copyright__ = 'Copyright 2010-2013 by Heungsub Lee'
-__version__ = '0.0.6'
+__version__ = '0.0.7'
 __license__ = 'BSD'
 __author__ = 'Heungsub Lee'
 __author_email__ = re.sub('((sub).)(.*)', r'\2@\1.\3', 'sublee')
@@ -44,7 +44,8 @@ def hangulize(string, code=None, iso639=None, lang=None, logger=None):
 
 def get_lang(code, iso639=None):
     """Returns a language instance from the given code."""
-    if not code or len(code) < 2 or len(code) > 3:
+    code_head = code.split('.', 1)[0]
+    if len(code_head) < 2 or len(code_head) > 3:
         raise ValueError('%r is an invalid language code' % code)
     def make_lang(code, submods):
         try:
