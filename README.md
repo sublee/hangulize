@@ -155,7 +155,7 @@ Hangulize는 외래어를 한글로 자동 변환해주는 Python 모듈입니�
 ------
 
 - Brian Jongseong Park <<iceager@gmail.com>> - Linguistic Consultant
-- Heungsub Lee <<h@subl.ee>> - Developer
+- Heungsub Lee <<sub@subl.ee>> - Developer
 
 라이선스
 --------
