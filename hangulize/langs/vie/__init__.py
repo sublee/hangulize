@@ -99,6 +99,7 @@ class Vietnamese(Language):
         ('Yo',         Jungseong(YO)),
         ('YO',         Jungseong(YEO)),
         ('Yu',         Jungseong(YU)),
+        ('YU',         Jungseong(YU)),
         ('a',          Jungseong(A)),
         ('e',          Jungseong(AE)),
         ('E',          Jungseong(E)),
