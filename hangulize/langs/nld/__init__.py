@@ -406,7 +406,6 @@ class Dutch(Language):
         ('michael', 'mikaEl'),
         ('micha%el', 'mikaEl'),
         ('^michel$', 'misjEl'),
-        ('michiel', 'mikiEl'),
         ('michi%el', 'mikiEl'),
         ('model', 'modEl'),
         ('monsieur', 'mQsieu'),
