@@ -79,7 +79,7 @@ class DutchTestCase(HangulizeTestCase):
             u'Weltevree': u'벨테브레이',
             u'Wim': u'빔',
             u'cyaan': u'시안',
-        #    u'Lyonnet': u'리오넷',
+            # u'Lyonnet': u'리오넷',
             u'typisch': u'티피스',
             u'Verwey': u'페르베이',
             u'Zeeman': u'제이만',
@@ -189,7 +189,8 @@ class DutchTestCase(HangulizeTestCase):
 
     def test_5th(self):
         """제5항
-        g, ch는 ‘ㅎ'으로 적되, 차용어의 경우에는 해당 언어의 발음에 따라 적는다.
+        g, ch는 ‘ㅎ'으로 적되, 차용어의 경우에는 해당 언어의 발음에 따라
+        적는다.
         """
         self.assert_examples({
             u'gulden': u'휠던',
@@ -223,7 +224,7 @@ class DutchTestCase(HangulizeTestCase):
 
     def test_8th(self):
         """제8항: nk
-        k 앞에 오는 n은 받침 ‘ㅇ'으로 적는다. 
+        k 앞에 오는 n은 받침 ‘ㅇ'으로 적는다.
         """
         self.assert_examples({
             u'Frank': u'프랑크',
@@ -302,7 +303,7 @@ class DutchTestCase(HangulizeTestCase):
         """
         self.assert_examples({
             u'carré': u'카레',
-        #    u'casuïst': u'카수이스트',
+            # u'casuïst': u'카수이스트',
             u'drieëntwintig': u'드리엔트빈터흐',
         })
 
@@ -396,7 +397,7 @@ class DutchTestCase(HangulizeTestCase):
             u'Famke Janssen': u'팜커 얀선',
             u'Johan Jongkind': u'요한 용킨트',
             u'Annemarie Jorritsma': u'아네마리 요리츠마',
-            u'Juliana Louise Emma Marie Wilhelmina': \
+            u'Juliana Louise Emma Marie Wilhelmina':
             u'율리아나 루이서 에마 마리 빌헬미나',
             u'Heike Kamerlingh Onnes': u'헤이커 카메를링 오너스',
             u'Jacobus Cornelius Kapteyn': u'야코뷔스 코르넬리위스 캅테인',
@@ -448,7 +449,7 @@ class DutchTestCase(HangulizeTestCase):
             u'André Rouvoet': u'안드레 라우붓',
             u'Jacob van Ruisdael': u'야코프 판라위스달',
             u'Mark Rutte': u'마르크 뤼터',
-            u'Michiel de Ruyter': u'미키엘 더라위터르',
+            u'Michiel de Ruyter': u'미힐 더라위터르',
             u'Edwin van der Sar': u'에드빈 판데르사르',
             u'Nicolien Sauerbreij': u'니콜린 사우에르브레이',
             u'Clarence Seedorf': u'클라렌서 세이도르프',
@@ -487,7 +488,7 @@ class DutchTestCase(HangulizeTestCase):
             u'Rogier van der Weyden': u'로히어르 판데르베이던',
             u'Geert Wilders': u'헤이르트 빌더르스',
             u'Adriaan Willaert': u'아드리안 빌라르트',
-            u'Willem-Alexander Claus George Ferdinand': \
+            u'Willem-Alexander Claus George Ferdinand':
             u'빌럼알렉산더르 클라우스 헤오르허 페르디난트',
             u'Michael Dudok de Wit': u'미카엘 뒤독 더빗',
             u'Johan de Witt': u'요한 더빗',
