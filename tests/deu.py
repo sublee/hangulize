@@ -28,7 +28,7 @@ class GermanTestCase(HangulizeTestCase):
         #    u'zerknirschen': u'체어크니르셴',
         #    u'Fürsorge': u'퓌어조르게',
         #    u'Vorbild': u'포어빌트',
-        #    u'auβerhalb': u'아우서할프',
+        #    u'außerhalb': u'아우서할프',
         #    u'Urkunde': u'우어쿤데',
         #    u'Vaterland': u'파터란트',
         })
@@ -36,7 +36,7 @@ class GermanTestCase(HangulizeTestCase):
     def test_2nd(self):
         """제2항: 어말의 파열음은 '으'를 붙여 적는 것을 원칙으로 한다."""
         self.assert_examples({
-        #    u'Rostock': u'로스토크', # 규칙?
+            u'Rostock': u'로스토크',
             u'Stadt': u'슈타트',
         })
 
@@ -103,4 +103,16 @@ class GermanTestCase(HangulizeTestCase):
             u'Niclas': u'니클라스',
             u'Kupfer': u'쿠퍼',
             u'Beelitz': u'벨리츠',
+            u'Heidegger': u'하이데거',
+            u'Guggenheim': u'구겐하임',
+            u'Fuggerei': u'푸게라이',
+            u'Grotesk': u'그로테스크',
+            u'norddeutsch': u'노르트도이치',
+            u'Berggarten': u'베르크가르텐',
+            u'Augsburg': u'아우크스부르크',
+            u'Herbst': u'헤르프스트',
+            u'Alexander': u'알렉산더',
+            u'Max': u'막스',
+            u'Sachsen': u'작센',
+            u'Habsburg': u'합스부르크',
         })
