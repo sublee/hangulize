@@ -115,4 +115,5 @@ class GermanTestCase(HangulizeTestCase):
             u'Max': u'막스',
             u'Sachsen': u'작센',
             u'Habsburg': u'합스부르크',
+            u'Feuer': u'포이어',
         })
