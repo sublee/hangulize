@@ -27,20 +27,25 @@ Links
   <http://github.com/sublee/hangulize/zipball/master#egg=hangulize-dev>`_
 
 """
+import re
 from setuptools import setup, find_packages
-
-import hangulize
 
 from cmds import cmdclass
 
 
+# detect the current version.
+with open('hangulize/__init__.py') as f:
+    version = re.search(r'__version__\s*=\s*\'(.+?)\'', f.read()).group(1)
+assert version
+
+
 setup(
-    name=hangulize.__name__,
-    version=hangulize.__version__,
-    license=hangulize.__license__,
-    author=hangulize.__author__,
-    author_email=hangulize.__author_email__,
-    url=hangulize.__url__,
+    name='hangulize',
+    version=version,
+    license='BSD',
+    author='Heungsub',
+    author_email=re.sub('((sub).)(.*)', r'\2@\1.\3', 'sublee'),
+    url='http://hangulize.org/',
     description='Korean Alphabet Transcription',
     long_description=__doc__,
     zip_safe=False,

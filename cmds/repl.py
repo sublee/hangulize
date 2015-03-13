@@ -3,7 +3,7 @@ import re
 import logging
 from distutils.cmd import Command
 from cmds.helper import color
-from hangulize import hangulize, get_lang, DONE, SPECIAL, BLANK, ZWSP
+from hangulize import get_lang, DONE, SPECIAL, BLANK, ZWSP
 
 
 class REPLHandler(logging.StreamHandler):
@@ -75,7 +75,7 @@ class repl(Command):
                 lang = self.lang or raw_input(color('Lang: ', 'magenta'))
                 try:
                     lang = get_lang(lang)
-                    logger.info('** ' + color(type(lang).__name__, 'green') + \
+                    logger.info('** ' + color(type(lang).__name__, 'green') +
                                 ' is selected')
                     break
                 except Exception, e:

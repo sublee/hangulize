@@ -3,17 +3,22 @@
     hangulize.normalization
     ~~~~~~~~~~~~~~~~~~~~~~~
 
-    :copyright: (c) 2010-2013 by Heungsub Lee
+    :copyright: (c) 2010-2015 by Heungsub Lee
     :license: BSD, see LICENSE for more details.
 """
+from __future__ import unicode_literals
 import unicodedata
 
 
+__all__ = [b'normalize_roman']
+
+
 def normalize_roman(string, additional=None):
-    """Removes diacritics from the string and converts to lowercase.
+    """Removes diacritics from the string and converts to lowercase::
 
         >>> normalize_roman(u'Eèé')
         u'eee'
+
     """
     if additional:
         safe = additional.keys() + additional.values()
@@ -26,12 +31,11 @@ def normalize_roman(string, additional=None):
                 else:
                     yield c
         return ''.join(gen())
-    else:
-        chars = []
-        for c in string:
-            if unicodedata.category(c) == 'Lo':
-                chars.append(c)
-            else:
-                nor = unicodedata.normalize('NFD', c)
-                chars.extend(x for x in nor if unicodedata.category(x) != 'Mn')
-        return ''.join(chars).lower()
+    chars = []
+    for c in string:
+        if unicodedata.category(c) == 'Lo':
+            chars.append(c)
+        else:
+            nor = unicodedata.normalize('NFD', c)
+            chars.extend(x for x in nor if unicodedata.category(x) != 'Mn')
+    return ''.join(chars).lower()

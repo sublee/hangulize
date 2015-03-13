@@ -5,23 +5,15 @@
 
     Korean Alphabet Transcription.
 
-    :copyright: (c) 2010-2013 by Heungsub Lee
+    :copyright: (c) 2010-2015 by Heungsub Lee
     :license: BSD, see LICENSE for more details.
 """
-import re
-import sys
-
-from hangulize.models import *
-from hangulize.normalization import *
-from hangulize.processing import *
+from __future__ import absolute_import, unicode_literals
+import importlib
 
 
-__copyright__ = 'Copyright 2010-2013 by Heungsub Lee'
-__version__ = '0.0.7'
-__license__ = 'BSD'
-__author__ = 'Heungsub Lee'
-__author_email__ = re.sub('((sub).)(.*)', r'\2@\1.\3', 'sublee')
-__url__ = 'http://hangulize.org/'
+__version__ = '0.0.8'
+__all__ = [b'hangulize', b'get_lang', b'supports']
 
 
 def hangulize(string, code=None, iso639=None, lang=None, logger=None):
@@ -85,8 +77,8 @@ def get_lang(code, iso639=None):
         try:
             return make_lang(code, submods)
         except ValueError:
-            raise ValueError('%r is an invalid ISO 639-%d code' % \
-                             (code, iso639))
+            raise ValueError('{0!r} is an invalid ISO 639-{1} code'
+                             ''.format(code, iso639))
     except ImportError:
         if iso639 != 3:
             raise ImportError('ISO 639-%d requires pycountry' % iso639)
@@ -125,3 +117,11 @@ def supported(code):
     warnings.warn('supported() has been deprecated, use supports() instead',
                   DeprecationWarning)
     return supports(code)
+
+
+# include all submodules.
+for name in ['.models', '.normalization', '.processing']:
+    module = importlib.import_module(name, __name__)
+    __all__.extend(module.__all__)
+    for attr in module.__all__:
+        locals()[attr] = getattr(module, attr)

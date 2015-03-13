@@ -3,18 +3,32 @@
     hangulize.models
     ~~~~~~~~~~~~~~~~
 
-    :copyright: (c) 2010-2013 by Heungsub Lee
+    :copyright: (c) 2010-2015 by Heungsub Lee
     :license: BSD, see LICENSE for more details.
 """
+from __future__ import absolute_import, unicode_literals
 import functools
 import re
 import sys
 
-from hangulize.hangul import *
+from . import hangul
+from .hangul import join
+
+
+__all__ = [b'SPACE', b'ZWSP', b'EDGE', b'SPECIAL', b'BLANK', b'DONE',
+           b'ENCODING', b'EMPTY_TUPLE', b'Phoneme', b'Choseong', b'Jungseong',
+           b'Jongseong', b'Impurity', b'Notation', b'Language', b'Rewrite']
+
+
+# include Hangul constants.
+for name in dir(hangul):
+    if name == name.upper():
+        locals()[name] = getattr(hangul, name)
+        __all__.append(name)
 
 
 SPACE = ' '
-ZWSP = '/' # zero-width space
+ZWSP = '/'  # zero-width space
 EDGE = chr(3)
 SPECIAL = chr(6)
 BLANK = '(?:%s)' % '|'.join(map(re.escape, (SPACE, ZWSP, EDGE, SPECIAL)))
@@ -51,30 +65,33 @@ class Phoneme(object):
 
 
 class Choseong(Phoneme):
-    """A initial consonant in Hangul.
+    """A initial consonant in Hangul::
 
         >>> Choseong(G)
-        <Choseung 'ㄱ'>
+        <Choseong 'ㄱ'>
+
     """
 
     pass
 
 
 class Jungseong(Phoneme):
-    """A vowel in Hangul.
+    """A vowel in Hangul::
 
         >>> Jungseong(A)
         <Jungseong 'ㅏ'>
+
     """
 
     pass
 
 
 class Jongseong(Phoneme):
-    """A final consonant in Hangul.
+    """A final consonant in Hangul::
 
         >>> Jongseong(G)
         <Jongseong 'ㄱ'>
+
     """
 
     pass
@@ -138,7 +155,7 @@ class Notation(object):
 
 class Language(object):
     """Wraps a foreign language. The language should have a :class:`Notation`
-    instance.
+    instance::
 
         >>> class Extraterrestrial(Language):
         ...     notation = Notation([
@@ -153,6 +170,7 @@ class Language(object):
         뿡기킥킥킥
 
     :param logger: a logger
+
     """
 
     __tmp__ = ''
@@ -178,8 +196,8 @@ class Language(object):
             """keep special characters."""
             self._specials.append(match.group(0))
             return SPECIAL
-        esc = '(%s)' % '|'.join(re.escape(x) \
-                                for x in self.__special__ + self.__tmp__)
+        esc = '(%s)' % '|'.join(re.escape(x) for x in
+                                self.__special__ + self.__tmp__)
         return Rewrite(esc, keep)
 
     @cached_property
@@ -241,12 +259,13 @@ class Language(object):
         return string
 
     def hangulize(self, string, logger=None):
-        """Hangulizes the string.
+        """Hangulizes the string::
 
             >>> from hangulize.langs.ja import Japanese
             >>> ja = Japanese()
             >>> ja.hangulize(u'あかちゃん')
             아카찬
+
         """
         from hangulize.processing import complete_syllables
         def stringify(syllable):
@@ -412,7 +431,7 @@ class Rewrite(object):
         return regex
 
     def _make_lookaround(behind_pattern, ahead_pattern,
-                        behind_prefix, ahead_prefix):
+                         behind_prefix, ahead_prefix):
         @staticmethod
         def meth(regex):
             def lookbehind(match):
@@ -466,8 +485,3 @@ _remove_zwsp = Rewrite(ZWSP, (Impurity(''),))
 _hold_spaces = Rewrite(SPACE, (Impurity(' '),))
 _pass_unmatched = Rewrite('[^' + DONE + ']+',
                           lambda m, r: (Impurity(m.group(0)),))
-
-
-HangulizeError = Exception
-LanguageError = ValueError
-InvalidCodeError = ValueError

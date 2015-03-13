@@ -3,20 +3,27 @@
     hangulize.processing
     ~~~~~~~~~~~~~~~~~~~~
 
-    :copyright: (c) 2010-2013 by Heungsub Lee
+    :copyright: (c) 2010-2015 by Heungsub Lee
     :license: BSD, see LICENSE for more details.
 """
-from hangulize.hangul import *
-from hangulize.models import *
+from __future__ import absolute_import, unicode_literals
+
+from .hangul import EU, Null, NG, UnicodeHangulError, join, split
+from .models import Choseong, Impurity, Jongseong, Jungseong
+
+
+__all__ = [b'complete_syllable', b'complete_syllables', b'split_phonemes',
+           b'join_phonemes']
 
 
 def complete_syllable(syllable):
-    """Inserts the default jungseong or jongseong if it is not exists.
+    """Inserts the default jungseong or jongseong if it is not exists::
 
         >>> complete_syllable((Jungseong(YO),))
         (u'ㅇ', u'ㅛ', u'')
         >>> print hangulize.hangul.join(_)
         요
+
     """
     syllable = list(syllable)
     components = [type(ph) for ph in syllable]
@@ -35,9 +42,9 @@ def complete_syllables(phonemes):
     if phonemes:
         for ph in phonemes:
             comp = type(ph)
-            new_syllable = comp is Impurity or syllable and \
-                           components.index(comp) <= \
-                           components.index(type(syllable[-1]))
+            new_syllable = (comp is Impurity or syllable and
+                            components.index(comp) <=
+                            components.index(type(syllable[-1])))
             if new_syllable:
                 if syllable:
                     yield complete_syllable(syllable)
@@ -71,11 +78,12 @@ def split_phonemes(word):
 
 
 def join_phonemes(phonemes):
-    """Returns the word from the splitted phonemes.
+    """Returns the word from the splitted phonemes::
 
         >>> print join_phonemes((Jungseong(A), Jongseong(N),
         ...                      Choseong(N), Jungseong(YEO), Jongseong(NG)))
         안녕
+
     """
     syllables = complete_syllables(phonemes)
     chars = (join(syl) for syl in syllables)
