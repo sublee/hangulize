@@ -116,4 +116,6 @@ class GermanTestCase(HangulizeTestCase):
             u'Sachsen': u'작센',
             u'Habsburg': u'합스부르크',
             u'Feuer': u'포이어',
+            u'Bayern': u'바이에른',
+            u'Meyer': u'마이어',
         })
