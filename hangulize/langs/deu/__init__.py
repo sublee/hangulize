@@ -106,7 +106,7 @@ class German(Language):
         ('{ai|oi|au}k',   (Choseong(K),)),
         ('{@}k{c|s|S|t}', (Jongseong(G),)),
         ('k',             (Choseong(K),)),
-        ('{@}l{@}',       (Jongseong(L), Choseong(L))),
+        ('{@}l{@|m|n}',   (Jongseong(L), Choseong(L))),
         ('^l',            (Choseong(L),)),
         ('l{@}',          (Jongseong(L), Choseong(L))),
         ('l',             (Jongseong(L),)),
