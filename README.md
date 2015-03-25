@@ -164,7 +164,7 @@ Hangulize에는 BSD 라이선스가 적용되어있습니다. 따라서 소스�
 경우 라이선스 내용을 준수해주십시오. 라이선스 전문은 `LICENSE` 파일에서
 확인하실 수 있습니다.
 
- [1]: http://korean.go.kr/09_new/dic/rule/rule_foreign_index.jsp
+ [1]: http://www.korean.go.kr/front/page/pageView.do?page_id=P000105&mn_id=97
 
 링크
 ----
