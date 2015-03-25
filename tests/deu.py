@@ -120,4 +120,6 @@ class GermanTestCase(HangulizeTestCase):
             u'Meyer': u'마이어',
             u'Köln': u'쾰른',
             u'Wilhelm': u'빌헬름',
+            u'Helmut': u'헬무트',
+            u'Kellner': u'켈너',
         })
