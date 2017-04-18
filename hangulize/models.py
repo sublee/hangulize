@@ -15,9 +15,9 @@ from . import hangul
 from .hangul import join
 
 
-__all__ = [b'SPACE', b'ZWSP', b'EDGE', b'SPECIAL', b'BLANK', b'DONE',
-           b'ENCODING', b'EMPTY_TUPLE', b'Phoneme', b'Choseong', b'Jungseong',
-           b'Jongseong', b'Impurity', b'Notation', b'Language', b'Rewrite']
+__all__ = ['SPACE', 'ZWSP', 'EDGE', 'SPECIAL', 'BLANK', 'DONE', 'ENCODING',
+           'EMPTY_TUPLE', 'Phoneme', 'Choseong', 'Jungseong', 'Jongseong',
+           'Impurity', 'Notation', 'Language', 'Rewrite']
 
 
 # include Hangul constants.

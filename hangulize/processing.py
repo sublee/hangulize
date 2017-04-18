@@ -12,8 +12,8 @@ from .hangul import EU, Null, NG, UnicodeHangulError, join, split
 from .models import Choseong, Impurity, Jongseong, Jungseong
 
 
-__all__ = [b'complete_syllable', b'complete_syllables', b'split_phonemes',
-           b'join_phonemes']
+__all__ = ['complete_syllable', 'complete_syllables', 'split_phonemes',
+           'join_phonemes']
 
 
 def complete_syllable(syllable):

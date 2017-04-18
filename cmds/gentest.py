@@ -50,12 +50,11 @@ class gen_test(Command):
             self.locale = raw_input('Locale Code(ex. it): ')
         path = os.path.join('tests', '%s.dist.py' % self.locale)
         with open(path, 'w') as out:
-            print 'generating test suite...',
-            print>>out, generate_testsuite(self.url,
-                                           self.name,
-                                           self.locale).encode('utf-8')
-            print 'done'
-            print 'test suite was built at %s' % path
+            print('generating test suite...', end=' ')
+            print(generate_testsuite(self.url, self.name,
+                                     self.locale).encode('utf-8'), file=out)
+            print('done')
+            print('test suite was built at %s' % path)
 
 
 def ordinalth(n):

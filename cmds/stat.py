@@ -21,7 +21,7 @@ class stat(Command):
             case = [x for x in dir(mod) if x.endswith('TestCase') and \
                                            not x.startswith('Hangulize')][0]
             examples += getattr(mod, case).get_examples().keys()
-        print 'Supported languages:',
-        print color(len(langs), 'cyan')
-        print 'Prepared examples:',
-        print color(len(examples), 'cyan')
+        print('Supported languages:', end=' ')
+        print(color(len(langs), 'cyan'))
+        print('Prepared examples:', end=' ')
+        print(color(len(examples), 'cyan'))

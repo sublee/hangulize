@@ -78,7 +78,7 @@ class repl(Command):
                     logger.info('** ' + color(type(lang).__name__, 'green') +
                                 ' is selected')
                     break
-                except Exception, e:
+                except Exception as e:
                     logger.error(color(e, 'red'))
                     self.lang = None
             while True:

@@ -10,7 +10,7 @@ from __future__ import unicode_literals
 import unicodedata
 
 
-__all__ = [b'normalize_roman']
+__all__ = ['normalize_roman']
 
 
 def normalize_roman(string, additional=None):

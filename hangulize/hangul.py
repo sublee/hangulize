@@ -19,6 +19,7 @@
 #
 # $Id: hangul.py,v 1.2 2003/10/15 19:24:53 perky Exp $
 #
+from itertools import chain
 
 class UnicodeHangulError(Exception):
     
@@ -32,11 +33,6 @@ class UnicodeHangulError(Exception):
     __str__ = __repr__
 
 Null = u''
-try:
-    True
-except:
-    True = 1
-    False = 0
 
 class Jaeum:
 
@@ -88,9 +84,9 @@ Choseong = Jaeum.Choseong
 Jungseong = Moeum.Jungseong
 Jongseong = Jaeum.Jongseong
 
-for name, code in Jaeum.__dict__.items() + Moeum.__dict__.items():
+for name, code in chain(Jaeum.__dict__.items(), Moeum.__dict__.items()):
     if name.isupper() and len(name) <= 3:
-        exec "%s = %s" % (name, repr(code))
+        exec('%s = %s' % (name, repr(code)))
 del name, code
 
 # Unicode Hangul Syllables Characteristics
@@ -258,7 +254,7 @@ except:
 
 # Nested scope lambda emulation for versions before 2.2
 import sys
-if sys.hexversion < '0x2020000':
+if sys.hexversion < 0x2020000:
     class plambda:
         def __init__(self, obj):
             self.obj = obj

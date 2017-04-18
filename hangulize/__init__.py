@@ -13,7 +13,7 @@ import importlib
 
 
 __version__ = '0.0.8'
-__all__ = [b'hangulize', b'get_lang', b'supports']
+__all__ = ['hangulize', 'get_lang', 'supports']
 
 
 def hangulize(string, code=None, iso639=None, lang=None, logger=None):
