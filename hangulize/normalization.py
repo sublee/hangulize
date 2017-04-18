@@ -6,8 +6,6 @@
     :copyright: (c) 2010-2016 by Heungsub Lee
     :license: BSD, see LICENSE for more details.
 """
-from __future__ import unicode_literals
-
 import unicodedata
 
 from six import viewkeys, viewvalues

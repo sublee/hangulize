@@ -8,7 +8,7 @@
     :copyright: (c) 2010-2016 by Heungsub Lee
     :license: BSD, see LICENSE for more details.
 """
-from __future__ import absolute_import, unicode_literals
+from __future__ import absolute_import
 import importlib
 
 
