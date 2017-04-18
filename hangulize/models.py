@@ -7,9 +7,12 @@
     :license: BSD, see LICENSE for more details.
 """
 from __future__ import absolute_import, unicode_literals
+
 import functools
 import re
 import sys
+
+from six.moves import range
 
 from . import hangul
 from .hangul import join
@@ -364,7 +367,7 @@ class Rewrite(object):
                                      lambda m: match.group(int(m.group(1))),
                                      val)
                     if phonemes:
-                        for x in xrange(len(val) - len(match.group(0))):
+                        for x in range(len(val) - len(match.group(0))):
                             phonemes.insert(start, None)
                     return val
                 elif phonemes and is_tuple:
@@ -402,7 +405,6 @@ class Rewrite(object):
                 else:
                     msg = ".. '%s'\trewrite %s -> %s" % (args + (val,))
                 logger.info(msg)
-                #print phonemes
 
         return string
 

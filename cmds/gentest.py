@@ -1,9 +1,12 @@
 # -*- coding: utf-8 -*-
 from __future__ import with_statement
+
 import os
 import re
 import urllib
 from distutils.cmd import Command
+
+from six import print_
 
 
 TESTCASE_TEMPLATE = u''\
@@ -50,11 +53,11 @@ class gen_test(Command):
             self.locale = raw_input('Locale Code(ex. it): ')
         path = os.path.join('tests', '%s.dist.py' % self.locale)
         with open(path, 'w') as out:
-            print('generating test suite...', end=' ')
-            print(generate_testsuite(self.url, self.name,
-                                     self.locale).encode('utf-8'), file=out)
-            print('done')
-            print('test suite was built at %s' % path)
+            print_('generating test suite...', end=' ')
+            print_(generate_testsuite(self.url, self.name,
+                                      self.locale).encode('utf-8'), out)
+            print_('done')
+            print_('test suite was built at %s' % path)
 
 
 def ordinalth(n):
