@@ -11,6 +11,7 @@ from cmds.helper import color
 class LazyTestSuite(unittest.TestSuite):
 
     def __init__(self, tests=()):
+        super(LazyTestSuite, self).__init__()
         self._tests = tests
 
 
