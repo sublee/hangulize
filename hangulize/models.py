@@ -15,8 +15,8 @@ import sys
 from six import text_type
 from six.moves import range, reduce
 
-from . import hangul
-from .hangul import join
+from hangulize import hangul
+from hangulize.hangul import join
 
 
 __all__ = ['SPACE', 'ZWSP', 'EDGE', 'SPECIAL', 'BLANK', 'DONE', 'ENCODING',

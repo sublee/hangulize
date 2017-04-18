@@ -8,8 +8,8 @@
 """
 from __future__ import absolute_import
 
-from .hangul import EU, Null, NG, UnicodeHangulError, join, split
-from .models import Choseong, Impurity, Jongseong, Jungseong
+from hangulize.hangul import EU, Null, NG, UnicodeHangulError, join, split
+from hangulize.models import Choseong, Impurity, Jongseong, Jungseong
 
 
 __all__ = ['complete_syllable', 'complete_syllables', 'split_phonemes',
