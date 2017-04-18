@@ -124,4 +124,5 @@ for name in ['.models', '.normalization', '.processing']:
     module = importlib.import_module(name, __name__)
     __all__.extend(module.__all__)
     for attr in module.__all__:
+        print(attr)
         locals()[attr] = getattr(module, attr)
