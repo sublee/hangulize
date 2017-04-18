@@ -3,7 +3,7 @@
     hangulize.normalization
     ~~~~~~~~~~~~~~~~~~~~~~~
 
-    :copyright: (c) 2010-2016 by Heungsub Lee
+    :copyright: (c) 2010-2017 by Heungsub Lee
     :license: BSD, see LICENSE for more details.
 """
 import unicodedata
