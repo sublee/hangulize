@@ -12,7 +12,8 @@ import functools
 import re
 import sys
 
-from six.moves import range
+from six import text_type
+from six.moves import range, reduce
 
 from . import hangul
 from .hangul import join
@@ -276,7 +277,7 @@ class Language(object):
                 return syllable[0].letter
             else:
                 return join(syllable)
-        if not isinstance(string, unicode):
+        if not isinstance(string, text_type):
             string = string.decode()
         string = self.normalize(string)
         logger and logger.info(">> '%s'" % string)

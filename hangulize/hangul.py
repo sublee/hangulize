@@ -21,6 +21,9 @@
 #
 from itertools import chain
 
+from six import unichr
+
+
 class UnicodeHangulError(Exception):
     
     def __init__ (self, msg):

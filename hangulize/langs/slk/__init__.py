@@ -1,4 +1,6 @@
 # -*- coding: utf-8 -*-
+from six import viewkeys, viewvalues
+
 from hangulize import *
 
 
@@ -240,7 +242,7 @@ class Slovak(Language):
                    u'Ú': u'ú',
                    u'Ý': u'ý',
                    u'Ž': u'ž'}
-            safe = map.keys() + map.values()
+            safe = list(viewkeys(map)) + list(viewvalues(map))
             for c in string:
                 if c not in safe:
                     yield normalize_roman(c)

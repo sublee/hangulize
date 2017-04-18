@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+from six import unichr
 from six.moves import range
 
 from hangulize import *

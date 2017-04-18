@@ -7,7 +7,10 @@
     :license: BSD, see LICENSE for more details.
 """
 from __future__ import unicode_literals
+
 import unicodedata
+
+from six import viewkeys, viewvalues
 
 
 __all__ = ['normalize_roman']
@@ -21,7 +24,7 @@ def normalize_roman(string, additional=None):
 
     """
     if additional:
-        safe = additional.keys() + additional.values()
+        safe = list(viewkeys(additional)) + list(viewvalues(additional))
         def gen():
             for c in string:
                 if c not in safe:
