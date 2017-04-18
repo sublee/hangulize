@@ -3,14 +3,16 @@ import os
 import sys
 import unittest
 
-import hangulize
+from six import string_types
 
+import hangulize
 from cmds.helper import color
 
 
 class LazyTestSuite(unittest.TestSuite):
 
     def __init__(self, tests=()):
+        super(LazyTestSuite, self).__init__()
         self._tests = tests
 
 
@@ -27,7 +29,7 @@ class HangulizeTestCase(unittest.TestCase):
             return
         errors = []
         lang = lang or self.lang
-        if isinstance(lang, basestring):
+        if isinstance(lang, string_types):
             lang = hangulize.get_lang(lang)
         try:
             lang_name = type(lang).__name__

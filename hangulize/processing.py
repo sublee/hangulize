@@ -3,17 +3,17 @@
     hangulize.processing
     ~~~~~~~~~~~~~~~~~~~~
 
-    :copyright: (c) 2010-2016 by Heungsub Lee
+    :copyright: (c) 2010-2017 by Heungsub Lee
     :license: BSD, see LICENSE for more details.
 """
-from __future__ import absolute_import, unicode_literals
+from __future__ import absolute_import
 
-from .hangul import EU, Null, NG, UnicodeHangulError, join, split
-from .models import Choseong, Impurity, Jongseong, Jungseong
+from hangulize.hangul import EU, Null, NG, UnicodeHangulError, join, split
+from hangulize.models import Choseong, Impurity, Jongseong, Jungseong
 
 
-__all__ = [b'complete_syllable', b'complete_syllables', b'split_phonemes',
-           b'join_phonemes']
+__all__ = ['complete_syllable', 'complete_syllables', 'split_phonemes',
+           'join_phonemes']
 
 
 def complete_syllable(syllable):

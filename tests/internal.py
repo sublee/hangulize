@@ -1,5 +1,8 @@
 # -*- coding: utf-8 -*-
 import unittest
+
+from six.moves import range
+
 from hangulize import *
 from cmds import repl
 from tests import HangulizeTestCase
@@ -433,7 +436,7 @@ class TestCaseTestCase(unittest.TestCase):
         return
         import hangulize.langs
         langs = hangulize.langs.list_langs()
-        for i in xrange(len(langs)):
+        for i in range(len(langs)):
             lang = langs.pop(0)
             test = lang.replace('.', '_')
             test = getattr(__import__('tests.%s' % test), test)

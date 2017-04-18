@@ -1,4 +1,7 @@
 # -*- coding: utf-8 -*-
+from six import unichr
+from six.moves import range
+
 from hangulize import *
 
 
@@ -7,7 +10,7 @@ class Japanese(Language):
 
     __iso639__ = {1: 'ja', 2: 'jpn', 3: 'jpn'}
     __tmp__ = ''.join((chr(x) + chr(x).upper()) \
-                      for x in xrange(ord('a'), ord('z') + 1))
+                      for x in range(ord('a'), ord('z') + 1))
 
     notation = Notation([
         (u'ア|ァ',    'a'),
@@ -132,7 +135,7 @@ class Japanese(Language):
     def normalize(self, string):
         def hiragana_to_katakana(c):
             code = ord(c)
-            if code not in xrange(0x3040, 0x309f + 1):
+            if code not in range(0x3040, 0x309f + 1):
                 return c
             return unichr(code + 96)
         return ''.join(map(hiragana_to_katakana, string))

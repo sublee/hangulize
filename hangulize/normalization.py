@@ -3,14 +3,13 @@
     hangulize.normalization
     ~~~~~~~~~~~~~~~~~~~~~~~
 
-    :copyright: (c) 2010-2016 by Heungsub Lee
+    :copyright: (c) 2010-2017 by Heungsub Lee
     :license: BSD, see LICENSE for more details.
 """
-from __future__ import unicode_literals
 import unicodedata
 
 
-__all__ = [b'normalize_roman']
+__all__ = ['normalize_roman']
 
 
 def normalize_roman(string, additional=None):
@@ -21,7 +20,7 @@ def normalize_roman(string, additional=None):
 
     """
     if additional:
-        safe = additional.keys() + additional.values()
+        safe = list(additional.keys()) + list(additional.values())
         def gen():
             for c in string:
                 if c not in safe:

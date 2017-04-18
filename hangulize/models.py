@@ -3,21 +3,25 @@
     hangulize.models
     ~~~~~~~~~~~~~~~~
 
-    :copyright: (c) 2010-2016 by Heungsub Lee
+    :copyright: (c) 2010-2017 by Heungsub Lee
     :license: BSD, see LICENSE for more details.
 """
-from __future__ import absolute_import, unicode_literals
+from __future__ import absolute_import
+
 import functools
 import re
 import sys
 
-from . import hangul
-from .hangul import join
+from six import text_type
+from six.moves import range, reduce
+
+from hangulize import hangul
+from hangulize.hangul import join
 
 
-__all__ = [b'SPACE', b'ZWSP', b'EDGE', b'SPECIAL', b'BLANK', b'DONE',
-           b'ENCODING', b'EMPTY_TUPLE', b'Phoneme', b'Choseong', b'Jungseong',
-           b'Jongseong', b'Impurity', b'Notation', b'Language', b'Rewrite']
+__all__ = ['SPACE', 'ZWSP', 'EDGE', 'SPECIAL', 'BLANK', 'DONE', 'ENCODING',
+           'EMPTY_TUPLE', 'Phoneme', 'Choseong', 'Jungseong', 'Jongseong',
+           'Impurity', 'Notation', 'Language', 'Rewrite']
 
 
 # include Hangul constants.
@@ -273,7 +277,7 @@ class Language(object):
                 return syllable[0].letter
             else:
                 return join(syllable)
-        if not isinstance(string, unicode):
+        if not isinstance(string, text_type):
             string = string.decode()
         string = self.normalize(string)
         logger and logger.info(">> '%s'" % string)
@@ -364,7 +368,7 @@ class Rewrite(object):
                                      lambda m: match.group(int(m.group(1))),
                                      val)
                     if phonemes:
-                        for x in xrange(len(val) - len(match.group(0))):
+                        for x in range(len(val) - len(match.group(0))):
                             phonemes.insert(start, None)
                     return val
                 elif phonemes and is_tuple:
@@ -402,7 +406,6 @@ class Rewrite(object):
                 else:
                     msg = ".. '%s'\trewrite %s -> %s" % (args + (val,))
                 logger.info(msg)
-                #print phonemes
 
         return string
 

@@ -5,15 +5,15 @@
 
     Korean Alphabet Transcription.
 
-    :copyright: (c) 2010-2016 by Heungsub Lee
+    :copyright: (c) 2010-2017 by Heungsub Lee
     :license: BSD, see LICENSE for more details.
 """
-from __future__ import absolute_import, unicode_literals
+from __future__ import absolute_import
 import importlib
 
 
 __version__ = '0.0.8'
-__all__ = [b'hangulize', b'get_lang', b'supports']
+__all__ = ['hangulize', 'get_lang', 'supports']
 
 
 def hangulize(string, code=None, iso639=None, lang=None, logger=None):
