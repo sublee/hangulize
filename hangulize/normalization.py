@@ -8,8 +8,6 @@
 """
 import unicodedata
 
-from six import viewkeys, viewvalues
-
 
 __all__ = ['normalize_roman']
 
@@ -22,7 +20,7 @@ def normalize_roman(string, additional=None):
 
     """
     if additional:
-        safe = list(viewkeys(additional)) + list(viewvalues(additional))
+        safe = list(additional.keys()) + list(additional.values())
         def gen():
             for c in string:
                 if c not in safe:
