@@ -130,7 +130,8 @@ class Japanese(Language):
         ('e',         Jungseong(E)),
         ('o',         Jungseong(O)),
         ('N',         Jongseong(N)),
-        ('T',         Jongseong(S))
+        ('T',         Jongseong(S)),
+        (u'・',       ' '),
     ])
 
     def normalize(self, string):
