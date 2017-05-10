@@ -88,6 +88,7 @@ class Japanese(Language):
         (u'ヲ',       'o'),
         (u'ン',       'N'),
         (u'ッ',       'T'),
+        (u'ー',       None),
         ('^k',        'g'),
         ('^t',        'd'),
         ('^c{a|i}',   'z'),
