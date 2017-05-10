@@ -210,3 +210,9 @@ class JapaneseTestCase(HangulizeTestCase):
             u'こごた': u'고고타',
             u'ひょうご': u'효고',
         })
+
+        
+    def test_examples_misc(self):
+        self.assert_examples({
+            u'オノ・ヨーコ': u'오노 요코',
+        })
