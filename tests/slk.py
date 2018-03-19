@@ -25,7 +25,7 @@ class SlovakTestCase(HangulizeTestCase):
             u'Daniela Hantuchová': u'다니엘라 한투호바',
             u'Andrej Hlinka': u'안드레이 흘린카',
             u'Milan Hodža': u'밀란 호자',
-            u'Marian Hossa': u'마리안 호사',
+            u'Marián Hossa': u'마리안 호사',
             u'Dominik Hrbatý': u'도미니크 흐르바티',
             u'Pavol Hurajt': u'파볼 후라이트',
             u'Jozef Miloslav Hurban': u'요제프 밀로슬라우 후르반',
