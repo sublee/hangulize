@@ -61,7 +61,9 @@ class gen_test(Command):
 
 
 def ordinalth(n):
-    last = n - n / 10 * 10
+    if 4 <= n % 100 < 20:
+        return '%dth' % n
+    last = n % 10
     if last == 1:
         return '%dst' % n
     elif last == 2:
