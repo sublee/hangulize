@@ -34,7 +34,7 @@ from cmds import cmdclass
 
 
 # detect the current version.
-with open('hangulize/__init__.py') as f:
+with open('hangulize/__init__.py', encoding='utf-8') as f:
     version = re.search(r'__version__\s*=\s*\'(.+?)\'', f.read()).group(1)
 assert version
 
