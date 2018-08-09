@@ -1,4 +1,4 @@
-## ⛔️ 이전 안내
+## ⚠️이전 안내
 
 Hangulize는 Go로 재구현되었습니다.
 [:octocat:hangulize/hangulize](https://github.com/hangulize/hangulize)에서 확인하실 수 있습니다.
