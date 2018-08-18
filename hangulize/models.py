@@ -8,6 +8,7 @@
 """
 from __future__ import absolute_import
 
+from collections import deque
 import functools
 import re
 import sys
@@ -392,9 +393,14 @@ class Rewrite(object):
         string = regex.sub(repl, string)
 
         # remove kept deletions
-        if phonemes:
+        if phonemes and deletions:
+            _phonemes = deque()
+            cur = len(phonemes)
             for start, end in reversed(deletions):
-                del phonemes[start:end]
+                _phonemes.extendleft(reversed(phonemes[end:cur]))
+                cur = start
+            _phonemes.extendleft(reversed(phonemes[0:cur]))
+            phonemes[:] = _phonemes
 
         if logger:
             # report changes
