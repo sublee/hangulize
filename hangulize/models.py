@@ -253,8 +253,11 @@ class Language(object):
         string = _pass_unmatched(string, phonemes)
 
         # flatten
-        phonemes = reduce(list.__add__, map(list, filter(None, phonemes)), [])
-        return phonemes
+        flat_phonemes = []
+        for phs in phonemes:
+            if phs:
+                flat_phonemes.extend(phs)
+        return flat_phonemes
 
     def normalize(self, string):
         """Before transcribing, normalizes the string. You could specify the
